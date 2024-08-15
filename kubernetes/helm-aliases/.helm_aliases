@@ -1,0 +1,75 @@
+# Basic Helm Commands
+alias hhelp='helm help'
+alias hhis='helm history'
+
+alias hcbash='helm completion bash > ~/.helm_completion.sh && source ~/.helm_completion.sh'
+alias hczsh='helm completion zsh > ~/.helm_completion.sh && source ~/.helm_completion.sh'
+alias hcfish='helm completion fish > ~/.helm_completion.sh && source ~/.helm_completion.sh'
+#alias hcpowershell='helm completion powershell > ~/.helm_completion.ps1 && source ~/.helm_completion.ps1'
+
+alias h='helm'
+alias hc='helm create'
+alias he='helm env'
+alias hl='helm list'
+alias ht='helm test'
+alias hf='helm fetch'
+alias hr='helm rollback'
+alias hun='helm uninstall'
+alias hstat='helm status'
+alias htpl='helm template'
+alias hlint='helm lint'
+alias hpack='helm package'
+alias hpull='helm pull'
+alias hpush='helm push'
+alias hversion='helm version'
+alias hverify='helm verify'
+
+alias hsha='helm show all'
+alias hshch='helm show chart'
+alias hshv='helm show values'
+alias hshr='helm show readme'
+alias hshcrd='helm show crds'
+
+
+alias hsre='helm search repo'
+alias hshub='helm search hub'
+
+alias hregli='helm registry login'
+alias hreglo='helm registry logout'
+
+alias hplug='helm plugin'
+alias hpli='helm plugin install'
+alias hpll='helm plugin list'
+alias hplup='helm plugin update'
+alias hplun='helm plugin uninstall'
+
+alias hi='helm install'
+alias hin='helm install --namespace <namespace>'
+alias hup='helm upgrade'
+alias hupn='helm upgrade --namespace <namespace>'
+alias hdel='helm delete'
+alias hdeln='helm delete --namespace <namespace>'
+
+alias hre='helm repo'
+alias hreup='helm repo update'
+alias hrel='helm repo list'
+
+alias hdf='helm diff'
+alias hdfup='helm diff upgrade'
+
+alias hdep='helm dependency'
+alias hdepu='helm dependency update'
+alias hdepl='helm dependency list'
+alias hdepb='helm dependency build'
+
+
+
+alias hg='helm get'
+alias hga='helm get all'
+alias hgh='helm get hooks'
+alias hgc='helm get manifest'
+alias hgs='helm get values'
+alias hgp='helm get notes'
+alias hgv='helm get values'
+
+
