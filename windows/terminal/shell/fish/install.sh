@@ -1,0 +1,1 @@
+echo "fish" | tee -a $HOME/.bashrc
