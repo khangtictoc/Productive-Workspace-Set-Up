@@ -1,6 +1,0 @@
-{
-    // Auto render Markdown when opening .md files
-    "workbench.editorAssociations": {
-        "*.md": "vscode.markdown.preview.editor",
-    }
-}
