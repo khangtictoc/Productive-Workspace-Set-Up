@@ -19,7 +19,6 @@ alias hstat='helm status'
 alias htpl='helm template'
 alias hlint='helm lint'
 alias hpac='helm package'
-alias hpul='helm pull'
 alias hpus='helm push'
 alias hvers='helm version'
 alias hver='helm verify'
@@ -30,7 +29,11 @@ alias hshv='helm show values'
 alias hshr='helm show readme'
 alias hshcrd='helm show crds'
 
+alias hpul='helm pull'
+alias hpulut='helm pull --untar'
+alias hpulutvers='helm pull --untar --version'
 
+alias hs='helm search'
 alias hsre='helm search repo'
 alias hshub='helm search hub'
 
@@ -61,7 +64,6 @@ alias hdep='helm dependency'
 alias hdepu='helm dependency update'
 alias hdepl='helm dependency list'
 alias hdepb='helm dependency build'
-
 
 
 alias hg='helm get'
