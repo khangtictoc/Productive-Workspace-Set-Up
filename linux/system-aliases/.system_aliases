@@ -1,0 +1,27 @@
+
+alias ..='cd ..'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+alias h='history'
+alias h1='history 10'
+alias h2='history 20'
+alias h3='history 30'
+
+alias psmem="ps auxf | sort -nr -k 4"
+alias psmem10="ps auxf | sort -nr -k 4 | head -10"
+alias pscpu="ps auxf | sort -nr -k 3"
+alias pscpu10="ps auxf | sort -nr -k 3 | head -10"
+alias cpuname='cat /proc/cpuinfo | grep "name"'
+
+alias bashreload="source ~/.bashrc"
+alias upgrade_udpate='apt-get update -y && apt-get upgrade -y'
+
+# Network
+
+alias localip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+alias lisport='netstat -plantu | grep LISTEN'
+

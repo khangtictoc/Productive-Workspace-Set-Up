@@ -1,0 +1,4 @@
+# Weather of current location
+alias weather='curl wttr.in'
+# Get public IP address
+alias publicip='echo $(wget -qO - https://api.ipify.org)'
