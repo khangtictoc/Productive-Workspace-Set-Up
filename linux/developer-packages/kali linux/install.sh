@@ -10,4 +10,3 @@ apt install -y htop # show process (pretty)
 apt install -y tree
 apt install -y lshw # Display hardware info
 apt install -y tilix # Add multi-terminal in 1 display
-apt install -y hURL # (Encode/ Decode URL)
