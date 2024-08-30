@@ -45,18 +45,19 @@ def main():
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
+        ('c', 'create', None, None),
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm'], None),
-        ('sts', 'statefulset', ['g', 'd', 'rm'], None),
-        ('svc', 'service', ['g', 'd', 'rm'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm'], None),
-        ('sec', 'secret', ['g', 'd', 'rm'], None),
+        ('po', 'pods', ['g', 'd', 'rm', 'c'], None),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'c'], None),
+        ('sts', 'statefulset', ['g', 'd', 'rm', 'c'], None),
+        ('svc', 'service', ['g', 'd', 'rm', 'c'], None),
+        ('ing', 'ingress', ['g', 'd', 'rm', 'c'], None),
+        ('cm', 'configmap', ['g', 'd', 'rm', 'c'], None),
+        ('sec', 'secret', ['g', 'd', 'rm', 'c'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('ns', 'namespaces', ['g', 'd', 'rm', 'c'], ['sys']),
         ]
     res_types = [r[0] for r in res]
 
