@@ -57,7 +57,7 @@ def main():
         ('cm', 'configmap', ['g', 'd', 'rm', 'c'], None),
         ('sec', 'secret', ['g', 'd', 'rm', 'c'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespaces', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('ns', 'namespace', ['g', 'd', 'rm', 'c'], ['sys']),
         ]
     res_types = [r[0] for r in res]
 
