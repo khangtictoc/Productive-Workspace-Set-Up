@@ -826,7 +826,12 @@ alias kgsecwsln='kubectl get secret --watch --show-labels --namespace'
 #                      PERSONAL ALIAS                          #
 ################################################################
 
+
 ###### BUILT-IN RESOURCES
+
+alias kgall='kubectl get all'
+alias kgallall='kubectl get all --all-namespaces'
+
 ## Context
 alias kc='kubectl config'
 alias kcc='kubectl config current-context'
