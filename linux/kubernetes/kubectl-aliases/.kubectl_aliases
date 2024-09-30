@@ -1119,8 +1119,8 @@ alias kgssall='kubectl get secretstore --all-namespaces'
 
 ## Argo Applications
 alias kgapp='kubectl get applications'
-alias kdapp='kubectl describe secretstore'
-alias krmapp='kubectl delete secretstore'
-alias kgappoyaml='kubectl get secretstore -o=yaml'
-alias kgappowide='kubectl get secretstore -o=wide'
-alias kgappall='kubectl get secretstore --all-namespaces'
+alias kdapp='kubectl describe applications'
+alias krmapp='kubectl delete applications'
+alias kgappoyaml='kubectl get applications -o=yaml'
+alias kgappowide='kubectl get applications -o=wide'
+alias kgappall='kubectl get applications --all-namespaces'
