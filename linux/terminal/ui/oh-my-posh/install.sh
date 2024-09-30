@@ -1,14 +1,19 @@
-sudo apt install -y unzip
+####### Run for BASH only ######
+
+sudo apt install -y unzip curl
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
 #### To list all available fonts
 # oh-my-posh font install
 # oh-my-posh font install <font-name>
 
-#### On WSL
-# sudo cp ~/.local/bin/oh-my-posh /usr/local/bin/
+#### If command is not executable
+BINARY_PATH="/usr/local/bin/"
+if ! command -v oh-my-posh &> /dev/null
+then
+    echo "Command has not been executable, copy to $BINARY_PATH"
+    sudo cp ~/.local/bin/oh-my-posh $BINARY_PATH
+else
+    echo "Command has install successfully!"
+fi
 
-set THEME "cloud-native-azure"
-set APPLIED_SHELL "fish"
-oh-my-posh init $APPLIED_SHELL --config ~/.cache/oh-my-posh/themes/$THEME.omp.json > ~/.oh-my-posh-init && source ~/.oh-my-posh-init
-echo -n "[ -f ~/.oh-my-posh-init ] && source ~/.oh-my-posh-init" | tee -a ~/.config/fish/config.fish
