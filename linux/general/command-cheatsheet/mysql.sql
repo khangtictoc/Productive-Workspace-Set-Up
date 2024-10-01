@@ -1,3 +1,5 @@
+// https://devhints.io/mysql
+
 CREATE USER 'matomobackupuser'@'localhost' IDENTIFIED  BY 'eL9KaXe1jdv44Byd7Szf';
 GRANT ALL PRIVILEGES ON *.* TO 'matomobackupuser'@'localhost';
 FLUSH PRIVILEGES;
