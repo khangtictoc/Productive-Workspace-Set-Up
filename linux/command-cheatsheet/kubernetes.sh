@@ -14,8 +14,7 @@ kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,ARCHITECTURE:.stat
 # Get downloaded/existing images and corresponding one version of tag
 kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n'
 # Get downloaded/existing images
-kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n' | c
-ut -d ':' -f1
+kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n' | cut -d ':' -f1
 
 ## Get custom columns/values of Pod
 # Get timestamp info
