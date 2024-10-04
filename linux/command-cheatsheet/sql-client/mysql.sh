@@ -1,0 +1,1 @@
+mysqldump -u newmatomo -peL9KaXe1jdv44Byd7Szf -h 192.168.20.84 --skip-lock-tables -B matomo1 -v > all_databases_prod.sql 2>/dev/null &
