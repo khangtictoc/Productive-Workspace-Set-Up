@@ -1,6 +1,17 @@
+## Debug packages
 apt install -y unzip
-apt install -y exiftool # #Read metadata file
-apt install -y ibus-unikey # #Type Vietnamese character
+apt install -y curl
+apt install -y dnsutils
+apt install -y net-tools
+apt install -y mysql-client
+apt install -y file
+apt install -y htop
+curl -sL https://aka.ms/InstallAzureCLIDeb | bash # az-cli
+
+
+## Tools
+apt install -y exiftool #Read metadata file
+apt install -y ibus-unikey # # Type Vietnamese character
 apt install -y git
 apt install -y youtube-dl # Youtube downloader (video)
 apt install -y bless #  Editor for bin files
