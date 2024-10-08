@@ -1,0 +1,25 @@
+# WATCH
+wproc() { 
+    PID=$1
+    INFO_TYPE=$2
+    watch "cat /proc/$PID/$INFO_TYPE"
+}
+wls() { 
+    watch "ls -alh"
+}
+wkgpo() {
+    NAMESPACE=$1
+    watch "kubectl get pods -n $NAMESPACE"
+}
+wkgdep() {
+    NAMESPACE=$1
+    watch "kubectl get deployment -n $NAMESPACE"
+}
+wkgsts() {
+    NAMESPACE=$1
+    watch "kubectl get statefulset -n $NAMESPACE"
+}
+wkgds() {
+    NAMESPACE=$1
+    watch "kubectl get daemonset -n $NAMESPACE"
+}
