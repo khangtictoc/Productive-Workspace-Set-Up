@@ -3,9 +3,15 @@ apt install -y unzip
 apt install -y curl
 apt install -y dnsutils
 apt install -y net-tools
+apt install -y iputils-ping
+apt install -y telnet
 apt install -y mysql-client
+apt install -y vim
+apt install -y pv # View process for MySQL restore database
+apt install -y strace
 apt install -y file
 apt install -y htop
+
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash # az-cli
 
 
