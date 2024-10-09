@@ -1,5 +1,3 @@
-#! /bin/bash
-
 ## Get custom columns/values of Node
 # Get capacity info
 kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CPU_CORES:.status.capacity.cpu,ALLOC_CPU:.status.allocatable.cpu,ALLOC_EPHEMERAL_STORAGE:.status.allocatable.ephemeral-storage,ALLOC_MEM:.status.allocatable.memory,MAX_POD:.status.allocatable.pods'
@@ -30,7 +28,10 @@ kubectl get pods -o custom-columns='POD NAME:.metadata.name,REQUEST_CPU:.spec.co
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,SECURITY_CONTEXT:.spec.containers[0].securityContext.privileged,AS_GROUP:.spec.containers[0].securityContext.runAsGroup,AS_USER:.spec.containers[0].securityContext.runAsUser,NON_ROOT:.spec.containers[0].securityContext.runAsNonRoot,SERVICE_ACCOUNT:.spec.serviceAccount'
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.spec.containers[0].volumeMounts.*.mountPath,VOLUME_NAME:.spec.containers[0].volumeMounts.*.name'
 
+# Get all pods running in a Node
+kubectl get pods --all-namespaces --field-selector spec.nodeName=node-1
 
 ## Force apply app using new ConfigMap
 kubectl rollout restart deployment configmap-env-var
 kubectl rollout status deployment configmap-env-var --watch=true
+
