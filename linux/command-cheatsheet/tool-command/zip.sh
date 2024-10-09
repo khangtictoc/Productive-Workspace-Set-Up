@@ -1,0 +1,1 @@
+zip matomo-codebase.zip -r * -x html/tmp/logs/matomo.log
