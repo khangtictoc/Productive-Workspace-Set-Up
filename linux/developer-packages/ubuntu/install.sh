@@ -11,6 +11,8 @@ apt install -y pv # View process for MySQL restore database
 apt install -y strace
 apt install -y file
 apt install -y htop
+apt install -y sysstat
+apt install -y iotop
 
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash # az-cli
 
