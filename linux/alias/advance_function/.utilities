@@ -7,6 +7,9 @@ wproc() {
 wls() { 
     watch "ls -alh"
 }
+wdf() { 
+    watch "df -h"
+}
 wkgpo() {
     NAMESPACE=$1
     watch "kubectl get pods -n $NAMESPACE"
