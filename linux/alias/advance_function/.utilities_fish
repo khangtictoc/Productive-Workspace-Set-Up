@@ -1,0 +1,38 @@
+# Watch
+function wproc
+    set PID $argv[1]
+    set INFO_TYPE $argv[2]
+    watch -n1 "cat /proc/$PID/$INFO_TYPE"
+end
+
+function wls
+    watch -n1 "ls -alh"
+end
+
+function wdf
+    watch -n1 "df -h"
+end
+
+function wiostat
+    # Add your command here, as it was not defined in your original code
+end
+
+function wkgpo
+    set NAMESPACE $argv[1]
+    watch -n1 "kubectl get pods -n $NAMESPACE"
+end
+
+function wkgdep
+    set NAMESPACE $argv[1]
+    watch -n1 "kubectl get deployment -n $NAMESPACE"
+end
+
+function wkgsts
+    set NAMESPACE $argv[1]
+    watch -n1 "kubectl get statefulset -n $NAMESPACE"
+end
+
+function wkgds
+    set NAMESPACE $argv[1]
+    watch -n1 "kubectl get daemonset -n $NAMESPACE"
+end
