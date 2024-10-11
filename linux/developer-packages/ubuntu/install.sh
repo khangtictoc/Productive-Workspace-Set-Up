@@ -1,16 +1,20 @@
-## Debug packages
+## General packages
 apt install -y unzip
 apt install -y curl
-apt install -y dnsutils
-apt install -y net-tools
-apt install -y iputils-ping
-apt install -y telnet
-apt install -y mysql-client
 apt install -y vim
 apt install -y pv # View process for MySQL restore database
 apt install -y strace
 apt install -y file
 apt install -y htop
+
+
+# Network
+apt install -y dnsutils
+apt install -y net-tools
+apt install -y iputils-ping
+apt install -y telnet
+
+# Disk
 apt install -y sysstat
 apt install -y iotop
 
@@ -29,3 +33,7 @@ apt install -y htop # show process (pretty)
 apt install -y tree
 apt install -y lshw # Display hardware info
 apt install -y tilix # Add multi-terminal in 1 display
+apt install -y ranger # Advanced File Manager UI for terminal
+
+# Database
+apt install -y mysql-client

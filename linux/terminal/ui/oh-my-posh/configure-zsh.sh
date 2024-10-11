@@ -4,8 +4,9 @@
 # Recommend theme
 # https://ohmyposh.dev/docs/themes
 # 'craver', 'easy-term'
-set THEME "easy-term"
-set APPLIED_SHELL "fish"
-oh-my-posh init $APPLIED_SHELL --config ~/.cache/oh-my-posh/themes/$THEME.omp.json > ~/.oh-my-posh-init
-source ~/.oh-my-posh-init
-echo -n "[ -f ~/.oh-my-posh-init ] && source ~/.oh-my-posh-init" | tee -a ~/.config/fish/config.fish
+cat << EOF > ~/.zshrc
+THEME="easy-term"
+eval "\$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/\$THEME.omp.json)"
+EOF
+
+echo "exec zsh" | tee -a ~/.bashrc
