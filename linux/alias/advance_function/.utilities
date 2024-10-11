@@ -1,28 +1,29 @@
-# WATCH
+# Watch
 wproc() { 
     PID=$1
     INFO_TYPE=$2
-    watch "cat /proc/$PID/$INFO_TYPE"
+    watch -n1 "cat /proc/$PID/$INFO_TYPE"
 }
 wls() { 
-    watch "ls -alh"
+    watch -n1 "ls -alh"
 }
 wdf() { 
-    watch "df -h"
+    watch -n1 "df -h"
 }
+wiostat
 wkgpo() {
     NAMESPACE=$1
-    watch "kubectl get pods -n $NAMESPACE"
+    watch -n1 "kubectl get pods -n $NAMESPACE"
 }
 wkgdep() {
     NAMESPACE=$1
-    watch "kubectl get deployment -n $NAMESPACE"
+    watch -n1 "kubectl get deployment -n $NAMESPACE"
 }
 wkgsts() {
     NAMESPACE=$1
-    watch "kubectl get statefulset -n $NAMESPACE"
+    watch -n1 "kubectl get statefulset -n $NAMESPACE"
 }
 wkgds() {
     NAMESPACE=$1
-    watch "kubectl get daemonset -n $NAMESPACE"
+    watch -n1 "kubectl get daemonset -n $NAMESPACE"
 }
