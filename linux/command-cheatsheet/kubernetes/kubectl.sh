@@ -35,3 +35,10 @@ kubectl get pods --all-namespaces --field-selector spec.nodeName=node-1
 kubectl rollout restart deployment configmap-env-var
 kubectl rollout status deployment configmap-env-var --watch=true
 
+# Get app for Helm
+kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm'
+kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm,app.kubernetes.io/instance=kube-prometheus-stack'
+
+# Kubectl copy file/folder from local to pod & vice versa
+kubectl cp <FILE> <CONTAINER>:/<PATH>
+kubectl cp <CONTAINER>:/<PATH> <FILE> 

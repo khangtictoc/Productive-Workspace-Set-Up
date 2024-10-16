@@ -8,7 +8,7 @@ databases = [
     'UnitedStore5',
 ]
 timestr = time.strftime("%Y%m%d-%H%M%S")
-with open(f'backup-{timestr}.sql', 'w+') as file:
+with open(f'backup-sqlserver-{timestr}.sql', 'w+') as file:
     for database in databases:
         sql = f"""
 USE "{database}";
