@@ -7,7 +7,23 @@ FLUSH PRIVILEGES;
 -- Version
 SELECT VERSION();
 
--- Get columns of table
+-- Tables
+SELECT
+  TABLE_NAME AS `Table`,
+  ROUND(DATA_LENGTH / 1024 / 1024, 1) AS "Data Size (MB)",
+  ROUND(INDEX_LENGTH / 1024 / 1024, 1) AS "Index Size (MB)",
+  ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024) AS `Total (MB)`
+FROM
+  information_schema.TABLES
+WHERE
+  TABLE_SCHEMA = "matomo1"
+HAVING
+  `Total (MB)` > 0
+ORDER BY
+  (DATA_LENGTH + INDEX_LENGTH)
+DESC;
+
+-- Columns
 SELECT COLUMN_NAME, TABLE_NAME, TABLE_CATALOG, TABLE_SCHEMA
   FROM INFORMATION_SCHEMA.COLUMNS
   WHERE COLUMN_NAME LIKE '%list%';
@@ -28,8 +44,10 @@ FLUSH TABLES;
 SELECT host, user, max_connections, max_user_connections, Show_db_priv, plugin, password_expired from mysql.user;  
 
 -- Database size 
-SELECT table_schema "DB Name",
-        ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB Size in MB" 
+SELECT table_schema "DB Name", 
+  ROUND(SUM(data_length) / 1024 / 1024, 1) AS "Data Size in MB",
+  ROUND(SUM(index_length) / 1024 / 1024, 1) AS "Index Size in MB",
+  ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) AS "Total DB Size in MB" 
 FROM information_schema.tables 
 GROUP BY table_schema; 
 
