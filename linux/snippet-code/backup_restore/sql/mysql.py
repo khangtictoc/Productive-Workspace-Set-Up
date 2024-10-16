@@ -2,7 +2,7 @@ import time
 import os
 
 db_user = 'newmatomo'
-db_password = 'eL9KaXe1jdv44Byd7Szf'
+db_password = 'this_is_fake'
 db_host = '192.168.20.84'
 db_name = 'matomo1'
 output_dir = "matomodb"
