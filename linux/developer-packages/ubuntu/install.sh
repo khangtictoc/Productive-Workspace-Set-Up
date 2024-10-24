@@ -6,6 +6,8 @@ apt install -y pv # View process for MySQL restore database
 apt install -y strace
 apt install -y file
 apt install -y htop
+apt install -y wget
+apt install -y dos2unix
 
 
 # Network
