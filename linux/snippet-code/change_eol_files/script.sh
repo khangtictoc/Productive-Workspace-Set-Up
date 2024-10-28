@@ -1,1 +1,0 @@
-find linux/alias -iname ".*" -type f -exec dos2unix {} \;

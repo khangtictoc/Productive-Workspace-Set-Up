@@ -6,3 +6,6 @@ root = true
 # Unix-style newlines (LF)
 [linux/alias/**/.*]
 end_of_line = lf
+
+[linux/start/*]
+end_of_line = lf
