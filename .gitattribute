@@ -1,2 +1,3 @@
 # Declare files that will always have CRLF line endings on checkout.
 linux/alias/**/.* text eol=lf
+linux/start/* eol=lf
