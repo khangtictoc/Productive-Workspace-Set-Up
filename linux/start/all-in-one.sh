@@ -11,6 +11,7 @@ for i in (seq 6)
     wget $urls[$i] -O ~/$DOTFILES_DIRNAME/$filename
 end
 
+set DOTFILES_DIRNAME dotfiles
 for file in ~/$DOTFILES_DIRNAME/.*
     if test -r $file
         source $file
