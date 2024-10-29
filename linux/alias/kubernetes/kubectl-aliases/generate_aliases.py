@@ -49,17 +49,31 @@ def main():
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm', 'c'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm', 'c'], None),
-        ('sts', 'statefulset', ['g', 'd', 'rm', 'c'], None),
-        ('svc', 'service', ['g', 'd', 'rm', 'c'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm', 'c'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm', 'c'], None),
-        ('sec', 'secret', ['g', 'd', 'rm', 'c'], None),
+        ('po', 'pods', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('sts', 'statefulset', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('svc', 'service', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('ing', 'ingress', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('cm', 'configmap', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('sec', 'secret', ['g', 'd', 'rm', 'c'], ['sys']),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespace', ['g', 'd', 'rm', 'c'], ['sys']),
-        ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c'], None),
-        ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm', 'c'], None),
+        # For personal use
+        ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('sa', 'serviceaccount', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('ro', 'role', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('cro', 'clusterrole', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('rob', 'rolebindings', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('crob', 'clusterrolebindings', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('ds', 'daemonset', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c'], ['sys']),
+        # Custom resources
+        ('esec', 'externalsecret', ['g', 'd', 'rm', 'c'], None),
+        ('ss', 'secretstore', ['g', 'd', 'rm', 'c'], None),
+        ('app', 'applications', ['g', 'd', 'rm', 'c'], None),
+        ('sj', 'scaledjob', ['g', 'd', 'rm', 'c'], None),
+        ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
         ]
     res_types = [r[0] for r in res]
 
