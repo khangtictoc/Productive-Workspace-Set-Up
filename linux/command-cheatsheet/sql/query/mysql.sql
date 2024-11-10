@@ -1,7 +1,7 @@
 -- https://devhints.io/mysql
 -- Create login user & grant permissions
-CREATE USER 'newmatomo'@'%' IDENTIFIED  BY 'eL9KaXe1jd5t4Byd7Szf';
-GRANT ALL PRIVILEGES ON *.* TO 'abc1233'@'%';
+CREATE USER 'newmatomo'@'%' IDENTIFIED  BY ' ';
+GRANT ALL PRIVILEGES ON *.* TO 'newmatomo'@'%';
 FLUSH PRIVILEGES;
 
 -- Version
@@ -42,6 +42,7 @@ FLUSH TABLES;
 
 -- Get users
 SELECT host, user, max_connections, max_user_connections, Show_db_priv, plugin, password_expired from mysql.user;  
+SHOW GRANTS FOR 'viktor'@'localhost'; 
 
 -- Database size 
 SELECT table_schema "DB Name", 
