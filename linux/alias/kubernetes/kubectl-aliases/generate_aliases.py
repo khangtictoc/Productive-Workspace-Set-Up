@@ -58,7 +58,7 @@ def main():
         ('sec', 'secret', ['g', 'd', 'rm', 'c'], ['sys']),
         ('no', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespace', ['g', 'd', 'rm', 'c'], ['sys']),
-        # For personal use
+        # Personal use
         ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c'], ['sys']),
         ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm', 'c'], ['sys']),
         ('sa', 'serviceaccount', ['g', 'd', 'rm', 'c'], ['sys']),
@@ -68,12 +68,14 @@ def main():
         ('crob', 'clusterrolebindings', ['g', 'd', 'rm', 'c'], ['sys']),
         ('ds', 'daemonset', ['g', 'd', 'rm', 'c'], ['sys']),
         ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c'], ['sys']),
+        ('crd', 'customresourcedefinition', ['g', 'd', 'rm', 'c'], ['sys']),
         # Custom resources
         ('esec', 'externalsecret', ['g', 'd', 'rm', 'c'], None),
         ('ss', 'secretstore', ['g', 'd', 'rm', 'c'], None),
         ('app', 'applications', ['g', 'd', 'rm', 'c'], None),
         ('sj', 'scaledjob', ['g', 'd', 'rm', 'c'], None),
         ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
+        ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c'], None),
         ]
     res_types = [r[0] for r in res]
 
