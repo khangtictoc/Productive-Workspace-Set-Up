@@ -1,0 +1,5 @@
+# Show server info
+INFO SERVER
+
+# Configure Slow log command
+CONFIG SET slowlog-log-slower-than <TIME>

@@ -1,12 +1,15 @@
-## General packages
+## GENERAL ##
 apt install -y unzip
-apt install -y curl
+# File editor
 apt install -y vim
+apt install -y nano
 apt install -y pv # View process for MySQL restore database
 apt install -y strace
 apt install -y file
 apt install -y htop
+# Download URL
 apt install -y wget
+apt install -y curl
 apt install -y dos2unix
 
 
@@ -15,6 +18,7 @@ apt install -y dnsutils
 apt install -y net-tools
 apt install -y iputils-ping
 apt install -y telnet
+apt install -y inetutils-traceroute
 
 # Disk
 apt install -y sysstat
@@ -38,7 +42,12 @@ apt install -y tilix # Add multi-terminal in 1 display
 apt install -y ranger # Advanced File Manager UI for terminal
 
 # Database
+## MySQL
 apt install -y mysql-client
+## Redis
+apt install -y nodejs
+apt install -y npm
+npm install -g redis-cli
 
 # Container, Docker & Kubernetes
 ## Node Shell
