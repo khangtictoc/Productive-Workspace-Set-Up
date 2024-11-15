@@ -8,4 +8,4 @@ spec:
   storageClassName: managed-csi
   resources:
     requests:
-      storage: 450Gi
+      storage: 5Gi

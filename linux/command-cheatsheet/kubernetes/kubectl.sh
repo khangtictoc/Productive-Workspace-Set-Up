@@ -19,7 +19,7 @@ kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CREATED_AT:.metadata.creationTimestamp'
 # Get controlling resources
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.metadata.ownerReferences[0].kind'
-# Get environment variables
+# Get custome values
 kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*'
 kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*.name'
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].image,CONTROLLED_BY:.spec.containers[0].imagePullPolicy'
@@ -30,6 +30,9 @@ kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.s
 
 # Get all pods running in a Node
 kubectl get pods --all-namespaces --field-selector spec.nodeName=node-1
+
+# Wait until reaching a specific state
+kubectl wait --timeout=5m -n envoy-gateway-system deployment/envoy-gateway --for=condition=Available
 
 ## Force apply app using new ConfigMap
 kubectl rollout restart deployment configmap-env-var
