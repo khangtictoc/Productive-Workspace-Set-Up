@@ -5,7 +5,7 @@ alias hhis='helm history'
 alias hcbash='helm completion bash > ~/.helm_completion.sh && source ~/.helm_completion.sh'
 alias hczsh='helm completion zsh > ~/.helm_completion.sh && source ~/.helm_completion.sh'
 alias hcfish='helm completion fish > ~/.helm_completion.sh && source ~/.helm_completion.sh'
-#alias hcpowershell='helm completion powershell > ~/.helm_completion.ps1 && source ~/.helm_completion.ps1'
+alias hcpowershell='helm completion powershell > ~/.helm_completion.ps1 && source ~/.helm_completion.ps1'
 
 alias h='helm'
 alias hc='helm create'
