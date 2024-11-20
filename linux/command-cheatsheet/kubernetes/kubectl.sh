@@ -37,6 +37,8 @@ kubectl wait --timeout=5m -n envoy-gateway-system deployment/envoy-gateway --for
 ## Force apply app using new ConfigMap
 kubectl rollout restart deployment configmap-env-var
 kubectl rollout status deployment configmap-env-var --watch=true
+kubectl rollout restart statefulsets configmap-env-var
+kubectl rollout status statefulsets configmap-env-var --watch=true
 
 # Get app for Helm
 kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm'
