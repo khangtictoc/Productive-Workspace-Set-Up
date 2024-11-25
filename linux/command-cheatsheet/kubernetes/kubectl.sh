@@ -16,20 +16,20 @@ kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.
 
 ## Get custom columns/values of Pod
 # Get timestamp info
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,CREATED_AT:.metadata.creationTimestamp'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,CREATED_AT:.metadata.creationTimestamp,NAMESPACE:.metadata.namespace'
 # Get controlling resources
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.metadata.ownerReferences[0].kind'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.metadata.ownerReferences[0].kind,NAMESPACE:.metadata.namespace'
 # Get custome values
-kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*'
-kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*.name'
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].image,CONTROLLED_BY:.spec.containers[0].imagePullPolicy'
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTAINER_PORT:.spec.containers[0].ports.*.containerPort'
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,REQUEST_CPU:.spec.containers[0].resources.requests.cpu,LIMIT_CPU:.spec.containers[0].resources.limits.cpu,REQUEST_MEM:.spec.containers[0].resources.requests.memory,LIMIT_MEM:.spec.containers[0].resources.limits.memory,REQUEST_EPHEMERAL_STORAGE:.spec.containers[0].resources.requests.ephemeral-storage,LIMIT_EPHEMERAL_STORAGE:.spec.containers[0].resources.limits.ephemeral-storage'
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,SECURITY_CONTEXT:.spec.containers[0].securityContext.privileged,AS_GROUP:.spec.containers[0].securityContext.runAsGroup,AS_USER:.spec.containers[0].securityContext.runAsUser,NON_ROOT:.spec.containers[0].securityContext.runAsNonRoot,SERVICE_ACCOUNT:.spec.serviceAccount'
-kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.spec.containers[0].volumeMounts.*.mountPath,VOLUME_NAME:.spec.containers[0].volumeMounts.*.name'
+kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*,NAMESPACE:.metadata.namespace,NAMESPACE:.metadata.namespace'
+kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,ENVIRONMENT_VAR:.spec.containers[0].env.*.name,NAMESPACE:.metadata.namespace'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,IMAGE:.spec.containers[0].image,PULL_POLICY:.spec.containers[0].imagePullPolicy,NAMESPACE:.metadata.namespace'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTAINER_PORT:.spec.containers[0].ports.*.containerPort,NAMESPACE:.metadata.namespace'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,REQUEST_CPU:.spec.containers[0].resources.requests.cpu,LIMIT_CPU:.spec.containers[0].resources.limits.cpu,REQUEST_MEM:.spec.containers[0].resources.requests.memory,LIMIT_MEM:.spec.containers[0].resources.limits.memory,REQUEST_EPHEMERAL_STORAGE:.spec.containers[0].resources.requests.ephemeral-storage,LIMIT_EPHEMERAL_STORAGE:.spec.containers[0].resources.limits.ephemeral-storage,NAMESPACE:.metadata.namespace'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,SECURITY_CONTEXT:.spec.containers[0].securityContext.privileged,AS_GROUP:.spec.containers[0].securityContext.runAsGroup,AS_USER:.spec.containers[0].securityContext.runAsUser,NON_ROOT:.spec.containers[0].securityContext.runAsNonRoot,SERVICE_ACCOUNT:.spec.serviceAccount,NAMESPACE:.metadata.namespace'
+kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.spec.containers[0].volumeMounts.*.mountPath,VOLUME_NAME:.spec.containers[0].volumeMounts.*.name,NAMESPACE:.metadata.namespace'
 
 # Get all pods running in a Node
-kubectl get pods --all-namespaces --field-selector spec.nodeName=node-1
+kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=node-1
 
 # Wait until reaching a specific state
 kubectl wait --timeout=5m -n envoy-gateway-system deployment/envoy-gateway --for=condition=Available

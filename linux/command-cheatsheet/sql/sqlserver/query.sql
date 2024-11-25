@@ -18,6 +18,13 @@ SP_WHO ;
 -- Terminate connection
 KILL <PSID> where dbname like 'Stg-BigY%';
 
-
 -- List all file (data + log) partition for a backup (.bak) file
 RESTORE FILELISTONLY FROM DISK = 'D:\SQLBackup\BigYProduction\BigYv6-DistributionCore\backup-20241115-114905.bak' 
+
+-- Change data/log file name
+ALTER DATABASE my_renamed_db SET OFFLINE;
+ALTER DATABASE my_renamed_db MODIFY FILE (NAME='data_file_name', FILENAME='d:\dbs\data\my_renamed_db.mdf');
+ALTER DATABASE my_renamed_db MODIFY FILE (NAME='log_file_name', FILENAME='d:\dbs\data\my_renamed_db.ldf');
+ALTER DATABASE my_renamed_db SET ONLINE;
+
+
