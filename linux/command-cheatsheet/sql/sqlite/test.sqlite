@@ -1,0 +1,4 @@
+SELECT employee_id, last_name, first_name
+/* Author: TechOnTheNet.com */
+FROM employees;
+ -- 
