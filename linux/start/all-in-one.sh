@@ -6,14 +6,17 @@ set -l urls "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-
 set DOTFILES_DIRNAME dotfiles
 mkdir -p ~/$DOTFILES_DIRNAME
 
-for i in (seq 6)
+for i in (seq $(count $urls))
     set filename (basename "$urls[$i]")
     wget $urls[$i] -O ~/$DOTFILES_DIRNAME/$filename
 end
 
-set DOTFILES_DIRNAME dotfiles
-for file in ~/$DOTFILES_DIRNAME/.*
-    if test -r $file
-        source $file
+echo "if status is-interactive
+    set DOTFILES_DIRNAME dotfiles
+    for file in ~/\$DOTFILES_DIRNAME/.*
+        if test -r \$file
+            source \$file
+        end
     end
 end
+[ -f ~/.oh-my-posh-init ] && source ~/.oh-my-posh-init" > ~/.config/fish/config.fish
