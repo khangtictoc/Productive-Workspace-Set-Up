@@ -39,7 +39,8 @@ apt install -y htop # show process (pretty)
 apt install -y tree
 apt install -y lshw # Display hardware info
 apt install -y tilix # Add multi-terminal in 1 display
-apt install -y ranger # Advanced File Manager UI for terminal
+apt install -y rg # ripgrep - Search content in multiples files or folders
+apt install -y bc # Convenient calculator
 
 # Database
 ## MySQL
@@ -54,3 +55,7 @@ npm install -g redis-cli
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
+
+# Superfile - File Manager
+bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
