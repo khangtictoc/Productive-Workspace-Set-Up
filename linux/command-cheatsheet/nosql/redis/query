@@ -1,5 +1,14 @@
 # Show server info
 INFO SERVER
 
+# Get master node
+SENTINEL get-master-addr-by-name mymaster
+
 # Configure Slow log command
 CONFIG SET slowlog-log-slower-than <TIME>
+
+# Delete all keys
+FLUSHALL
+
+# Get all keys
+SCAN 0
