@@ -4,11 +4,11 @@ metadata:
   name: ubuntu-pv
 spec:
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
   hostPath: 
-    path: /path/on/host # Change this to a valid path on your host
+    path: /mnt/data # Change this to a valid path on your host
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -19,4 +19,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
