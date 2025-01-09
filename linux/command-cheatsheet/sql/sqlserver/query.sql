@@ -15,7 +15,7 @@ where name like 'Stg-BigY%'
 -- Show connections (Psid/Who/database)
 SP_WHO;
 
--- Filter with SP_WHO columns
+-- Filter with SP_WHO columns (Shows connection id, running command, by who ?, ...)
 DECLARE @Table TABLE(
         SPID INT,
         Status VARCHAR(MAX),
