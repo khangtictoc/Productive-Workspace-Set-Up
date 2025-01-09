@@ -55,6 +55,12 @@ apt install -y nodejs
 apt install -y npm
 npm install -g redis-cli
 
+
+# Terminal & Linux system
+## sysz (Systemd service manager)
+sudo wget -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
+sudo chmod +x /usr/local/bin/sysz
+
 # Container, Docker & Kubernetes
 ## Node Shell
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
