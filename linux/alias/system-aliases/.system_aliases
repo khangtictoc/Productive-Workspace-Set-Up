@@ -24,3 +24,27 @@ alias upgrade_udpate='apt-get update -y && apt-get upgrade -y'
 
 alias localip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias lisport='netstat -plantu | grep LISTEN'
+
+
+# Systemd
+alias sc='systemctl'
+alias scs='systemctl status'
+alias scls='systemctl list-units --type=service --state='
+alias scrs='systemctl restart'
+alias scst='systemctl stop'
+alias scst='systemctl start'
+alias scen='systemctl enable'
+alias scd='systemctl disable'
+alias scrl='systemctl reload'
+alias scdr='systemctl daemon-reload'
+alias scsh='systemctl show'
+alias sce='systemctl edit'
+alias scu='systemctl unmask'
+alias scm='systemctl mask'
+
+# Journalctl
+alias jctl='journalctl'
+
+
+
+
