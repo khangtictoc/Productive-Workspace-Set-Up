@@ -14,19 +14,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Debug
-        run: |
-          pwd
-          ls -al
-          python3 --version
-          file ./.github/scripts/rebuild_workspace.py
       
       - name: Run rebuild Python script
         run: |
           python3 ./.github/scripts/rebuild-workspace.py
 
-      - name: Check the output file
+      - name: Verify the output file
         run: |
           cat ./linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
       
