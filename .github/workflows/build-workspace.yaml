@@ -28,4 +28,4 @@ jobs:
 
       - name: Check the output file
         run: |
-          cat ./linux/alias/kubernetes/kubectl-aliases/kubectl_aliases.sh
+          cat ./linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
