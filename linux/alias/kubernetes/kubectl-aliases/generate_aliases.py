@@ -76,7 +76,6 @@ def main():
         ('sj', 'scaledjob', ['g', 'd', 'rm', 'c'], None),
         ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
         ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c'], None),
-        ('ccc', 'concaccon', ['g', 'd', 'rm', 'c'], ['sys']),
         ]
     
     res_types = [r[0] for r in res]
