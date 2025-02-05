@@ -25,3 +25,7 @@ jobs:
       - name: Run rebuild Python script
         run: |
           python3 ./.github/scripts/rebuild-workspace.py
+
+      - name: Check the output file
+        run: |
+          cat ./linux/alias/kubernetes/kubectl-aliases/kubectl_aliases.sh
