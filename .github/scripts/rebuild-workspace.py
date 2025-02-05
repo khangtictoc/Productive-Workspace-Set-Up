@@ -24,7 +24,7 @@ for i, line in enumerate(lines):
 
 # Replace the content between the markers
 if start_index is not None and end_index is not None:
-    new_lines = "\n" + lines[:start_index + 1] + [content] + lines[end_index:] + "\n"
+    new_lines = ["\n"] + lines[:start_index + 1] + [content] + lines[end_index:] + ["\n"] 
 else:
     print("Markers not found in the file.")
     exit(1)
