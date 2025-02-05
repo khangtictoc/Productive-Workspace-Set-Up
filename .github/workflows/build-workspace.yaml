@@ -20,3 +20,8 @@ jobs:
           pwd
           ls -al
           python3 --version
+          file ./.github/scripts/rebuild_workspace.py
+      
+      - name: Run rebuild Python script
+        run: |
+          python3 ./.github/scripts/rebuild_workspace.py
