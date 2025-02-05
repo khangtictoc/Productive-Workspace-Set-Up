@@ -77,7 +77,7 @@ def main():
         ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
         ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c'], None),
         ]
-    #
+    
     res_types = [r[0] for r in res]
 
     args = [
