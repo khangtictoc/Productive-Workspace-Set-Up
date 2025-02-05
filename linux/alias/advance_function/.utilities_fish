@@ -17,46 +17,6 @@ function wiostat
     # Add your command here, as it was not defined in your original code
 end
 
-function wkgpo
-    if test -z "$argv[1]"
-        watch -n1 "kubectl get pods"
-    else
-        set NAMESPACE $argv[1]
-        watch -n1 "kubectl get pods -n $NAMESPACE"
-    end
-end
-
-function wktno
-    watch -n1 "kubectl top nodes"
-end
-
-function wkgdep
-    if test -z "$argv[1]"
-            watch -n1 "kubectl get deployment"
-        else
-            set NAMESPACE $argv[1]
-            watch -n1 "kubectl get deployment -n $NAMESPACE"
-        end
-end
-
-function wkgsts
-    if test -z "$argv[1]"
-        watch -n1 "kubectl get statefulset"
-    else
-        set NAMESPACE $argv[1]
-        watch -n1 "kubectl get statefulset -n $NAMESPACE"
-    end
-end
-
-function wkgds
-    if test -z "$argv[1]"
-        watch -n1 "kubectl get daemonset"
-    else
-        set NAMESPACE $argv[1]
-        watch -n1 "kubectl get daemonset -n $NAMESPACE"
-    end
-end
-
 function scfbs
     set SERVICE_STATE $argv[1]
     systemctl list-units --type=service --state=$SERVICE_STATE
