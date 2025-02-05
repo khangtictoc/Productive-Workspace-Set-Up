@@ -76,7 +76,6 @@ def main():
         ('sj', 'scaledjob', ['g', 'd', 'rm', 'c'], None),
         ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
         ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c'], None),
-        ('ccc', 'concaccon', ['g', 'd', 'rm', 'c'], ['sys']),
         ]
     
     res_types = [r[0] for r in res]
@@ -94,9 +93,9 @@ def main():
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
     positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
-                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
-                       'all']), ('n', '--namespace', ['g', 'd', 'rm',
-                       'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
+        , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
+        'all']), ('n', '--namespace', ['g', 'd', 'rm',
+        'lo', 'ex', 'pf'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
     parts = [
@@ -125,7 +124,7 @@ def main():
     if not sys.stdout.isatty():
         header_path = \
             os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                         'license_header')
+                'license_header')
         with open(header_path, 'r') as f:
             print(f.read())
 
