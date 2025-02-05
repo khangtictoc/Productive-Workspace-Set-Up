@@ -24,4 +24,4 @@ jobs:
       
       - name: Run rebuild Python script
         run: |
-          python3 ./.github/scripts/rebuild_workspace.py
+          python3 ./.github/scripts/rebuild-workspace.py
