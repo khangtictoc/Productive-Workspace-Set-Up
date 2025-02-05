@@ -29,3 +29,13 @@ jobs:
       - name: Check the output file
         run: |
           cat ./linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
+      
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Update kubectl aliases"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
