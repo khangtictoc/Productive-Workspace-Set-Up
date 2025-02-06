@@ -1,0 +1,18 @@
+curl ^"https://jenkins.dev-mcp.mercatus.com/job/exporter-aisle-one/config.xml^" ^
+  -H ^"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7^" ^
+  -H ^"accept-language: en-US,en;q=0.9^" ^
+  -H ^"cache-control: no-cache^" ^
+  -H ^"cookie: cf_clearance=3C6ayeC2gUdInlGpkwTW4jEKdXAV_S0bHx94GsnTiG8-1734928456-1.2.1.1-7C32Y5h_m2R9xw2GYSGwxT_d701jn9Qk6EBDpBlmIX0FPUUx38vWQz_X.6932fCgiLw8JgSpdIYh56QJvYZcCrcUgdi.dD67aERWJByQugbJg1cbMIjFBAa7dVDHDy00dQ27XHCdcty_xnRaD839bSi0nu0.hgMwRXKa1.vDHThoV24NpfYrYq_59e1VxBPQZhpt3eliZu00rHzzm05Q5AFcrQgzbIepms.PdspB8rGU09DkgThJuwBB_8NlzKM9.t5WVAUHqsyDdyb270LLpzy8kR2_PtEN_ZxfGSIFvGW8VxfD3EJrT0UwosFKmCgPwj4RHcLATdylRxbYvBhlzQOixAEUv28RKEITtYVWFjx056EgSnY1vL22X9VJ7dlv_ggctnMkLLjT6DlPeo0tbw; _hjSessionUser_1665110=eyJpZCI6IjU5NDM1ZmY3LWM5NTUtNWRmNS04OTllLTUzOTQ3OGFiZjM3MSIsImNyZWF0ZWQiOjE3MzQ5Mjg0NTkyNDQsImV4aXN0aW5nIjp0cnVlfQ==; _fbp=fb.1.1734928459318.469098989917185525; _gcl_au=1.1.988456603.1734928461; _ga=GA1.1.704730206.1734928459; _ga_FNFNLESPTW=GS1.1.1734937707.2.0.1734937707.60.0.0; screenResolution=2560x1440; JSESSIONID.7004492f=node011dg13m6es67o1a6k89czjbt2o67556.node0; JSESSIONID.1490266b=node01of13kpoup3i38sxx6or89k0615.node0^" ^
+  -H ^"pragma: no-cache^" ^
+  -H ^"priority: u=0, i^" ^
+  -H ^"sec-ch-ua: ^\^"Microsoft Edge^\^";v=^\^"131^\^", ^\^"Chromium^\^";v=^\^"131^\^", ^\^"Not_A Brand^\^";v=^\^"24^\^"^" ^
+  -H ^"sec-ch-ua-mobile: ?0^" ^
+  -H ^"sec-ch-ua-platform: ^\^"Windows^\^"^" ^
+  -H ^"sec-fetch-dest: document^" ^
+  -H ^"sec-fetch-mode: navigate^" ^
+  -H ^"sec-fetch-site: none^" ^
+  -H ^"sec-fetch-user: ?1^" ^
+  -H ^"upgrade-insecure-requests: 1^" ^
+  -H ^"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0^"
+
+curl -u khang.tran@mercatus.com:115a8819041b36a9f29419f58b5ba1ac6a https://jenkins.dev-mcp.mercatus.com/job/exporter-aisle-one/config.xml
