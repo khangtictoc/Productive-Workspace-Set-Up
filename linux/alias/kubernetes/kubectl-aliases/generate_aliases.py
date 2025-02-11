@@ -70,9 +70,16 @@ def main():
         ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c'], ['sys']),
         ('crd', 'customresourcedefinition', ['g', 'd', 'rm', 'c'], ['sys']),
         # Custom resources
+        # -- External Secrets
         ('esec', 'externalsecret', ['g', 'd', 'rm', 'c'], None),
         ('ss', 'secretstore', ['g', 'd', 'rm', 'c'], None),
+        ('cesec', 'clusterexternalsecrets', ['g', 'd', 'rm', 'c'], None),
+        ('css', 'secretstore', ['g', 'd', 'rm', 'c'], None),
+        # -- ArgoCD
         ('app', 'applications', ['g', 'd', 'rm', 'c'], None),
+        ('ap', 'appprojects', ['g', 'd', 'rm', 'c'], None),
+        ('as', 'applicationsets', ['g', 'd', 'rm', 'c'], None),
+        # -- KEDA (Kubernetes-based Event Driven Autoscaling)
         ('sj', 'scaledjob', ['g', 'd', 'rm', 'c'], None),
         ('so', 'scaledobject', ['g', 'd', 'rm', 'c'], None),
         ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c'], None),
