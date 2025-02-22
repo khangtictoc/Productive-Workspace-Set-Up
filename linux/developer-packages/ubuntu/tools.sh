@@ -28,7 +28,7 @@ apt install -y nmap
 apt install -y netcat
 apt install -y whois
 apt install -y mtr
-apt install -y doggo
+curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | sh
 
 # Disk
 apt install -y sysstat
@@ -49,7 +49,7 @@ apt install -y htop # show process (pretty)
 apt install -y tree
 apt install -y lshw # Display hardware info
 apt install -y tilix # Add multi-terminal in 1 display
-apt install -y rg # ripgrep - Search content in multiples files or folders
+apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 apt install -y bc # Convenient calculator
 apt install -y jq # JSON Values Extractor
 
@@ -78,6 +78,11 @@ curl -OL https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/di
 sudo apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm -f dive_${DIVE_VERSION}_linux_amd64.deb
+
+## Kubectl - Kubernetes CLI
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl
 
 ## Node Shell
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell

@@ -2,6 +2,7 @@
 
 
 ## SOURCE DOTFILES
+echo "============ START SOURCING DOTFILES ============"
 # Array of URLs
 set -l urls \
     "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/advance_function/.utilities_fish" \
@@ -29,10 +30,15 @@ echo "if status is-interactive
 end
 [ -f ~/.oh-my-posh-init ] && source ~/.oh-my-posh-init" > ~/.config/fish/config.fish
 
+echo "============ FINISH SOURCING DOTFILES ============"
+
 ## SET UP GIT ALIASES
+echo "============ SET UP GIT ALIASES ============"
+
 set GITCONFIG_DIRNAME git_config
 mkdir -p ~/$GITCONFIG_DIRNAME
 wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/git_aliases.txt
 git config --global include.path ~/$GITCONFIG_DIRNAME/git_aliases.txt
 
+echo "============ FINISH SET UP GIT ALIASES ============"
 
