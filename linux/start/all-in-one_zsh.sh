@@ -10,6 +10,9 @@ repo_urls=(
     "https://raw.githubusercontent.com/khangatmercatus/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/helm-aliases/.helm_aliases"
     "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases"
     "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/system-aliases/.system_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terraform_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terragrunt_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/docker/.docker_aliases"
 )
 
 DOTFILES_DIRNAME=dotfiles
@@ -22,16 +25,18 @@ done
 
 find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
 
-cat << EOF >> ~/.zshrc
-if [[ -n $PS1 ]]; then
+if ! grep -Fxq 'if [[ -n $PS1 ]]; then' ~/.zshrc; then
+    cat << EOF >> ~/.zshrc
+if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
-    for file in ~/$DOTFILES_DIRNAME/.*; do
-        if [[ -r $file ]]; then
-            source $file
+    for file in ~/\$DOTFILES_DIRNAME/.*; do
+        if [[ -r \$file ]]; then
+            source \$file
         fi
     done
 fi
 EOF
+fi
 
 echo "============ FINISH SOURCING DOTFILES ============"
 

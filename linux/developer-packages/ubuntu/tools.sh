@@ -5,9 +5,13 @@ HELM_VERSION=v3.16.4
 # General #
 apt install -y unzip
 
-# File editor
+# File
 apt install -y vim
 apt install -y nano
+# Superfile - File Manager
+bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
+# VSystem's health & process
 apt install -y pv # View process for MySQL restore database
 apt install -y strace
 apt install -y file
@@ -95,8 +99,8 @@ sudo apt install ./k9s_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm k9s_linux_amd64.deb
 
-# Superfile - File Manager
-bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+# Lazydocker
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # Helm
 curl -O https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz
