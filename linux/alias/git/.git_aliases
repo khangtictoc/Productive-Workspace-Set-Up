@@ -122,3 +122,7 @@ alias gunwip='git log -n 1 | grep -q -c wip && git reset HEAD~1'
 
 alias glodog='git log --decorate --oneline --graph'
 alias gdnp='git --no-pager diff'
+function gacp {
+  COMMIT_MESSAGE=$1
+   git add .; git commit -m "$COMMIT_MESSAGE"; git push
+}

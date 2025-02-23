@@ -11,7 +11,7 @@ if [ ! -f ~/.zshrc ]; then
 fi
 
 # Write the theme configuration to .zshrc
-cat << EOF >> ~/.zshrc
+cat << 'EOF' >> ~/.zshrc
 OH_MY_POSH_THEME="easy-term"
 eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/$OH_MY_POSH_THEME.omp.json)"
 EOF

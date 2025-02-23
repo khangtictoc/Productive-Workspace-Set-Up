@@ -114,7 +114,7 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 echo "==== CLEAN UP ===="
-rm -f awscliv2.zip
+rm -f awscliv2.zip && rm -drf aws
 
 # Terraform
 wget https://releases.hashicorp.com/terraform/1.10.3/terraform_1.10.3_linux_amd64.zip

@@ -1,0 +1,1 @@
+dropdb -f dbname

@@ -51,4 +51,6 @@ ALTER DATABASE my_renamed_db MODIFY FILE (NAME='data_file_name', FILENAME='d:\db
 ALTER DATABASE my_renamed_db MODIFY FILE (NAME='log_file_name', FILENAME='d:\dbs\data\my_renamed_db.ldf');
 ALTER DATABASE my_renamed_db SET ONLINE;
 
+-- Change login user password
+ALTER LOGIN [login_name] WITH PASSWORD = 'new_password';
 

@@ -10,7 +10,23 @@ spec:
       volumeMounts:
         - mountPath: /mnt/data
           name: ubuntu-storage
+      resources:
+        requests:
+          memory: "2Gi"
+          cpu: "1"
+        limits:
+          memory: "3Gi"
+          cpu: "2"
   volumes:
     - name: ubuntu-storage
       persistentVolumeClaim:
         claimName: ubuntu-pvc
+  tolerations:
+    - key: "spot"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+    - key: "workload"
+      operator: "Equal"
+      value: "spark-executor"
+      effect: "NoSchedule"

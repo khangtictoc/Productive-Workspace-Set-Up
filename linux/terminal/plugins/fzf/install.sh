@@ -8,6 +8,8 @@ y
 y
 EOF
 
+sed -i '/^plugins=(/ s/)/ fzf)/' ~/.zshrc
+
 # This will be automatically added when installing "fzf"
 # If not, add it manually.
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
