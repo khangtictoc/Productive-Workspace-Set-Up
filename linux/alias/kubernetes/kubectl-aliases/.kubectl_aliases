@@ -2169,6 +2169,10 @@ alias kcs='kubectl config set-context'
 alias kcscn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kcsn='kubectl config set-context $(kubectl config current-context) --namespace'
 
+## Apply configuration
+alias ka='kubectl apply -f'
+alias kar='kubectl apply --recursive -f'
+
 
 
 

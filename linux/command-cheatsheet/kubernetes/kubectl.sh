@@ -20,7 +20,7 @@ kubectl get pods -o custom-columns='POD NAME:.metadata.name,CREATED_AT:.metadata
 # Controlled by's resource
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.metadata.ownerReferences[0].kind,NAMESPACE:.metadata.namespace'
 # Custom  values
-kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*,NAMESPACE:.metadata.namespace,NAMESPACE:.metadata.namespace'
+kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,CONTROLLED_BY:.spec.containers[0].env.*,NAMESPACE:.metadata.namespace'
 kubectl get pod <POD_NAME> -o custom-columns='POD NAME:.metadata.name,ENVIRONMENT_VAR:.spec.containers[0].env.*.name,NAMESPACE:.metadata.namespace'
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,IMAGE:.spec.containers[0].image,PULL_POLICY:.spec.containers[0].imagePullPolicy,NAMESPACE:.metadata.namespace'
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CONTAINER_PORT:.spec.containers[0].ports.*.containerPort,NAMESPACE:.metadata.namespace'
@@ -53,5 +53,5 @@ kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm,app.kuber
 kubectl cp <FILE> <CONTAINER>:/<PATH>
 kubectl cp <CONTAINER>:/<PATH> <FILE> 
 
-
-╰─ kubectl get events --field-selector involvedObject.kind=Node,involvedObject.name=dc-hpb7-rke2-prod-worker-105 --all-namespaces
+# Get events for a specific node
+kubectl get events --field-selector involvedObject.kind=Node,involvedObject.name=dc-hpb7-rke2-prod-worker-105 --all-namespaces

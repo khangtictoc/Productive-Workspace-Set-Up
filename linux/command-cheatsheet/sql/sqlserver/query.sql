@@ -36,11 +36,31 @@ INSERT INTO @Table EXEC sp_who2;
 
 SELECT  *
 FROM    @Table
-WHERE DBName like '%Offer%';
+WHERE DBName like '%saPickingUAT%';
 
+-- Delete all connections for a database
+
+DECLARE @spid INT;
+DECLARE spid_cursor CURSOR FOR 
+    SELECT spid 
+    FROM sys.sysprocesses 
+    WHERE dbid = DB_ID('saPickingUAT');
+
+OPEN spid_cursor;
+
+FETCH NEXT FROM spid_cursor INTO @spid;
+
+WHILE @@FETCH_STATUS = 0 
+BEGIN 
+    EXEC('KILL ' + @spid); 
+    FETCH NEXT FROM spid_cursor INTO @spid; 
+END;
+
+CLOSE spid_cursor;
+DEALLOCATE spid_cursor;
 
 -- Terminate connection
-KILL <PSID> where dbname like 'Stg-BigY%';
+KILL <PSID>;
 
 -- List all file (data + log) partition for a backup (.bak) file
 RESTORE FILELISTONLY FROM DISK = 'D:\SQLBackup\BigYProduction\BigYv6-DistributionCore\backup-20241115-114905.bak' 
