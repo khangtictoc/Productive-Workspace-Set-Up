@@ -21,3 +21,9 @@ function scfbs
     set SERVICE_STATE $argv[1]
     systemctl list-units --type=service --state=$SERVICE_STATE
 end
+
+# Kubernetes
+function kcvgurl
+    set CLUSTER_NAME $argv[1]
+    kubectl config view -o jsonpath='{.clusters[?(@.name == "$CLUSTER_NAME")].cluster.server}'
+end
