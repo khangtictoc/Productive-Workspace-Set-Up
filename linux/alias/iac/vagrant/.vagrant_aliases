@@ -1,0 +1,47 @@
+# Creating a VM
+alias vgi='vagrant init'
+
+# Starting a VM
+alias vgu='vagrant up'
+alias vgr='vagrant resume'
+alias vgp='vagrant provision'
+alias vgrl='vagrant reload'
+alias vgrlp='vagrant reload --provision'
+
+# Getting into a VM
+alias vgs='vagrant ssh'
+
+# Stopping/Delete a VM
+alias vgh='vagrant halt'
+alias vgsu='vagrant suspend'
+alias vgd='vagrant destroy'
+
+# Boxes
+alias vgbl='vagrant box list'
+alias vgba='vagrant box add <name> <url>'
+alias vgbo='vagrant box outdated'
+alias vgbu='vagrant box update'
+alias vgbr='vagrant box remove <name>'
+alias vgpkg='vagrant package'
+
+# Saving Progress
+alias vgsns='vagrant snapshot save'
+alias vgsnr='vagrant snapshot restore'
+alias vgsnd='vagrant snapshot delete'
+alias vgsnl='vagrant snapshot list'
+
+
+# Plugin
+alias vgpl='vagrant plugin list'
+alias vgpi='vagrant plugin install'
+alias vgpr='vagrant plugin repair'
+alias vgpu='vagrant plugin uninstall'
+
+# Tips
+alias vgv='vagrant -v'
+alias vgst='vagrant status'
+alias vggst='vagrant global-status'
+alias vggstpr='vagrant global-status --prune'
+alias vgpdb='vagrant provision --debug'
+alias vgpus='vagrant push'
+alias vguplo='vagrant up --provision | tee provision.log'

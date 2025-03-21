@@ -1,0 +1,8 @@
+# All-in-one (Most comprehensive)
+assignee = "khang.tran@mercatus.com" AND 
+statusCategory = "ToDo" AND 
+reporter = "son.pham@mercatus.com" AND 
+created >= 2025-02-01 AND 
+created <= 2025-02-12 
+order by created DESC
+

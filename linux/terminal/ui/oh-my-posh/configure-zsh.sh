@@ -1,14 +1,24 @@
 #! /bin/bash
 
-####### Run for FISH only ######
+####### Run for ZSH only ######
 # Recommend theme
 # https://ohmyposh.dev/docs/themes
 # 'craver', 'easy-term'
-cat << EOF > ~/.zshrc
-THEME="easy-term"
-eval "\$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/\$THEME.omp.json)"
+
+# Check if .zshrc file exists, if not, create it
+if [ ! -f ~/.zshrc ]; then
+    touch ~/.zshrc
+fi
+
+# Write the theme configuration to .zshrc
+cat << 'EOF' >> ~/.zshrc
+OH_MY_POSH_THEME="easy-term"
+eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/$OH_MY_POSH_THEME.omp.json)"
 EOF
 
+
+
+# Check if .bashrc already sources .oh-my-posh-init
 if grep -Fxq "[ -f ~/.oh-my-posh-init ] && source ~/.oh-my-posh-init" ~/.bashrc; then
     echo "Bash file config has already source the ~/.oh-my-posh-init at bash startup. NO MODIFY !!!"
 else

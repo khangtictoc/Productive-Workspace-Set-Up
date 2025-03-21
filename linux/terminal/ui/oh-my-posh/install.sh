@@ -1,4 +1,5 @@
 ####### Run for BASH only ######
+#! /bin/bash
 
 sudo apt install -y unzip curl
 curl -s https://ohmyposh.dev/install.sh | bash -s
