@@ -2156,12 +2156,13 @@ alias kgallall='kubectl get all --all-namespaces'
 alias kcp='kubectl cp'
 alias ke='kubectl events'
 
+
+
 ## Context
 alias kc='kubectl config'
 alias kcc='kubectl config current-context'
 alias kcu='kubectl config use-context'
 alias kcg='kubectl config get-contexts'
-alias kcrmc='kubectl config delete-context'
 alias kcrnc='kubectl config rename-context'
 alias kcv='kubectl config view'
 alias kcvf='kubectl config view --flatten'
@@ -2169,6 +2170,9 @@ alias kcvthisns="kubectl config view -o jsonpath='{..namespace}'"
 alias kcs='kubectl config set-context'
 alias kcscn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kcsn='kubectl config set-context $(kubectl config current-context) --namespace'
+alias kcrmcl='kubectl config delete-cluster'   
+alias kcrmc='kubectl config delete-context'  
+alias kcrmu='kubectl config delete-user'  
 
 ## Apply configuration
 alias ka='kubectl apply -f'

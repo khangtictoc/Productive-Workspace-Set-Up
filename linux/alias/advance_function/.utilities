@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Watch
 wproc() {
     PID=$1
@@ -67,3 +68,77 @@ kcvgurl() {
     CLUSTER_NAME=$1
     kubectl config view -o jsonpath='{.clusters[?(@.name == "'"$CLUSTER_NAME"'")].cluster.server}'
 }
+=======
+# Watch
+wproc() {
+    PID=$1
+    INFO_TYPE=$2
+    watch -n1 "cat /proc/$PID/$INFO_TYPE"
+}
+
+wls() {
+    watch -n1 "ls -alh"
+}
+
+wdf() {
+    watch -n1 "df -h"
+}
+
+wiostat() {
+    # Add your command here, as it was not defined in your original code
+}
+
+wkgpo() {
+    if [ -z "$1" ]; then
+        watch -n1 "kubectl get pods"
+    else
+        NAMESPACE=$1
+        watch -n1 "kubectl get pods -n $NAMESPACE"
+    fi
+}
+
+wktno() {
+    watch -n1 "kubectl top nodes"
+}
+
+wkgdep() {
+    if [ -z "$1" ]; then
+        watch -n1 "kubectl get deployment"
+    else
+        NAMESPACE=$1
+        watch -n1 "kubectl get deployment -n $NAMESPACE"
+    fi
+}
+
+wkgsts() {
+    if [ -z "$1" ]; then
+        watch -n1 "kubectl get statefulset"
+    else
+        NAMESPACE=$1
+        watch -n1 "kubectl get statefulset -n $NAMESPACE"
+    fi
+}
+
+wkgds() {
+    if [ -z "$1" ]; then
+        watch -n1 "kubectl get daemonset"
+    else
+        NAMESPACE=$1
+        watch -n1 "kubectl get daemonset -n $NAMESPACE"
+    fi
+}
+
+scfbs() {
+    SERVICE_STATE=$1
+    systemctl list-units --type=service --state=$SERVICE_STATE
+}
+
+# Kubernetes
+kcvgurl() {
+    CLUSTER_NAME=$1
+    kubectl config view -o jsonpath='{.clusters[?(@.name == "'"$CLUSTER_NAME"'")].cluster.server}'
+}
+
+## Node
+kubectl get nodes --selector='app=dxpro-oss'
+>>>>>>> de50d9a (Add k8s alias for context)
