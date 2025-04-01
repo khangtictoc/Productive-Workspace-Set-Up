@@ -32,6 +32,11 @@ kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.s
 # All path rules
 kubectl get ingress -o custom-columns="NAME:.metadata.name,PATHS:.spec.rules[].http.paths[*].path"
 
+
+## ARGOCD APPLICATION
+# List all applications with details
+kubectl get app -o=custom-columns="NAME:.metadata.name,DESTINATION:.spec.destination.namespace,SERVER:.spec.destination.server,PROJECT:.spec.project,TARGET_REVISION:.spec.sources[0].targetRevision" -n argocd
+
 ## OTHERS
 # List all pods running in a Node
 kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=node-1
