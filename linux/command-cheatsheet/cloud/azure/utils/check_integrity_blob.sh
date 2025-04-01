@@ -1,0 +1,1 @@
+md5sum --binary matomo-minimal-codebase.zip | awk '{print $1}' | xxd -p -r | base64

@@ -68,6 +68,13 @@ kcvgurl() {
     kubectl config view -o jsonpath='{.clusters[?(@.name == "'"$CLUSTER_NAME"'")].cluster.server}'
 }
 
+# Linux
+
+jctlsince() {
+    SINCE_TIME=$1
+    journalctl --since "$SINCE_TIME"
+}
+
 ## Node
 kgnos(){
     SELECTOR_LABEL=$1
