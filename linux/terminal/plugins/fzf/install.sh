@@ -11,5 +11,5 @@ EOF
 sed -i '/^plugins=(/ s/)/ fzf)/' ~/.zshrc
 
 # This will be automatically added when installing "fzf"
-# If not, add it manually.
+# If not, add it manually in ~/.bashrc
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
