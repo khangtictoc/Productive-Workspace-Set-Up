@@ -118,3 +118,14 @@ jctlsince() {
     SINCE_TIME=$1
     journalctl --since "$SINCE_TIME"
 }
+
+jctluntil() {
+    UNTIL_TIME=$1
+    journalctl --until "$UNTIL_TIME"
+}
+
+jctlrange() {
+    SINCE_TIME=$1
+    UNTIL_TIME=$2
+    journalctl --since "$SINCE_TIME" --until "$UNTIL_TIME"
+}
