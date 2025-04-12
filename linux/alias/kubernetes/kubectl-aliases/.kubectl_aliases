@@ -2155,7 +2155,7 @@ alias kgall='kubectl get all'
 alias kgallall='kubectl get all --all-namespaces'
 alias kcp='kubectl cp'
 alias ke='kubectl events'
-
+alias kgcs='kubectl get componentstatuses'
 
 
 ## Context
@@ -2180,6 +2180,9 @@ alias kcgd='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-W
 alias ka='kubectl apply -f'
 alias kar='kubectl apply --recursive -f'
 
+
+## Node
+alias ktn='kubectl top nodes'
 
 ###### Dedicated Functions
 
