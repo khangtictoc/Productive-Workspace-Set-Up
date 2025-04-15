@@ -19,7 +19,8 @@ mkdir -p ~/$DOTFILES_DIRNAME
 
 for url in "${repo_urls[@]}"; do
     filename=$(basename "$url")
-    wget "$url" -O ~/$DOTFILES_DIRNAME/$filename
+    echo "Downloading $filename..."
+    wget -q "$url" -O ~/$DOTFILES_DIRNAME/$filename
 done
 
 find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
