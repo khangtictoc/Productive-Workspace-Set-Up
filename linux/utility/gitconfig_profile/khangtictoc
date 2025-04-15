@@ -7,4 +7,4 @@
         helper = store
 
 [include]
-        path = ~/git_config/git_aliases.txt
+        path = ~/git_config_dir_name/git_aliases.txt

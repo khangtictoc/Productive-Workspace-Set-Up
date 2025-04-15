@@ -44,9 +44,11 @@ echo "============ SET UP GIT ============"
 
 # Aliases
 GITCONFIG_DIRNAME=git_config
+GITCONFIG_PROFILE=khangtictoc
 mkdir -p ~/$GITCONFIG_DIRNAME
 wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/git_aliases.txt
+wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$GITCONFIG_PROFILE" -O ~/.gitconfig
 
-
+sed -i "s|git_config_dir_name|$GITCONFIG_DIRNAME|g" ~/.gitconfig
 
 echo "============ FINISH SET UP GIT  ============"
