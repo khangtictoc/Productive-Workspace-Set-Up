@@ -46,10 +46,7 @@ echo "============ SET UP GIT ============"
 GITCONFIG_DIRNAME=git_config
 mkdir -p ~/$GITCONFIG_DIRNAME
 wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/git_aliases.txt
-git config --global include.path ~/$GITCONFIG_DIRNAME/git_aliases.txt
 
-git config --global user.email "tranhoangkhang09112001@gmail.com"
-git config --global user.name "khangtictoc"
-git config --global credential.helper store
+
 
 echo "============ FINISH SET UP GIT  ============"
