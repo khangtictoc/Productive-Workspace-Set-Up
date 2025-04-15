@@ -1,0 +1,10 @@
+[user]
+	name = Khang Hoang Tran
+	email = tranhoangkhang09112001@gmail.com
+	username = khangtictoc
+
+[credential]
+        helper = store
+
+[include]
+        path = ~/git_config/git_aliases.txt
