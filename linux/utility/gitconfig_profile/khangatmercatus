@@ -1,7 +1,7 @@
 [user]
 	name = Khang Tran
 	email = khang.tran@mercatus.com
-	username = khang.tran
+	username = khangatmercatus
 
 [credential]
         helper = store

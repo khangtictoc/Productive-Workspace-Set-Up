@@ -2174,7 +2174,7 @@ alias kcrmcl='kubectl config delete-cluster'
 alias kcrmc='kubectl config delete-context'  
 alias kcrmu='kubectl config delete-user'
 # List all contexts with more details  
-alias kcgd='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/get_details_context.py | python3 -'
+alias kcgd='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/get_details_context.py | python3 -'
 
 ## Apply configuration
 alias ka='kubectl apply -f'

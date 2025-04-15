@@ -50,5 +50,6 @@ wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/
 wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$GITCONFIG_PROFILE" -O ~/.gitconfig
 
 sed -i "s|git_config_dir_name|$GITCONFIG_DIRNAME|g" ~/.gitconfig
+echo "The default git profile $GITCONFIG_PROFILE is selected!"
 
 echo "============ FINISH SET UP GIT  ============"

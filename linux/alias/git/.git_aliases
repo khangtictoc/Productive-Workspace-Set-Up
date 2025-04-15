@@ -131,3 +131,14 @@ function gacp {
   COMMIT_MESSAGE=$1
    git add .; git commit -m "$COMMIT_MESSAGE"; git push
 }
+
+function glsp {
+  echo "Available git profiles:"
+  echo "1. khangtictoc"
+  echo "2. khangatmercatus"
+}
+
+function gswp {
+  PROFILE_NAME=$1
+  wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$PROFILE_NAME" -O ~/.gitconfig  
+}
