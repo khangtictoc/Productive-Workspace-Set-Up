@@ -140,5 +140,6 @@ function glsp {
 
 function gswp {
   PROFILE_NAME=$1
-  wget "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$PROFILE_NAME" -O ~/.gitconfig  
+  wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$PROFILE_NAME" -O ~/.gitconfig  
+  echo "You have switched to the $PROFILE_NAME profile!"
 }
