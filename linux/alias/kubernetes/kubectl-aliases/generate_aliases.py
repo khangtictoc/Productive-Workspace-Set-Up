@@ -45,7 +45,7 @@ def main():
         ('d', 'describe', None, None),
         ('rm', 'delete', None, None),
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
-        ('c', 'av', 'create', None, None),
+        ('c', 'create', None, None),
         # Personal use
         ('av', 'apply view-last-applied', None, None),
         ('rr', 'rollout restart', None, None),
