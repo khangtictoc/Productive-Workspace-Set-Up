@@ -53,4 +53,4 @@ wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 echo "The default git profile $GITCONFIG_PROFILE is selected!"
 
-echo "============ FINISH SET UP GIT  ============"
+echo "============ FINISH SET UP GIT  ============="
