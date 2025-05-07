@@ -39,7 +39,20 @@ curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | sh
 apt install -y sysstat
 apt install -y iotop
 
-curl -sL https://aka.ms/InstallAzureCLIDeb | bash # az-cli
+# Cloud
+## AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+echo "==== CLEAN UP ===="
+rm -f awscliv2.zip && rm -drf aws
+## Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
+## GCP
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-cli
+
 
 
 ## Tools
@@ -137,12 +150,7 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 echo "==== CLEAN UP ===="
 rm -f helm-$HELM_VERSION-linux-amd64.tar.gz
 
-# AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-echo "==== CLEAN UP ===="
-rm -f awscliv2.zip && rm -drf aws
+
 
 # VM images, Infrastructure & Configuration templating
 ## Terraform
@@ -171,3 +179,6 @@ vagrant plugin install vagrant-vmware-desktop # Optional
 
 # SSL & Certificates
 sudo apt install -y certbot python3-certbot-nginx
+
+# NPM Tools
+npm install -g @jsware/jsonpath-cli # JSONPath query tool
