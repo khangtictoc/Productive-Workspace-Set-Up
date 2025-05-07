@@ -2296,7 +2296,7 @@ alias kcg='kubectl config get-contexts'
 alias kcrnc='kubectl config rename-context'
 alias kcv='kubectl config view'
 alias kcvf='kubectl config view --flatten'
-alias kcvthisns="kubectl config view -o jsonpath='{..namespace}'"
+alias kcvthisns="kubectl config view -o jsonpath=\"{$.contexts[?(@.name=='$(kubectl config current-context)')].context.namespace}\""
 alias kcs='kubectl config set-context'
 alias kcscn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kcsn='kubectl config set-context $(kubectl config current-context) --namespace'
@@ -2323,7 +2323,12 @@ kgnos(){
     kubectl get nodes --selector="$SELECTOR_LABEL"
 }
 
-
+kcrmcfg(){
+    CONTEXT_NAME=$1
+    kubectl config delete-cluster $CONTEXT_NAME
+    kubectl config delete-context $CONTEXT_NAME
+    kubectl config delete-user $CONTEXT_NAME
+}
 
 
 

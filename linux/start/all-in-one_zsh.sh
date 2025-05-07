@@ -48,9 +48,25 @@ GITCONFIG_DIRNAME=git_config
 GITCONFIG_PROFILE=khangtictoc
 mkdir -p ~/$GITCONFIG_DIRNAME
 echo "Installing configuration files for git..."
-wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/git_aliases.txt
-wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/gitconfig_profile/$GITCONFIG_PROFILE" -O ~/.gitconfig
+mkdir -p ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITCONFIG_PROFILE" -O ~/.gitconfig
 
 echo "The default git profile $GITCONFIG_PROFILE is selected!"
+sleep 1
+echo "Configuring Global Client-side Git Hook ..."
+mkdir -p ~/$GITCONFIG_DIRNAME/hooks
+git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
+
+## SET UP ZSH PROFILES
+echo "============ SET UP ZSH PROFILES ============"
+# Check if the line exists in ~/.zshrc
+if ! grep -Fxq "export BROWSER=wslview" ~/.zshrc; then
+    echo "export BROWSER=wslview" >> ~/.zshrc
+    echo "Added 'wslview' as browser's view"
+else
+    echo "'BROWSER=wslview' already exists in ~/.zshrc"
+fi
+
 
 echo "============ FINISH SET UP GIT  ============="
