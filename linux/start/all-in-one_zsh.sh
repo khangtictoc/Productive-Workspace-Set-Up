@@ -57,7 +57,9 @@ sleep 1
 echo "Configuring Global Client-side Git Hook ..."
 mkdir -p ~/$GITCONFIG_DIRNAME/hooks
 git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
-wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
+sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
+chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
 ## SET UP ZSH PROFILES
 echo "============ SET UP ZSH PROFILES ============"
