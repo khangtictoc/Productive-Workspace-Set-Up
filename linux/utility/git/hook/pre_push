@@ -1,1 +1,61 @@
-secret  key aws : 8wRMHLGduHl9dAZtEJjEq1x1RdYU9Qi6P1MQcJUc
+#!/bin/bash
+
+# List of whitelisted repo names
+WHITELISTED_NAMES=(
+  "my-repo-name"
+  "another-important-repo"
+)
+
+# Extract current repo name (last directory of the repo path)
+ABSOLUTE_PATH="$(git rev-parse --show-toplevel)"
+REPO_NAME=$(basename "$ABSOLUTE_PATH")
+
+# Check if repo name is in whitelist
+IS_ALLOWED=false
+for name in "${WHITELISTED_NAMES[@]}"; do
+  if [ "$REPO_NAME" = "$name" ]; then
+    IS_ALLOWED=true
+    break
+  fi
+done
+
+
+
+# If not whitelisted, skip the prompt
+if [ "$IS_ALLOWED" != true ]; then
+  if ! command -v ggshield 2>&1 >/dev/null
+  then
+      echo "ggshield could not be found. Please install it first."
+      exit 1
+  fi
+  if ! command -v ggshield 2>&1 >/dev/null
+  then
+      echo "trufflehog could not be found. Please install it first."
+
+      exit 1
+  fi
+  # Run ggshield and trufflehog
+  echo "Scan secrets with 'ggshield' ..."
+  echo "y" | ggshield secret scan path . --recursive --all-secrets > ggshield_output.txt
+  GGSHIELD_SECRET_LINES=$(grep -c "Secret detected" ggshield_output.txt | wc -l)
+  
+  echo "Scan secrets with 'trufflehog' ..."
+  trufflehog git file://. --results=verified,unknown --no-update  > trufflehog_output.txt
+  TRUFFLE_HOG_SECRET_LINES=$(cat trufflehog_output.txt | wc -l)
+
+  if [ "$GGSHIELD_SECRET_LINES" -gt 0 ] || [ "$TRUFFLE_HOG_SECRET_LINES" -gt 0 ]; then
+    # Prompt user
+    echo "Are you sure you want to push to $REPO_NAME? (yes/no)"
+    read answer < /dev/tty
+    if [ "$answer" != "yes" ]; then
+      
+      echo "Push aborted."
+      exit 1
+    fi
+    rm ggshield_output.txt trufflehog_output.txt
+  fi
+  
+  
+fi
+
+
