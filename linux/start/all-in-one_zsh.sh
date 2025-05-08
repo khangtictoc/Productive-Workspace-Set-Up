@@ -38,12 +38,10 @@ fi
 EOF
 fi
 
-echo "============ FINISH SOURCING DOTFILES ============"
-
 ## SET UP GIT
 echo "============ SET UP GIT ============"
-
 # Aliases
+echo "Configuring Git Aliases ..."
 GITCONFIG_DIRNAME=git_config
 GITCONFIG_PROFILE=khangtictoc
 mkdir -p ~/$GITCONFIG_DIRNAME
@@ -70,6 +68,3 @@ if ! grep -Fxq "export BROWSER=wslview" ~/.zshrc; then
 else
     echo "'BROWSER=wslview' already exists in ~/.zshrc"
 fi
-
-
-echo "============ FINISH SET UP GIT  ============="
