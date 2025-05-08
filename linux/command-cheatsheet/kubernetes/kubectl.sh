@@ -7,7 +7,10 @@ kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CREATED_AT:.metada
 kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,HOST_TYPE:.status.addresses.*.type,ADDRESSES:.status.addresses.*.address'
 # OS-level
 kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,ARCHITECTURE:.status.nodeInfo.architecture,CONTAINER_RUNTIME:.status.nodeInfo.containerRuntimeVersion,KERNEL_VER:.status.nodeInfo.kernelVersion,OS:.status.nodeInfo.osImage'
-
+# Taints
+kubectl get nodes -o json | jq -r '.items[] | select(.spec.taints[]? | select(.key=="dxp-united-oss" and .value=="true" and .effect=="NoSchedule")) | .metadata.name'
+# Labels
+kubectl get nodes -l <LABEL>
 
 # Existing images & tag versions
 kubectl get node aks-heavy9d45-26308833-vmss000000 -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n'
@@ -65,3 +68,13 @@ kubectl get events --field-selector involvedObject.kind=Node,involvedObject.name
 # AWS EKS
 # Get number of available pods that can be run on a node
 kubectl get nodes -o json | jq '.items[].status.capacity.pods'
+
+# Apply without actually creating YAML file
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-config
+data:
+  key: value
+EOF
