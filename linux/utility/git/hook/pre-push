@@ -2,8 +2,16 @@
 
 # List of whitelisted repo names
 WHITELISTED_NAMES=(
-  "my-repo-name"
-  "another-important-repo"
+  "dxp-datapipeline"
+  "dxp-environment"
+  "dxp-gitops"
+  "dxp-helm-charts"
+  "dxp-infrastructure"
+  "dxp-jenkins-library"
+  "dxp-monitoring"
+  "argocd-deploy"
+  "argocd-deploy-dev"
+  "terraform-workspaces"
 )
 
 # Extract current repo name (last directory of the repo path)
