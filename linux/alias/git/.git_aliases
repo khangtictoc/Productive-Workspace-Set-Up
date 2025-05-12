@@ -117,14 +117,14 @@ alias gwip='git add -A && git ls-files --deleted -z | xargs -0 git rm && git com
 alias gunwip='git log -n 1 | grep -q -c wip && git reset HEAD~1'
 
 ################################################################
-#                      MANUAL ALIAS                            #
+#                      PERSONAL ALIAS                            #
 ################################################################
 
 alias glodog='git log --decorate --oneline --graph'
 alias gdnp='git --no-pager diff'
 alias grfdl='git reflog --date=local'
 alias grfdr='git reflog --date=relative'
-
+alias gpn='git push --no-verify'
 
 
 function gacp {
