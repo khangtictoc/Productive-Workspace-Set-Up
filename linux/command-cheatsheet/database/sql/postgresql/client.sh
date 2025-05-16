@@ -13,7 +13,7 @@ pg_dump -h <hostname> -U <username> -d <database> -W > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --schema-only > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --data-only > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --no-owner > backup.sql
-
+cc
 ## Restore
 PGPASSWORD=<password> psql -h <hostname> -U <username> -d uat2_united_tracking_db < backup.sql
 
