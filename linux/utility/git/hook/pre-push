@@ -51,7 +51,7 @@ if [ "$IS_ALLOWED" != true ]; then
   trufflehog git file://. --results=verified,unknown --no-update  > trufflehog_output.txt
   TRUFFLE_HOG_SECRET_LINES=$(cat trufflehog_output.txt | wc -l)
 
-  if [ "$GGSHIELD_SECRET_LINES" -gt 3 ] || [ "$TRUFFLE_HOG_SECRET_LINES" -gt 0 ]; then
+  if [ "$GGSHIELD_SECRET_LINES" -gt 0 ] || [ "$TRUFFLE_HOG_SECRET_LINES" -gt 0 ]; then
     # Prompt user
     echo "Are you sure you want to push to $REPO_NAME? (yes/no)"
     read answer < /dev/tty
