@@ -2,7 +2,7 @@
 #set HELM_VERSION v3.16.4
 HELM_VERSION=v3.16.4
 
-# General
+# General & Prerequisites
 apt install -y unzip
 apt install -y python3-pip
 
@@ -70,8 +70,9 @@ apt install -y tilix # Add multi-terminal in 1 display
 apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 apt install -y bc # Convenient calculator
 apt install -y jq # JSON Values Extractor
+sudo apt install -y chrony # NTP Client
 
-# Database
+# Database Client Connect
 ## MySQL
 apt install -y mysql-client
 ## Redis
@@ -182,3 +183,4 @@ sudo apt install -y certbot python3-certbot-nginx
 
 # NPM Tools
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
+
