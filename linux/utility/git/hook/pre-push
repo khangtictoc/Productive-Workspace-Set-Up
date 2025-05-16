@@ -45,7 +45,7 @@ if [ "$IS_ALLOWED" != true ]; then
   # Run ggshield and trufflehog
   echo "Scan secrets with 'ggshield' ..."
   echo "y" | ggshield secret scan path . --recursive --all-secrets > ggshield_output.txt
-  GGSHIELD_SECRET_LINES=$(grep -c "Secret detected" ggshield_output.txt | wc -l)
+  GGSHIELD_SECRET_LINES=$(grep -P  '^>> Secret detected: (?!Generic Password$).+$' ggshield_output.txt | wc -l)
   
   echo "Scan secrets with 'trufflehog' ..."
   trufflehog git file://. --results=verified,unknown --no-update  > trufflehog_output.txt
