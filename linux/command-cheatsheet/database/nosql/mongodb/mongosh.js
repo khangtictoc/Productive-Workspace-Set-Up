@@ -10,16 +10,6 @@ db.createUser({
 // HANDLING DATA
 db.init.insertOne({"name":"nontempy"});
 
-// DATABASE
 
-// Switch or create if not exist
-// If db is empty, it will exists as temporary
-use myNewDatabase; 
-show dbs;
-db;
-
-
-// COLLECTIONS
-show collections;
 
 

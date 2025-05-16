@@ -2296,7 +2296,6 @@ alias kcg='kubectl config get-contexts'
 alias kcrnc='kubectl config rename-context'
 alias kcv='kubectl config view'
 alias kcvf='kubectl config view --flatten'
-alias kcvthisns="kubectl config view -o jsonpath=\"{$.contexts[?(@.name=='$(kubectl config current-context)')].context.namespace}\""
 alias kcs='kubectl config set-context'
 alias kcscn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias kcsn='kubectl config set-context $(kubectl config current-context) --namespace'
@@ -2314,7 +2313,7 @@ alias kar='kubectl apply --recursive -f'
 ## Node
 alias ktn='kubectl top nodes'
 
-###### Dedicated Functions
+###### Dedicated Functions ######
 
 ## Node
 # Get nodes with labels
@@ -2330,6 +2329,10 @@ kcrmcfg(){
     kubectl config delete-user $CONTEXT_NAME
 }
 
+kcvthisnsnew(){
+    CURRENT_CONTEXT=$(kubectl config current-context)
+    kubectl config view -o jsonpath="{$.contexts[?(@.name=='$CURRENT_CONTEXT')].context.namespace}"
+}
 
 
 
