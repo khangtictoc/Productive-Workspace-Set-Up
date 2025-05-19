@@ -58,7 +58,7 @@ git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
 sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
 chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
-
+# test
 ## SET UP ZSH PROFILES
 echo "============ SET UP ZSH PROFILES ============"
 # Check if the line exists in ~/.zshrc
