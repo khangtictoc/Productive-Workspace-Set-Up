@@ -49,7 +49,7 @@ echo "Configuring Git Aliases ..."
 mkdir -p ~/$GITCONFIG_DIRNAME/alias/
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
 echo "Configure Default Git Workspace ..."
-curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITPROFILE" | bash 
+curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITPROFILE.sh" | bash 
 
 echo "The default git profile $GITPROFILE is selected!"
 sleep 1
