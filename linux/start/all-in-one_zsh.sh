@@ -41,16 +41,17 @@ fi
 ## SET UP GIT
 echo "============ SET UP GIT ============"
 # Aliases
-echo "Configuring Git Aliases ..."
+echo "[Install] Configuration files for git..."
 GITCONFIG_DIRNAME=git_config
-GITCONFIG_PROFILE=khangtictoc
+GITPROFILE=khangtictoc
 mkdir -p ~/$GITCONFIG_DIRNAME
-echo "Installing configuration files for git..."
-mkdir -p ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+echo "Configuring Git Aliases ..."
+mkdir -p ~/$GITCONFIG_DIRNAME/alias/
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
-wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITCONFIG_PROFILE" -O ~/.gitconfig
+echo "Configure Default Git Workspace ..."
+curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITPROFILE" | bash 
 
-echo "The default git profile $GITCONFIG_PROFILE is selected!"
+echo "The default git profile $GITPROFILE is selected!"
 sleep 1
 echo "Configuring Global Client-side Git Hook ..."
 mkdir -p ~/$GITCONFIG_DIRNAME/hooks
@@ -58,7 +59,7 @@ git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
 sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
 chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
-# test
+
 ## SET UP ZSH PROFILES
 echo "============ SET UP ZSH PROFILES ============"
 # Check if the line exists in ~/.zshrc
