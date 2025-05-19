@@ -145,5 +145,5 @@ function gswp {
 }
 
 function gckp {
-  git config --list | grep user.email
+  git config --list | grep "user.email="
 }
