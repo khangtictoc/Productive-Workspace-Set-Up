@@ -2302,8 +2302,12 @@ alias kcsn='kubectl config set-context $(kubectl config current-context) --names
 alias kcrmcl='kubectl config delete-cluster'   
 alias kcrmc='kubectl config delete-context'  
 alias kcrmu='kubectl config delete-user'
-# List all contexts with more details  
+# List contexts with more details  
 alias kcgd='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/get_details_context.py | python3 -'
+# List nodes with requests/limits 
+alias kgnorl='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/node__get_resource_req_lim.py | python3 -'
+# List ingresses with paths
+alias kgingpth='kubectl get ingress -o custom-columns="NAME:.metadata.name,DOMAIN:.spec.rules[*].host,PATHS:.spec.rules[*].http.paths[*].path"'
 
 ## Apply configuration
 alias ka='kubectl apply -f'
@@ -2329,10 +2333,13 @@ kcrmcfg(){
     kubectl config delete-user $CONTEXT_NAME
 }
 
-kcvthisnsnew(){
+kcvthisns(){
     CURRENT_CONTEXT=$(kubectl config current-context)
     kubectl config view -o jsonpath="{$.contexts[?(@.name=='$CURRENT_CONTEXT')].context.namespace}"
 }
-
+kgpobyno(){
+    NODE_NAME=$1
+    kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=$NODE_NAME
+}
 
 
