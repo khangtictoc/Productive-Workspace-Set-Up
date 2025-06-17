@@ -43,15 +43,15 @@ apt install -y iotop
 ## AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
-sudo ./aws/install
+./aws/install
 echo "==== CLEAN UP ===="
 rm -f awscliv2.zip && rm -drf aws
 ## Azure CLI
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
 ## GCP
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get update && sudo apt-get install google-cloud-cli
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+apt-get update && apt-get install google-cloud-cli
 
 
 
@@ -70,9 +70,9 @@ apt install -y tilix # Add multi-terminal in 1 display
 apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 apt install -y bc # Convenient calculator
 apt install -y jq # JSON Values Extractor
-sudo apt install -y chrony # NTP Client
+apt install -y chrony # NTP Client
 
-# Database Client Connect
+# Database Tools
 ## MySQL
 apt install -y mysql-client
 ## Redis
@@ -88,7 +88,18 @@ apt-get install mssql-tools18 unixodbc-dev
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile
 source ~/.bash_profile
 ## Postgres
-apt install -y postgresql-client
+apt install -y postgresql-client # Already include pgdump, pg_restore, psql, etc.
+## MongoDB
+### Tools
+wget "https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.12.2.deb"       
+dpkg -i mongodb-database-tools-ubuntu2204-x86_64-100.12.2.deb
+echo "==== CLEAN UP ===="
+rm -f mongodb-database-tools-ubuntu2204-x86_64-100.12.2.deb
+### MongoDB Shell
+wget -qO- https://www.mongodb.org/static/pgp/server-8.0.asc |  tee /etc/apt/trusted.gpg.d/server-8.0.asc
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+apt-get update
+apt-get install -y mongodb-mongosh
 
 # Terminal & Linux system
 ## Monitoring
@@ -96,48 +107,48 @@ apt install -y iftop
 apt install -y iotop
 apt install -y atop
 ## sysz (Systemd service manager)
-sudo wget -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
-sudo chmod +x /usr/local/bin/sysz
+wget -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
+chmod +x /usr/local/bin/sysz
 
 # Container Environment
 ## Docker
 # Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+apt-get update
+apt-get install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
 
 # Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo docker run hello-world
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+docker run hello-world
 
 ## Dive - Compare Docker image's difference
 DIVE_VERSION=$(curl -sL "https://api.github.com/repos/wagoodman/dive/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 curl -OL https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
-sudo apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
+apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm -f dive_${DIVE_VERSION}_linux_amd64.deb
 
 ## Kubectl - Kubernetes CLI
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
 
 ## Node Shell
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 chmod +x ./kubectl-node_shell
-sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
+mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
 
 ## K9S
 wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb
-sudo apt install ./k9s_linux_amd64.deb
+apt install ./k9s_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm k9s_linux_amd64.deb
 
@@ -147,7 +158,7 @@ curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/i
 # Helm
 curl -O https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz
 tar -zxvf helm-$HELM_VERSION-linux-amd64.tar.gz
-sudo mv linux-amd64/helm /usr/local/bin/helm
+mv linux-amd64/helm /usr/local/bin/helm
 echo "==== CLEAN UP ===="
 rm -f helm-$HELM_VERSION-linux-amd64.tar.gz
 
@@ -157,29 +168,29 @@ rm -f helm-$HELM_VERSION-linux-amd64.tar.gz
 ## Terraform
 wget https://releases.hashicorp.com/terraform/1.10.3/terraform_1.10.3_linux_amd64.zip
 unzip terraform_1.10.3_linux_amd64.zip
-sudo mv terraform /usr/local/bin/terraform
+mv terraform /usr/local/bin/terraform
 echo "==== CLEAN UP ===="
 rm -f terraform_1.10.3_linux_amd64.zip
 
 ## Terragrunt
 wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.71.2-alpha2024122002/terragrunt_linux_amd64
-sudo chmod u+x terragrunt_linux_amd64
-sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+chmod u+x terragrunt_linux_amd64
+mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
 
 ## Packer
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install packer
+curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+apt-get update && apt-get install packer
 
 ## Vagrant
-wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && sudo apt install vagrant
+wget -O - https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+apt update && apt install vagrant
 vagrant plugin install vagrant-vmware-desktop # Optional
 
 # SSL & Certificates
-sudo apt install -y certbot python3-certbot-nginx
+apt install -y certbot python3-certbot-nginx
 
 # NPM Tools
 npm install -g @jsware/jsonpath-cli # JSONPath query tool

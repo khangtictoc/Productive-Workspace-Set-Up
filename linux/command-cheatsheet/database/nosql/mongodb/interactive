@@ -2,10 +2,11 @@
 
 // Switch or create if not exist
 // If db is empty, it will exists as temporary
-use myNewDatabase; 
+use <database_name>; 
 show dbs;
 db;
 
 
 // COLLECTIONS
 show collections;
+

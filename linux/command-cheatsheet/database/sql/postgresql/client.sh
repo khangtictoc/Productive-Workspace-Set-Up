@@ -1,6 +1,8 @@
 # Must specify database name
-PGPASSWORD=<password> psql -h <hostname> -U <username> -d <database> -c "\l"
-PGPASSWORD=<password> psql -h <hostname> -U <username> -d <database> -c "CREATE DATABASE bytebase;"
+PGPASSWORD=<password> psql -h <hostname> -U <username> -d postgres -c "\l"
+PGPASSWORD=<password> psql -h <hostname> -U <username> -d postgres -c "CREATE DATABASE <database>;"
+PGPASSWORD=<password> psql -h <hostname> -U <username> -d postgres -c "DROP DATABASE <database>;"
+PGPASSWORD=<password> psql -h <hostname> -U <username> -d postgres -c "\l"
 
 # Backup
 ## Linux
@@ -13,11 +15,11 @@ pg_dump -h <hostname> -U <username> -d <database> -W > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --schema-only > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --data-only > backup.sql
 pg_dump -h <hostname> -U <username> -d <database> -W --no-owner > backup.sql
-cc
-## Restore
-PGPASSWORD=<password> psql -h <hostname> -U <username> -d uat2_united_tracking_db < backup.sql
 
-# Interactice shell
+# Restore
+PGPASSWORD=<password> psql -h <hostname> -U <username> -d <database> < backup.sql
+
+# Interactive shell
 ## Connection
 \c <database>;
 ## Delete DB
