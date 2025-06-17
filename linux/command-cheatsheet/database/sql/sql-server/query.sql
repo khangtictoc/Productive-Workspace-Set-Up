@@ -10,12 +10,13 @@ select
     (select sum(size) from fs where type = 0 and fs.database_id = db.database_id) DataFileSizeMB,
     (select sum(size) from fs where type = 1 and fs.database_id = db.database_id) LogFileSizeMB
 from sys.databases db
-where name like 'Stg-BigY%'
+where name like '%DB_NAME%'
+order by name asc;
 
 -- Get columns of a table
 SELECT COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_NAME = 'MT-Cart';
+WHERE TABLE_NAME = 'TABLE_NAME';
 
 
 -- AVAILABILITY GROUP
@@ -31,7 +32,7 @@ ORDER BY
     ag.name, adc.database_name;
 
 -- Remove a database from an Availability Group
-ALTER AVAILABILITY GROUP '52ba2b30-db39-497d-a196-cfddc1778dc4' REMOVE DATABASE [MT-saPickingUAT];  
+ALTER AVAILABILITY GROUP '<GROUP_ID>' REMOVE DATABASE [MT-saPickingUAT];  
 
 -- CONNECTION
 -- Show connections (Psid/Who/database)
@@ -58,7 +59,7 @@ INSERT INTO @Table EXEC sp_who2;
 
 SELECT  *
 FROM    @Table
-WHERE DBName like '%saPickingUAT%';
+WHERE DBName like '%DB_NAME%';
 
 -- Delete all connections for a database
 
@@ -66,7 +67,7 @@ DECLARE @spid INT;
 DECLARE spid_cursor CURSOR FOR 
     SELECT spid 
     FROM sys.sysprocesses 
-    WHERE dbid = DB_ID('MT-saPickingUAT');
+    WHERE dbid = DB_ID('DB_NAME');
 
 OPEN spid_cursor;
 
