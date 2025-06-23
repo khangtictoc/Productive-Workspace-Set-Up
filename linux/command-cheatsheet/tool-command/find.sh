@@ -1,0 +1,1 @@
+find <folder> -type f | grep "pattern"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ZSHRC_FILE="$HOME/.zshrc"
+
 ## SOURCE DOTFILES
 echo "============ START SOURCING DOTFILES ============"
 # Array of repo_urls
@@ -70,4 +72,26 @@ if ! grep -Fxq "export BROWSER=wslview" ~/.zshrc; then
     echo "Added 'wslview' as browser's view"
 else
     echo "'BROWSER=wslview' already exists in ~/.zshrc"
+fi
+
+
+## SET UP COMMAND AUTOCOMPLETION
+echo "============ SET UP COMMAND AUTOCOMPLETION ============"
+KUBECTL_COMPL="source <(kubectl completion zsh)"
+HELM_COMPL="source <(helm completion zsh)"
+
+
+if grep -Fxq "$KUBECTL_COMPL" "$ZSHRC_FILE"; then
+    echo "✅ Kubectl completion has already been configured. No changes"
+else
+    echo "$KUBECTL_COMPL" >> "$ZSHRC_FILE"
+    echo "✅ Kubectl completion are configured!"
+fi
+
+
+if grep -Fxq "$HELM_COMPL" "$ZSHRC_FILE"; then
+    echo "✅ Helm completion has already been configured. No changes"
+else
+    echo "$HELM_COMPL" >> "$ZSHRC_FILE"
+    echo "✅ Helm completion are configured!"
 fi
