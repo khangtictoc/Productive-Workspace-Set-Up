@@ -1,4 +1,4 @@
-# migrating from https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh 
+# Source: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh 
 
 # Aliases
 alias g='git'
@@ -125,13 +125,15 @@ alias gdnp='git --no-pager diff'
 alias grfdl='git reflog --date=local'
 alias grfdr='git reflog --date=relative'
 alias gpn='git push --no-verify'
+alias gfap='git fetch --all --prune'
 
-
+# AIO Commit
 function gacp {
   COMMIT_MESSAGE=$1
    git add .; git commit -m "$COMMIT_MESSAGE"; git push
 }
 
+# Git Profiles
 function glsp {
   echo "Available git profiles:"
   echo "1. khangtictoc"
@@ -146,4 +148,14 @@ function gswp {
 
 function gckp {
   git config --list | grep "user.email="
+}
+
+# Remove outdated branches
+function grmob {
+  echo "Removing outdated branches..."
+  for branch in $(git branch --format='%(refname:short)'); do
+    if ! git show-ref --quiet refs/remotes/origin/$branch; then
+      echo "Local branch '$branch' has no matching remote. Consider deleting it with: git branch -d $branch"
+    fi
+  done
 }
