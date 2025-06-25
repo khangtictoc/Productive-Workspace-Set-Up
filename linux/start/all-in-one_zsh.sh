@@ -59,7 +59,8 @@ echo "Configuring Global Client-side Git Hook ..."
 mkdir -p ~/$GITCONFIG_DIRNAME/hooks
 git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
 git config --global credential.helper store
-git config --global include.path "~/git_config/git_aliases.txt"
+git config --global core.editor "vim"
+git config --global include.path "~/$GITCONFIG_DIRNAME/git_aliases.txt"
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
 sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
 chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
