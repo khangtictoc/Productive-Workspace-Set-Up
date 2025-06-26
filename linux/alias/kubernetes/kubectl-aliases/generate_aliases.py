@@ -32,7 +32,6 @@ def main():
 
     globs = [
         ('sys', '--namespace=kube-system', None, None),
-        ('', '''-p '{"metadata":{"finalizers":null}}' --type=merge''', None, None),
     ]
 
     ops = [
@@ -50,48 +49,49 @@ def main():
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
         ('c', 'create', None, None),
         # Personal use
-        ('av', 'apply view-last-applied', None, None),
+        ('av', 'pa', 'pafin', 'apply view-last-applied', None, None),
         ('rr', 'rollout restart', None, None),
-        ('pa', 'patch', None, ['']),
+        ('pa', 'patch', None, None),
+        ('pafin', '''patch -p '{"metadata":{"finalizers":null}}' --type=merge''', None, None),
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('dep', 'deployment', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('svc', 'service', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('ing', 'ingress', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('cm', 'configmap', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('sec', 'secret', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
+        ('po', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('svc', 'service', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('ing', 'ingress', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('cm', 'configmap', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('sec', 'secret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespace', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
+        ('ns', 'namespace', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         # Personal use
-        ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('sa', 'serviceaccount', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('ro', 'role', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('cro', 'clusterrole', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('rob', 'rolebindings', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('crob', 'clusterrolebindings', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('ds', 'daemonset', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
-        ('crd', 'customresourcedefinition', ['g', 'd', 'rm', 'c', 'av'], ['sys']),
+        ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('pvc', 'persistentvolumeclaims', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('sa', 'serviceaccount', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('ro', 'role', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('cro', 'clusterrole', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('rob', 'rolebindings', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('crob', 'clusterrolebindings', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('ds', 'daemonset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('crd', 'customresourcedefinition', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         # Custom resources
         # -- External Secrets
-        ('esec', 'externalsecret', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('ss', 'secretstore', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('cesec', 'clusterexternalsecrets', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('css', 'secretstore', ['g', 'd', 'rm', 'c', 'av'], None),
+        ('esec', 'externalsecret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('ss', 'secretstore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('cesec', 'clusterexternalsecrets', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('css', 'secretstore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         # -- ArgoCD
-        ('app', 'applications', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('ap', 'appprojects', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('as', 'applicationsets', ['g', 'd', 'rm', 'c', 'av'], None),
+        ('app', 'applications', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('ap', 'appprojects', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('as', 'applicationsets', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         # -- KEDA (Kubernetes-based Event Driven Autoscaling)
-        ('sj', 'scaledjob', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('so', 'scaledobject', ['g', 'd', 'rm', 'c', 'av'], None),
-        ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c', 'av'], None),
+        ('sj', 'scaledjob', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('so', 'scaledobject', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         # -- Grafana Stack
-        ('pr', 'prometheusrule', ['g', 'd', 'rm', 'c', 'av'], None),
+        ('pr', 'prometheusrule', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ]
     #
     res_types = [r[0] for r in res]
