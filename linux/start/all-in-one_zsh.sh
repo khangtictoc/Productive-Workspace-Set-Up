@@ -21,7 +21,7 @@ mkdir -p ~/$DOTFILES_DIRNAME
 
 for url in "${repo_urls[@]}"; do
     filename=$(basename "$url")
-    echo "Downloading $filename..."
+    echo "🔨 Downloading $filename..."
     wget -q "$url" -O ~/$DOTFILES_DIRNAME/$filename
 done
 
@@ -40,6 +40,8 @@ fi
 EOF
 fi
 
+echo "✅ Dotfiles have been applied successfully!"
+
 ## SET UP GIT
 echo "============ SET UP GIT ============"
 # Aliases
@@ -50,6 +52,7 @@ mkdir -p ~/$GITCONFIG_DIRNAME
 echo "Configuring Git Aliases ..."
 mkdir -p ~/$GITCONFIG_DIRNAME/alias/
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+echo "✅ Git aliases have been configured successfully!"
 echo "Configure Default Git Workspace ..."
 curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$GITPROFILE.sh" | bash 
 
@@ -64,15 +67,16 @@ git config --global include.path "~/$GITCONFIG_DIRNAME/git_aliases.txt"
 wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
 sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
 chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
+echo "✅ Git hook has been configured successfully!"
 
 ## SET UP ZSH PROFILES
 echo "============ SET UP ZSH PROFILES ============"
 # Check if the line exists in ~/.zshrc
 if ! grep -Fxq "export BROWSER=wslview" ~/.zshrc; then
     echo "export BROWSER=wslview" >> ~/.zshrc
-    echo "Added 'wslview' as browser's view"
+    echo "✅ Added 'wslview' as browser's view"
 else
-    echo "'BROWSER=wslview' already exists in ~/.zshrc"
+    echo "✅ 'BROWSER=wslview' already exists in ~/.zshrc"
 fi
 
 
@@ -83,7 +87,7 @@ HELM_COMPL="source <(helm completion zsh)"
 
 
 if grep -Fxq "$KUBECTL_COMPL" "$ZSHRC_FILE"; then
-    echo "✅ Kubectl completion has already been configured. No changes"
+    echo "✅ Kubectl completion has already been configured! No changes"
 else
     echo "$KUBECTL_COMPL" >> "$ZSHRC_FILE"
     echo "✅ Kubectl completion are configured!"
@@ -91,7 +95,7 @@ fi
 
 
 if grep -Fxq "$HELM_COMPL" "$ZSHRC_FILE"; then
-    echo "✅ Helm completion has already been configured. No changes"
+    echo "✅ Helm completion has already been configured! No changes"
 else
     echo "$HELM_COMPL" >> "$ZSHRC_FILE"
     echo "✅ Helm completion are configured!"
