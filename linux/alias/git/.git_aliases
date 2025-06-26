@@ -133,7 +133,7 @@ function gacp {
    git add .; git commit -m "$COMMIT_MESSAGE"; git push
 }
 
-function gacp {
+function gacpn {
   COMMIT_MESSAGE=$1
    git add .; git commit -m "$COMMIT_MESSAGE"; git push --no-verify
 }
