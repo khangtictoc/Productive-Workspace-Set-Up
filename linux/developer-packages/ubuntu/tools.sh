@@ -1,6 +1,6 @@
 ## ENVIRONMENT VARIABLES ##
-#set HELM_VERSION v3.16.4
 HELM_VERSION=v3.16.4
+RUBY_VERSION=3.4.4
 
 # General & Prerequisites
 apt install -y unzip
@@ -71,6 +71,21 @@ apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 apt install -y bc # Convenient calculator
 apt install -y jq # JSON Values Extractor
 apt install -y chrony # NTP Client
+
+
+# Programming Languages
+## Ruby - Using rbenv. Reference: https://github.com/rbenv/rbenv?tab=readme-ov-file#basic-github-checkout
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+~/.rbenv/bin/rbenv init
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+git -C "$(rbenv root)"/plugins/ruby-build pull
+apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
+rbenv install ${RUBY_VERSION:-3.4.4} # Install Ruby version
+
+# Blogging Jekyll
+gem install bundler
+bundle install
+bundle exec jekyll serve
 
 # Database Tools
 ## MySQL
@@ -156,11 +171,11 @@ rm k9s_linux_amd64.deb
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # Helm
-curl -O https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz
-tar -zxvf helm-$HELM_VERSION-linux-amd64.tar.gz
+curl -O https://get.helm.sh/helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
+tar -zxvf helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
 mv linux-amd64/helm /usr/local/bin/helm
 echo "==== CLEAN UP ===="
-rm -f helm-$HELM_VERSION-linux-amd64.tar.gz
+rm -f helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
 
 
 

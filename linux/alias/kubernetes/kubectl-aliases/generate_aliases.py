@@ -30,7 +30,10 @@ def main():
     # (alias, full, allow_when_oneof, incompatible_with)
     cmds = [('k', 'kubectl', None, None)]
 
-    globs = [('sys', '--namespace=kube-system', None, None)]
+    globs = [
+        ('sys', '--namespace=kube-system', None, None),
+        ('', '''-p '{"metadata":{"finalizers":null}}' --type=merge''', None, None),
+    ]
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
@@ -49,6 +52,7 @@ def main():
         # Personal use
         ('av', 'apply view-last-applied', None, None),
         ('rr', 'rollout restart', None, None),
+        ('pa', 'patch', None, ['']),
         ]
 
     res = [
