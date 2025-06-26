@@ -2386,11 +2386,4 @@ kgpobyno(){
     kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=$NODE_NAME
 }
 
-kpa(){
-    RESOURCE_TYPE=$1
-    RESOURCE_NAME=$2
-    kubectl patch -p '{"metadata":{"finalizers":null}}' --type=merge $RESOURCE_TYPE $RESOURCE_NAME
-}
-
-
 
