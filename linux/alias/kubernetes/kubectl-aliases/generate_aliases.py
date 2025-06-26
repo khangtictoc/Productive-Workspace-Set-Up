@@ -49,7 +49,7 @@ def main():
         ('run', 'run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t', None, None),
         ('c', 'create', None, None),
         # Personal use
-        ('av', 'pa', 'pafin', 'apply view-last-applied', None, None),
+        ('av', 'apply view-last-applied', None, None),
         ('rr', 'rollout restart', None, None),
         ('pa', 'patch', None, None),
         ('pafin', '''patch -p '{"metadata":{"finalizers":null}}' --type=merge''', None, None),
@@ -81,7 +81,6 @@ def main():
         ('esec', 'externalsecret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ('ss', 'secretstore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ('cesec', 'clusterexternalsecrets', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
-        ('css', 'secretstore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         # -- ArgoCD
         ('app', 'applications', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ('ap', 'appprojects', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
