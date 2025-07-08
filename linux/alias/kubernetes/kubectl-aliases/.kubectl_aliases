@@ -2296,11 +2296,11 @@ alias kcrmcl='kubectl config delete-cluster'
 alias kcrmc='kubectl config delete-context'  
 alias kcrmu='kubectl config delete-user'
 # List contexts with more details  
-alias kcgd='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/get_details_context.py | python3 -'
+alias kg-context-details='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/get_details_context.py | python3 -'
 # List nodes with requests/limits 
 alias kgnorl='wget -qO- https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/node__get_resource_req_lim.py | python3 -'
 # List ingresses with paths
-alias kgingpth='kubectl get ingress -o custom-columns="NAME:.metadata.name,DOMAIN:.spec.rules[*].host,PATHS:.spec.rules[*].http.paths[*].path"'
+alias kging-path='kubectl get ingress -o custom-columns="NAME:.metadata.name,DOMAIN:.spec.rules[*].host,PATHS:.spec.rules[*].http.paths[*].path"'
 
 ## Apply configuration
 alias ka='kubectl apply -f'
@@ -2310,30 +2310,25 @@ alias kar='kubectl apply --recursive -f'
 ## Node
 alias ktn='kubectl top nodes'
 
-###### Dedicated Functions ######
+###### Custom Functions ######
 
-## Node
-# Get nodes with labels
-kgnos(){
-    SELECTOR_LABEL=$1
-    kubectl get nodes --selector="$SELECTOR_LABEL"
-}
-
-kcrmcfg(){
+krm-context(){
     CONTEXT_NAME=$1
     kubectl config delete-cluster $CONTEXT_NAME
     kubectl config delete-context $CONTEXT_NAME
     kubectl config delete-user $CONTEXT_NAME
 }
 
-kcvthisns(){
+kgns-current(){
     CURRENT_CONTEXT=$(kubectl config current-context)
     kubectl config view -o jsonpath="{$.contexts[?(@.name=='$CURRENT_CONTEXT')].context.namespace}"
 }
-kgpobyno(){
+kgpo-nodename(){
     NODE_NAME=$1
     kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=$NODE_NAME
 }
 
-
-
+kubeconfig-context(){
+    CONTEXT_NAME=$1
+    kubectl config view --minify --flatten --context=$CONTEXT_NAME > $CONTEXT_NAME.kubeconfig
+}

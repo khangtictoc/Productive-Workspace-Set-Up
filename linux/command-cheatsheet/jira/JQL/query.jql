@@ -1,12 +1,25 @@
-# All-in-one (Most comprehensive)
-assignee = "khang.tran@mercatus.com" 
-AND statusCategory = "ToDo" 
-AND reporter = "son.pham@mercatus.com" 
-AND project = "United-Dev V2"
-AND created >= 2025-02-01 
-AND created <= 2025-02-12 
-ORDER BY created DESC
+## Common Properties
 
-# Search by title
+# statusCategory: "ToDo", "InProgress", "Completed", ...
+# priority: "High", "Highest", "Medium" , ... 
+# status: "Closed", "In Progress", ...
+# created: <YYYY-MM-DD>
+# updated: <YYYY-MM-DD>
+# duedate: <YYYY-MM-DD>
+# project: <PROJECT_NAME>
+# reporter: <REPORTER_EMAIL>
+# assignee: <ASSIGNEE_EMAIL>
+# title: <TITLE>
+# key: <TICKET_ID>
+
+## JSQL
+
+# Between date
+assignee = "" 
+    AND created >= 2025-05-05
+    AND created <= 2025-06-06
+    ORDER BY created DESC
+
+# Contain `~` operator
 assignee = currentUser() 
-AND summary ~ "Dashboard"
+    AND summary ~ "Dashboard"

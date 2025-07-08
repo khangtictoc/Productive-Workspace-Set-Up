@@ -1,6 +1,7 @@
 ## ENVIRONMENT VARIABLES ##
 HELM_VERSION=v3.16.4
 RUBY_VERSION=3.4.4
+ZSHRC_FILE="$HOME/.zshrc"
 
 # General & Prerequisites
 apt install -y unzip
@@ -156,6 +157,29 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
 
+#  kubectl krew - Plugin manager for kubectl
+set -x; cd "$(mktemp -d)" &&
+OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+KREW="krew-${OS}_${ARCH}" &&
+curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+tar zxvf "${KREW}.tar.gz" &&
+./"${KREW}" install krew
+
+
+EXPORT_KREW_PATH='export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
+if grep -Fxq "$EXPORT_KREW_PATH" "$ZSHRC_FILE"; then
+  echo "✅ Krew binary has been added to PATH! No changes"
+else
+  echo "$EXPORT_KREW_PATH" >> "$ZSHRC_FILE"
+  echo "✅ Krew binary has been added to PATH\!"
+fi
+
+#  kubectl krew - Install useful plugins
+kubectl krew install tree
+kubectl krew install view-secret
+
+
 ## Node Shell
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 chmod +x ./kubectl-node_shell
@@ -210,3 +234,20 @@ apt install -y certbot python3-certbot-nginx
 # NPM Tools
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
 
+# Security
+## Scan for secret
+### ggshield
+pip install --user ggshield
+pip install --user --upgrade ggshield
+
+### TruffleHog(Latest)
+curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+
+# Detect secrets
+echo "==== INSTALLING DETECT SECRETS ===="
+wget "https://codeload.github.com/Yelp/detect-secrets/zip/refs/tags/v1.5.0" -O detect-secrets.zip
+unzip detect-secrets.zip
+cd detect-secrets-1.5.0
+python3 setup.py install
+cd .. && rm -rf detect-secrets-1.5.0 detect-secrets.zip
+echo "==== CLEAN UP ===="

@@ -7,10 +7,17 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias h='history'
+alias rebootsafe='sudo shutdown -r now'
+alias shutdownsafe='sudo shutdown -P now'
+
+alias hi='history'
 alias h1='history 10'
 alias h2='history 20'
 alias h3='history 30'
+alias hii='history'
+alias hi1='history -i 10'
+alias hi2='history -i 20'
+alias hi3='history -i 30'
 
 alias psmem="ps auxf | sort -nr -k 4"
 alias psmem10="ps auxf | sort -nr -k 4 | head -10"
@@ -21,10 +28,20 @@ alias cpuname='cat /proc/cpuinfo | grep "name"'
 alias bashreload="source ~/.bashrc"
 alias zshreload="source ~/.zshrc"
 alias fishreload="source ~/.config/fish/config.fish"
+alias bashedit="source ~/.bashrc"
+alias zshedit="source ~/.zshrc"
+alias fishedit="source ~/.config/fish/config.fish"
 alias upgrade_update='apt-get update -y && apt-get upgrade -y'
 
-# Network
+# Alias's for archives
+alias mktar='tar -cvf'
+alias mkbz2='tar -cvjf'
+alias mkgz='tar -cvzf'
+alias untar='tar -xvf'
+alias unbz2='tar -xvjf'
+alias ungz='tar -xvzf'
 
+# Network
 alias localip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias lisport='netstat -plantu | grep LISTEN'
 
@@ -51,25 +68,25 @@ alias jctl='journalctl'
 
 ###### ADVANCED FUNCTIONS #######
 # Watch
-wproc() {
+watch-proc() {
     PID=$1
     INFO_TYPE=$2
     watch -n1 "cat /proc/$PID/$INFO_TYPE"
 }
 
-wls() {
+watch-ls() {
     watch -n1 "ls -alh"
 }
 
-wdf() {
+watch-df() {
     watch -n1 "df -h"
 }
 
-wiostat() {
+watch-iostat() {
     # Add your command here, as it was not defined in your original code
 }
 
-wkgpo() {
+watch-kgpo() {
     if [ -z "$1" ]; then
         watch -n1 "kubectl get pods"
     else
@@ -78,11 +95,11 @@ wkgpo() {
     fi
 }
 
-wktno() {
+watch-ktn() {
     watch -n1 "kubectl top nodes"
 }
 
-wkgdep() {
+watch-wkgdep() {
     if [ -z "$1" ]; then
         watch -n1 "kubectl get deployment"
     else
@@ -91,7 +108,7 @@ wkgdep() {
     fi
 }
 
-wkgsts() {
+watch-wkgsts() {
     if [ -z "$1" ]; then
         watch -n1 "kubectl get statefulset"
     else
@@ -100,7 +117,7 @@ wkgsts() {
     fi
 }
 
-wkgds() {
+watch-wkgds() {
     if [ -z "$1" ]; then
         watch -n1 "kubectl get daemonset"
     else
@@ -109,7 +126,7 @@ wkgds() {
     fi
 }
 
-scfbs() {
+sysctl-fstate() {
     SERVICE_STATE=$1
     systemctl list-units --type=service --state=$SERVICE_STATE
 }

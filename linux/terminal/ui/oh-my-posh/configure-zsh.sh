@@ -3,7 +3,8 @@
 ####### Run for ZSH only ######
 # Recommend theme
 # https://ohmyposh.dev/docs/themes
-# 'craver', 'easy-term'
+# 'craver', 'easy-term', 'kushal'
+
 
 # Check if .zshrc file exists, if not, create it
 if [ ! -f ~/.zshrc ]; then
@@ -12,7 +13,7 @@ fi
 
 # Write the theme configuration to .zshrc
 cat << 'EOF' >> ~/.zshrc
-OH_MY_POSH_THEME="easy-term"
+OH_MY_POSH_THEME="kushal"
 eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/$OH_MY_POSH_THEME.omp.json)"
 EOF
 
