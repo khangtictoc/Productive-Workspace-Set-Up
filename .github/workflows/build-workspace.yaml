@@ -25,7 +25,7 @@ jobs:
       - name: Run rebuild Git alias script
         run: |
           echo "[Rebuild worspace] Git aliases"
-          mv ./linux/alias/git/git_aliases.txt .
+          cp ./linux/alias/git/git_aliases.txt .
           python3 ./linux/alias/git/generate_aliases.py
           python3 ./.github/scripts/rebuild-workspace--git-aliases.py
           rm .git_aliases_temp
