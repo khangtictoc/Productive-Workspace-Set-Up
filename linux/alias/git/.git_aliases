@@ -429,12 +429,12 @@ alias gfap='git fetch --all --prune'
 # AIO Commit
 function gacp {
   COMMIT_MESSAGE=$1
-   git add .; git commit -m "$COMMIT_MESSAGE"; git push
+  git add .; git commit -m "$COMMIT_MESSAGE"; git push
 }
 
 function gacpn {
   COMMIT_MESSAGE=$1
-   git add .; git commit -m "$COMMIT_MESSAGE"; git push --no-verify
+  git add .; git commit -m "$COMMIT_MESSAGE"; git push --no-verify
 }
 
 # Git Profiles
