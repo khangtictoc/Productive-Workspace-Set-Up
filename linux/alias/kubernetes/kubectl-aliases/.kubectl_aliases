@@ -2333,10 +2333,7 @@ kubeconfig-context(){
     CONTEXT_NAME=$1
     kubectl config view --minify --flatten --context=$CONTEXT_NAME > $CONTEXT_NAME.kubeconfig
 }
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 1a7d7af (test: Add push alias for git 2)
 
