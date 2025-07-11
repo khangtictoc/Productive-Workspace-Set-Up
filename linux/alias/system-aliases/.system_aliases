@@ -28,9 +28,9 @@ alias cpuname='cat /proc/cpuinfo | grep "name"'
 alias bashreload="source ~/.bashrc"
 alias zshreload="source ~/.zshrc"
 alias fishreload="source ~/.config/fish/config.fish"
-alias bashedit="source ~/.bashrc"
-alias zshedit="source ~/.zshrc"
-alias fishedit="source ~/.config/fish/config.fish"
+alias bashedit="vim ~/.bashrc"
+alias zshedit="vim ~/.zshrc"
+alias fishedit="vim ~/.config/fish/config.fish"
 alias upgrade_update='apt-get update -y && apt-get upgrade -y'
 
 # Alias's for archives
@@ -48,19 +48,19 @@ alias lisport='netstat -plantu | grep LISTEN'
 
 # Systemd
 alias sys='systemctl'
-alias sysst='systemctl status'
-alias syslu='systemctl list-units --type=service --state='
-alias sysrs='systemctl restart'
-alias sysstop='systemctl stop'
-alias sysstart='systemctl start'
-alias sysen='systemctl enable'
-alias sysdis='systemctl disable'
-alias sysrl='systemctl reload'
-alias sysdrl='systemctl daemon-reload'
-alias syssh='systemctl show'
-alias syse='systemctl edit'
-alias sysu='systemctl unmask'
-alias sysm='systemctl mask'
+alias sys-st='systemctl status'
+alias sys-lu='systemctl list-units --type=service --state='
+alias sys-rs='systemctl restart'
+alias sys-stop='systemctl stop'
+alias sys-start='systemctl start'
+alias sys-en='systemctl enable'
+alias sys-dis='systemctl disable'
+alias sys-rl='systemctl reload'
+alias sys-drl='systemctl daemon-reload'
+alias sys-sh='systemctl show'
+alias sys-e='systemctl edit'
+alias sys-u='systemctl unmask'
+alias sys-m='systemctl mask'
 
 # Journalctl
 alias jctl='journalctl'

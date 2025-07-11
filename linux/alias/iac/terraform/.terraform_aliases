@@ -22,10 +22,12 @@ alias tfi='terraform init'
 alias tfim='terraform import'
 alias tfp='terraform plan'
 alias tfpd='terraform plan --destroy'
+alias tfver='terraform version'
 
 alias tf-console='terraform console'
 alias tf-fmt='terraform fmt'
 alias tf-graph='terraform graph'
+
 
 alias tf-output='terraform output'
 alias tf-providers='terraform providers'
@@ -37,7 +39,6 @@ alias tf-validate='terraform validate'
 alias tf-workspace='terraform workspace'
 alias tf-state='terraform state'
 alias tf-force-unlock='terraform force-unlock'
-
 alias tf-stateshow='terraform state show'
 alias tf-statelist='terraform state list'
 alias tf-statelistrm='terraform state rm'

@@ -71,14 +71,13 @@ echo "✅ Git hook has been configured successfully!"
 
 ## SET UP ZSH PROFILES
 echo "============ SET UP ZSH PROFILES ============"
-# Check if the line exists in ~/.zshrc
+# Allow exposing browser in terminal
 if ! grep -Fxq "export BROWSER=wslview" ~/.zshrc; then
     echo "export BROWSER=wslview" >> ~/.zshrc
     echo "✅ Added 'wslview' as browser's view"
 else
     echo "✅ 'BROWSER=wslview' already exists in ~/.zshrc"
 fi
-
 
 ## SET UP COMMAND AUTOCOMPLETION
 echo "============ SET UP COMMAND AUTOCOMPLETION ============"

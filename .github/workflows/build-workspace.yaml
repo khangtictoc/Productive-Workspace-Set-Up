@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - linux/alias/kubernetes/kubectl-aliases/generate_aliases.py
+      - linux/alias/git/git_aliases.txt
 
 jobs:
   rebuild-workspace:
@@ -17,8 +18,16 @@ jobs:
       
       - name: Run rebuild Python script
         run: |
-          python3 ./.github/scripts/rebuild-workspace.py
+          echo "[Rebuild worspace] Kubectl aliases"
+          python3 ./.github/scripts/rebuild-workspace--kubectl-aliases.py
 
+      - name: Run rebuild Python script
+        run: |
+          echo "[Rebuild worspace] Git aliases"
+          mv ./linux/alias/git/git_aliases.txt .
+          ./linux/alias/git/generate_aliases.py
+          python3 ./.github/scripts/rebuild-workspace--git-aliases.py
+        
       - name: Verify the output file
         run: |
           cat ./linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
@@ -28,7 +37,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit -m "Update kubectl aliases"
+          git commit -m "Update kubectl & git aliases"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
