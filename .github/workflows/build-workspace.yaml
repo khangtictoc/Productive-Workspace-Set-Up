@@ -16,19 +16,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Run rebuild Python script
+      - name: Run rebuild Kubectl alias script
         run: |
           echo "[Rebuild worspace] Kubectl aliases"
           python3 ./.github/scripts/rebuild-workspace--kubectl-aliases.py
 
-      - name: Run rebuild Python script
+      - name: Run rebuild Git alias script
         run: |
           echo "[Rebuild worspace] Git aliases"
           mv ./linux/alias/git/git_aliases.txt .
-          ./linux/alias/git/generate_aliases.py
+          python3 ./linux/alias/git/generate_aliases.py
           python3 ./.github/scripts/rebuild-workspace--git-aliases.py
+          rm .git_aliases_temp
         
-      - name: Verify the output file
+      - name: Verify .kubectl_aliases output file
         run: |
           cat ./linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
       
