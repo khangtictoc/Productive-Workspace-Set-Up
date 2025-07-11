@@ -7,6 +7,7 @@ on:
     paths:
       - linux/alias/kubernetes/kubectl-aliases/generate_aliases.py
       - linux/alias/git/git_aliases.txt
+      - .github/workflows/build-workspace.yaml
 
 jobs:
   rebuild-workspace:
