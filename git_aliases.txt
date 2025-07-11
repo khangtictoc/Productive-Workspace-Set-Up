@@ -85,7 +85,6 @@
   p = pull
   s = status
   w = whatchanged
-  ps = push
 
   ##
   # Short aliases for frequent commands and options.
