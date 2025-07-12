@@ -1,9 +1,0 @@
-{
-    // Auto render Markdown when opening .md files
-    "workbench.editorAssociations": {
-        "*.md": "vscode.markdown.preview.editor",
-    },
-
-    // Change font for terminal
-    "terminal.integrated.fontFamily": "CaskaydiaMono Nerd Font",
-}
