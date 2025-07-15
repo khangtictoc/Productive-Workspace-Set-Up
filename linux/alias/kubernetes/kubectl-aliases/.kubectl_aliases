@@ -2312,6 +2312,10 @@ alias kar='kubectl apply --recursive -f'
 ## Node
 alias ktn='kubectl top nodes'
 
+### AWS EKS
+alias kgno-spot='kubectl get nodes -l eks.amazonaws.com/capacityType=SPOT'
+alias kgno-ondemand='kubectl get nodes -l eks.amazonaws.com/capacityType=ON_DEMAND'
+
 ###### Custom Functions ######
 
 krm-context(){
@@ -2330,7 +2334,7 @@ kgpo-nodename(){
     kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=$NODE_NAME
 }
 
-kubeconfig-context(){
+kcv-context(){
     CONTEXT_NAME=$1
     kubectl config view --minify --flatten --context=$CONTEXT_NAME > $CONTEXT_NAME.kubeconfig
 }

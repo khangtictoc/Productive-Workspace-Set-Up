@@ -7,10 +7,10 @@ spec:
     - name: ubuntu
       image: ubuntu
       command: ["/bin/bash", "-c", "sleep infinity"] # Keep the pod running
-      volumeMounts:
-        - mountPath: /mnt/data
-          name: ubuntu-storage
-  volumes:
-    - name: ubuntu-storage
-      persistentVolumeClaim:
-        claimName: ubuntu-pvc
+  #     volumeMounts:
+  #       - mountPath: /mnt/data
+  #         name: ubuntu-storage
+  # volumes:
+  #   - name: ubuntu-storage
+  #     persistentVolumeClaim:
+  #       claimName: ubuntu-pvc

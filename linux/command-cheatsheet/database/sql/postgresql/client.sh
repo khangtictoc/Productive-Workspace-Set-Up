@@ -26,3 +26,6 @@ PGPASSWORD=<password> psql -h <hostname> -U <username> -d <database> < backup.sq
 dropdb -f dbname;
 ## View tables
 \dt;
+
+## View user
+\du;

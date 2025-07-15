@@ -423,7 +423,10 @@ alias gsvn-c="git svn dcommit"
 #                      PERSONAL ALIAS                            #
 ################################################################
 
+
+alias glod='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
 alias glodog='git log --decorate --oneline --graph'
+alias glods='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
 alias gdnp='git --no-pager diff'
 alias grfdl='git reflog --date=local'
 alias grfdr='git reflog --date=relative'
