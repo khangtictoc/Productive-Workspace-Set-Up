@@ -453,7 +453,7 @@ function glsp {
 
 function gswp {
   PROFILE_NAME=$1
-  curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/git/profile/$PROFILE_NAME.sh" | bash 
+  curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$PROFILE_NAME.sh" | bash 
   echo "You have switched to the $PROFILE_NAME profile!"
 }
 

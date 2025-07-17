@@ -269,7 +269,7 @@ pip install --user ggshield
 pip install --user --upgrade ggshield
 
 ### TruffleHog(Latest)
-curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
+curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
 
 # Detect secrets
 echo "==== INSTALLING DETECT SECRETS ===="
