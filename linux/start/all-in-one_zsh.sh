@@ -32,7 +32,7 @@ if ! grep -Fxq 'if [[ -n $PS1 ]]; then' ~/.zshrc; then
     cat << EOF >> ~/.zshrc
 if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
-    for file in ~/\$DOTFILES_DIRNAME/.*; do
+    for file in ~/\$DOTFILES_DIRNAME/*; do
         if [[ -r \$file ]]; then
             source \$file
         fi
