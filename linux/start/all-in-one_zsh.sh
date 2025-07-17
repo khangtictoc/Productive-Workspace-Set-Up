@@ -34,6 +34,7 @@ if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
     for file in ~/\$DOTFILES_DIRNAME/*; do
         if [[ -r \$file ]]; then
+            echo "🔧 Sourcing \$file..."
             source \$file
         fi
     done
