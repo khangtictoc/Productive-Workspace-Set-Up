@@ -28,17 +28,23 @@ done
 
 find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
 
-if ! grep -Fxq 'if [[ -n $PS1 ]]; then' ~/.zshrc; then
+if ! grep -Fxq '###### START CUSTOM SCRIPT ######' ~/.zshrc; then
     cat << EOF >> ~/.zshrc
+###### START CUSTOM SCRIPT ######
+# Source dotfiles if the shell is interactive
 if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
-    for file in ~/\$DOTFILES_DIRNAME/*; do
+    for file in ~/\$DOTFILES_DIRNAME/{*,.*}; do
         if [[ -r \$file ]]; then
             echo "🔧 Sourcing \$file..."
             source \$file
         fi
     done
 fi
+
+# Print system information
+neofetch
+
 EOF
 fi
 
