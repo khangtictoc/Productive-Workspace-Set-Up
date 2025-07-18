@@ -2313,8 +2313,48 @@ alias kar='kubectl apply --recursive -f'
 alias ktn='kubectl top nodes'
 
 ### AWS EKS
-alias kgno-spot='kubectl get nodes -l eks.amazonaws.com/capacityType=SPOT'
-alias kgno-ondemand='kubectl get nodes -l eks.amazonaws.com/capacityType=ON_DEMAND'
+function kgno-aws-detail(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CAPACITY_TYPE:.metadata.labels.eks\.amazonaws\.com/capacityType,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io/instance-type,ZONE:.metadata.labels.topology\.kubernetes\.io/zone'
+}
+
+### Azure AKS
+function kgno-azure(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,MAX_PODS:.status.maxPods'
+}
+
+### General
+function kgno-resource(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CPU_CORES:.status.capacity.cpu,ALLOC_CPU:.status.allocatable.cpu,ALLOC_EPHEMERAL_STORAGE:.status.allocatable.ephemeral-storage,ALLOC_MEM:.status.allocatable.memory,MAX_POD:.status.allocatable.pods'
+}
+
+function kgno-address(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,HOST_TYPE:.status.addresses.*.type,ADDRESSES:.status.addresses.*.address'
+}
+
+function kgno-address(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,HOST_TYPE:.status.addresses.*.type,ADDRESSES:.status.addresses.*.address'
+}
+
+function kgno-os(){
+    kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,ARCHITECTURE:.status.nodeInfo.architecture,CONTAINER_RUNTIME:.status.nodeInfo.containerRuntimeVersion,KERNEL_VER:.status.nodeInfo.kernelVersion,OS:.status.nodeInfo.osImage'
+}
+
+function kgno-imgtag(){
+    kubectl get node <NODE_NAME> -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n'
+}
+
+function kgno-img(){
+    kubectl get node <NODE_NAME> -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n' | cut -d ':' -f1
+}
+
+function kgno-taint(){
+    kubectl get nodes -o json | jq -r '.items[] | select(.spec.taints[]? | select(.key=="<TAIN_KEY>" and .value=="<TAIN_VALUE>" and .effect=="NoSchedule")) | .metadata.name'
+}
+
+## Argo Apps
+function kgapp-detail() {
+    kubectl get app -o=custom-columns="NAME:.metadata.name,DESTINATION:.spec.destination.namespace,SERVER:.spec.destination.server,PROJECT:.spec.project,TARGET_REVISION:.spec.sources[0].targetRevision" -n argocd
+}
 
 ###### Custom Functions ######
 

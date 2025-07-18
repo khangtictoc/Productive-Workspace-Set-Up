@@ -1,26 +1,3 @@
-## NODE ##
-# Capacity
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CPU_CORES:.status.capacity.cpu,ALLOC_CPU:.status.allocatable.cpu,ALLOC_EPHEMERAL_STORAGE:.status.allocatable.ephemeral-storage,ALLOC_MEM:.status.allocatable.memory,MAX_POD:.status.allocatable.pods'
-# Timestamp
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,CREATED_AT:.metadata.creationTimestamp,LAST_HEALTHY:.status.conditions[0].lastHeartbeatTime'
-# Addresses
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,HOST_TYPE:.status.addresses.*.type,ADDRESSES:.status.addresses.*.address'
-# OS-level
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,ARCHITECTURE:.status.nodeInfo.architecture,CONTAINER_RUNTIME:.status.nodeInfo.containerRuntimeVersion,KERNEL_VER:.status.nodeInfo.kernelVersion,OS:.status.nodeInfo.osImage'
-# Taints
-kubectl get nodes -o json | jq -r '.items[] | select(.spec.taints[]? | select(.key=="<TAIN_KEY>" and .value=="<TAIN_VALUE>" and .effect=="NoSchedule")) | .metadata.name'
-# Labels
-kubectl get nodes -l <LABEL>
-# Maximum pods
-# Azure
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,MAX_PODS:.status.maxPods'
-# AWS
-kubectl get nodes -o custom-columns='NODE NAME:.metadata.name,MAX_PODS:.status.allocatable.pods'
-# Existing images & tag versions
-kubectl get node <NODE_NAME> -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n'
-# Existing images
-kubectl get node <NODE_NAME> -o jsonpath='{.status.images.*.names[0]}' |  tr ' ' '\n' | cut -d ':' -f1
-
 ## PODS ##
 # Timestamp
 kubectl get pods -o custom-columns='POD NAME:.metadata.name,CREATED_AT:.metadata.creationTimestamp,NAMESPACE:.metadata.namespace'
@@ -44,13 +21,6 @@ kubectl get pods -o custom-columns='POD NAME:.metadata.name,VOLUME_MOUNT_PATH:.s
 # List all pods running in a Node
 kubectl get pods -o wide --all-namespaces --field-selector spec.nodeName=node-1
 
-## INGRESS ## 
-# All path rules
-kubectl get ingress -o custom-columns="NAME:.metadata.name,PATHS:.spec.rules[].http.paths[*].path"
-
-## ARGOCD ##
-# List all applications with details
-kubectl get app -o=custom-columns="NAME:.metadata.name,DESTINATION:.spec.destination.namespace,SERVER:.spec.destination.server,PROJECT:.spec.project,TARGET_REVISION:.spec.sources[0].targetRevision" -n argocd
 
 ## EVENTS ##
 # Get events for a specific node
@@ -75,8 +45,8 @@ kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm,app.kuber
 kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm,app.kubernetes.io/instance=<APP_NAME>,kustomize.toolkit.fluxcd.io/name=<KUSTOMIZE_APP_NAME>'
 
 # Kubectl copy file/folder from local to pod & vice versa
-kubectl cp <FILE> <CONTAINER>:/<PATH>
-kubectl cp <CONTAINER>:/<PATH> <FILE> 
+kubectl cp <LOCAL_FILE> <CONTAINER>:/<PATH>
+kubectl cp <CONTAINER>:/<PATH> <LOCAL_FILE> 
 
 
 
