@@ -4,12 +4,12 @@ metadata:
   name: affinity-test
 spec:
   containers:
-  - name: nginx
-    image: nginx:latest
-    ports:
-    - containerPort: 80
-  tolerations: 
-  - key: "app=dxp-united-oss"
-    operator: "Equal"
-    value: "true"
-    effect: "NoSchedule"
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "dxpro-applications"
+      effect: "NoSchedule"

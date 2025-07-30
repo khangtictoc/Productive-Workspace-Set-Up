@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: ubuntu
-      image: ubuntu
+      image: ubuntu:22.04
       command: ["/bin/bash", "-c", "sleep infinity"] # Keep the pod running
   #     volumeMounts:
   #       - mountPath: /mnt/data

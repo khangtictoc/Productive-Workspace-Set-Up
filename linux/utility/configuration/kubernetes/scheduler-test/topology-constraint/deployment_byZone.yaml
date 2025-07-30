@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-debug
+  labels:
+    app: ubuntu-debug
+spec:
+  replicas: 3 # Adjust as needed (e.g., 3 replicas for testing topology spread)
+  selector:
+    matchLabels:
+      app: ubuntu-debug
+  template:
+    metadata:
+      labels:
+        app: ubuntu-debug
+    spec:
+      topologySpreadConstraints:
+        - labelSelector:
+            matchLabels:
+              app: ubuntu-debug
+          maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nodegroup
+                    operator: In
+                    values:
+                      - dxpro-applications
+      containers:
+        - name: ubuntu
+          image: ubuntu
+          command: ["/bin/bash", "-c", "sleep infinity"] # Keep the pod running
+      # volumeMounts:
+      # - mountPath: /mnt/data
+      #   name: ubuntu-storage
+      # volumes:
+      # - name: ubuntu-storage
+      #   persistentVolumeClaim:
+      #     claimName: ubuntu-pvc

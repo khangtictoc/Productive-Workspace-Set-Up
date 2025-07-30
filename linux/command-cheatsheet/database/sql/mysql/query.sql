@@ -1,7 +1,7 @@
 -- https://devhints.io/mysql
 -- Create login user & grant permissions
-CREATE USER 'newmatomo'@'%' IDENTIFIED  BY ' ';
-GRANT ALL PRIVILEGES ON *.* TO 'newmatomo'@'%';
+CREATE USER '<NEW_USER>'@'%' IDENTIFIED  BY ' ';
+GRANT ALL PRIVILEGES ON *.* TO '<NEW_USER>'@'%';
 FLUSH PRIVILEGES;
 
 -- Version
@@ -16,7 +16,7 @@ SELECT
 FROM
   information_schema.TABLES
 WHERE
-  TABLE_SCHEMA = "matomo1"
+  TABLE_SCHEMA = "<TABLE_NAME>"
 HAVING
   `Total (MB)` > 0
 ORDER BY
@@ -40,9 +40,10 @@ PURGE BINARY LOGS BEFORE DATE(NOW() - INTERVAL 3 DAY) + INTERVAL 0 SECOND;
 -- Clear cache
 FLUSH TABLES;
 
--- Get users
+-- Get users & check privileges
 SELECT host, user, max_connections, max_user_connections, Show_db_priv, plugin, password_expired from mysql.user;  
-SHOW GRANTS FOR 'viktor'@'localhost'; 
+SHOW GRANTS FOR '<USER_NAME>'@'localhost'; 
+SHOW GRANTS FOR '<USER_NAME>'@'%'; 
 
 -- Database size 
 SELECT table_schema "DB Name", 

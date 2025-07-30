@@ -10,6 +10,10 @@ if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 # Define fonts to install (add/remove as needed)
 $fontsToInstall = @(
     @{
+        Name = "Geist"
+        Url = "https://github.com/vercel/geist-font/releases/download/1.5.0/geist-font-1.5.0.zip"
+    },
+    @{
         Name = "JetBrainsMono"
         Url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
     },
