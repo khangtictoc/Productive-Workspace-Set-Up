@@ -4,7 +4,7 @@ metadata:
   name: crash-loop-pod
 spec:
   containers:
-  - name: crash-container
-    image: busybox
-    command: ["sh", "-c", "exit 1"] # This command causes the container to exit immediately with an error
+    - name: crash-container
+      image: busybox
+      command: ["sh", "-c", "exit 1"] # This command causes the container to exit immediately with an error
   restartPolicy: Always

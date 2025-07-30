@@ -1,15 +1,15 @@
 ## BACKUP & RESTORE
 
 # Bigbang approach
-mysqldump -u newmatomo -peL9KaXe1jdv44Byd7Szf -h 192.168.20.84 --skip-lock-tables -B matomo1 -v | gzip > matomo_backup_prod_$(date +%Y%d%m).sql 2>/dev/null &
-mysqldump --compress --compression-algorithms zlib -u newmatomo -peL9KaXe1jdv44Byd7Szf -h 192.168.20.84 --skip-lock-tables -B matomo1 -v > matomo_backup_prod_$(date +%Y%d%m).sql 2>/dev/null &
+mysqldump -u <USERNAME> -p<PASSWORD> -h <HOST> --skip-lock-tables -B <DATABASE_NAME> -v | gzip > <DATABASE_NAME>_backup_$(date +%Y%d%m).sql 2>/dev/null &
+mysqldump --compress --compression-algorithms zlib -u <USERNAME> -p<PASSWORD> -h <HOST> --skip-lock-tables -B <DATABASE_NAME> -v > <DATABASE_NAME>_backup_$(date +%Y%d%m).sql 2>/dev/null &
 
-unzip -p matomo_backup_prod_20240410.sql.gz | mysql -u root -pabc1233 -h mysql-dxp-matomo-bigy-sandbox-primary.dxp-matomo.svc.cluster.local &
-gunzip < matomo_backup_prod_20240410.sql.gz | mysql -u root -pabc1233 -h mysql-dxp-matomo-bigy-sandbox-primary.dxp-matomo.svc.cluster.local &
-mysql -u root -pabc1233 -h mysql-dxp-matomo-bigy-sandbox-primary.dxp-matomo.svc.cluster.local < matomo_backup_prod_20240710.sql &
+unzip -p <GUNZIP_FILE>.sql.gz | mysql -u <USERNAME> -p<PASSWORD> -h <HOST> &
+gunzip < <GUNZIP_FILE>.sql.gz | mysql -u <USERNAME> -p<PASSWORD> -h <HOST> &
+mysql -u <USERNAME> -p<PASSWORD> -h <HOST> < <RESTORE_FILE>.sql &
 
 # Phased-shift approach
-mysqldump -u newmatomo -peL9KaXe1jdv44Byd7Szf matomo1 table_name > table_name.sql &
+mysqldump -u <USERNAME> -p<PASSWORD> <DATABASE_NAME> <TABLE_NAME> > <TABLE_NAME>.sql 
 
 ## LOGIN
-mysql -u root -pabc1233 -h mysql-dxp-matomo-bigy-sandbox-primary.dxp-matomo.svc.cluster.local -D my_database
+mysql -u <USERNAME> -p<PASSWORD> -h <HOST> -D <DATABASE_NAME>

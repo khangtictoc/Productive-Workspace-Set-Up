@@ -15,14 +15,14 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: memory-demo-ctr
-        image: polinux/stress
-        resources:
-          requests:
-            memory: "10000Mi"
-            cpu: "100m"
-          limits:
-            memory: "12000Mi"
-            cpu: "150m"
-        command: ["stress"]
-        args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+        - name: memory-demo-ctr
+          image: polinux/stress
+          resources:
+            requests:
+              memory: "10000Mi"
+              cpu: "100m"
+            limits:
+              memory: "12000Mi"
+              cpu: "150m"
+          command: ["stress"]
+          args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]

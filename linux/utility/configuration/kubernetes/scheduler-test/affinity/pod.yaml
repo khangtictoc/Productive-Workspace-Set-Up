@@ -4,16 +4,16 @@ metadata:
   name: affinity-test
 spec:
   containers:
-  - name: nginx
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
-        - matchExpressions:
-          - key: eks.amazonaws.com/nodegroup
-            operator: In
-            values:
-            - prd-mcp-us-east-1-eks-cluster-1-nodegroup-8
+          - matchExpressions:
+              - key: eks.amazonaws.com/nodegroup
+                operator: In
+                values:
+                  - prd-mcp-us-east-1-eks-cluster-1-nodegroup-8

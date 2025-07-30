@@ -35,6 +35,13 @@ sudo apt install -y netcat
 sudo apt install -y whois
 sudo apt install -y mtr
 curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | sh
+# ngrok
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+  | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+  && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+  | sudo tee /etc/apt/sources.list.d/ngrok.list \
+  && sudo apt update \
+  && sudo apt install ngrok
 
 # Disk
 sudo apt install -y sysstat
@@ -126,6 +133,13 @@ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-b
 git -C "$(rbenv root)"/plugins/ruby-build pull
 sudo apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
 rbenv install ${RUBY_VERSION:-3.4.4} # Install Ruby version
+## NodeJS
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+# Download and install Node.js:
+nvm install 22
 
 # Blogging Jekyll
 gem install bundler
@@ -140,11 +154,11 @@ sudo apt install -y nodejs
 sudo apt install -y npm
 npm install -g redis-cli
 ## SQL Server
-curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/sudo apt/trusted.gpg.d/microsoft.asc
+curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
 source /etc/os-release
-curl https://packages.microsoft.com/config/ubuntu/$VERSION_ID/prod.list | tee /etc/sudo apt/sources.list.d/mssql-release.list
+curl https://packages.microsoft.com/config/ubuntu/$VERSION_ID/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
 sudo apt-get update
-sudo apt-get install mssql-tools18 unixodbc-dev
+sudo apt-get install mssql-tools18 unixodbc-dev -y
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile
 source ~/.bash_profile
 ## Postgres
