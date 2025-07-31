@@ -1,10 +1,10 @@
 aws-profile() {
   case "${1}" in
     list)
-      grep "^\\[" "${HOME}/.aws/credentials" | sed 's/[][]//g' | sort
+      grep "^\[" "${HOME}/.aws/credentials" | sed 's/[][]//g' | sort
       ;;
     set)
-      if [ -z "${2}" ]; then
+      if [[ -z "${2}" ]]; then
         echo "Usage: aws-profile set value"
       else
         export AWS_PROFILE="${2}"
@@ -12,11 +12,13 @@ aws-profile() {
       fi
       ;;
     info)
-      profilevars=(
+      local -a profilevars=(
         AWS_ACCESS_KEY_ID   AWS_CA_BUNDLE           AWS_CONFIG_FILE     AWS_DEFAULT_OUTPUT            AWS_DEFAULT_REGION
         AWS_PROFILE         AWS_SECRET_ACCESS_KEY   AWS_SESSION_TOKEN   AWS_SHARED_CREDENTIALS_FILE
       )
-      for vars in "${profilevars[@]}"; do printf "%30s|%s\\n" " ${vars} " " ${!vars}"; done
+      for var in ${profilevars}; do 
+        printf "%30s|%s\n" " ${var} " " ${(P)var}"
+      done
       ;;
     version)
       echo "aws-profile v1.0.0"
