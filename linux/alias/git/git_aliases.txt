@@ -81,7 +81,6 @@
   g = grep
   l = log
   m = merge
-  o = checkout
   p = pull
   s = status
   w = whatchanged
