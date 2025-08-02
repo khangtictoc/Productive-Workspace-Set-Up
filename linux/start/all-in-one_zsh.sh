@@ -97,7 +97,7 @@ fi
 curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/terminal-startup/self-customed/motd.sh" -o "$MOTD_DIR/motd.sh"
 chmod +x "$MOTD_DIR/motd.sh"
 if ! grep -Fxq "source $MOTD_DIR/motd.sh" "$ZSHRC_FILE"; then
-    echo "source $MOTD_DIR/motd.sh" >> "$ZSHRC_FILE"
+    echo "bash $MOTD_DIR/motd.sh | lolcat" >> "$ZSHRC_FILE"
     echo "✅ MOTD script has been sourced in ~/.zshrc"
 else
     echo "✅ MOTD script is already sourced in ~/.zshrc"
