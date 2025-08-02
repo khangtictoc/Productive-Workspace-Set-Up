@@ -3,7 +3,11 @@ HELM_VERSION=v3.16.4
 RUBY_VERSION=3.4.4
 ZSHRC_FILE="$HOME/.zshrc"
 
-# General & Prerequisites
+# ┌──────────────────────────────────────┐
+# │                                      │
+# │    Prerequisites/Must-have Tools     │
+# │                                      │
+# └──────────────────────────────────────┘
 sudo apt install -y unzip
 sudo apt install -y python3-pip
 
@@ -13,11 +17,7 @@ sudo apt install -y nano
 # Superfile - File Manager
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
 
-# VSystem's health & process
-sudo apt install -y pv # View process for MySQL restore database
-sudo apt install -y strace
-sudo apt install -y file
-sudo apt install -y htop
+
 # Download URL
 sudo apt install -y wget
 sudo apt install -y curl
@@ -47,23 +47,11 @@ curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
 sudo apt install -y sysstat
 sudo apt install -y iotop
 
-# Cloud
-## AWS CLI
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-./aws/install
-echo "==== CLEAN UP ===="
-rm -f awscliv2.zip && rm -drf aws
-## Azure CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
-## GCP
-curl https://packages.cloud.google.com/sudo apt/doc/sudo apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/sudo apt cloud-sdk main" | tee -a /etc/sudo apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get update && sudo apt-get install google-cloud-cli
-
-
-
-## Tools Utilities
+# ┌────────────────────────────┐
+# │                            │
+# │      Productive Tools      │
+# │                            │
+# └────────────────────────────┘
 sudo apt install -y exiftool #Read metadata file
 sudo apt install -y ibus-unikey # # Type Vietnamese character
 sudo apt install -y git
@@ -79,8 +67,22 @@ sudo apt install -y ripgrep # ripgrep - Search content in multiples files or fol
 sudo apt install -y bc # Convenient calculator
 sudo apt install -y jq # JSON Values Extractor
 sudo apt install -y chrony # NTP Client
+npm install -g @jsware/jsonpath-cli # JSONPath query tool
 
-## Tools TUI
+# ┌──────────────────────────────────────┐
+# │                                      │
+# │    Terminal, Linux system and TUI    │
+# │                                      │
+# └──────────────────────────────────────┘
+
+## Monitoring
+sudo apt install -y iftop
+sudo apt install -y iotop
+sudo apt install -y atop
+## sysz (Systemd service manager)
+wget -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
+sudo chmod +x /usr/local/bin/sysz
+
 # Network
 wget https://github.com/imsnif/bandwhich/releases/download/v0.23.1/bandwhich-v0.23.1-x86_64-unknown-linux-gnu.tar.gz
 tar -xzf bandwhich-v0.23.1-x86_64-unknown-linux-gnu.tar.gz
@@ -106,26 +108,40 @@ sudo dpkg -i tufw_0.2.4_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm -f tufw_0.2.4_linux_amd64.deb
 
+# System's processes
+sudo apt install -y pv # View process for MySQL restore database
+sudo apt install -y strace
+sudo apt install -y file
+sudo apt install -y htop
 
-# Terminal & Linux system
-## Monitoring
-sudo apt install -y iftop
-sudo apt install -y iotop
-sudo apt install -y atop
-## sysz (Systemd service manager)
-wget -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
-sudo chmod +x /usr/local/bin/sysz
 
-# Container Environment
-## Docker
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/sudo apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/sudo apt/keyrings/docker.asc
-sudo chmod a+r /etc/sudo apt/keyrings/docker.asc
+# ┌────────────────────────────┐
+# │                            │
+# │       Cloud Platform       │
+# │                            │
+# └────────────────────────────┘
+## AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
+echo "==== CLEAN UP ===="
+rm -f awscliv2.zip && rm -drf aws
 
-# Programming Languages
+## Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
+
+## GCP
+curl https://packages.cloud.google.com/sudo apt/doc/sudo apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/sudo apt cloud-sdk main" | tee -a /etc/sudo apt/sources.list.d/google-cloud-sdk.list
+sudo apt-get update && sudo apt-get install google-cloud-cli
+
+
+# ┌────────────────────────────┐
+# │                            │
+# │   Programming Languages    │
+# │                            │
+# └────────────────────────────┘
+
 ## Ruby - Using rbenv. Reference: https://github.com/rbenv/rbenv?tab=readme-ov-file#basic-github-checkout
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 ~/.rbenv/bin/rbenv init
@@ -133,6 +149,7 @@ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-b
 git -C "$(rbenv root)"/plugins/ruby-build pull
 sudo apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
 rbenv install ${RUBY_VERSION:-3.4.4} # Install Ruby version
+
 ## NodeJS
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -140,6 +157,14 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 # Download and install Node.js:
 nvm install 22
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz
+
+## Go/Golang
+wget "https://go.dev/dl/go1.24.5.linux-amd64.tar.gz"
+tar xfvz go1.24.5.linux-amd64.tar.gz
+cp go/bin/* /usr/local/bin/
+echo "==== CLEAN UP ===="
+rm -drf go1.24.5.linux-amd64.tar.gz go
 
 # Blogging Jekyll
 gem install bundler
@@ -175,8 +200,20 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/sudo apt/ubuntu noble/mo
 sudo apt-get update
 sudo apt-get install -y mongodb-mongosh
 
+# ┌────────────────────────────┐
+# │                            │
+# │      DevOps Tools          │
+# │                            │
+# └────────────────────────────┘
 
-
+# ---- CONTAINER ----
+## Docker
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/sudo apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/sudo apt/keyrings/docker.asc
+sudo chmod a+r /etc/sudo apt/keyrings/docker.asc
 # Add the repository to sudo apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/sudo apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
@@ -243,9 +280,7 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 echo "==== CLEAN UP ===="
 rm -f helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
 
-
-
-# VM images, Infrastructure & Configuration templating
+# ---- INFRA-AS-CODE (IAC) ----
 ## Terraform
 wget https://releases.hashicorp.com/terraform/1.10.3/terraform_1.10.3_linux_amd64.zip
 unzip terraform_1.10.3_linux_amd64.zip
@@ -258,7 +293,6 @@ wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.71.2-alpha2
 sudo chmod u+x terragrunt_linux_amd64
 sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
-
 ## Packer
 curl -fsSL https://sudo apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://sudo apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -270,22 +304,31 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install vagrant
 vagrant plugin install vagrant-vmware-desktop # Optional
 
-# SSL & Certificates
+# ---- GIT ----
+## git filter-repo 
+wget -O git-filter-repo https://raw.githubusercontent.com/newren/git-filter-repo/main/git-filter-repo
+sudo chmod +x git-filter-repo
+sudo mv git-filter-repo /usr/local/bin/
+
+# ---- TLS/SSL ----
+## Certbot(Let's Encrypt)
 sudo apt install -y certbot python3-certbot-nginx
 
-# NPM Tools
-npm install -g @jsware/jsonpath-cli # JSONPath query tool
 
-# Security
-## Scan for secret
-### ggshield
+# ┌────────────────────────────┐
+# │                            │
+# │       Security Tools       │
+# │                            │
+# └────────────────────────────┘
+# ---- SCAN SECRETS ----
+## ggshield
 pip install --user ggshield
 pip install --user --upgrade ggshield
 
-### TruffleHog(Latest)
+## TruffleHog
 curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo sh -s -- -b /usr/local/bin
 
-# Detect secrets
+## detect-secrets
 echo "==== INSTALLING DETECT SECRETS ===="
 wget "https://codeload.github.com/Yelp/detect-secrets/zip/refs/tags/v1.5.0" -O detect-secrets.zip
 unzip detect-secrets.zip
@@ -294,8 +337,4 @@ python3 setup.py install
 cd .. && rm -rf detect-secrets-1.5.0 detect-secrets.zip
 echo "==== CLEAN UP ===="
 
-# Git
-## git filter-repo 
-wget -O git-filter-repo https://raw.githubusercontent.com/newren/git-filter-repo/main/git-filter-repo
-sudo chmod +x git-filter-repo
-sudo mv git-filter-repo /usr/local/bin/
+

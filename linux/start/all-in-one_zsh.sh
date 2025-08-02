@@ -87,6 +87,22 @@ else
     echo "✅ 'BROWSER=wslview' already exists in ~/.zshrc"
 fi
 
+## SET UP MESSAGE OF THE DAY (MOTD)
+echo "============ SET UP MOTD ============"
+MOTD_DIR="$HOME/.my-motd"
+if [ ! -d "$MOTD_DIR" ]; then
+    mkdir -p "$MOTD_DIR"
+    echo "Created MOTD directory at $MOTD_DIR"
+fi
+curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/terminal-startup/self-customed/motd.sh" -o "$MOTD_DIR/motd.sh"
+chmod +x "$MOTD_DIR/motd.sh"
+if ! grep -Fxq "source $MOTD_DIR/motd.sh" "$ZSHRC_FILE"; then
+    echo "source $MOTD_DIR/motd.sh" >> "$ZSHRC_FILE"
+    echo "✅ MOTD script has been sourced in ~/.zshrc"
+else
+    echo "✅ MOTD script is already sourced in ~/.zshrc"
+fi
+
 ## SET UP COMMAND AUTOCOMPLETION
 echo "============ SET UP COMMAND AUTOCOMPLETION ============"
 KUBECTL_COMPL="source <(kubectl completion zsh)"
