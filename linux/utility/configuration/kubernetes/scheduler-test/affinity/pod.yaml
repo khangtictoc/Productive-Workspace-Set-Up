@@ -13,7 +13,7 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions:
-              - key: eks.amazonaws.com/nodegroup
+              - key: <node-label-key>
                 operator: In
                 values:
-                  - prd-mcp-us-east-1-eks-cluster-1-nodegroup-8
+                  - <node-label-value>

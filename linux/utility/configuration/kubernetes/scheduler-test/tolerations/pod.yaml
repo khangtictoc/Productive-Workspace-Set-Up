@@ -9,7 +9,7 @@ spec:
       ports:
         - containerPort: 80
   tolerations:
-    - key: "app"
+    - key: "<node-taint-key>"
       operator: "Equal"
-      value: "dxpro-applications"
+      value: "<node-taint-value>"
       effect: "NoSchedule"

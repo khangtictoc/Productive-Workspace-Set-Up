@@ -1,5 +1,13 @@
+# Operate on selected directories
 terragrunt run-all plan --non-interactive \
-    --terragrunt-include-external-dependencies \
-    --terragrunt-working-dir . \
-    --terragrunt-include-dir .\azure-key-vault \
-    --terragrunt-exclude-dir ./vnet-region-peering
+    --queue-include-external \
+    --working-dir . \
+    --queue-include-dir <sub-dir1> \
+    --queue-include-dir <sub-dir2> \
+    --terragrunt-exclude-dir <excluded-dir> \
+
+
+# Operate on all directories
+terragrunt run-all plan --non-interactive \
+    --queue-include-external \
+    --working-dir . 
