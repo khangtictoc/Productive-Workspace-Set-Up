@@ -68,6 +68,8 @@ sudo apt install -y bc # Convenient calculator
 sudo apt install -y jq # JSON Values Extractor
 sudo apt install -y chrony # NTP Client
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
+sudo apt-get purge lolcat -y
+gem install lolcat # Require Ruby
 
 # ┌──────────────────────────────────────┐
 # │                                      │
