@@ -28,9 +28,6 @@ alias gl="git log"
 # alias gm: 'g' for 'git', 'm' for 'merge'
 alias gm="git merge"
 
-# alias go: 'g' for 'git', 'o' for 'checkout'
-alias go="git checkout"
-
 # alias gp: 'g' for 'git', 'p' for 'pull'
 alias gp="git pull"
 
