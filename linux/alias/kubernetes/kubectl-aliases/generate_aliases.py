@@ -76,6 +76,7 @@ def main():
         ('ds', 'daemonset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('hpa', 'horizontalpodautoscalers', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('crd', 'customresourcedefinition', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('rs', 'replicaset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         # Custom resources
         # -- External Secrets
         ('esec', 'externalsecret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),

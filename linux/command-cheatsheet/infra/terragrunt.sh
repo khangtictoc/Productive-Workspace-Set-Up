@@ -11,3 +11,7 @@ terragrunt run-all plan --non-interactive \
 terragrunt run-all plan --non-interactive \
     --queue-include-external \
     --working-dir . 
+
+# Format files
+terragrunt hclfmt --terragrunt-working-dir . # .hcl 
+terraform fmt -recursive # .tf, .tfvars, .tfstate, .tfstate.backup 
