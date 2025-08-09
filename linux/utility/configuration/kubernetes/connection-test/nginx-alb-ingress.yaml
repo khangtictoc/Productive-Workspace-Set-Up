@@ -5,7 +5,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/group.name: testproject-group
-    alb.ingress.kubernetes.io/security-groups: sg-023cc576013072528
+    alb.ingress.kubernetes.io/security-groups: test--allow-all-dev
 
 spec:
   ingressClassName: alb

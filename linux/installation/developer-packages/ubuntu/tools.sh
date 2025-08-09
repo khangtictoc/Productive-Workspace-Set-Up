@@ -11,6 +11,12 @@ ZSHRC_FILE="$HOME/.zshrc"
 sudo apt install -y unzip
 sudo apt install -y python3-pip
 
+# WSL
+## Install WSL utilities - Open links in host browser, copy/paste between WSL and Windows, etc.
+sudo add-apt-repository ppa:wslutilities/wslu
+sudo apt update
+sudo apt install -y wslu
+
 # File Editor
 sudo apt install -y vim
 sudo apt install -y nano
