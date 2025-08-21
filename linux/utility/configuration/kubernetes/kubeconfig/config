@@ -1,0 +1,4 @@
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://<your-cluster-name-server>:6443
+    name: <your-cluster-name>
