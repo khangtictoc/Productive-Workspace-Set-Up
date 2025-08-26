@@ -6,5 +6,5 @@ spec:
   containers:
     - name: crash-container
       image: busybox
-      command: ["sh", "-c", "exit 1"] # This command causes the container to exit immediately with an error
+      command: ["sh", "-c", "exit 1"] # Crash with an error exit code
   restartPolicy: Always

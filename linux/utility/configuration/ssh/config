@@ -1,0 +1,12 @@
+# ~/.ssh/config
+
+Host <host-name-01> 
+    HostName <my-website1.com>
+    User <ssh-user1>
+    IdentityFile ~/.ssh/id_rsa
+
+Host <host-name-02> 
+    HostName <my-website2.com>
+    User <ssh-user2>
+    IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
