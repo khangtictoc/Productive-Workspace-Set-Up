@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SHELL_PROFILE="$HOME/.zshrc"
+SHELL_PROFILE="$HOME/.bashrc"
 
 ## SOURCE DOTFILES
 echo "============ START SOURCING DOTFILES ============"
