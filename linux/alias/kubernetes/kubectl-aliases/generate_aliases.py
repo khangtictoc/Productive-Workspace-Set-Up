@@ -53,12 +53,13 @@ def main():
         ('rr', 'rollout restart', None, None),
         ('pa', 'patch', None, None),
         ('pafin', '''patch -p '{"metadata":{"finalizers":null}}' --type=merge''', None, None),
+        ('sc', 'scale', None, None),
         ]
 
     res = [
         ('po', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
-        ('dep', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
-        ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
+        ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
         ('svc', 'service', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('ing', 'ingress', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('cm', 'configmap', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
