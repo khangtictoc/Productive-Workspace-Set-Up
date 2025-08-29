@@ -72,6 +72,11 @@ sudo apt install -y tilix # Add multi-terminal in 1 display
 sudo apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 sudo apt install -y bc # Convenient calculator
 sudo apt install -y jq # JSON Values Extractor
+# YAML Values Extractor
+YQ_VERSION=v4.2.0
+YQ_BINARY=yq_linux_amd64
+wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}.tar.gz -O - |\
+  tar xz && mv ${BINARY} /usr/local/bin/yq
 sudo apt install -y chrony # NTP Client
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
 sudo apt-get purge lolcat -y
