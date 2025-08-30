@@ -121,6 +121,7 @@ function ggshield-summary(){
       ]
   | "| " + join(" | ") + " |"
   ' ggshield.json
+  echo
 }
 
 
@@ -146,6 +147,7 @@ function trufflehog-summary(){
     (.SourceMetadata.Data.Git.line | tostring),
     .SourceMetadata.Data.Git.timestamp
   ] | "| \(.[0]) | \(.[1]) | \(.[2]) | \(.[3]) | \(.[4]) |"' trufflehog.json
+  echo
 }
 
 # MAIN
