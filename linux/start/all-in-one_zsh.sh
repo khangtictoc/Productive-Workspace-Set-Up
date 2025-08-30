@@ -94,7 +94,7 @@ if [ ! -d "$MOTD_DIR" ]; then
     mkdir -p "$MOTD_DIR"
     echo "Created MOTD directory at $MOTD_DIR"
 fi
-curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/terminal-startup/self-customed/motd.sh" -o "$MOTD_DIR/motd.sh"
+curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/self-customed/motd.sh" -o "$MOTD_DIR/motd.sh"
 chmod +x "$MOTD_DIR/motd.sh"
 if ! grep -Fxq "source $MOTD_DIR/motd.sh" "$SHELL_PROFILE"; then
     echo "bash $MOTD_DIR/motd.sh | lolcat" >> "$SHELL_PROFILE"
