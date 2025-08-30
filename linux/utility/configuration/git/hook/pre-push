@@ -1,61 +1,183 @@
 #!/bin/bash
 
-# List of whitelisted repo names
-WHITELISTED_NAMES=(
-  "zebar_neon_theme"
-  
-)
+function init-config(){
+  # White-listed Repos
+  WHITELISTED_NAMES=(
+    "zebar_neon_theme"
+    
+  )
+  ABSOLUTE_PATH="$(git rev-parse --show-toplevel)"
+  REPO_NAME=$(basename "$ABSOLUTE_PATH")
+}
 
-# Extract current repo name (last directory of the repo path)
-ABSOLUTE_PATH="$(git rev-parse --show-toplevel)"
-REPO_NAME=$(basename "$ABSOLUTE_PATH")
+function welcome-title(){
+  echo 
+  echo "┌──────────────────────────────────────┐"
+  echo "│                                      │"
+  echo "│       PRE-PUSH: Prevent leaks        │"
+  echo "│       critical/sentitive data        │"
+  echo "│                                      │"
+  echo "└──────────────────────────────────────┘"
+  echo 
+}
 
-# Check if repo name is in whitelist
-IS_ALLOWED=false
-for name in "${WHITELISTED_NAMES[@]}"; do
-  if [ "$REPO_NAME" = "$name" ]; then
-    IS_ALLOWED=true
-    break
-  fi
-done
-
-
-
-# If not whitelisted, skip the prompt
-if [ "$IS_ALLOWED" != true ]; then
-  if ! command -v ggshield 2>&1 >/dev/null
-  then
-      echo "ggshield could not be found. Please install it first."
-      exit 1
-  fi
-  if ! command -v ggshield 2>&1 >/dev/null
-  then
-      echo "trufflehog could not be found. Please install it first."
-
-      exit 1
-  fi
-  # Run ggshield and trufflehog
-  echo "Scan secrets with 'ggshield' ..."
-  echo "y" | ggshield secret scan path . --recursive --all-secrets > ggshield_output.txt
-  GGSHIELD_SECRET_LINES=$(grep -P  '^>> Secret detected: (?!Generic Password$).+$' ggshield_output.txt | wc -l)
-  
-  echo "Scan secrets with 'trufflehog' ..."
-  trufflehog git file://. --results=verified,unknown --no-update  > trufflehog_output.txt
-  TRUFFLE_HOG_SECRET_LINES=$(cat trufflehog_output.txt | wc -l)
-
-  if [ "$GGSHIELD_SECRET_LINES" -gt 0 ] || [ "$TRUFFLE_HOG_SECRET_LINES" -gt 0 ]; then
-    # Prompt user
-    echo "Are you sure you want to push to $REPO_NAME? (yes/no)"
-    read answer < /dev/tty
-    if [ "$answer" != "yes" ]; then
-      
-      echo "Push aborted."
-      exit 1
+function is_whitelisted () {
+  IS_ALLOWED=false
+  for name in "${WHITELISTED_NAMES[@]}"; do
+    if [ "$REPO_NAME" = "$name" ]; then
+      IS_ALLOWED=true
+      break
     fi
-    rm ggshield_output.txt trufflehog_output.txt
+  done
+}
+
+function check-prerequisite(){
+  echo "############### CHECKING PREREQUISITES ###############"
+  if ! command -v ggshield 2>&1 >/dev/null
+  then
+      echo "- [FAILED ❌] ggshield command could not be found. Please install it first."
+      exit 1
+  else
+      echo "- [CHECKED ✅] ggshield exists"
   fi
-  
-  
-fi
+
+  if ! command -v trufflehog 2>&1 >/dev/null
+  then
+      echo "- [FAILED ❌] trufflehog command could not be found. Please install it first."
+      exit 1
+  else
+      echo "- [CHECKED ✅] trufflehog exists"
+  fi
+
+  if ! command -v jq 2>&1 >/dev/null
+  then
+      echo "- [FAILED ❌] jq command could not be found. Please install it first."
+      exit 1
+  else
+      echo "- [CHECKED ✅] jq exists"
+  fi
+}
+
+function run-ggshield(){
+  echo "############### [GGSHIELD] - Secrets Directory Scanner ###############"
+  echo "y" | ggshield secret scan path . --recursive --all-secrets --json > ggshield.json
+}
+
+function run-trufflehog(){
+  echo "############### [TRUFFLEHOG] - Git Commit History Scanner ###############"
+  trufflehog git file://. --branch HEAD --results=verified,unknown --no-update --json 2> /dev/null | jq -s '{"ScannerResults": .}' > trufflehog.json
+}
+
+function ggshield-summary(){
+  local generic_password_nums=$(jq -r '.entities_with_incidents[].incidents[]? | select(.type != null) | select(.type == "Generic Password") | .type' ggshield.json | wc -l)
+  local other_secrets_nums=$(jq -r '.entities_with_incidents[].incidents[]? | select(.type != null) | select(.type != "Generic Password") | .type' ggshield.json | wc -l)
+
+  GGSHIELD_INC_NUMS=${other_secrets_nums}
+
+  if [[ ! -z "$generic_password_nums" ]]; then
+      echo
+      echo "+--------------------------------------------------------+"
+      echo "+ [WARNING ⚠️] There are Generic Passwords detected"
+      echo "+ NOTE: Chaos-based string may be not a sensitive data, used to"
+      echo "+ obfuscate the real value or test data."
+      echo "+--------------------------------------------------------+"
+      echo
+  fi
+
+  if [[ ! -z "$other_secrets_nums" ]]; then
+      echo
+      echo "+--------------------------------------------------------+"
+      echo "+ [ALERTING 🚨] There are Sensitive Secrets detected"
+      echo "+ NOTE: Leak keys may lead to critical security issues."
+      echo "+ Please double check codebase & remove them if possible."
+      echo "+--------------------------------------------------------+"
+      echo 
+  fi
+
+  echo
+  echo "PLEASE RE-VERIFY THE FOLLOWING FILES IN THE TABLES !!!"
+  for filepath in $other_secrets_filepath
+  do
+      echo "- $filepath"
+  done
+
+  echo
+  echo "Summary table"
+  echo
+
+  # Table headers
+  echo "|        Filename       | Total Incidents | Total Occurrences |       Types       |"
+  echo "| --------------------- | --------------- | ----------------- | ----------------- |"
+
+  # Table rows
+  jq -r '
+  .entities_with_incidents[]
+  | select(.total_incidents > 0)
+  |   [
+          .filename,
+          (.total_incidents | tostring),
+          (.total_occurrences | tostring),
+          ([.incidents[].type] | unique | join(", "))
+      ]
+  | "| " + join(" | ") + " |"
+  ' ggshield.json
+}
 
 
+function trufflehog-summary(){
+  local num_trufflehog_incidents=$(jq '.ScannerResults | length' trufflehog.json)
+  echo
+  echo "[ALERTING 🚨] Found: $num_trufflehog_incidents incidents"
+  echo "PLEASE REVIEW THE FOLLOWING COMMITS IN THE BELOW TABLE !!!"
+  echo
+
+  TRUFFLEHOG_INC_NUMS=$num_trufflehog_incidents
+
+  # Table headers
+  echo "|         Commit ID          |    File Name     |            Email          | Line |        Timestamp       |"
+  echo "|----------------------------|------------------|---------------------------|------|------------------------|"
+
+  # Extract and format data from each object
+  jq -r '.ScannerResults[] | 
+  [
+    .SourceMetadata.Data.Git.commit,
+    .SourceMetadata.Data.Git.file,
+    .SourceMetadata.Data.Git.email,
+    (.SourceMetadata.Data.Git.line | tostring),
+    .SourceMetadata.Data.Git.timestamp
+  ] | "| \(.[0]) | \(.[1]) | \(.[2]) | \(.[3]) | \(.[4]) |"' trufflehog.json
+}
+
+# MAIN
+function main(){
+  welcome-title
+  check-prerequisite
+  is_whitelisted
+
+  if [ "$IS_ALLOWED" != true ]; then
+    run-ggshield
+    ggshield-summary
+
+    run-trufflehog
+    trufflehog-summary
+    if [ "$GGSHIELD_INC_NUMS" -gt 0 ] || [ "$TRUFFLEHOG_INC_NUMS" -gt 0 ]; then
+      echo $GGSHIELD_INC_NUMS
+      echo $TRUFFLEHOG_INC_NUMS
+      # Prompt user
+      echo "Are you sure you want to push to $REPO_NAME? (yes/no)"
+      read answer < /dev/tty
+      if [ "$answer" != "yes" ]; then
+        echo
+        echo "Exiting..."
+        echo "Push aborted."
+        exit 1
+        echo
+      fi
+      rm ggshield.json trufflehog.json
+    else
+      rm ggshield.json trufflehog.json
+    fi
+  fi
+}
+
+main "$@" 
