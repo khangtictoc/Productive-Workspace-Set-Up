@@ -31,7 +31,7 @@ alias fishreload="source ~/.config/fish/config.fish"
 alias bashedit="vim ~/.bashrc"
 alias zshedit="vim ~/.zshrc"
 alias fishedit="vim ~/.config/fish/config.fish"
-alias upgrade_update='apt-get update -y && apt-get upgrade -y'
+alias upgrade-update='apt-get update -y && apt-get upgrade -y'
 
 # Alias's for archives
 alias mktar='tar -cvf'
@@ -43,7 +43,7 @@ alias ungz='tar -xvzf'
 
 # Network
 alias localip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
-alias lisport='netstat -plantu | grep LISTEN'
+alias port-listening='netstat -plantu | grep LISTEN'
 
 
 # Systemd
