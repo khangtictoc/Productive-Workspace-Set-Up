@@ -52,6 +52,7 @@ curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
 # Disk
 sudo apt install -y sysstat
 sudo apt install -y iotop
+sudo apt install -y ncdu # Treesizeview in Linux
 
 # ┌────────────────────────────┐
 # │                            │
@@ -221,13 +222,11 @@ sudo apt-get install -y mongodb-mongosh
 
 # ---- CONTAINER ----
 ## Docker
-# Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/sudo apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/sudo apt/keyrings/docker.asc
 sudo chmod a+r /etc/sudo apt/keyrings/docker.asc
-# Add the repository to sudo apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/sudo apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
@@ -271,8 +270,7 @@ fi
 kubectl krew install tree
 kubectl krew install view-secret
 
-
-## Node Shell
+# Kubectl Node Shell
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 sudo chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
@@ -283,15 +281,24 @@ sudo apt install ./k9s_linux_amd64.deb
 echo "==== CLEAN UP ===="
 rm k9s_linux_amd64.deb
 
-# Lazydocker
+## Lazydocker
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-# Helm
+## Helm
 curl -O https://get.helm.sh/helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
 tar -zxvf helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 echo "==== CLEAN UP ===="
 rm -f helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
+
+## Kustomize
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+## Argo CLI
+ARGO_CLI_VERSION="v3.0.16"
+wget "https://github.com/argoproj/argo-cd/releases/download/${ARGO_CLI_VERSION}/argocd-linux-amd64" -O argocd
+sudo chmod +x argocd
+sudo mv argocd /usr/local/bin/argocd
 
 # ---- INFRA-AS-CODE (IAC) ----
 ## Terraform
@@ -322,6 +329,17 @@ vagrant plugin install vagrant-vmware-desktop # Optional
 wget -O git-filter-repo https://raw.githubusercontent.com/newren/git-filter-repo/main/git-filter-repo
 sudo chmod +x git-filter-repo
 sudo mv git-filter-repo /usr/local/bin/
+## glab
+wget -O glab_1.67.0_linux_amd64.deb https://gitlab.com/gitlab-org/cli/-/releases/v1.67.0/downloads/glab_1.67.0_linux_amd64.deb
+sudo dpkg -i glab_1.67.0_linux_amd64.deb
+echo "==== CLEAN UP ===="
+rm glab_1.67.0_linux_amd64.deb
+
+# ---- SECRET MANAGER ----
+## HCP Vault
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install vault
 
 # ---- TLS/SSL ----
 ## Certbot(Let's Encrypt)
@@ -333,8 +351,10 @@ sudo apt install -y certbot python3-certbot-nginx
 # │       Security Tools       │
 # │                            │
 # └────────────────────────────┘
+
 # ---- SCAN SECRETS ----
-## ggshield
+
+## GGShield
 pip install --user ggshield
 pip install --user --upgrade ggshield
 
@@ -350,4 +370,18 @@ python3 setup.py install
 cd .. && rm -rf detect-secrets-1.5.0 detect-secrets.zip
 echo "==== CLEAN UP ===="
 
+# ---- VULNERABILITY SCANNER ----
+
+## Grype - Work with Syft (SBOM tool)
+curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+
+# ┌────────────────────────────┐
+# │                            │
+# │     Software Billings      │
+# │                            │
+# └────────────────────────────┘
+
+# ---- SBOM TOOLS ----
+## Syft
+curl -sSfL https://get.anchore.io/syft | sudo sh -s -- -b /usr/local/bin
 
