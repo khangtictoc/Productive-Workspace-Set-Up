@@ -55,7 +55,7 @@ function check-prerequisite(){
       echo -e "- ${RED}[FAILED ❌]${NC} trufflehog command could not be found. Please install it first."
       exit 1
   else
-      echo "- [CHECKED ✅] trufflehog exists"
+      echo -e "- ${GREEN}[CHECKED ✅]${NC} trufflehog exists"
   fi
 
   if ! command -v jq 2>&1 >/dev/null
