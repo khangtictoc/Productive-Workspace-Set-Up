@@ -44,15 +44,15 @@ function check-prerequisite(){
   echo "############### CHECKING PREREQUISITES ###############"
   if ! command -v ggshield 2>&1 >/dev/null
   then
-      echo "- ${RED}[FAILED ❌]${NC} ggshield command could not be found. Please install it first."
+      echo -e "- ${RED}[FAILED ❌]${NC} ggshield command could not be found. Please install it first."
       exit 1
   else
-      echo "- ${GREEN}[CHECKED ✅]${NC} ggshield exists"
+      echo -e "- ${GREEN}[CHECKED ✅]${NC} ggshield exists"
   fi
 
   if ! command -v trufflehog 2>&1 >/dev/null
   then
-      echo "- ${RED}[FAILED ❌]${NC} trufflehog command could not be found. Please install it first."
+      echo -e "- ${RED}[FAILED ❌]${NC} trufflehog command could not be found. Please install it first."
       exit 1
   else
       echo "- [CHECKED ✅] trufflehog exists"
@@ -60,20 +60,20 @@ function check-prerequisite(){
 
   if ! command -v jq 2>&1 >/dev/null
   then
-      echo "- ${RED}[FAILED ❌]${NC} jq command could not be found. Please install it first."
+      echo -e "- ${RED}[FAILED ❌]${NC} jq command could not be found. Please install it first."
       exit 1
   else
-      echo "- ${GREEN}[CHECKED ✅]${NC} jq exists"
+      echo -e "- ${GREEN}[CHECKED ✅]${NC} jq exists"
   fi
 }
 
 function run-ggshield(){
-  echo "############### ${GREEN}[GGSHIELD]${NC} - Secrets Directory Scanner ###############"
+  echo -e "############### ${GREEN}[GGSHIELD]${NC} - Secrets Directory Scanner ###############"
   echo "y" | ggshield secret scan path . --recursive --all-secrets --json > ggshield.json
 }
 
 function run-trufflehog(){
-  echo "############### ${GREEN}[TRUFFLEHOG]${NC} - Git Commit History Scanner ###############"
+  echo -e "############### ${GREEN}[TRUFFLEHOG]${NC} - Git Commit History Scanner ###############"
   trufflehog git file://. --branch HEAD --results=verified,unknown --no-update --json 2> /dev/null | jq -s '{"ScannerResults": .}' > trufflehog.json
 }
 
@@ -86,7 +86,7 @@ function ggshield-summary(){
   if [[ ! -z "$generic_password_nums" ]]; then
       echo
       echo "+--------------------------------------------------------+"
-      echo "+ ${YELLOW}[WARNING ⚠️]${NC} There are Generic Passwords detected"
+      echo -e "+ ${YELLOW}[WARNING ⚠️]${NC} There are Generic Passwords detected"
       echo "+ NOTE: Chaos-based string may be not a sensitive data, used to"
       echo "+ obfuscate the real value or test data."
       echo "+--------------------------------------------------------+"
@@ -96,7 +96,7 @@ function ggshield-summary(){
   if [[ ! -z "$other_secrets_nums" ]]; then
       echo
       echo "+--------------------------------------------------------+"
-      echo "+ ${RED}[ALERTING 🚨]${NC} There are Sensitive Secrets detected"
+      echo -e "+ ${RED}[ALERTING 🚨]${NC} There are Sensitive Secrets detected"
       echo "+ NOTE: Leak keys may lead to critical security issues."
       echo "+ Please double check codebase & remove them if possible."
       echo "+--------------------------------------------------------+"
@@ -137,7 +137,7 @@ function ggshield-summary(){
 function trufflehog-summary(){
   local num_trufflehog_incidents=$(jq '.ScannerResults | length' trufflehog.json)
   echo
-  echo "${RED}[ALERTING 🚨]${NC} Found: $num_trufflehog_incidents incidents"
+  echo -e "${RED}[ALERTING 🚨]${NC} Found: $num_trufflehog_incidents incidents"
   echo "PLEASE REVIEW THE FOLLOWING COMMITS IN THE BELOW TABLE !!!"
   echo
 
@@ -181,8 +181,8 @@ function main(){
       read answer < /dev/tty
       if [ "$answer" != "yes" ]; then
         echo
-        echo "${PURPLE}Exiting...${NC}"
-        echo "${PURPLE}Push aborted.${NC}"
+        echo -e "${PURPLE}Exiting...${NC}"
+        echo -e "${PURPLE}Push aborted.${NC}"
         exit 1
         echo
       fi
