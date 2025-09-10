@@ -1,5 +1,14 @@
 #!/bin/bash
 
+function init-ansicolor(){
+    RED='\033[0;31m'
+    GREEN='\033[0;32m'
+    YELLOW='\033[0;33m'
+    BLUE='\033[0;34m'
+    PURPLE='\033[0;35m'
+    NC='\033[0m' # No Color - resets to default
+}
+
 function init-config(){
   # White-listed Repos
   WHITELISTED_NAMES=(
@@ -35,15 +44,15 @@ function check-prerequisite(){
   echo "############### CHECKING PREREQUISITES ###############"
   if ! command -v ggshield 2>&1 >/dev/null
   then
-      echo "- [FAILED ❌] ggshield command could not be found. Please install it first."
+      echo "- ${RED}[FAILED ❌]${NC} ggshield command could not be found. Please install it first."
       exit 1
   else
-      echo "- [CHECKED ✅] ggshield exists"
+      echo "- ${GREEN}[CHECKED ✅]${NC} ggshield exists"
   fi
 
   if ! command -v trufflehog 2>&1 >/dev/null
   then
-      echo "- [FAILED ❌] trufflehog command could not be found. Please install it first."
+      echo "- ${RED}[FAILED ❌]${NC} trufflehog command could not be found. Please install it first."
       exit 1
   else
       echo "- [CHECKED ✅] trufflehog exists"
@@ -51,20 +60,20 @@ function check-prerequisite(){
 
   if ! command -v jq 2>&1 >/dev/null
   then
-      echo "- [FAILED ❌] jq command could not be found. Please install it first."
+      echo "- ${RED}[FAILED ❌]${NC} jq command could not be found. Please install it first."
       exit 1
   else
-      echo "- [CHECKED ✅] jq exists"
+      echo "- ${GREEN}[CHECKED ✅]${NC} jq exists"
   fi
 }
 
 function run-ggshield(){
-  echo "############### [GGSHIELD] - Secrets Directory Scanner ###############"
+  echo "############### ${GREEN}[GGSHIELD]${NC} - Secrets Directory Scanner ###############"
   echo "y" | ggshield secret scan path . --recursive --all-secrets --json > ggshield.json
 }
 
 function run-trufflehog(){
-  echo "############### [TRUFFLEHOG] - Git Commit History Scanner ###############"
+  echo "############### ${GREEN}[TRUFFLEHOG]${NC} - Git Commit History Scanner ###############"
   trufflehog git file://. --branch HEAD --results=verified,unknown --no-update --json 2> /dev/null | jq -s '{"ScannerResults": .}' > trufflehog.json
 }
 
@@ -77,7 +86,7 @@ function ggshield-summary(){
   if [[ ! -z "$generic_password_nums" ]]; then
       echo
       echo "+--------------------------------------------------------+"
-      echo "+ [WARNING ⚠️] There are Generic Passwords detected"
+      echo "+ ${YELLOW}[WARNING ⚠️]${NC} There are Generic Passwords detected"
       echo "+ NOTE: Chaos-based string may be not a sensitive data, used to"
       echo "+ obfuscate the real value or test data."
       echo "+--------------------------------------------------------+"
@@ -87,7 +96,7 @@ function ggshield-summary(){
   if [[ ! -z "$other_secrets_nums" ]]; then
       echo
       echo "+--------------------------------------------------------+"
-      echo "+ [ALERTING 🚨] There are Sensitive Secrets detected"
+      echo "+ ${RED}[ALERTING 🚨]${NC} There are Sensitive Secrets detected"
       echo "+ NOTE: Leak keys may lead to critical security issues."
       echo "+ Please double check codebase & remove them if possible."
       echo "+--------------------------------------------------------+"
@@ -128,7 +137,7 @@ function ggshield-summary(){
 function trufflehog-summary(){
   local num_trufflehog_incidents=$(jq '.ScannerResults | length' trufflehog.json)
   echo
-  echo "[ALERTING 🚨] Found: $num_trufflehog_incidents incidents"
+  echo "${RED}[ALERTING 🚨]${NC} Found: $num_trufflehog_incidents incidents"
   echo "PLEASE REVIEW THE FOLLOWING COMMITS IN THE BELOW TABLE !!!"
   echo
 
@@ -153,6 +162,8 @@ function trufflehog-summary(){
 # MAIN
 function main(){
   welcome-title
+  init-config
+  init-ansicolor
   check-prerequisite
   is_whitelisted
 
@@ -170,13 +181,15 @@ function main(){
       read answer < /dev/tty
       if [ "$answer" != "yes" ]; then
         echo
-        echo "Exiting..."
-        echo "Push aborted."
+        echo "${PURPLE}Exiting...${NC}"
+        echo "${PURPLE}Push aborted.${NC}"
         exit 1
         echo
       fi
+      echo "CLEAN UP"
       rm ggshield.json trufflehog.json
     else
+      echo "CLEAN UP"
       rm ggshield.json trufflehog.json
     fi
   fi
