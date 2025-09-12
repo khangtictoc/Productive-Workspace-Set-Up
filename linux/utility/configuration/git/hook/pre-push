@@ -177,7 +177,7 @@ function trufflehog-summary(){
 # MAIN
 function main(){
   welcome-title
-  source <(curl -s curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
+  source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
   init-ansicolor
   check-prerequisite
   is_whitelisted
