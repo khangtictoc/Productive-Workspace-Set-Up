@@ -1,14 +1,5 @@
 #!/bin/bash
 
-function init-ansicolor(){
-    RED='\033[0;31m'
-    GREEN='\033[0;32m'
-    YELLOW='\033[0;33m'
-    BLUE='\033[0;34m'
-    PURPLE='\033[0;35m'
-    NC='\033[0m' # No Color - resets to default
-}
-
 function init-config(){
   # White-listed Repos
   WHITELISTED_NAMES=(
@@ -65,15 +56,26 @@ function check-prerequisite(){
   else
       echo -e "- ${GREEN}[CHECKED ✅]${NC} jq exists"
   fi
+
+  if ! command -v jtbl 2>&1 >/dev/null
+  then
+      echo -e "- ${RED}[FAILED ❌]${NC} jtbl command could not be found. Please install it first."
+      exit 1
+  else
+      echo -e "- ${GREEN}[CHECKED ✅]${NC} jtbl exists"
+  fi
 }
 
 function run-ggshield(){
-  echo -e "############### ${GREEN}[GGSHIELD]${NC} - Secrets Directory Scanner ###############"
+  echo 
+  echo -e "############### ${CYAN}[GGSHIELD]${NC} - Secrets Directory Scanner ###############"
   echo "y" | ggshield secret scan path . --recursive --all-secrets --json > ggshield.json
 }
 
 function run-trufflehog(){
-  echo -e "############### ${GREEN}[TRUFFLEHOG]${NC} - Git Commit History Scanner ###############"
+  echo
+  echo -e "############### ${CYAN}[TRUFFLEHOG]${NC} - Git Commit History Scanner ###############"
+  echo
   trufflehog git file://. --branch HEAD --results=verified,unknown --no-update --json 2> /dev/null | jq -s '{"ScannerResults": .}' > trufflehog.json
 }
 
@@ -104,33 +106,36 @@ function ggshield-summary(){
   fi
 
   echo
-  echo "PLEASE RE-VERIFY THE FOLLOWING FILES IN THE TABLES !!!"
+  echo -e "${YELLOW}PLEASE RE-VERIFY THE FOLLOWING FILES IN THE TABLES !!!${NC}"
   for filepath in $other_secrets_filepath
   do
       echo "- $filepath"
   done
 
+  # GitGuardian Summary Table
   echo
-  echo "Summary table"
+  echo "Git Guardian Summary Table"
   echo
 
-  # Table headers
-  echo "|        Filename       | Total Incidents | Total Occurrences |       Types       |"
-  echo "| --------------------- | --------------- | ----------------- | ----------------- |"
-
-  # Table rows
   jq -r '
-  .entities_with_incidents[]
-  | select(.total_incidents > 0)
-  |   [
-          .filename,
-          (.total_incidents | tostring),
-          (.total_occurrences | tostring),
-          ([.incidents[].type] | unique | join(", "))
-      ]
-  | "| " + join(" | ") + " |"
-  ' ggshield.json
-  echo
+  if (.entities_with_incidents | length) > 0 then
+    .entities_with_incidents[]
+    | select(.total_incidents > 0)
+    | {
+        "Filename": .filename,
+        "Total Incidents": (.total_incidents | tostring),
+        "Total Occurrences": (.total_occurrences | tostring),
+        "Types": ([.incidents[].type] | unique | join(", "))
+      }
+  else
+    {
+      "Filename": "-",
+      "Total Incidents": "-",
+      "Total Occurrences": "-",
+      "Types": "-"
+    }
+  end
+  ' ggshield.json | jtbl
 }
 
 
@@ -143,26 +148,36 @@ function trufflehog-summary(){
 
   TRUFFLEHOG_INC_NUMS=$num_trufflehog_incidents
 
-  # Table headers
-  echo "|         Commit ID          |    File Name     |            Email          | Line |        Timestamp       |"
-  echo "|----------------------------|------------------|---------------------------|------|------------------------|"
-
-  # Extract and format data from each object
-  jq -r '.ScannerResults[] | 
-  [
-    .SourceMetadata.Data.Git.commit,
-    .SourceMetadata.Data.Git.file,
-    .SourceMetadata.Data.Git.email,
-    (.SourceMetadata.Data.Git.line | tostring),
-    .SourceMetadata.Data.Git.timestamp
-  ] | "| \(.[0]) | \(.[1]) | \(.[2]) | \(.[3]) | \(.[4]) |"' trufflehog.json
+  # Trufflehog Summary Table
   echo
+  echo "Trufflehog Summary Table"
+  echo
+
+  jq -r '
+  if (.ScannerResults | length) > 0 then
+    .ScannerResults[] | {
+      "Commit ID": .SourceMetadata.Data.Git.commit,
+      "File Name": .SourceMetadata.Data.Git.file,
+      "Author": .SourceMetadata.Data.Git.email,
+      "Line": (.SourceMetadata.Data.Git.line | tostring),
+      "Timestamp": .SourceMetadata.Data.Git.timestamp
+    }
+  else
+    {
+      "Commit ID": "-",
+      "File Name": "-",
+      "Author": "-",
+      "Line": "-",
+      "Timestamp": "-"
+    }
+  end
+  ' trufflehog.json | jtbl
 }
 
 # MAIN
 function main(){
   welcome-title
-  init-config
+  source <(curl -s curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
   init-ansicolor
   check-prerequisite
   is_whitelisted
@@ -170,7 +185,6 @@ function main(){
   if [ "$IS_ALLOWED" != true ]; then
     run-ggshield
     ggshield-summary
- 
     run-trufflehog
     trufflehog-summary
     if [ "$GGSHIELD_INC_NUMS" -gt 0 ] || [ "$TRUFFLEHOG_INC_NUMS" -gt 0 ]; then
