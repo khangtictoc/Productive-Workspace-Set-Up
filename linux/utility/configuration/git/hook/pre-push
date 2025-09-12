@@ -170,7 +170,7 @@ function main(){
   if [ "$IS_ALLOWED" != true ]; then
     run-ggshield
     ggshield-summary
-
+ 
     run-trufflehog
     trufflehog-summary
     if [ "$GGSHIELD_INC_NUMS" -gt 0 ] || [ "$TRUFFLEHOG_INC_NUMS" -gt 0 ]; then
