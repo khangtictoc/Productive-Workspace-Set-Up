@@ -169,6 +169,7 @@ function setup-command-autocompletion(){
 }
 
 function main(){
+    source <(curl -s curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
     init-config
     source-dotfiles

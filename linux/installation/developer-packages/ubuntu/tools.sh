@@ -19,15 +19,8 @@ sudo apt install -y wslu
 # File Editor
 sudo apt install -y vim
 sudo apt install -y nano
-# Superfile - File Manager
+## Superfile - File Manager
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
-
-
-# Download URL
-sudo apt install -y wget
-sudo apt install -y curl
-sudo apt install -y dos2unix
-
 
 # Network
 sudo apt install -y dnsutils
@@ -68,12 +61,17 @@ sudo apt install -y tilix # Add multi-terminal in 1 display
 sudo apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 sudo apt install -y bc # Convenient calculator
 sudo apt install -y jq # JSON Values Extractor
-# YAML Values Extractor
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sh
 sudo apt install -y chrony # NTP Client
-npm install -g @jsware/jsonpath-cli # JSONPath query tool
+sudo apt install -y wget
+sudo apt install -y curl
+sudo apt install -y dos2unix
 sudo apt-get purge lolcat -y
 gem install lolcat # Require Ruby
+npm install -g @jsware/jsonpath-cli # JSONPath query tool
+# YAML Values Extractor
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sh
+# jtbl - JSON Table
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | sh
 
 # ┌──────────────────────────────────────┐
 # │                                      │
