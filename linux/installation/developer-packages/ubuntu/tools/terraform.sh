@@ -7,3 +7,4 @@ unzip terraform_${TF_VERSION}_linux_amd64.zip
 sudo mv terraform /usr/local/bin/terraform
 echo "==== CLEAN UP ===="
 rm -f terraform_${TF_VERSION}_linux_amd64.zip
+rm -f LICENSE.txt
