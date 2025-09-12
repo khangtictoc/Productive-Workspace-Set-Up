@@ -1,13 +1,5 @@
 #!/bin/bash
 
-function init-ansicolor(){
-    RED='\033[0;31m'
-    GREEN='\033[0;32m'
-    YELLOW='\033[0;33m'
-    BLUE='\033[0;34m'
-    NC='\033[0m' # No Color - resets to default
-}
-
 function init-config(){
     SHELL_PROFILE="$HOME/.bashrc"
     GITCONFIG_DIRNAME=git_config
@@ -61,7 +53,7 @@ fi
 EOF
     fi
 
-echo "✅ ${GREEN}Dotfiles have been sourced successfully!${NC}"
+echo -e "✅ ${GREEN}Dotfiles have been sourced successfully!${NC}"
 }
 
 
@@ -69,7 +61,7 @@ function setup-git--profile(){
     echo "[Configure: Git Profile] Default Workspace"
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$DEFAULT_GIT_PROFILE.sh" | bash
 
-    echo "Default profile ${GREEN}$DEFAULT_GIT_PROFILE${NC} is selected!"
+    echo -e "Default profile ${GREEN}$DEFAULT_GIT_PROFILE${NC} is selected!"
     sleep 1
 }
 
@@ -87,7 +79,7 @@ function setup-git--hooks(){
     sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
     chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
-    echo "✅ Git hook has been configured at path ${GREEN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
+    echo -e "✅ Git hook has been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
 }
 
 function setup-git--alias(){
@@ -97,7 +89,7 @@ function setup-git--alias(){
     mkdir -p ~/$GITCONFIG_DIRNAME/alias/
     wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
 
-    echo "✅ Git aliases have been configured at path ${GREEN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
+    echo -e "✅ Git aliases have been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
 }
 
 function setup-git(){
@@ -114,9 +106,9 @@ function shell-config--profile(){
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
-        echo "✅ ${GREEN}Added 'wslview' as browser's view${NC}"
+        echo -e "${GREEN}[UPDATED]${NC} Added 'wslview' as browser's view"
     else
-        echo "✅ ${GREEN}'BROWSER=wslview' already exists in ${SHELL_PROFILE}${NC}"
+        echo -e "${GREEN}[EXISTED]${NC} Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
     fi
 }
 
@@ -134,9 +126,9 @@ function shell-config--motd(){
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo "✅ ${GREEN}MOTD script has been sourced in $SHELL_PROFILE${NC}"
+        echo -e "${GREEN}[UPDATED]${NC} MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo "✅ ${GREEN}MOTD script is already sourced in $SHELL_PROFILE${NC}"
+        echo -e "${GREEN}[EXISTED]${NC} MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
@@ -153,22 +145,23 @@ function setup-command-autocompletion(){
 
 
     if grep -Fxq "$KUBECTL_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo "✅ ${GREEN}Kubectl completion has already been configured! No changes${NC}"
+        echo -e "${GREEN}[EXISTED]${NC} Kubectl completion has already been configured! No changes"
     else
         echo "$KUBECTL_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo "✅ ${GREEN}Kubectl completion has been configured!${NC}"
+        echo -e "${GREEN}[UPDATED]${NC} Kubectl completion has been configured!"
     fi
 
 
     if grep -Fxq "$HELM_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo "✅ ${GREEN}Helm completion has already been configured! No changes${NC}"
+        echo -e "${GREEN}[EXISTED]${NC} Helm completion has already been configured! No changes"
     else
         echo "$HELM_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo "✅ ${GREEN}Helm completion has been configured!${NC}"
+        echo -e "${GREEN}[UPDATED]${NC} Helm completion has been configured!"
     fi
 }
 
 function main(){
+    source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
     init-config
     source-dotfiles
