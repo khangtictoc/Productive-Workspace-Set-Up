@@ -200,10 +200,10 @@ function main(){
         exit 1
         echo
       fi
-      echo "CLEAN UP"
+      echo ">>>>> CLEAN UP"
       rm ggshield.json trufflehog.json
     else
-      echo "CLEAN UP"
+      echo ">>>>> CLEAN UP"
       rm ggshield.json trufflehog.json
     fi
   fi
