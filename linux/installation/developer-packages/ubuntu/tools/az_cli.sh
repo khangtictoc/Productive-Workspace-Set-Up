@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]; then 
-    echo "Please run as root or with sudo"
-    exit 1
-fi
+if ! command -v az 2>&1 >/dev/null
+then
+    echo "[INSTALLING ⬇️ ] Azure CLI"
+    # Check if running as root
+    if [ "$EUID" -ne 0 ]; then 
+        echo "Please run as root or with sudo"
+        exit 1
+    fi
 
 # Detect OS
 if [ -f /etc/os-release ]; then
@@ -41,4 +44,7 @@ else
     exit 1
 fi
 
-echo "Azure CLI installation completed"
+    echo "Azure CLI installation completed"
+else
+    echo "- [CHECKED ✅] az command exists"
+fi
