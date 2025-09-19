@@ -9,6 +9,13 @@ SHELLRC_FILE="$HOME/.zshrc"
 # └──────────────────────────────────────┘
 sudo apt install -y unzip
 sudo apt install -y python3-pip
+sudo apt install -y linux-tools-generic # perf
+sudo apt install -y tree
+sudo apt install -y jq # JSON Values Extractor
+sudo apt install -y chrony # NTP Client
+sudo apt install -y wget
+sudo apt install -y curl
+sudo apt install -y dos2unix
 
 # WSL
 ## Install WSL utilities - Open links in host browser, copy/paste between WSL and Windows, etc.
@@ -55,16 +62,10 @@ sudo apt install -y bless #  Editor for bin files
 sudo apt install -y diodon # Save clipboard history
 sudo apt install -y neofetch # Show system in4 (pretty)
 sudo apt install -y htop # show process (pretty)
-sudo apt install -y tree
 sudo apt install -y lshw # Display hardware info
 sudo apt install -y tilix # Add multi-terminal in 1 display
 sudo apt install -y ripgrep # ripgrep - Search content in multiples files or folders
 sudo apt install -y bc # Convenient calculator
-sudo apt install -y jq # JSON Values Extractor
-sudo apt install -y chrony # NTP Client
-sudo apt install -y wget
-sudo apt install -y curl
-sudo apt install -y dos2unix
 sudo apt-get purge lolcat -y
 gem install lolcat # Require Ruby
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
@@ -89,6 +90,9 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # Network
 ## bandwhich
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bandwhich.sh | sh
+## speedtest - Ping latency
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+sudo apt-get install speedtest
 
 # Kernal Modules
 ## kmon
@@ -142,7 +146,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # Blogging Jekyll
 gem install bundler
 bundle install
-bundle exec jekyll serve
+#bundle exec jekyll serve
 
 # Database Tools
 ## MySQL
