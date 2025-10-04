@@ -19,6 +19,11 @@ alias hi1='history -i 10'
 alias hi2='history -i 20'
 alias hi3='history -i 30'
 
+alias h10='head -10'
+alias h100='head -100'
+alias t10='tail -10'
+alias t100='tail -100'
+
 alias psmem="ps auxf | sort -nr -k 4"
 alias psmem10="ps auxf | sort -nr -k 4 | head -10"
 alias pscpu="ps auxf | sort -nr -k 3"

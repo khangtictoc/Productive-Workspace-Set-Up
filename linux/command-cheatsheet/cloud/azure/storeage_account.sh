@@ -1,6 +1,6 @@
 # Upload & download
-az storage blob upload --account-name bigymigrationbackup  --container-name matomo --name matomo_backup_prod_20240710.sql --file matomo_backup_prod_20240710.sql
-az storage blob download --account-name bigymigrationbackup --container-name matomo --name matomo_backup_prod_20240710.sql --file matomo_backup_prod_20240710.sql
+az storage blob upload --account-name <account-name> --container-name <container-name> --name <destination-file-name> --file <source-file-name>
+az storage blob download --account-name <account-name> --container-name <container-name> --name <destination-file-name> --file <source-file-name>
 
 # Check integrity of the file
-md5sum --binary matomo-minimal-codebase.zip | awk '{print $1}' | xxd -p -r | base64
+md5sum --binary <source-file-name> | awk '{print $1}' | xxd -p -r | base64
