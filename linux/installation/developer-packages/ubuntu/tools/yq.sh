@@ -1,6 +1,6 @@
 #! /bin/bash
 
-YQ_VERSION=v4.2.0
+YQ_VERSION=v4.46.1
 YQ_BINARY=yq_linux_amd64
 
 if ! command -v yq 2>&1 >/dev/null
