@@ -70,9 +70,9 @@ sudo apt-get purge lolcat -y
 gem install lolcat # Require Ruby
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
 # YAML Values Extractor
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sh
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo sh
 # jtbl - JSON Table
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | sh
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | sudo sh
 
 # ┌──────────────────────────────────────┐
 # │                                      │
