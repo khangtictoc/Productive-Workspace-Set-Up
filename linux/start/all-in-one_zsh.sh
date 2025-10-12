@@ -103,12 +103,25 @@ function setup-git(){
 function shell-config--profile(){
     echo
     echo "============ SHELL PROFILES ============"
+    
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
         echo -e "${GREEN}[UPDATED]${NC} Added 'wslview' as browser's view"
     else
         echo -e "${GREEN}[EXISTED]${NC} Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
+    fi
+
+    # Ensure security for ~/.kube/config
+    if [ -f "$HOME/.kube/config" ]; then
+        if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" ${SHELL_PROFILE}; then
+            echo "chmod 600 \"$HOME/.kube/config\"" >> ${SHELL_PROFILE}
+            echo -e "${GREEN}[UPDATED]${NC} Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
+        else
+            echo -e "${GREEN}[EXISTED]${NC} Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
+        fi
+    else
+        echo -e "${YELLOW}[SKIPPED]${NC} ~/.kube/config does not exist. No changes made."
     fi
 }
 

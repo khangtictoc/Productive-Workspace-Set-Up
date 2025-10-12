@@ -201,10 +201,10 @@ function main(){
         echo
       fi
       echo ">>>>> CLEAN UP"
-      rm ggshield.json trufflehog.json
+      rm ggshield.json trufflehog.json .cache_ggshield
     else
       echo ">>>>> CLEAN UP"
-      rm ggshield.json trufflehog.json
+      rm ggshield.json trufflehog.json .cache_ggshield
     fi
   fi
 }

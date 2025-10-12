@@ -59,3 +59,6 @@ metadata:
 data:
   key: value
 EOF
+
+# Show diffs between applying manifests and current ones
+KUBECTL_EXTERNAL_DIFF="diff --color=always -u" kubectl diff -f <YAML_FILE>

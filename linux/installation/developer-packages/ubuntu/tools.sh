@@ -28,6 +28,8 @@ sudo apt install -y vim
 sudo apt install -y nano
 ## Superfile - File Manager
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+## ls_extended - Extended 'ls' command
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ls_extended.sh | sudo sh
 
 # Network
 sudo apt install -y dnsutils
@@ -118,8 +120,11 @@ sudo apt install -y htop
 # │       Cloud Platform       │
 # │                            │
 # └────────────────────────────┘
-## AWS CLI
+## AWS
+### AWS CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | sh
+### Stu - S3 Explorer
+cargo install --locked stu
 
 ## Azure CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | sh
@@ -136,6 +141,9 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 ## Ruby
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ruby.sh | sh
+
+## Rust (+ Cargo)
+curl https://sh.rustup.rs -sSf | sh
 
 ## NodeJS
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nodejs.sh | sh
