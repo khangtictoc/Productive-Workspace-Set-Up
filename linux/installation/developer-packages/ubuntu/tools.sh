@@ -75,6 +75,8 @@ npm install -g @jsware/jsonpath-cli # JSONPath query tool
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo sh
 # jtbl - JSON Table
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | sudo sh
+# ANSI Color
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ansi_color.sh | sudo sh
 
 # ┌──────────────────────────────────────┐
 # │                                      │
