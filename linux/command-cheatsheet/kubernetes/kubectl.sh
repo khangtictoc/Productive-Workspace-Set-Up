@@ -62,3 +62,6 @@ EOF
 
 # Show diffs between applying manifests and current ones
 KUBECTL_EXTERNAL_DIFF="diff --color=always -u" kubectl diff -f <YAML_FILE>
+
+# Check authorization for a user/service account
+kubectl auth can-i create token -n kube-system --as=system:serviceaccount:kube-system:default
