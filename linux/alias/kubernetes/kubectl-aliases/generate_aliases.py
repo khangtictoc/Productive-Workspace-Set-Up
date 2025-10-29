@@ -93,6 +93,9 @@ def main():
         ('sm', 'servicemonitor', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         # -- Grafana Stack
         ('pr', 'prometheusrule', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        # -- Azure Pod Identity
+        ('aid', 'azureidentity', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('aidb', 'azureidentitybinding', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ]
     #
     res_types = [r[0] for r in res]

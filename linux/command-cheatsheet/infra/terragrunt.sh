@@ -15,3 +15,8 @@ terragrunt run-all plan --non-interactive \
 # Format files
 terragrunt hclfmt --terragrunt-working-dir . # .hcl 
 terraform fmt -recursive # .tf, .tfvars, .tfstate, .tfstate.backup 
+
+
+# Delete local cache in a folder
+folder_name=""
+find $FOLDER_NAME -type d -name ".terragrunt-cache" -prune -exec rm -rf {} +
