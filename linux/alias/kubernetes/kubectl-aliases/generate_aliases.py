@@ -96,6 +96,9 @@ def main():
         # -- Azure Pod Identity
         ('aid', 'azureidentity', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ('aidb', 'azureidentitybinding', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        # -- Vault Secrets Operator
+        ('va', 'vaultauth', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('vss', 'vaultstaticsecret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ]
     #
     res_types = [r[0] for r in res]

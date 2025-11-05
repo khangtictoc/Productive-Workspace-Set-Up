@@ -23,31 +23,31 @@ kubectl apply -f- <<EOF
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: postgresql
-  namespace: postgresql
+  name: dummy
+  namespace: dummy
 EOF
 
-vault policy write postgresql - <<EOF
+vault policy write dummy - <<EOF
 path "*" {
    capabilities = ["read"]
 }
 EOF
 
-vault write auth/kubernetes/role/postgresql \
-  bound_service_account_names=postgresql \
-  bound_service_account_namespaces=postgresql \
-  policies=postgresql \
+vault write auth/kubernetes/role/dummy \
+  bound_service_account_names=dummy \
+  bound_service_account_namespaces=dummy \
+  policies=dummy \
   ttl=24h \
   audience="vault"
 
 
-kubectl create token postgresql -n postgresql --audience vault > token-postgresql.jwt
+kubectl create token dummy -n dummy --audience vault > token-dummy.jwt
 
 vault write auth/kubernetes/login \
-  role=postgresql \
-  jwt=@token-postgresql.jwt
+  role=dummy \
+  jwt=@token-dummy.jwt
 
 vault secrets enable -namespace="admin" -path="kvv2" kv-v2
 vault kv put kvv2/webapp/config username="static-user" password="static-password"
 
-vault delete auth/kubernetes/role/postgresql
+vault delete auth/kubernetes/role/dummy

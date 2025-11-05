@@ -39,11 +39,18 @@ kubectl get events --field-selector involvedObject.kind=Node,involvedObject.name
 # Wait until reaching a specific state
 kubectl wait --timeout=5m -n <NAMESPACE> deployment/<DEPLOYMENT_NAME> --for=condition=Available
 
-## Force apply app using new ConfigMap
+# Rollout restart workload
 kubectl rollout restart deployment <DEPLOYMENT_NAME>
 kubectl rollout status deployment --watch=true <DEPLOYMENT_NAME> 
 kubectl rollout restart statefulsets <DEPLOYMENT_NAME>
 kubectl rollout status statefulsets --watch=true <DEPLOYMENT_NAME> 
+
+# Scale workload
+kubectl scale deployment <DEPLOYMENT_NAME> --replicas=0 -n <NAMESPACE>
+kubectl scale deployment <DEPLOYMENT_NAME> --replicas=<NUMBER_OF_REPLICAS> -n <NAMESPACE>
+kubectl scale statefulsets <STATEFULSET_NAME> --replicas=0 -n <NAMESPACE>
+kubectl scale statefulsets <STATEFULSET_NAME> --replicas=<NUMBER_OF_REPLICAS> -n <NAMESPACE>
+
 
 # Resources controlled by Helm
 kubectl get all --all-namespaces -l='app.kubernetes.io/managed-by=Helm'
@@ -78,5 +85,6 @@ kubectl auth can-i create token -n kube-system --as=system:serviceaccount:kube-s
 ## AZURE POD IDENTITY ##
 kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT_NAME:.metadata.name,LABEL:.spec.template.metadata.labels.aadpodidbinding,REPLICAS:.spec.replicas'
 
-## AZURE WORKLOAD IDENTITY ##
-kubectl get serviceaccount -A -o custom-columns='NAMESPACE:.metadata.namespace,SERVICE_ACCOUNT_NAME:.metadata.name,LABEL:.metadata.annotations.azure\.workload\.identity/client-id'
+## AZURE WORKLOAD IDENTITY (DEPRECATED) ##
+kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
+kubectl get statefulset -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
