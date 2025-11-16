@@ -16,6 +16,8 @@ sudo apt install -y chrony # NTP Client
 sudo apt install -y wget
 sudo apt install -y curl
 sudo apt install -y dos2unix
+sudo apt install -y faker # Generate fake data (username, email, address, etc.)
+
 
 # WSL
 ## Install WSL utilities - Open links in host browser, copy/paste between WSL and Windows, etc.
