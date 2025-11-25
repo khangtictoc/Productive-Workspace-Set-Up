@@ -129,6 +129,8 @@ sudo apt install -y htop
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | bash
 ### Stu - S3 Explorer
 cargo install --locked stu
+### AWS Cost Explorer in CLI
+npm install -g aws-cost-cli
 
 ## Azure CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | bash
