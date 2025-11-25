@@ -33,7 +33,7 @@ alias tgdy='terragrunt destroy -auto-approve'
 alias tginu='terragrunt init -upgrade'
 alias tgpde='terragrunt plan --destroy'
 
-function rm-cache(){
+function tg-rmcache(){
     folder_name=$1
-    find $folder_name -type d -name ".terragrunt-cache" -prune -exec rm -rf {} 
+    find $folder_name -type d -name ".terragrunt-cache" -prune -exec rm -rf {} +
 }
