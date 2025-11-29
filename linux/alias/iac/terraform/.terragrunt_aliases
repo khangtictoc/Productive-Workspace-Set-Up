@@ -4,8 +4,8 @@ alias tgc='terragrunt console'
 alias tgd='terragrunt destroy'
 alias tgf='terragrunt fmt'
 alias tgg='terragrunt graph'
-alias tgim='terragrunt import'
-alias tgin='terragrunt init'
+alias tg-imp='terragrunt import'
+alias tgi='terragrunt init'
 alias tgo='terragrunt output'
 alias tgp='terragrunt plan'
 alias tgpr='terragrunt providers'
@@ -14,26 +14,70 @@ alias tgsh='terragrunt show'
 alias tgt='terragrunt taint'
 alias tgut='terragrunt untaint'
 alias tgv='terragrunt validate'
-alias tgw='terragrunt workspace'
-alias tgs='terragrunt state'
-alias tgfu='terragrunt force-unlock'
-alias tgwst='terragrunt workspace select'
-alias tgwsw='terragrunt workspace show'
-alias tgssw='terragrunt state show'
-alias tgwde='terragrunt workspace delete'
-alias tgwls='terragrunt workspace list'
-alias tgsls='terragrunt state list'
-alias tgwnw='terragrunt workspace new'
-alias tgsmv='terragrunt state mv'
-alias tgspl='terragrunt state pull'
-alias tgsph='terragrunt state push'
-alias tgsrm='terragrunt state rm'
-alias tgay='terragrunt apply -auto-approve'
-alias tgdy='terragrunt destroy -auto-approve'
+alias tg-fu='terragrunt force-unlock'
+alias tgaa='terragrunt apply -auto-approve'
+alias tgda='terragrunt destroy -auto-approve'
 alias tginu='terragrunt init -upgrade'
 alias tgpde='terragrunt plan --destroy'
 
 function tg-rmcache(){
     folder_name=$1
     find $folder_name -type d -name ".terragrunt-cache" -prune -exec rm -rf {} +
+}
+
+tg-st() {
+    action=$1
+    shift   # remove the first argument so $@ holds the rest
+
+    case "$action" in
+        ls)
+        terragrunt state list "$@"
+        ;;
+        show)
+        terragrunt state show "$@"
+        ;;
+        mv)
+        terragrunt state mv "$@"
+        ;;
+        pull)
+        terragrunt state pull "$@"
+        ;;
+        push)
+        terragrunt state push "$@"
+        ;;
+        delete|rm)
+        terragrunt state rm "$@"
+        ;;
+        *)
+        echo "Unknown action: $action"
+        echo "Valid actions: ls, show, mv, pull, push, delete"
+        ;;
+    esac
+}
+
+tg-ws() {
+    action=$1
+    shift   # remove the first argument so $@ holds the rest
+
+    case "$action" in
+        select|sel)
+        terragrunt workspace select "$@"
+        ;;
+        show|sh)
+        terragrunt workspace show "$@"
+        ;;
+        delete|rm)
+        terragrunt workspace delete "$@"
+        ;;
+        list|ls)
+        terragrunt workspace list "$@"
+        ;;
+        new|create)
+        terragrunt workspace new "$@"
+        ;;
+        *)
+        echo "Unknown action: $action"
+        echo "Valid actions: select|sel, show|sh, delete|rm, list|ls, new|create"
+        ;;
+    esac
 }
