@@ -12,6 +12,7 @@ then
     python3 setup.py install
     cd .. && rm -rf detect-secrets-${DETECT_SECRETS_VERSION} detect-secrets.zip
     echo "==== CLEAN UP ===="
+    echo "- [CHECKED ✅] detect-secrets command installed!"
 else
     echo "- [CHECKED ✅] detect-secrets command exists"
 fi

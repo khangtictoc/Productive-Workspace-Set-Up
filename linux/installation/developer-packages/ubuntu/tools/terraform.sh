@@ -11,6 +11,7 @@ then
     echo "==== CLEAN UP ===="
     rm -f terraform_${TF_VERSION}_linux_amd64.zip
     rm -f LICENSE.txt
+    echo "- [CHECKED ✅] terraform command installed!"
 else
     echo "- [CHECKED ✅] terraform command exists"
 fi

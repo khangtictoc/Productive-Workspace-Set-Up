@@ -7,6 +7,7 @@ then
     sudo apt install ./k9s_linux_amd64.deb
     echo "==== CLEAN UP ===="
     rm k9s_linux_amd64.deb
+    echo "- [CHECKED ✅] k9s command installed!"
 else
     echo "- [CHECKED ✅] k9s command exists"
 fi

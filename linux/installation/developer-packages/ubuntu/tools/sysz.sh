@@ -5,6 +5,7 @@ then
     echo "[INSTALLING ⬇️ ] sysz"
     wget --progress=dot:giga -O /usr/local/bin/sysz https://github.com/joehillen/sysz/releases/latest/download/sysz
     sudo chmod +x /usr/local/bin/sysz
+    echo "- [CHECKED ✅] sysz command installed!"
 else
     echo "- [CHECKED ✅] sysz command exists"
 fi

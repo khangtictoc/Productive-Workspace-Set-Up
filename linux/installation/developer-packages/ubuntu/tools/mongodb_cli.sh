@@ -14,6 +14,7 @@ then
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/sudo apt/ubuntu noble/mongodb-org/8.0 multiverse" | tee /etc/sudo apt/sources.list.d/mongodb-org-8.0.list
     sudo apt-get update
     sudo apt-get install -y mongodb-mongosh
+    echo "- [CHECKED ✅] mongo/mongosh command installed!"
 else
     echo "- [CHECKED ✅] mongo/mongosh command exists"
 fi

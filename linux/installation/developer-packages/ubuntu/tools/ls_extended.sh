@@ -7,6 +7,7 @@ then
     sudo cp ls_extended/bin/ls_extended /usr/local/bin
     echo "==== CLEAN UP ===="
     rm -drf ls_extended
+    echo "- [CHECKED ✅] ls_extended command installed!"
 else
     echo "- [CHECKED ✅] ls_extended command exists"
 fi

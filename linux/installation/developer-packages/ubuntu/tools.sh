@@ -16,7 +16,6 @@ sudo apt install -y chrony # NTP Client
 sudo apt install -y wget
 sudo apt install -y curl
 sudo apt install -y dos2unix
-sudo apt install -y faker # Generate fake data (username, email, address, etc.)
 
 
 # WSL
@@ -50,7 +49,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # Disk
 sudo apt install -y sysstat
 sudo apt install -y iotop
-sudo apt install -y ncdu # Treesizeview in Linux
+sudo apt install -y ncdu # 'du' TUI, Treesizeview in Linux
 
 # ┌────────────────────────────┐
 # │                            │
@@ -73,6 +72,8 @@ sudo apt install -y bc # Convenient calculator
 sudo apt-get purge lolcat -y
 gem install lolcat # Require Ruby
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
+sudo apt install -y faker # Generate fake data (username, email, address, etc.)
+
 # YAML Values Extractor
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo bash
 # jtbl - JSON Table

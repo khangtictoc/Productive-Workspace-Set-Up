@@ -10,6 +10,7 @@ then
     sudo apt-get install mssql-tools18 unixodbc-dev -y
     echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile
     source ~/.bash_profile
+    echo "- [CHECKED ✅] sqlcmd command installed!"
 else
     echo "- [CHECKED ✅] sqlcmd command exists"
 fi

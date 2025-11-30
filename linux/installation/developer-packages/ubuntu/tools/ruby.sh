@@ -13,6 +13,7 @@ then
     git -C "$(rbenv root)"/plugins/ruby-build pull
     sudo apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
     rbenv install $RUBY_VERSION
+    echo "- [CHECKED ✅] ruby command installed!"
 else
     echo "- [CHECKED ✅] ruby command exists"
 fi

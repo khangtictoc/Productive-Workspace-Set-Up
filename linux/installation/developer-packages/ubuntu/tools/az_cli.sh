@@ -45,6 +45,7 @@ else
 fi
 
     echo "Azure CLI installation completed"
+    echo "- [CHECKED ✅] az command installed!"
 else
     echo "- [CHECKED ✅] az command exists"
 fi

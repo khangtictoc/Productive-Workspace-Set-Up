@@ -7,6 +7,7 @@ then
     sudo dpkg -i glab_1.67.0_linux_amd64.deb
     echo "==== CLEAN UP ===="
     rm glab_1.67.0_linux_amd64.deb
+    echo "- [CHECKED ✅] glab command installed!"
 else
     echo "- [CHECKED ✅] glab command exists"
 fi

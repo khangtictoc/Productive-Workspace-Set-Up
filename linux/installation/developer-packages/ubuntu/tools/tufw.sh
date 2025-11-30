@@ -7,6 +7,7 @@ then
     sudo dpkg -i tufw_0.2.4_linux_amd64.deb
     echo "==== CLEAN UP ===="
     rm -f tufw_0.2.4_linux_amd64.deb
+    echo "- [CHECKED ✅] tufw command installed!"
 else
     echo "- [CHECKED ✅] tufw command exists"
 fi

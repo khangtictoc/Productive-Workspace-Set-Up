@@ -5,5 +5,6 @@ then
     curl -OL git.io/ansi
     sudo chmod 755 ansi
     sudo mv ansi /usr/local/bin/
+    echo "- [CHECKED ✅] ansi command installed!"
 else
     echo "- [CHECKED ✅] ansi command exists"

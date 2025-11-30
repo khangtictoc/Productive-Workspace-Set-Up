@@ -9,6 +9,7 @@ then
     echo "==== CLEAN UP ===="
     rm -f kmon-1.7.1-x86_64-unknown-linux-gnu.tar.gz
     rm -drf kmon-1.7.1
+    echo "- [CHECKED ✅] kmon command installed!"
 else
     echo "- [CHECKED ✅] kmon command exists"
 fi

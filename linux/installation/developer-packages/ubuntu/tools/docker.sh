@@ -16,6 +16,7 @@ then
 
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     docker run hello-world
+    echo "- [CHECKED ✅] docker command installed!"
 else
     echo "- [CHECKED ✅] docker command exists"
 fi

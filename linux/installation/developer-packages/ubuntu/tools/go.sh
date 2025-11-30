@@ -10,6 +10,7 @@ then
     cp go/bin/* /usr/local/bin/
     echo "==== CLEAN UP ===="
     rm -drf go$GO_VERSION.linux-amd64.tar.gz go
+    echo "- [CHECKED ✅] go command installed!"
 else
     echo "- [CHECKED ✅] go command exists"
 fi

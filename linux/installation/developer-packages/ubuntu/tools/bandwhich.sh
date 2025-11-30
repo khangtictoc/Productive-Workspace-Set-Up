@@ -8,6 +8,7 @@ then
     sudo cp bandwhich /usr/local/bin/bandwhich
     echo "==== CLEAN UP ===="
     rm -f bandwhich-v0.23.1-x86_64-unknown-linux-gnu.tar.gz bandwhich
+    echo "- [CHECKED ✅] bandwhich command installed!"
 else
     echo "- [CHECKED ✅] bandwhich command exists"
 fi

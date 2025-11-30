@@ -10,6 +10,7 @@ then
     sudo mv jtbl /usr/local/bin/jtbl
     echo "==== CLEAN UP ===="
     rm -f jtbl-${JTBL_VERSION}-linux-x86_64.tar.gz
+    echo "- [CHECKED ✅] jtbl command installed!"
 else
     echo "- [CHECKED ✅] jtbl command exists"
 fi

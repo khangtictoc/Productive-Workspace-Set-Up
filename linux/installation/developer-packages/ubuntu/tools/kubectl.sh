@@ -8,6 +8,7 @@ then
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     echo "==== CLEAN UP ===="
     rm kubectl
+    echo "- [CHECKED ✅] kubectl command installed!"
 else
     echo "- [CHECKED ✅] kubectl command exists"
 fi

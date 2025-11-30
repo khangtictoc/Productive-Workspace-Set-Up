@@ -14,6 +14,7 @@ then
     nvm install ${NODEJS_VERSION}
     echo "==== CLEAN UP ===="
     rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz
+    echo "- [CHECKED ✅] node command installed!"
 else
     echo "- [CHECKED ✅] node command exists"
 fi
