@@ -168,10 +168,10 @@ function shell-config--motd--neofetch(){
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
 
-    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "/tmp/cat_in_the_box.txt"
+    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "$MOTD_DIR/cat_in_the_box.txt"
     echo "[INFO] ASCII art theme Downloaded"
     
-    SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh"
+    SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/cat_in_the_box.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
         echo -e "${GREEN}[UPDATED]${NC} Neofetch MOTD script has been sourced in $SHELL_PROFILE"
