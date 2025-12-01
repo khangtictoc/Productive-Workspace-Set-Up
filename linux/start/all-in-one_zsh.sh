@@ -125,7 +125,11 @@ function shell-config--profile(){
     fi
 }
 
+
+
 function shell-config--motd(){
+    option=$1
+
     echo
     echo "============ MOTD ============"
     MOTD_DIR="$HOME/.my-motd"
@@ -133,6 +137,21 @@ function shell-config--motd(){
         mkdir -p "$MOTD_DIR"
         echo "Created MOTD directory at $MOTD_DIR"
     fi
+    
+    case $option in
+        "neofetch")
+            shell-config--motd--neofetch
+            ;;
+        "self-custom")
+            shell-config--motd--self-custom
+            ;;
+        *)
+            echo "No MOTD option provided or unrecognized option. Skipping MOTD setup."
+            ;;
+    esac
+}
+
+function shell-config--motd--self-custom(){
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/self-customed/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
 
@@ -145,9 +164,24 @@ function shell-config--motd(){
     fi
 }
 
+function shell-config--motd--neofetch(){
+    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
+    chmod +x "$MOTD_DIR/motd.sh"
+
+    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "/tmp/cat_in_the_box.txt"
+    
+    SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh"
+    if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
+        echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
+        echo -e "${GREEN}[UPDATED]${NC} Neofetch MOTD script has been sourced in $SHELL_PROFILE"
+    else
+        echo -e "${GREEN}[EXISTED]${NC} Neofetch MOTD script is already sourced in $SHELL_PROFILE"
+    fi
+}
+
 function shell-config(){
     shell-config--profile
-    shell-config--motd
+    shell-config--motd "neofetch"
 }
 
 function setup-command-autocompletion(){

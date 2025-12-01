@@ -2727,8 +2727,8 @@ alias kgvsswsln='kubectl get vaultstaticsecret --watch --show-labels --namespace
 ################################################################
 
 ###### General
-alias kgall='kubectl get all'
-alias kgallall='kubectl get all --all-namespaces'
+alias kga='kubectl get all'
+alias kgaa='kubectl get all --all-namespaces'
 alias kcp='kubectl cp'
 alias ke='kubectl events'
 alias kgcs='kubectl get componentstatuses'
@@ -2800,6 +2800,10 @@ function kgno-img(){
 
 function kgno-taint(){
     kubectl get nodes -o json | jq -r '.items[] | select(.spec.taints[]? | select(.key=="<TAIN_KEY>" and .value=="<TAIN_VALUE>" and .effect=="NoSchedule")) | .metadata.name'
+}
+
+function kga-crd(){
+    kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n <namespace-name>
 }
 
 ## Argo Apps
