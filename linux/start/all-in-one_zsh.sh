@@ -107,18 +107,18 @@ function shell-config--profile(){
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
-        echo -e "${GREEN}[UPDATED]${NC} Added 'wslview' as browser's view"
+        echo -e "${GREEN}[UPDATE]${NC} Added 'wslview' as browser's view"
     else
-        echo -e "${GREEN}[EXISTED]${NC} Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
+        echo -e "${GREEN}[EXIST]${NC} Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
     fi
 
     # Ensure security for ~/.kube/config
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" ${SHELL_PROFILE}; then
             echo "chmod 600 \"$HOME/.kube/config\"" >> ${SHELL_PROFILE}
-            echo -e "${GREEN}[UPDATED]${NC} Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
+            echo -e "${GREEN}[UPDATE]${NC} Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
         else
-            echo -e "${GREEN}[EXISTED]${NC} Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
+            echo -e "${GREEN}[EXIST]${NC} Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
         fi
     else
         echo -e "${YELLOW}[SKIPPED]${NC} ~/.kube/config does not exist. No changes made."
@@ -158,25 +158,30 @@ function shell-config--motd--self-custom(){
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATED]${NC} MOTD script has been sourced in $SHELL_PROFILE"
+        echo -e "${GREEN}[UPDATE]${NC} MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "${GREEN}[EXISTED]${NC} MOTD script is already sourced in $SHELL_PROFILE"
+        echo -e "${GREEN}[EXIST]${NC} MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
 function shell-config--motd--neofetch(){
+    MOTD_DIR="$HOME/.my-motd"
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
+    echo "[INFO] Neofetch MOTD script downloaded!"
 
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "$MOTD_DIR/cat_in_the_box.txt"
-    echo "[INFO] ASCII art theme Downloaded"
+    echo "[INFO] ASCII art theme downloaded!"
+
+    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" -o "$HOME/.config/neofetch/config.conf"
+    echo "[INFO] Config Installed"
     
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/cat_in_the_box.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATED]${NC} Neofetch MOTD script has been sourced in $SHELL_PROFILE"
+        echo -e "${GREEN}[UPDATE]${NC} Neofetch MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "${GREEN}[EXISTED]${NC} Neofetch MOTD script is already sourced in $SHELL_PROFILE"
+        echo -e "${GREEN}[EXIST]${NC} Neofetch MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
@@ -193,18 +198,18 @@ function setup-command-autocompletion(){
 
 
     if grep -Fxq "$KUBECTL_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "${GREEN}[EXISTED]${NC} Kubectl completion has already been configured! No changes"
+        echo -e "${GREEN}[EXIST]${NC} Kubectl completion has already been configured! No changes"
     else
         echo "$KUBECTL_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATED]${NC} Kubectl completion has been configured!"
+        echo -e "${GREEN}[UPDATE]${NC} Kubectl completion has been configured!"
     fi
 
 
     if grep -Fxq "$HELM_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "${GREEN}[EXISTED]${NC} Helm completion has already been configured! No changes"
+        echo -e "${GREEN}[EXIST]${NC} Helm completion has already been configured! No changes"
     else
         echo "$HELM_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATED]${NC} Helm completion has been configured!"
+        echo -e "${GREEN}[UPDATE]${NC} Helm completion has been configured!"
     fi
 }
 
