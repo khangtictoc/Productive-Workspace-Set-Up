@@ -6,6 +6,12 @@ then
     sudo add-apt-repository ppa:quentiumyt/nvtop
     sudo apt update
     sudo apt install -y nvtop
+
+    if ! command -v nvtop &> /dev/null; then
+        echo "[FAIL ❌] nvtop installation failed!"
+        exit 1
+    fi
+    
     echo "- [CHECKED ✅] nvtop command installed!"
 else
     echo "- [CHECKED ✅] nvtop command exists"

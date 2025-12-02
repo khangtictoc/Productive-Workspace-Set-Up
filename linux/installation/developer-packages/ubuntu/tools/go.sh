@@ -8,8 +8,15 @@ then
     wget --progress=dot:giga "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz"
     tar xfvz go$GO_VERSION.linux-amd64.tar.gz
     cp go/bin/* /usr/local/bin/
-    echo "==== CLEAN UP ===="
+
+    echo "[INFO] >>>> Clean Up"
     rm -drf go$GO_VERSION.linux-amd64.tar.gz go
+
+    if ! command -v go &> /dev/null; then
+        echo "[FAIL ❌] go installation failed!"
+        exit 1
+    fi
+
     echo "- [CHECKED ✅] go command installed!"
 else
     echo "- [CHECKED ✅] go command exists"

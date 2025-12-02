@@ -10,8 +10,14 @@ then
     unzip detect-secrets.zip
     cd detect-secrets-${DETECT_SECRETS_VERSION}
     python3 setup.py install
+    
+    echo "[INFO] >>>> Clean Up"
     cd .. && rm -rf detect-secrets-${DETECT_SECRETS_VERSION} detect-secrets.zip
-    echo "==== CLEAN UP ===="
+
+    if ! command -v detect-secrets &> /dev/null; then
+        echo "[FAIL ❌] detect-secrets installation failed!"
+        exit 1
+    fi
     echo "- [CHECKED ✅] detect-secrets command installed!"
 else
     echo "- [CHECKED ✅] detect-secrets command exists"

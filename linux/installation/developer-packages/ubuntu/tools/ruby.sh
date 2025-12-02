@@ -11,8 +11,22 @@ then
     ~/.rbenv/bin/rbenv init
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
     git -C "$(rbenv root)"/plugins/ruby-build pull
-    sudo apt-get install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc
+    sudo apt-get install -y \
+        build-essential \
+        autoconf \
+        libssl-dev \
+        libyaml-dev \
+        zlib1g-dev \
+        libffi-dev \
+        libgmp-dev \
+        rustc
     rbenv install $RUBY_VERSION
+
+    if ! command -v ruby &> /dev/null; then
+        echo "[FAIL ❌] ruby installation failed!"
+        exit 1
+    fi
+    
     echo "- [CHECKED ✅] ruby command installed!"
 else
     echo "- [CHECKED ✅] ruby command exists"

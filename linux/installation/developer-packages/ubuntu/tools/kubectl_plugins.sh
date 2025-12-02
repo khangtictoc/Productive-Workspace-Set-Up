@@ -7,7 +7,7 @@ KREW="krew-${OS}_${ARCH}" &&
 curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
 tar zxvf "${KREW}.tar.gz" &&
 ./"${KREW}" install krew
-echo "==== CLEAN UP ===="
+echo "[INFO] >>>> Clean Up"
 rm -drf "$(pwd)"
 
 EXPORT_KREW_PATH='export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
@@ -26,4 +26,10 @@ kubectl krew install view-secret
 curl -LO https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 sudo chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
+
+if ! command -v kubectl &> /dev/null; then
+    echo "[FAIL ❌] kubectl krew/plugins installation failed!"
+    exit 1
+fi
+
 echo "- [CHECKED ✅] kubectl krew/plugins command installed!"

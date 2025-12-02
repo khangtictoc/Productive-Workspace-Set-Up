@@ -16,6 +16,12 @@ then
 
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     docker run hello-world
+
+    if ! command -v docker &> /dev/null; then
+        echo "[FAIL ❌] docker installation failed!"
+        exit 1
+    fi
+    
     echo "- [CHECKED ✅] docker command installed!"
 else
     echo "- [CHECKED ✅] docker command exists"

@@ -8,6 +8,12 @@ then
     wget --progress=dot:giga "https://github.com/argoproj/argo-cd/releases/download/${ARGO_CLI_VERSION}/argocd-linux-amd64" -O argocd
     sudo chmod +x argocd
     sudo mv argocd /usr/local/bin/argocd
+
+    if ! command -v argocd &> /dev/null; then
+        echo "[FAIL ❌] argocd installation failed!"
+        exit 1
+    fi
+
     echo "- [CHECKED ✅] argocd command installed!"
 else
     echo "- [CHECKED ✅] argocd command exists"

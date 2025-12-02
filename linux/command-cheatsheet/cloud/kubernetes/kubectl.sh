@@ -82,9 +82,17 @@ KUBECTL_EXTERNAL_DIFF="diff --color=always -u" kubectl diff -f <YAML_FILE>
 # Check authorization for a user/service account
 kubectl auth can-i create token -n kube-system --as=system:serviceaccount:kube-system:default
 
+# Delete hanged Terminating namespace
+
+NAMESPACE=<NAMESPACE_NAME>
+kubectl proxy &
+kubectl get namespace $NAMESPACE -o json |jq '.spec = {"finalizers":[]}' >temp.json
+curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$NAMESPACE/finalize
+
 ## AZURE POD IDENTITY ##
 kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace,DEPLOYMENT_NAME:.metadata.name,LABEL:.spec.template.metadata.labels.aadpodidbinding,REPLICAS:.spec.replicas'
 
 ## AZURE WORKLOAD IDENTITY (DEPRECATED) ##
 kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
 kubectl get statefulset -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
+

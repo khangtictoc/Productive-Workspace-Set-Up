@@ -45,6 +45,12 @@ else
 fi
 
     echo "Azure CLI installation completed"
+
+    if ! command -v az &> /dev/null; then
+        echo "[FAIL ❌] az installation failed!"
+        exit 1
+    fi
+    
     echo "- [CHECKED ✅] az command installed!"
 else
     echo "- [CHECKED ✅] az command exists"

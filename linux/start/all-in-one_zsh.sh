@@ -165,7 +165,6 @@ function shell-config--motd--self-custom(){
 }
 
 function shell-config--motd--neofetch(){
-    MOTD_DIR="$HOME/.my-motd"
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
     echo "[INFO] Neofetch MOTD script downloaded!"

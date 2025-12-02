@@ -12,8 +12,15 @@ then
     \. "$HOME/.nvm/nvm.sh"
     # Download and install Node.js:
     nvm install ${NODEJS_VERSION}
-    echo "==== CLEAN UP ===="
+
+    echo "[INFO] >>>> Clean Up"
     rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz
+
+    if ! command -v node &> /dev/null; then
+        echo "[FAIL ❌] node installation failed!"
+        exit 1
+    fi
+
     echo "- [CHECKED ✅] node command installed!"
 else
     echo "- [CHECKED ✅] node command exists"

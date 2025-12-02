@@ -7,8 +7,14 @@ then
     echo "[INSTALLING ⬇️ ] dive"
     curl -OL https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
     sudo apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
-    echo "==== CLEAN UP ===="
+    echo "[INFO] >>>> Clean Up"
     rm -f dive_${DIVE_VERSION}_linux_amd64.deb
+
+    if ! command -v dive &> /dev/null; then
+        echo "[FAIL ❌] dive installation failed!"
+        exit 1
+    fi
+
     echo "- [CHECKED ✅] dive command installed!"
 else
     echo "- [CHECKED ✅] dive command exists"

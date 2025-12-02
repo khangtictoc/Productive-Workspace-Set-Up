@@ -83,7 +83,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 # ┌──────────────────────────────────────┐
 # │                                      │
-# │    Terminal, Linux system and TUI    │
+# │        TUI & Performance Tools       │
 # │                                      │
 # └──────────────────────────────────────┘
 
@@ -118,6 +118,7 @@ sudo apt install -y pv # View process for MySQL restore database
 sudo apt install -y strace
 sudo apt install -y file
 sudo apt install -y htop
+
 
 
 # ┌────────────────────────────┐
