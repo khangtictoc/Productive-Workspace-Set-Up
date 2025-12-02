@@ -7,4 +7,9 @@ git filter-repo --force \
 if email == b"khang.tran@mercatus.com":
     return b"tranhoangkhang09112001@gmail.com"
 return email
-'          
+'
+
+# Remove a specific commit by its hash
+git filter-repo --commit-callback '
+if commit.hexsha == "425800aae9a787064cc777b6c35f2a4f2f2d095a":
+    commit.skip()'
