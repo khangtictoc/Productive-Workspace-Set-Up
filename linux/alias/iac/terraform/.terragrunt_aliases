@@ -83,7 +83,13 @@ tg-ws() {
     esac
 }
 
-tg-ra(){
+tg-raa(){
+    terragrunt run-all apply --non-interactive \
+    --queue-include-external \
+    --working-dir .
+}
+
+tg-rad(){
     terragrunt run-all apply --non-interactive \
     --queue-include-external \
     --working-dir .

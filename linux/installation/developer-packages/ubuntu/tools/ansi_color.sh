@@ -14,3 +14,4 @@ then
     echo "- [CHECKED ✅] ansi command installed!"
 else
     echo "- [CHECKED ✅] ansi command exists"
+fi

@@ -27,6 +27,7 @@ sudo apt install -y wslu
 # File Editor
 sudo apt install -y vim
 sudo apt install -y nano
+
 ## Superfile - File Manager
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
 ## ls_extended - Extended 'ls' command
