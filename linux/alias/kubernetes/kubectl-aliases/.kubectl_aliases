@@ -2760,7 +2760,6 @@ alias kging-path='kubectl get ingress -o custom-columns="NAME:.metadata.name,DOM
 alias ka='kubectl apply -f'
 alias kar='kubectl apply --recursive -f'
 
-
 ## Node
 alias ktn='kubectl top nodes'
 
@@ -2803,6 +2802,22 @@ function kgno-taint(){
     kubectl get nodes -o json | jq -r '.items[] | select(.spec.taints[]? | select(.key=="<TAIN_KEY>" and .value=="<TAIN_VALUE>" and .effect=="NoSchedule")) | .metadata.name'
 }
 
+## Operations
+
+# Set default StorageClass
+function kpa-sc-default(){
+    IS_DEFAULT=$1
+    STORAGE_CLASS_NAME=$2
+    kubectl patch storageclass $STORAGE_CLASS_NAME -p "{\"metadata\": {\"annotations\":{\"storageclass.kubernetes.io/is-default-class\":\"$IS_DEFAULT\"}}}"
+}
+
+function kpa-cm-immutable(){
+    IS_IMMUTABLE=$1
+    CONFIGMAP_NAME=$2
+    kubectl patch configmap $CONFIGMAP_NAME  -p "{\"immutable\":$IS_IMMUTABLE}"
+}
+
+# Get all resources include CRD
 function kga-crd(){
     kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found
 }
