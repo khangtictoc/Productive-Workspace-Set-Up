@@ -90,7 +90,7 @@ tg-raa(){
 }
 
 tg-rad(){
-    terragrunt run-all apply --non-interactive \
+    terragrunt run-all destroy --non-interactive \
     --queue-include-external \
     --working-dir .
 }

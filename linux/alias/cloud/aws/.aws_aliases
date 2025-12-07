@@ -27,3 +27,10 @@ aws-profile() {
       echo "Usage: aws-profile {info|list|set|version}"
   esac
 }
+
+function aws-disable-pager() {
+  export AWS_PAGER=""
+  export AWS_CLI_PAGER=""
+}
+
+alias aws-np="aws --no-cli-pager"
