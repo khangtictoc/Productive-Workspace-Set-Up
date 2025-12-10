@@ -15,42 +15,82 @@
 # Common usages
 alias tf='terraform'
 alias tfa='terraform apply'
-alias tfaa='terraform apply --auto-approve'
-alias tfda='terraform destroy --auto-approve'
 alias tfd='terraform destroy'
 alias tfi='terraform init'
 alias tfim='terraform import'
 alias tfp='terraform plan'
-alias tfpd='terraform plan --destroy'
-alias tfver='terraform version'
+alias tfv='terraform version'
+alias tfc='terraform console'
+alias tff='terraform fmt'
+alias tfg='terraform graph'
+alias tfo='terraform output'
+alias tfpr='terraform providers'
+alias tfr='terraform refresh'
+alias tfsh='terraform show'
+alias tft='terraform taint'
+alias tfut='terraform untaint'
+alias tfval='terraform validate'
 
-alias tf-console='terraform console'
-alias tf-fmt='terraform fmt'
-alias tf-graph='terraform graph'
-
-
-alias tf-output='terraform output'
-alias tf-providers='terraform providers'
-alias tf-refresh='terraform refresh'
-alias tf-show='terraform show'
-alias tf-taint='terraform taint'
-alias tf-untaint='terraform untaint'
-alias tf-validate='terraform validate'
-alias tf-workspace='terraform workspace'
-alias tf-state='terraform state'
-alias tf-force-unlock='terraform force-unlock'
-alias tf-stateshow='terraform state show'
-alias tf-statelist='terraform state list'
-alias tf-statelistrm='terraform state rm'
-alias tf-statemv='terraform state mv'
-alias tf-statepull='terraform state pull'
-alias tf-statepush='terraform state push'
-
-alias tf-wselect='terraform workspace select'
-alias tf-wshow='terraform workspace show'
-alias tf-wdelete='terraform workspace delete'
-alias tf-wlist='terraform workspace list'
-alias tf-wnew='terraform workspace new'
+alias tf-fu='terraform force-unlock'
+alias tf-pd='terraform plan --destroy'
+alias tf-aa='terraform apply --auto-approve'
+alias tf-da='terraform destroy --auto-approve'
 
 
+function tf-ws() {
+    action=$1
+    shift   # remove the first argument so $@ holds the rest
+
+    case "$action" in
+        select|sel)
+        terraform workspace select "$@"
+        ;;
+        show|sh)
+        terraform workspace show "$@"
+        ;;
+        delete|rm)
+        terraform workspace delete "$@"
+        ;;
+        list|ls)
+        terraform workspace list "$@"
+        ;;
+        new|create)
+        terraform workspace new "$@"
+        ;;
+        *)
+        echo "Unknown action: $action"
+        echo "Valid actions: select|sel, show|sh, delete|rm, list|ls, new|create"
+        ;;
+    esac
+}
+
+function tf-st() {
+    action=$1
+    shift   # remove the first argument so $@ holds the rest
+
+    case "$action" in
+        ls)
+        terraform state list "$@"
+        ;;
+        show)
+        terraform state show "$@"
+        ;;
+        mv)
+        terraform state mv "$@"
+        ;;
+        pull)
+        terraform state pull "$@"
+        ;;
+        push)
+        terraform state push "$@"
+        ;;
+        delete|rm)
+        terraform state rm "$@"
+        ;;
+        *)
+        echo "Unknown action: $action"
+        echo "Valid actions: ls, show, mv, pull, push, delete"
+        ;;
+    esac
+}
 

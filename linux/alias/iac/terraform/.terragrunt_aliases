@@ -4,7 +4,7 @@ alias tgc='terragrunt console'
 alias tgd='terragrunt destroy'
 alias tgf='terragrunt fmt'
 alias tgg='terragrunt graph'
-alias tg-imp='terragrunt import'
+alias tgim='terragrunt import'
 alias tgi='terragrunt init'
 alias tgo='terragrunt output'
 alias tgp='terragrunt plan'
@@ -19,14 +19,14 @@ alias tg-fu='terragrunt force-unlock'
 alias tg-aa='terragrunt apply -auto-approve'
 alias tg-da='terragrunt destroy -auto-approve'
 alias tg-iu='terragrunt init -upgrade'
-alias tg-pde='terragrunt plan --destroy'
+alias tg-pd='terragrunt plan --destroy'
 
 function tg-rmcache(){
     folder_name=$1
     find $folder_name -type d -name ".terragrunt-cache" -prune -exec rm -rf {} +
 }
 
-tg-st() {
+function tg-st() {
     action=$1
     shift   # remove the first argument so $@ holds the rest
 
