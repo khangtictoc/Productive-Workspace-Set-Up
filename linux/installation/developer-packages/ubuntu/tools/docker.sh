@@ -6,7 +6,7 @@ then
     sudo apt-get update
     sudo apt-get install ca-certificates curl
     sudo install -m 0755 -d /etc/sudo apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/sudo apt/keyrings/docker.asc
+    curl -fsSL --progress=dot:giga https://download.docker.com/linux/ubuntu/gpg -o /etc/sudo apt/keyrings/docker.asc
     sudo chmod a+r /etc/sudo apt/keyrings/docker.asc
     echo \
         "deb [arch=$(dpkg --print-architecture) signed-by=/etc/sudo apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
