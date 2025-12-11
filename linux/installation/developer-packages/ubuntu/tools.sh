@@ -215,6 +215,8 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # ---- INFRA-AS-CODE (IAC) ----
 ## Terraform
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | bash
+## Terraform Visual (visualize TF dependency graph)
+npm install -g @terraform-visual/cli
 
 ## Terragrunt
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terragrunt.sh | bash
