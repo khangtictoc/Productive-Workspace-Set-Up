@@ -8,7 +8,7 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         --name)
-            NAME="${2:=}"
+            NAME="$2"
             shift 2
             ;;
         *)
@@ -29,7 +29,9 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-mapfile -t RESOURCES < <(kubectl api-resources | grep $NAME | awk '{print $1}')
+NAME="${NAME:-}"
+
+mapfile -t RESOURCES < <(kubectl api-resources | grep "$NAME" | awk '{print $1}')
 
 for resource in "${RESOURCES[@]}"; do
 {
