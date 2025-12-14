@@ -7,16 +7,16 @@ while [[ $# -gt 0 ]]; do
             NAMESPACE="$2"
             shift 2
             ;;
-        --name)
-            NAME="$2"
+        --pattern-name)
+            PATTERN_NAME="$2"
             shift 2
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: kga-custom [--namespace NAMESPACE] [--name NAME]"
-            echo "The name would be passed with 'grep' to filter the specific deployed resources."
+            echo "Usage: kga-custom [--namespace NAMESPACE] [--pattern-name PATTERN_NAME]"
+            echo "The pattern name would be passed with 'grep' to filter the specific deployed resources."
             echo
-            echo "For example: --name velero to get all Velero kind resources."
+            echo "For example: --pattern-name velero to get all Velero kind resources."
             echo
             echo "kubectl api-resources | grep velero"
             echo "backups                                                velero.io/v1                      true         Backup"
@@ -29,10 +29,10 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-NAME="${NAME:-}"
-echo "DEBUG: $NAME"
+PATTERN_NAME="${PATTERN_NAME:-}"
+echo "DEBUG: $PATTERN_NAME"
 
-mapfile -t RESOURCES < <(kubectl api-resources | grep "$NAME" | awk '{print $1}')
+mapfile -t RESOURCES < <(kubectl api-resources | grep "$PATTERN_NAME" | awk '{print $1}')
 
 for resource in "${RESOURCES[@]}"; do
 {
@@ -57,5 +57,7 @@ done
 
 # wait
 
-# # Clean up
-# rm out_*.txt
+# Clean up
+if [[ -n "$(ls out_*.txt 2>/dev/null)" ]]; then
+    rm out_*.txt
+fi
