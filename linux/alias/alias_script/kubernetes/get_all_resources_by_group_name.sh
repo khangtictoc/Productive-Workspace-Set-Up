@@ -52,10 +52,10 @@ done
 wait
 
 for resource in "${RESOURCES[@]}"; do
-cat "out_$resource.txt" &
+    cat "out_$resource.txt" &
 done
 
-wait
+# wait
 
-# Clean up
-rm out_*.txt
+# # Clean up
+# rm out_*.txt
