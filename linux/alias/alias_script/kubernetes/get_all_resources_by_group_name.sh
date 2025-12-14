@@ -30,6 +30,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 NAME="${NAME:-}"
+echo "DEBUG: $NAME"
 
 mapfile -t RESOURCES < <(kubectl api-resources | grep "$NAME" | awk '{print $1}')
 
