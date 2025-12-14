@@ -21,6 +21,10 @@ $fontsToInstall = @(
         Name = "CascadiaCode"
         Url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip"
     }
+    @{
+        Name = "FiraCode"
+        Url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip"
+    }
 )
 
 Write-Host "Font Installation Script" -ForegroundColor Yellow

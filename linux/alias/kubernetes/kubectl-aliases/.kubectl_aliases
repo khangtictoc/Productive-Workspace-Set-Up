@@ -2847,10 +2847,12 @@ kgpo-nodename(){
 
 kcv-context(){
     CONTEXT_NAME=$1
-    kubectl config view --minify --flatten --context=$CONTEXT_NAME > $CONTEXT_NAME.kubeconfig
+    kubectl config view --minify --flatten --context=$CONTEXT_NAME
 }
 
-
+kga-custom(){
+    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/alias_script/kubernetes/get_all_resources_by_group_name.sh" | bash -s -- "$1" "$2"
+}
 
 
 

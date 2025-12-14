@@ -8,12 +8,13 @@ alias tgim='terragrunt import'
 alias tgi='terragrunt init'
 alias tgo='terragrunt output'
 alias tgp='terragrunt plan'
+alias tgv='terragrunt version'
 alias tgpr='terragrunt providers'
 alias tgr='terragrunt refresh'
 alias tgsh='terragrunt show'
 alias tgt='terragrunt taint'
 alias tgut='terragrunt untaint'
-alias tgv='terragrunt validate'
+alias tgval='terragrunt validate'
 
 alias tg-fu='terragrunt force-unlock'
 alias tg-aa='terragrunt apply -auto-approve'
@@ -83,14 +84,21 @@ tg-ws() {
     esac
 }
 
+tg-rap(){
+    terragrunt run --all --queue-include-external --working-dir . -- plan \
+
+}
+
 tg-raa(){
-    terragrunt run-all apply --non-interactive \
+    terragrunt run --all -- destroy \
+    --non-interactive \
     --queue-include-external \
     --working-dir .
 }
 
 tg-rad(){
-    terragrunt run-all destroy --non-interactive \
+    terragrunt run --all -- destroy \
+    --non-interactive \
     --queue-include-external \
     --working-dir .
 }
