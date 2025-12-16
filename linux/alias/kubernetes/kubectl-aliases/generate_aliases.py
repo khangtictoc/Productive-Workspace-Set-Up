@@ -99,6 +99,12 @@ def main():
         # -- Vault Secrets Operator
         ('va', 'vaultauth', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ('vss', 'vaultstaticsecret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        # -- Velero
+        ('bk' , 'backup', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('rst', 'restore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('br' , 'backuprepository', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('vr' , 'volumerestore', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
+        ('vs' , 'volumesnapshot', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], None),
         ]
     #
     res_types = [r[0] for r in res]
