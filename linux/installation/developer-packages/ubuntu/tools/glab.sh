@@ -3,7 +3,7 @@
 if ! command -v glab 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] GitLab CLI"
-      -O glab_1.67.0_linux_amd64.deb https://gitlab.com/gitlab-org/cli/-/releases/v1.67.0/downloads/glab_1.67.0_linux_amd64.deb
+    wget --progress=dot:giga -O glab_1.67.0_linux_amd64.deb https://gitlab.com/gitlab-org/cli/-/releases/v1.67.0/downloads/glab_1.67.0_linux_amd64.deb
     sudo dpkg -i glab_1.67.0_linux_amd64.deb
 
     echo "[INFO] >>>> Clean Up"

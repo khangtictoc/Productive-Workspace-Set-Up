@@ -5,7 +5,7 @@ JTBL_VERSION=1.6.0
 if ! command -v jtbl 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] jtbl"
-      "https://github.com/kellyjonbrazil/jtbl/releases/download/v${JTBL_VERSION}/jtbl-${JTBL_VERSION}-linux-x86_64.tar.gz"
+    wget --progress=dot:giga "https://github.com/kellyjonbrazil/jtbl/releases/download/v${JTBL_VERSION}/jtbl-${JTBL_VERSION}-linux-x86_64.tar.gz"
     tar -xzf jtbl-${JTBL_VERSION}-linux-x86_64.tar.gz
     sudo mv jtbl /usr/local/bin/jtbl
 
