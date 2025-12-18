@@ -38,7 +38,7 @@ if [[ "$OS" == *"Red Hat"* ]]; then
     fi
 elif [[ "$OS" == *"Ubuntu"* ]]; then
     echo "Installing Azure CLI for Ubuntu..."
-    curl --progress=dot:giga -sL https://aka.ms/InstallAzureCLIDeb | bash
+    curl  -sL https://aka.ms/InstallAzureCLIDeb | bash
 else
     echo "Unsupported OS: $OS"
     exit 1

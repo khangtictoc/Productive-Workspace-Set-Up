@@ -3,7 +3,7 @@
 if ! command -v ngrok 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] ngrok"
-    curl -sSL --progress=dot:giga https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+    curl -sSL  https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
         | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
         && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
         | sudo tee /etc/apt/sources.list.d/ngrok.list \

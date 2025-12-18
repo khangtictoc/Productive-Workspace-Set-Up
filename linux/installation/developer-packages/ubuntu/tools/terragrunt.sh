@@ -5,7 +5,7 @@ TFG_VERSION="v0.94.0"
 if ! command -v terragrunt 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Terragrunt"
-    wget --progress=dot:giga https://github.com/gruntwork-io/terragrunt/releases/download/${TFG_VERSION}/terragrunt_linux_amd64
+      https://github.com/gruntwork-io/terragrunt/releases/download/${TFG_VERSION}/terragrunt_linux_amd64
     sudo chmod u+x terragrunt_linux_amd64
     sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 

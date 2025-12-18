@@ -3,9 +3,9 @@
 if ! command -v sqlcmd 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] SQL Server Command Line Tools"
-    curl --progress=dot:giga https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
+    curl  https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc
     source /etc/os-release
-    curl --progress=dot:giga https://packages.microsoft.com/config/ubuntu/$VERSION_ID/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
+    curl  https://packages.microsoft.com/config/ubuntu/$VERSION_ID/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
     
     sudo apt-get update
     sudo apt-get install -y \

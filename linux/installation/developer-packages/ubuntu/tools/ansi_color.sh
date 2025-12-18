@@ -2,7 +2,7 @@
 
 if ! command -v ansi 2>&1 >/dev/null
 then
-    curl --progress=dot:giga -OL git.io/ansi
+    curl  -OL git.io/ansi
     sudo chmod 755 ansi
     sudo mv ansi /usr/local/bin/
 
