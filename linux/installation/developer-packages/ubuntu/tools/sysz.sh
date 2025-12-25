@@ -13,7 +13,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] sysz command installed!"
+    echo "[CHECKED ✅] sysz command installed!"
 else
-    echo "- [CHECKED ✅] sysz command exists"
+    echo "[CHECKED ✅] sysz command exists"
 fi

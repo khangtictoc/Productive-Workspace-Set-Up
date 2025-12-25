@@ -2,7 +2,7 @@
 
 if ! command -v ansi 2>&1 >/dev/null
 then
-    curl  -OL git.io/ansi
+    wget --progress=dot:giga git.io/ansi
     sudo chmod 755 ansi
     sudo mv ansi /usr/local/bin/
 
@@ -11,7 +11,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] ansi command installed!"
+    echo "[CHECKED ✅] ansi command installed!"
 else
-    echo "- [CHECKED ✅] ansi command exists"
+    echo "[CHECKED ✅] ansi command exists"
 fi

@@ -42,15 +42,21 @@ then
             exit 1
         fi
 
-        echo "- [CHECKED ✅] perf command installed!"
+        echo "[CHECKED ✅] perf command installed!"
     else
         echo "Non-WSL environment detected."
         echo "perf could not be found, installing..."
         sudo apt update
-        sudo apt install -y perf
-        echo "- [CHECKED ✅] perf command installed!"
+        sudo apt install -y linux-tools-common linux-tools-$(uname -r)
+
+        if ! command -v perf &> /dev/null; then
+            echo "[FAIL ❌] perf installation failed!"
+            exit 1
+        fi
+
+        echo "[CHECKED ✅] perf command installed!"
     fi
     
 else
-    echo "- [CHECKED ✅] perf command exists"
+    echo "[CHECKED ✅] perf command exists"
 fi

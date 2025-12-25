@@ -5,8 +5,8 @@ DIVE_VERSION=$(curl -sL  "https://api.github.com/repos/wagoodman/dive/releases/l
 if ! command -v dive 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] dive"
-    curl -OL  https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
-    sudo apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
+    wget --progress=dot:giga https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
+    sudo dpkg -i dive_${DIVE_VERSION}_linux_amd64.deb
     echo "[INFO] >>>> Clean Up"
     rm -f dive_${DIVE_VERSION}_linux_amd64.deb
 
@@ -15,7 +15,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] dive command installed!"
+    echo "[CHECKED ✅] dive command installed!"
 else
-    echo "- [CHECKED ✅] dive command exists"
+    echo "[CHECKED ✅] dive command exists"
 fi

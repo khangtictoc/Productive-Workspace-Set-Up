@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] yq command installed!"
+    echo "[CHECKED ✅] yq command installed!"
 else
-    echo "- [CHECKED ✅] yq command exists"
+    echo "[CHECKED ✅] yq command exists"
 fi

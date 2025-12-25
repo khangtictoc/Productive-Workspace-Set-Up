@@ -4,7 +4,7 @@ VERSION="v3.0.1"
 
 if ! command -v asciinema 2>&1 >/dev/null
 then
-    curl -L  "https://github.com/asciinema/asciinema/releases/download/v3.0.1/asciinema-x86_64-unknown-linux-musl" --output asciinema
+    wget --progress=dot:giga  "https://github.com/asciinema/asciinema/releases/download/v3.0.1/asciinema-x86_64-unknown-linux-musl" -O asciinema
     sudo install asciinema /usr/local/bin/asciinema
     echo "[INFO] >>>> Clean Up"
     rm asciinema
@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] asciinema command installed!"
+    echo "[CHECKED ✅] asciinema command installed!"
 else
-    echo "- [CHECKED ✅] asciinema command exists!"
+    echo "[CHECKED ✅] asciinema command exists!"
 fi

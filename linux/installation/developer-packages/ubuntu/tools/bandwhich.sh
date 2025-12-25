@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] bandwhich command installed!"
+    echo "[CHECKED ✅] bandwhich command installed!"
 else
-    echo "- [CHECKED ✅] bandwhich command exists"
+    echo "[CHECKED ✅] bandwhich command exists"
 fi

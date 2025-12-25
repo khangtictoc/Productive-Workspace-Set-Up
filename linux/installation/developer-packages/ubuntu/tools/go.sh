@@ -17,7 +17,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] go command installed!"
+    echo "[CHECKED ✅] go command installed!"
 else
-    echo "- [CHECKED ✅] go command exists"
+    echo "[CHECKED ✅] go command exists"
 fi

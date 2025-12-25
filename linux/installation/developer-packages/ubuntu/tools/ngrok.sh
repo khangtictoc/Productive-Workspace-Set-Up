@@ -15,7 +15,7 @@ then
         exit 1
     fi
     
-    echo "- [CHECKED ✅] ngrok command installed!"
+    echo "[CHECKED ✅] ngrok command installed!"
 else
-    echo "- [CHECKED ✅] ngrok command exists"
+    echo "[CHECKED ✅] ngrok command exists"
 fi

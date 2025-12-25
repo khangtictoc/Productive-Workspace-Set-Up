@@ -17,13 +17,13 @@ then
         exit 1
     fi
 
-    echo "- [THEME] Config K9s Skin"
+    echo "[INFO] Config K9s Theme"
     OUT="${XDG_CONFIG_HOME:-$HOME/.config}/k9s/skins"
     mkdir -p "$OUT"
     curl -L https://github.com/catppuccin/k9s/archive/main.tar.gz | tar xz -C "$OUT" --strip-components=2 k9s-main/dist
     yq -i ".k9s.ui.skin = $THEME" "$CONFIG_FILE"
 
-    echo "- [CHECKED ✅] k9s command installed!"
+    echo "[CHECKED ✅] k9s command installed!"
 else
-    echo "- [CHECKED ✅] k9s command exists"
+    echo "[CHECKED ✅] k9s command exists"
 fi

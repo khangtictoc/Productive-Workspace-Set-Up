@@ -51,7 +51,7 @@ fi
         exit 1
     fi
     
-    echo "- [CHECKED ✅] az command installed!"
+    echo "[CHECKED ✅] az command installed!"
 else
-    echo "- [CHECKED ✅] az command exists"
+    echo "[CHECKED ✅] az command exists"
 fi

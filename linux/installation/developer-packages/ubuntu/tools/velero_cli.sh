@@ -16,7 +16,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] velero command installed!"
+    echo "[CHECKED ✅] velero command installed!"
 else
-    echo "- [CHECKED ✅] velero command exists!"
+    echo "[CHECKED ✅] velero command exists!"
 fi

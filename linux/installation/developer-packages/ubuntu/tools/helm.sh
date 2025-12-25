@@ -6,7 +6,7 @@ if ! command -v helm 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Helm"
 
-    curl  -O https://get.helm.sh/helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
+    wget --progress=dot:giga https://get.helm.sh/helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
     tar -zxvf helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
     sudo mv linux-amd64/helm /usr/local/bin/helm
 
@@ -19,7 +19,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] helm command installed!"
+    echo "[CHECKED ✅] helm command installed!"
 else
-    echo "- [CHECKED ✅] helm command exists"
+    echo "[CHECKED ✅] helm command exists"
 fi

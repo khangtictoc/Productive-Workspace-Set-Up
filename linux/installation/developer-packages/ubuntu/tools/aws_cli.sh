@@ -9,14 +9,14 @@ function finalize() {
         exit 1
     fi
 
-    echo "- [CHECKED ✅] aws command installed!"
+    echo "[CHECKED ✅] aws command installed!"
 }
 
 if ! command -v aws 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] AWS CLI   "
     if [ "$ARCH" = "aarch64" ]; then
-        curl  "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+        wget --progress=dot:giga  "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -O "awscliv2.zip"
         unzip awscliv2.zip
         sudo ./aws/install
         echo "[INFO] >>>> Clean Up"
@@ -25,7 +25,7 @@ then
         finalize
     fi
     if [ "$ARCH" = "x86_64" ]; then
-        curl  "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        wget --progress=dot:giga  "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -O "awscliv2.zip"
         unzip awscliv2.zip
         sudo ./aws/install
         echo "[INFO] >>>> Clean Up"
@@ -34,6 +34,6 @@ then
         finalize
     fi
 else
-    echo "- [CHECKED ✅] aws command exists!"
+    echo "[CHECKED ✅] aws command exists!"
     exit 0
 fi

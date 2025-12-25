@@ -18,7 +18,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] terraform command installed!"
+    echo "[CHECKED ✅] terraform command installed!"
 else
-    echo "- [CHECKED ✅] terraform command exists"
+    echo "[CHECKED ✅] terraform command exists"
 fi

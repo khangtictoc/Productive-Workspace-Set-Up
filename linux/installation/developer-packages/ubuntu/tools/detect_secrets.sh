@@ -9,6 +9,7 @@ then
     wget --progress=dot:giga "https://codeload.github.com/Yelp/detect-secrets/zip/refs/tags/v${DETECT_SECRETS_VERSION}" -O detect-secrets.zip
     unzip detect-secrets.zip
     cd detect-secrets-${DETECT_SECRETS_VERSION}
+    pip install setuptools
     python3 setup.py install
     
     echo "[INFO] >>>> Clean Up"
@@ -18,7 +19,7 @@ then
         echo "[FAIL ❌] detect-secrets installation failed!"
         exit 1
     fi
-    echo "- [CHECKED ✅] detect-secrets command installed!"
+    echo "[CHECKED ✅] detect-secrets command installed!"
 else
-    echo "- [CHECKED ✅] detect-secrets command exists"
+    echo "[CHECKED ✅] detect-secrets command exists"
 fi

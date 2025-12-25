@@ -1,3 +1,6 @@
+# References
+# - Generating text box: https://lurki.com/text-operations/text-box-generator
+
 ## ENVIRONMENT VARIABLES ##
 
 SHELLRC_FILE="$HOME/.zshrc"
@@ -7,6 +10,7 @@ SHELLRC_FILE="$HOME/.zshrc"
 # │    Prerequisites/Must-have Tools     │
 # │                                      │
 # └──────────────────────────────────────┘
+
 sudo apt install -y unzip
 sudo apt install -y python3-pip
 sudo apt install -y linux-tools-generic # perf
@@ -18,22 +22,23 @@ sudo apt install -y curl
 sudo apt install -y dos2unix
 
 
-# WSL
+# --- WSL ---
 ## Install WSL utilities - Open links in host browser, copy/paste between WSL and Windows, etc.
 sudo add-apt-repository ppa:wslutilities/wslu
 sudo apt update
 sudo apt install -y wslu
 
-# File Editor
+# --- FILE ---
 sudo apt install -y vim
 sudo apt install -y nano
 
 ## Superfile - File Manager
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
 ## ls_extended - Extended 'ls' command
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ls_extended.sh | sudo bash
 
-# Network
+# --- NETWORK ---
 sudo apt install -y dnsutils
 sudo apt install -y net-tools
 sudo apt install -y iputils-ping
@@ -44,10 +49,10 @@ sudo apt install -y netcat
 sudo apt install -y whois
 sudo apt install -y mtr
 curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | bash
-# ngrok
+## ngrok
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ngrok.sh | bash
 
-# Disk
+# --- DISK ---
 sudo apt install -y sysstat
 sudo apt install -y iotop
 sudo apt install -y ncdu # 'du' TUI, Treesizeview in Linux
@@ -59,7 +64,7 @@ sudo apt install -y ncdu # 'du' TUI, Treesizeview in Linux
 # └────────────────────────────┘
 
 sudo apt install -y exiftool #Read metadata file
-sudo apt install -y ibus-unikey # # Type Vietnamese character
+sudo apt install -y ibus-unikey # Type Vietnamese character
 sudo apt install -y git
 sudo apt install -y youtube-dl # Youtube downloader (video)
 sudo apt install -y bless #  Editor for bin files
@@ -77,8 +82,10 @@ sudo apt install -y faker # Generate fake data (username, email, address, etc.)
 
 # YAML Values Extractor
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo bash
+
 # jtbl - JSON Table
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | sudo bash
+
 # ANSI Color
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ansi_color.sh | sudo bash
 
@@ -88,22 +95,24 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # │                                      │
 # └──────────────────────────────────────┘
 
-# Monitoring
+# --- MONITOR ---
 sudo apt install -y iftop
 sudo apt install -y iotop
 sudo apt install -y atop
 ## sysz (Systemd service manager)
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sysz.sh | bash
 
-# Network
+# --- NETWORK ---
+
 ## bandwhich
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bandwhich.sh | bash
+
 ## speedtest - Ping latency
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
 sudo apt-get install speedtest
 
-# Kernal Modules
-## kmon
+# --- KERNEL MANAGEMENT ---
+## kmon # View kernel's modules
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kmon.sh | bash
 
 # GPU
@@ -114,7 +123,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## tufw - TUI for UFW
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/tufw.sh | bash
 
-# System's processes
+# --- SYSTEM PROCESSES ---
 sudo apt install -y pv # View process for MySQL restore database
 sudo apt install -y strace
 sudo apt install -y file
@@ -127,18 +136,22 @@ sudo apt install -y htop
 # │       Cloud Platform       │
 # │                            │
 # └────────────────────────────┘
-## AWS
-### AWS CLI
+
+# --- AWS ---
+
+## AWS CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | bash
-### Stu - S3 Explorer
+
+## Stu - S3 Explorer TUI
 cargo install --locked stu
-### AWS Cost Explorer in CLI
+
+## AWS Cost Explorer CLI
 npm install -g aws-cost-cli
 
-## Azure CLI
+# --- Azure CLI ---
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | bash
 
-## GCP
+# --- GCP ---
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/gcp_cli.sh | bash
 
 
@@ -160,23 +173,32 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## Go/Golang
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/go.sh | bash
 
+## UV - Light-weight Python Package Manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Blogging Jekyll
 gem install bundler
 bundle install
-#bundle exec jekyll serve
+# bundle exec jekyll serve
 
-# Database Tools
+# ┌──────────────────┐
+# │                  │
+# │  Database Tools  │
+# │                  │
+# └──────────────────┘
+
 ## MySQL
 sudo apt install -y mysql-client
+
 ## Redis
-sudo apt install -y nodejs
-sudo apt install -y npm
 npm install -g redis-cli
+
 ## SQL Server (MSSQL) CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | bash
 
 ## Postgres
 sudo apt install -y postgresql-client # Already include pgdump, pg_restore, psql, etc.
+
 ## MongoDB
 ### Tools & Shell
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/mongodb_cli.sh | bash
@@ -217,6 +239,8 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | bash
 ## Terraform Visual (visualize TF dependency graph)
 npm install -g @terraform-visual/cli
+## Blast Radius (visualize TF dependency graph)
+pip install blastradius
 
 ## Terragrunt
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terragrunt.sh | bash
@@ -228,8 +252,10 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/vagrant.sh | bash
 
 # ---- GIT ----
+
 ## git filter-repo 
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/git_filter_repo.sh | bash
+
 ## glab - GitLab CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/glab.sh | bash
 
@@ -275,3 +301,17 @@ curl -sSfL https://get.anchore.io/grype | sudo bash -s -- -b /usr/local/bin
 ## Syft
 curl -sSfL https://get.anchore.io/syft | sudo bash -s -- -b /usr/local/bin
 
+
+# ┌───────────────────────┐
+# │                       │
+# │  AI Generative Tools  │
+# │                       │
+# └───────────────────────┘
+
+# ---- CHATBOT ----
+
+## Google Gemini
+npm install -g @google/gemini-cli
+
+## Claude
+curl -fsSL https://claude.ai/install.sh | bash

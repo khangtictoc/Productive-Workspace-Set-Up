@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] tufw command installed!"
+    echo "[CHECKED ✅] tufw command installed!"
 else
-    echo "- [CHECKED ✅] tufw command exists"
+    echo "[CHECKED ✅] tufw command exists"
 fi

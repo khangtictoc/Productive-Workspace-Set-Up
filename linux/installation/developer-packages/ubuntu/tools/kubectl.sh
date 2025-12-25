@@ -15,7 +15,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] kubectl command installed!"
+    echo "[CHECKED ✅] kubectl command installed!"
 else
-    echo "- [CHECKED ✅] kubectl command exists"
+    echo "[CHECKED ✅] kubectl command exists"
 fi

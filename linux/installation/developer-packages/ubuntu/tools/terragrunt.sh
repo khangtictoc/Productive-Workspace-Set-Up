@@ -14,8 +14,8 @@ then
         exit 1
     fi
     
-    echo "- [CHECKED ✅] terragrunt command installed!"
+    echo "[CHECKED ✅] terragrunt command installed!"
 else
-    echo "- [CHECKED ✅] terragrunt command exists"
+    echo "[CHECKED ✅] terragrunt command exists"
 fi
 

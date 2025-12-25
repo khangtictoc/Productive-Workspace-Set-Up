@@ -17,7 +17,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] jtbl command installed!"
+    echo "[CHECKED ✅] jtbl command installed!"
 else
-    echo "- [CHECKED ✅] jtbl command exists"
+    echo "[CHECKED ✅] jtbl command exists"
 fi

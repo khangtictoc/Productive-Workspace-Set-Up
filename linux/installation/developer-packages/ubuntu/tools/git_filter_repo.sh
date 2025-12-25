@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] git-filter-repo command installed!"
+    echo "[CHECKED ✅] git-filter-repo command installed!"
 else
-    echo "- [CHECKED ✅] git-filter-repo command exists"
+    echo "[CHECKED ✅] git-filter-repo command exists"
 fi

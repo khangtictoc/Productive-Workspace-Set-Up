@@ -12,7 +12,7 @@ then
         exit 1
     fi
     
-    echo "- [CHECKED ✅] nvtop command installed!"
+    echo "[CHECKED ✅] nvtop command installed!"
 else
-    echo "- [CHECKED ✅] nvtop command exists"
+    echo "[CHECKED ✅] nvtop command exists"
 fi

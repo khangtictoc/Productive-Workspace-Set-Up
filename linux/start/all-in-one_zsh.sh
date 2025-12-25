@@ -34,7 +34,7 @@ function source-dotfiles() {
     echo
 
     echo
-    echo "Convert EOL for OS compatibility"
+    echo "[INFO] Convert EOL for OS compatibility"
     find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
     echo
 
@@ -54,15 +54,15 @@ fi
 EOF
     fi
 
-echo -e "✅ ${GREEN}Dotfiles have been sourced successfully!${NC}"
+echo -e "${GREEN}[SUCCESS] ✅ Dotfiles have been sourced successfully!${NC}"
 }
 
 
 function setup-git--profile(){
-    echo "[Configure: Git Profile] Default Workspace"
+    echo "[INFO] Configuring Git Profile (Default Workspace) ... "
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$DEFAULT_GIT_PROFILE.sh" | bash
 
-    echo -e "Default profile ${GREEN}$DEFAULT_GIT_PROFILE${NC} is selected!"
+    echo -e "[INFO] Default profile ${GREEN}$DEFAULT_GIT_PROFILE${NC} is selected!"
     sleep 1
 }
 
@@ -80,7 +80,7 @@ function setup-git--hooks(){
     sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
     chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
-    echo -e "✅ Git hook has been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
+    echo -e "[INFO] ✅ Git hook has been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
 }
 
 function setup-git--alias(){
@@ -108,21 +108,30 @@ function shell-config--profile(){
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
-        echo -e "${GREEN}[UPDATE]${NC} Added 'wslview' as browser's view"
+        echo -e "[INFO] Update: Added 'wslview' as browser's view"
     else
-        echo -e "${GREEN}[EXIST]${NC} Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
+        echo -e "[INFO] Existed: Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
     fi
 
     # Ensure security for ~/.kube/config
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" ${SHELL_PROFILE}; then
             echo "chmod 600 \"$HOME/.kube/config\"" >> ${SHELL_PROFILE}
-            echo -e "${GREEN}[UPDATE]${NC} Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
+            echo -e "[INFO] Update: Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
         else
-            echo -e "${GREEN}[EXIST]${NC} Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
+            echo -e "[INFO] Existed: Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
         fi
     else
-        echo -e "${YELLOW}[SKIPPED]${NC} ~/.kube/config does not exist. No changes made."
+        echo -e "${YELLOW}[WARNING]${NC}Skipped! '~/.kube/config' does not exist. No changes made."
+    fi
+
+
+    # Add "$HOME/.local/bin" as executable path to PATH
+    if ! grep -Fxq 'export PATH="$HOME/.local/bin:$PATH"' ${SHELL_PROFILE}; then
+        echo "export PATH="$HOME/.local/bin:$PATH"" >> ${SHELL_PROFILE}
+        echo -e "[INFO] Update: Add "$HOME/.local/bin" as executable path to PATH"
+    else
+        echo -e "[INFO] Existed: Already added "$HOME/.local/bin" as executable path to PATH"
     fi
 }
 
@@ -136,7 +145,7 @@ function shell-config--motd(){
     MOTD_DIR="$HOME/.my-motd"
     if [ ! -d "$MOTD_DIR" ]; then
         mkdir -p "$MOTD_DIR"
-        echo "Created MOTD directory at $MOTD_DIR"
+        echo "[INFO] Created MOTD directory at $MOTD_DIR"
     fi
     
     case $option in
@@ -147,7 +156,7 @@ function shell-config--motd(){
             shell-config--motd--self-custom
             ;;
         *)
-            echo "No MOTD option provided or unrecognized option. Skipping MOTD setup."
+            echo -e "${YELLOW}[WARNING] No MOTD option provided or unrecognized option. Skipping MOTD setup.${NC}"
             ;;
     esac
 }
@@ -159,9 +168,9 @@ function shell-config--motd--self-custom(){
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATE]${NC} MOTD script has been sourced in $SHELL_PROFILE"
+        echo -e "[INFO] Update: MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "${GREEN}[EXIST]${NC} MOTD script is already sourced in $SHELL_PROFILE"
+        echo -e "[INFO] Existed: MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
@@ -198,18 +207,18 @@ function setup-command-autocompletion(){
 
 
     if grep -Fxq "$KUBECTL_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "${GREEN}[EXIST]${NC} Kubectl completion has already been configured! No changes"
+        echo -e "[INFO] Kubectl completion has already been configured! No changes"
     else
         echo "$KUBECTL_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATE]${NC} Kubectl completion has been configured!"
+        echo -e "[INFO] Kubectl completion has been configured!"
     fi
 
 
     if grep -Fxq "$HELM_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "${GREEN}[EXIST]${NC} Helm completion has already been configured! No changes"
+        echo -e "[INFO] Helm completion has already been configured! No changes"
     else
         echo "$HELM_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATE]${NC} Helm completion has been configured!"
+        echo -e "[INFO] Helm completion has been configured!"
     fi
 }
 
@@ -220,10 +229,10 @@ function main(){
     source-dotfiles
     setup-git
     shell-config
-    setup-command-autocompletion
+    setup-command-ion
 
     echo
-    echo "Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes."
+    echo "${YELLOW}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
 }
 
 main "$@" 

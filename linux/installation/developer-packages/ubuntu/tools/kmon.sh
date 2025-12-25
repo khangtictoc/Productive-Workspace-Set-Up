@@ -16,7 +16,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] kmon command installed!"
+    echo "[CHECKED ✅] kmon command installed!"
 else
-    echo "- [CHECKED ✅] kmon command exists"
+    echo "[CHECKED ✅] kmon command exists"
 fi

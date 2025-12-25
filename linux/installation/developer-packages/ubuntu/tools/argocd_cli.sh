@@ -14,7 +14,7 @@ then
         exit 1
     fi
 
-    echo "- [CHECKED ✅] argocd command installed!"
+    echo "[CHECKED ✅] argocd command installed!"
 else
-    echo "- [CHECKED ✅] argocd command exists"
+    echo "[CHECKED ✅] argocd command exists"
 fi
