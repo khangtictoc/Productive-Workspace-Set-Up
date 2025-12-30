@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -e
 
 function init-config(){
     SHELL_PROFILE="$HOME/.zshrc"
@@ -18,6 +20,20 @@ function init-config(){
         "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/cloud/aws/.aws_aliases"
         "https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh"
     )
+}
+
+function zsh-theme-install(){
+    echo
+    echo "============ ZSH THEME INSTALLATION ============"
+    curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/install.sh | bash
+    curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/configure-zsh.sh | bash
+}
+
+function zsh-plugins-install(){
+    echo
+    echo "============ ZSH PLUGINS INSTALLATION ============"
+    curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/plugins/fzf/install.sh | bash 
+    curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/shell/zsh/plugins.sh | bash
 }
 
 function source-dotfiles() {
@@ -226,6 +242,8 @@ function main(){
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
     init-config
+    zsh-theme-install
+    zsh-plugins-install
     source-dotfiles
     setup-git
     shell-config

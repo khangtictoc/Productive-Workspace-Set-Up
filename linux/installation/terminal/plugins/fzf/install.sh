@@ -1,4 +1,6 @@
-#! /bin/bash
+#!/usr/bin/env bash
+
+rc_file=$(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/get_shell_startup_filename.sh | bash)
 
 if command -v apt >/dev/null 2>&1; then
     echo "[CHECKED ✅] apt found."
@@ -23,30 +25,6 @@ y
 y
 y
 EOF
-
-# Detect current shell
-current_shell=$(basename "$SHELL")
-
-# Determine RC file
-case "$current_shell" in
-    zsh)
-        rc_file="${ZDOTDIR:-$HOME}/.zshrc"
-        ;;
-    bash)
-        rc_file="$HOME/.bashrc"
-        ;;
-    *)
-        echo "Unsupported shell: $current_shell"
-        exit 1
-        ;;
-esac
-
-
-# Exit if unsupported shell
-if [[ -z "$rc_file" ]]; then
-    echo "Unsupported shell: $current_shell"
-    exit 1
-fi
 
 # Check RC file existence
 if [[ ! -f "$rc_file" ]]; then
