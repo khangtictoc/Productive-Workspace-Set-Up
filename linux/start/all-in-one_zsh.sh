@@ -93,7 +93,7 @@ function setup-git--hooks(){
     git config --global include.path "~/$GITCONFIG_DIRNAME/alias/git_aliases.txt"
 
     wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push" -O ~/$GITCONFIG_DIRNAME/hooks/pre-push
-    sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
+    #sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
     chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
     echo -e "[INFO] ✅ Git hook has been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
@@ -247,7 +247,7 @@ function main(){
     source-dotfiles
     setup-git
     shell-config
-    setup-command-ion
+    setup-command-autocompletion
 
     echo
     echo "${YELLOW}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"

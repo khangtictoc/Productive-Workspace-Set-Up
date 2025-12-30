@@ -12,7 +12,7 @@ if [ ! -f ~/.zshrc ]; then
 fi
 
 # Write the theme configuration to .zshrc
-if grep -Fxq "OH_MY_POSH_THEME" ~/.zshrc; then
+if grep -q "OH_MY_POSH_THEME" ~/.zshrc; then
     echo "ZSH file config has already set the OH_MY_POSH_THEME variable. NO MODIFY !!!"
 else
     cat << 'EOF' >> ~/.zshrc
