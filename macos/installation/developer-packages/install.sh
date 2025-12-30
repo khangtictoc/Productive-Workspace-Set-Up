@@ -14,6 +14,8 @@ brew install git-lfs
 brew install unzip
 brew install python3
 
+brew install tmux
+
 # General
 brew install unzip
 

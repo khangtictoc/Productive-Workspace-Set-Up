@@ -1,7 +1,23 @@
 #! /bin/bash
 
-sudo apt install git -y
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if command -v apt >/dev/null 2>&1; then
+    echo "[CHECKED ✅] apt found."
+    sudo apt update
+    sudo apt install -y git
+else
+    echo "[WARNING ⚠️] This is not an Ubuntu-based system. No 'apt' found!"
+fi
+
+FZF_DIR="$HOME/.fzf"
+
+if [[ ! -d "$FZF_DIR" ]] || [[ -z "$(ls -A "$FZF_DIR" 2>/dev/null)" ]]; then
+    echo "Installing fzf..."
+    rm -rf "$FZF_DIR"
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+else
+    echo "fzf already exists — skipping clone."
+fi
+
 ~/.fzf/install << EOF
 y
 y
@@ -12,13 +28,19 @@ EOF
 current_shell=$(basename "$SHELL")
 
 # Determine RC file
-if [[ "$current_shell" == "zsh" ]]; then
-    rc_file="$HOME/.zshrc"
-fi
+case "$current_shell" in
+    zsh)
+        rc_file="${ZDOTDIR:-$HOME}/.zshrc"
+        ;;
+    bash)
+        rc_file="$HOME/.bashrc"
+        ;;
+    *)
+        echo "Unsupported shell: $current_shell"
+        exit 1
+        ;;
+esac
 
-if [[ "$current_shell" == "bash" ]]; then
-    rc_file="$HOME/.bashrc"
-fi
 
 # Exit if unsupported shell
 if [[ -z "$rc_file" ]]; then
@@ -53,4 +75,4 @@ if [[ "$isBSDsed" == true ]]; then
     sed -i '' '/^plugins=(/ s/)/ fzf)/' "$rc_file"
 fi
 
-echo "Updated $rc_file"
+echo "Updated $rc_file successfully ✅"
