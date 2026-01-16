@@ -57,14 +57,14 @@ def main():
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('p', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('d', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
         ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
         ('svc', 'service', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
-        ('ing', 'ingress', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('i', 'ingress', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('cm', 'configmap', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('sec', 'secret', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
-        ('no', 'nodes', ['g', 'd'], ['sys']),
+        ('n', 'nodes', ['g', 'd'], ['sys']),
         ('ns', 'namespace', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         # Personal use
         ('pv', 'persistentvolumes', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),

@@ -13,13 +13,14 @@ SHELLRC_FILE="$HOME/.zshrc"
 
 sudo apt install -y unzip
 sudo apt install -y python3-pip
-sudo apt install -y linux-tools-generic # perf
+sudo apt install -y linux-tools-generic # 'perf' command
 sudo apt install -y tree
 sudo apt install -y jq # JSON Values Extractor
 sudo apt install -y chrony # NTP Client
 sudo apt install -y wget
 sudo apt install -y curl
 sudo apt install -y dos2unix
+sudo apt install -y file
 
 
 # --- WSL ---
@@ -63,14 +64,13 @@ sudo apt install -y ncdu # 'du' TUI, Treesizeview in Linux
 # │                            │
 # └────────────────────────────┘
 
-sudo apt install -y exiftool #Read metadata file
-sudo apt install -y ibus-unikey # Type Vietnamese character
-sudo apt install -y git
-sudo apt install -y youtube-dl # Youtube downloader (video)
-sudo apt install -y bless #  Editor for bin files
+sudo apt install -y exiftool # Read file's metadata
+sudo apt install -y ibus-unikey # Type 'Vietnamese' character
+sudo apt install -y git # Git version control
+sudo apt install -y youtube-dl # Youtube downloader
+sudo apt install -y bless #  Bin files editor
 sudo apt install -y diodon # Save clipboard history
-sudo apt install -y neofetch # Show system in4 (pretty)
-sudo apt install -y htop # show process (pretty)
+sudo apt install -y neofetch # Show system info (pretty)
 sudo apt install -y lshw # Display hardware info
 sudo apt install -y tilix # Add multi-terminal in 1 display
 sudo apt install -y ripgrep # ripgrep - Search content in multiples files or folders
@@ -123,10 +123,9 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## tufw - TUI for UFW
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/tufw.sh | bash
 
-# --- SYSTEM PROCESSES ---
-sudo apt install -y pv # View process for MySQL restore database
+# --- SYSTEM PROCESSES/LINUX SYSCALL ---
+sudo apt install -y pv # i.e View process for MySQL restore database
 sudo apt install -y strace
-sudo apt install -y file
 sudo apt install -y htop
 
 
@@ -148,6 +147,9 @@ cargo install --locked stu
 ## AWS Cost Explorer CLI
 npm install -g aws-cost-cli
 
+## AWS FinOps Dashboard
+pip install aws-finops-dashboard
+
 # --- Azure CLI ---
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | bash
 
@@ -167,7 +169,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## Rust (+ Cargo)
 curl https://sh.rustup.rs -sSf | bash
 
-## NodeJS
+## NodeJS + NPM
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nodejs.sh | bash
 
 ## Go/Golang
@@ -315,3 +317,7 @@ npm install -g @google/gemini-cli
 
 ## Claude
 curl -fsSL https://claude.ai/install.sh | bash
+
+# --- LLM ---
+## Ollama
+curl -fsSL https://ollama.com/install.sh | sh
