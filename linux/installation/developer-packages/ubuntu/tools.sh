@@ -218,8 +218,17 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## Dive - Compare Docker image's difference
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/dive.sh | bash
 
+## Trivy - Scan Docker image vulnerabilities (Other: Scan SBOM, Filesystem, Git Repo, ...)
+curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo bash -s -- -b /usr/local/bin
+
 ## Kubectl - Kubernetes CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl.sh | bash
+
+## Kube-linter
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kube_linter.sh | bash
+
+## Kubesec
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubesec.sh | bash
 
 ## K9S
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/k9s.sh | bash
@@ -290,7 +299,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 # ---- VULNERABILITY SCANNER ----
 
-## Grype - Work with Syft (SBOM tool)
+## Grype - Scan SBOM (Work with Syft)
 curl -sSfL https://get.anchore.io/grype | sudo bash -s -- -b /usr/local/bin
 
 # ┌────────────────────────────┐
@@ -300,7 +309,7 @@ curl -sSfL https://get.anchore.io/grype | sudo bash -s -- -b /usr/local/bin
 # └────────────────────────────┘
 
 # ---- SBOM TOOLS ----
-## Syft
+## Syft (SBOM Generator)
 curl -sSfL https://get.anchore.io/syft | sudo bash -s -- -b /usr/local/bin
 
 
