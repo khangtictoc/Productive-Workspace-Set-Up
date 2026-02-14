@@ -6,6 +6,7 @@ function init-config(){
     SHELL_PROFILE="$HOME/.zshrc"
     GITCONFIG_DIRNAME=git_config
     DOTFILES_DIRNAME=dotfiles
+    MOTD_DIR="$HOME/.my-motd"
     DEFAULT_GIT_PROFILE=khangtictoc
     DOTFILES_URLS=(
         "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.extension_aliases"
@@ -40,17 +41,20 @@ function source-dotfiles() {
     ## SOURCE DOTFILES
     echo
     echo "============ SOURCING DOTFILES ============"
+    echo
     mkdir -p ~/$DOTFILES_DIRNAME
 
     for url in "${DOTFILES_URLS[@]}"; do
         filename=$(basename "$url")
-        echo "🔨 Downloading $filename..."
+        echo "[INFO] Downloading 🔨 $filename..."
         wget -q "$url" -O ~/$DOTFILES_DIRNAME/$filename
     done
     echo
 
     echo
     echo "[INFO] Convert EOL for OS compatibility"
+    echo
+
     find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
     echo
 
@@ -70,7 +74,7 @@ fi
 EOF
     fi
 
-echo -e "${GREEN}[SUCCESS] ✅ Dotfiles have been sourced successfully!${NC}"
+echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Dotfiles have been sourced successfully!${NC}"
 }
 
 
@@ -78,13 +82,13 @@ function setup-git--profile(){
     echo "[INFO] Configuring Git Profile (Default Workspace) ... "
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$DEFAULT_GIT_PROFILE.sh" | bash
 
-    echo -e "[INFO] Default profile ${GREEN}$DEFAULT_GIT_PROFILE${NC} is selected!"
+    echo -e "[INFO] Default profile ${CYAN}$DEFAULT_GIT_PROFILE${NC} is selected!"
     sleep 1
 }
 
 function setup-git--hooks(){
     echo
-    echo "[Configure: Client-side Git Hook] Prevent critical/leaked data"
+    echo "[INFO] Configure client-side Git Hook - Prevent critical/leaked data"
     mkdir -p ~/$GITCONFIG_DIRNAME/hooks
 
     git config --global core.hooksPath ~/$GITCONFIG_DIRNAME/hooks
@@ -96,7 +100,7 @@ function setup-git--hooks(){
     #sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
     chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
-    echo -e "[INFO] ✅ Git hook has been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Git hook has been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
 }
 
 function setup-git--alias(){
@@ -106,7 +110,7 @@ function setup-git--alias(){
     mkdir -p ~/$GITCONFIG_DIRNAME/alias/
     wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
 
-    echo -e "✅ Git aliases have been configured at path ${YELLOW}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Git aliases have been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
 }
 
 function setup-git(){
@@ -124,30 +128,30 @@ function shell-config--profile(){
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
-        echo -e "[INFO] Update: Added 'wslview' as browser's view"
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Added 'wslview' as browser's view"
     else
-        echo -e "[INFO] Existed: Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
+        echo -e "[INFO] Existed ℹ️ - Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
     fi
 
     # Ensure security for ~/.kube/config
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" ${SHELL_PROFILE}; then
             echo "chmod 600 \"$HOME/.kube/config\"" >> ${SHELL_PROFILE}
-            echo -e "[INFO] Update: Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
+            echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
         else
-            echo -e "[INFO] Existed: Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
+            echo -e "[INFO] Existed ℹ️ - Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
         fi
     else
-        echo -e "${YELLOW}[WARNING]${NC}Skipped! '~/.kube/config' does not exist. No changes made."
+        echo -e "${YELLOW}[WARNING]${NC} Skipped! ⚠️ - '~/.kube/config' does not exist. No changes made."
     fi
 
 
     # Add "$HOME/.local/bin" as executable path to PATH
     if ! grep -Fxq 'export PATH="$HOME/.local/bin:$PATH"' ${SHELL_PROFILE}; then
         echo "export PATH="$HOME/.local/bin:$PATH"" >> ${SHELL_PROFILE}
-        echo -e "[INFO] Update: Add "$HOME/.local/bin" as executable path to PATH"
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Add "$HOME/.local/bin" as executable path to PATH"
     else
-        echo -e "[INFO] Existed: Already added "$HOME/.local/bin" as executable path to PATH"
+        echo -e "[INFO] Existed ℹ️ - Already added "$HOME/.local/bin" as executable path to PATH"
     fi
 }
 
@@ -158,10 +162,9 @@ function shell-config--motd(){
 
     echo
     echo "============ MOTD ============"
-    MOTD_DIR="$HOME/.my-motd"
     if [ ! -d "$MOTD_DIR" ]; then
         mkdir -p "$MOTD_DIR"
-        echo "[INFO] Created MOTD directory at $MOTD_DIR"
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Created MOTD directory at $MOTD_DIR"
     fi
     
     case $option in
@@ -182,31 +185,31 @@ function shell-config--motd--self-custom(){
     chmod +x "$MOTD_DIR/motd.sh"
 
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
-    if ! grep -Fxq "" "$SHELL_PROFILE"; then
+    if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "[INFO] Update: MOTD script has been sourced in $SHELL_PROFILE"
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "[INFO] Existed: MOTD script is already sourced in $SHELL_PROFILE"
+        echo -e "[INFO] Existed ℹ️ - MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
 function shell-config--motd--neofetch(){
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
-    echo "[INFO] Neofetch MOTD script downloaded!"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Neofetch MOTD script downloaded!"
 
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "$MOTD_DIR/cat_in_the_box.txt"
-    echo "[INFO] ASCII art theme downloaded!"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - ASCII art theme downloaded!"
 
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" -o "$HOME/.config/neofetch/config.conf"
-    echo "[INFO] Config Installed"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Config Installed"
     
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/cat_in_the_box.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "${GREEN}[UPDATE]${NC} Neofetch MOTD script has been sourced in $SHELL_PROFILE"
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Neofetch MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "${GREEN}[EXIST]${NC} Neofetch MOTD script is already sourced in $SHELL_PROFILE"
+        echo -e "[INFO] Existed ℹ️ - Neofetch MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
@@ -215,28 +218,38 @@ function shell-config(){
     shell-config--motd "neofetch"
 }
 
-function setup-command-autocompletion(){
+function setup-command-autocompletion() {
     echo
     echo "============ COMMAND AUTOCOMPLETION ============"
-    KUBECTL_COMPL_TXT="source <(kubectl completion zsh)"
-    HELM_COMPL_TXT="source <(helm completion zsh)"
 
+    # Define list (array)
+    COMPLETIONS=(
+        "source <(kubectl completion zsh)"
+        "source <(helm completion zsh)"
+        "source <(oh-my-posh completion zsh)"
+    )
 
-    if grep -Fxq "$KUBECTL_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "[INFO] Kubectl completion has already been configured! No changes"
-    else
-        echo "$KUBECTL_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "[INFO] Kubectl completion has been configured!"
-    fi
+    # Optional: Friendly names for logging
+    NAMES=(
+        "Kubectl"
+        "Helm"
+        "Oh-My-Posh"
+    )
 
+    # Loop through array
+    for i in "${!COMPLETIONS[@]}"; do
+        LINE="${COMPLETIONS[$i]}"
+        NAME="${NAMES[$i]}"
 
-    if grep -Fxq "$HELM_COMPL_TXT" "$SHELL_PROFILE"; then
-        echo -e "[INFO] Helm completion has already been configured! No changes"
-    else
-        echo "$HELM_COMPL_TXT" >> "$SHELL_PROFILE"
-        echo -e "[INFO] Helm completion has been configured!"
-    fi
+        if grep -Fxq "$LINE" "$SHELL_PROFILE"; then
+            echo "[INFO] Existed ℹ️ - $NAME completion has already been configured! No changes"
+        else
+            echo "$LINE" >> "$SHELL_PROFILE"
+            echo -e "[INFO] ${GREEN}Successful${NC} ✅ - $NAME completion has been configured!"
+        fi
+    done
 }
+
 
 function main(){
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
@@ -250,7 +263,7 @@ function main(){
     setup-command-autocompletion
 
     echo
-    echo "${YELLOW}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
+    echo -e "${CYAN}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
 }
 
 main "$@" 

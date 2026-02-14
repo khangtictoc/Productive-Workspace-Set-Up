@@ -7,17 +7,17 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias rebootsafe='sudo shutdown -r now'
-alias shutdownsafe='sudo shutdown -P now'
+alias reboot='sudo shutdown -r now'
+alias shutdown='sudo shutdown -P now'
 
 alias hi='history'
-alias h1='history 10'
-alias h2='history 20'
-alias h3='history 30'
-alias hii='history'
-alias hi1='history -i 10'
-alias hi2='history -i 20'
-alias hi3='history -i 30'
+alias hi10='history | tail -10'
+alias hi20='history | tail -20'
+alias hi30='history | tail -30'
+alias hii='history -i'
+alias hii10='history -i | tail -10'
+alias hii20='history -i | tail -20'
+alias hii30='history -i | tail -30'
 
 alias h10='head -10'
 alias h100='head -100'
@@ -28,7 +28,7 @@ alias psmem="ps auxf | sort -nr -k 4"
 alias psmem10="ps auxf | sort -nr -k 4 | head -10"
 alias pscpu="ps auxf | sort -nr -k 3"
 alias pscpu10="ps auxf | sort -nr -k 3 | head -10"
-alias cpuname='cat /proc/cpuinfo | grep "name"'
+alias cpu-name='cat /proc/cpuinfo | grep "name"'
 
 alias bashreload="source ~/.bashrc"
 alias zshreload="source ~/.zshrc"
@@ -36,7 +36,11 @@ alias fishreload="source ~/.config/fish/config.fish"
 alias bashedit="vim ~/.bashrc"
 alias zshedit="vim ~/.zshrc"
 alias fishedit="vim ~/.config/fish/config.fish"
+
 alias upgrade-update='apt-get update -y && apt-get upgrade -y'
+alias update-upgrade='apt-get update -y && apt-get upgrade -y'
+alias update='apt-get update -y'
+alias upgrade='apt-get upgrade -y'
 
 # Alias's for archives
 alias mktar='tar -cvf'
@@ -50,11 +54,22 @@ alias ungz='tar -xvzf'
 alias localip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias port-listening='netstat -plantu | grep LISTEN'
 
+# System Pager Management
+
+function nopager-set() {
+    export SYSTEMD_PAGER=cat
+}
+
+function nopager-unset() {
+    unset SYSTEMD_PAGER
+}
 
 # Systemd
+
 alias sys='systemctl'
 alias sys-st='systemctl status'
-alias sys-lu='systemctl list-units --type=service --state='
+alias sys-ls='systemctl list-units'
+alias sys-lss='systemctl list-units --type=service --state='
 alias sys-rs='systemctl restart'
 alias sys-stop='systemctl stop'
 alias sys-start='systemctl start'

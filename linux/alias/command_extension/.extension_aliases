@@ -3,12 +3,3 @@ alias weather='curl wttr.in'
 
 # Get public IP address
 alias publicip='echo $(wget -qO - https://api.ipify.org)'
-
-# Create Jekyll post with format $date--$topic--$postname.md
-
-function mkpost() {
-    POST_NAME="$1"
-    TITLE="${POST_NAME#*--}"
-    NEW_NAME="$(date +%Y-%m-%d)--$TITLE"
-    mv "$POST_NAME" "$NEW_NAME"
-}

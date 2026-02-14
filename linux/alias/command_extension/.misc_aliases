@@ -1,1 +1,17 @@
-alias bat-clean='bat --paging=never --style=plain bat.sh'
+alias bat-clean='bat --paging=never --style=plain'
+
+# Create Jekyll post with format $date--$topic--$postname.md
+
+function mkpost() {
+    POST_NAME="$1"
+    TITLE="$(date +%Y-%m-%d)--$POST_NAME"
+    touch "$TITLE.md"
+
+    echo "---" >> "$TITLE.md"
+    echo "title: [DummyValue]" >> "$TITLE.md"
+    echo "author: [DummyValue]" >> "$TITLE.md"
+    echo "date: $(date +%Y-%m-%d\ %H:%M:%S\ +0700)" >> "$TITLE.md"
+    echo "categories: [DummyValue1, DummyValue2]" >> "$TITLE.md"
+    echo "tags: [DummyValue1, DummyValue2]" >> "$TITLE.md"
+    echo "---" >> "$TITLE.md"
+}
