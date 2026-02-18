@@ -172,6 +172,10 @@ curl https://sh.rustup.rs -sSf | bash
 ## NodeJS + NPM
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nodejs.sh | bash
 
+## Java + Maven
+sudo apt install openjdk-21-jdk
+
+
 ## Go/Golang
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/go.sh | bash
 

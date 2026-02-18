@@ -9,3 +9,7 @@ function osversion {
 function ospatch {
     Get-HotFix | Select-Object HotFixID, Description, InstalledOn
 }
+
+function volume-list {
+    Get-Volume | Select-Object DriveLetter, FileSystemLabel, FileSystem, Size, FreeSpace
+}
