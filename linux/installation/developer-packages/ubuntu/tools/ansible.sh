@@ -1,11 +1,11 @@
 #! /bin/bash
 
-VERSION="6.7.0"
+ANSIBLE_VERSION="6.7.0"
 
 if ! command -v ansible 2>&1 >/dev/null
 then
 
-    pip install ansible==$VERSION
+    pip install ansible==$ANSIBLE_VERSION
 
     # Add "$HOME/.local/bin" as executable path to PATH
     if ! grep -Fxq 'export PATH="$HOME/.local/bin:$PATH"' ${SHELL_PROFILE}; then

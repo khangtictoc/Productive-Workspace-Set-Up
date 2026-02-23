@@ -1,12 +1,12 @@
 #! /bin/bash
 
-VERSION="v2.14.2"
+KUBESEC_VERSION="v2.14.2"
 
 if ! command -v kubesec 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] kubesec"
     # kubesec - Kubernetes CLI
-    curl  -LO "https://github.com/controlplaneio/kubesec/releases/download/$VERSION/kubesec_linux_amd64.tar.gz"
+    curl  -LO "https://github.com/controlplaneio/kubesec/releases/download/$KUBESEC_VERSION/kubesec_linux_amd64.tar.gz"
     tar -xzf kubesec_linux_amd64.tar.gz
     sudo cp kubesec /usr/local/bin/kubesec
     sudo chmod +x /usr/local/bin/kubesec

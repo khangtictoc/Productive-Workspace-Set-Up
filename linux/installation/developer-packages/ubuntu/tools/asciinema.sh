@@ -1,6 +1,6 @@
 #! /bin/bash
 
-VERSION="v3.0.1"
+ASCIINEMA_VERSION="v3.0.1"
 
 if ! command -v asciinema 2>&1 >/dev/null
 then

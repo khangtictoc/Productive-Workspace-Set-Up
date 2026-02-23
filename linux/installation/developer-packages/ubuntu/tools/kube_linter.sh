@@ -1,12 +1,12 @@
 #! /bin/bash
 
-VERSION="v0.8.1"
+KUBE_LINTER_VERSION="v0.8.1"
 
 if ! command -v kube-linter 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] kube-linter"
     # kube-linter - Kubernetes CLI
-    curl  -LO "https://github.com/stackrox/kube-linter/releases/download/$VERSION/kube-linter-linux.tar.gz"
+    curl  -LO "https://github.com/stackrox/kube-linter/releases/download/$KUBE_LINTER_VERSION/kube-linter-linux.tar.gz"
     tar -xzf kube-linter-linux.tar.gz
     sudo cp kube-linter /usr/local/bin/kube-linter
     sudo chmod +x /usr/local/bin/kube-linter
