@@ -21,6 +21,7 @@ sudo apt install -y wget
 sudo apt install -y curl
 sudo apt install -y dos2unix
 sudo apt install -y file
+sudo apt install -y ffmpeg # Video operations
 
 
 # --- WSL ---
