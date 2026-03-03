@@ -1,17 +1,17 @@
 #! /bin/bash
 
-HELM_VERSION=v3.16.4
+HELM_VERSION=3.16.4
 
 if ! command -v helm 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Helm"
 
-    wget --progress=dot:giga https://get.helm.sh/helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
-    tar -zxvf helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
+    wget --progress=dot:giga https://get.helm.sh/helm-v${HELM_VERSION:-3.16.4}-linux-amd64.tar.gz
+    tar -zxvf helm-v${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
     sudo mv linux-amd64/helm /usr/local/bin/helm
 
     echo "[INFO] >>>> Clean Up"
-    rm -f helm-${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
+    rm -f helm-v${HELM_VERSION:-v3.16.4}-linux-amd64.tar.gz
     rm -drf linux-amd64
 
     if ! command -v helm &> /dev/null; then
