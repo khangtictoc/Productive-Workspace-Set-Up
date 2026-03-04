@@ -6,11 +6,18 @@ if ! command -v go 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Go"
     wget --progress=dot:giga "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz"
-    tar xfvz go$GO_VERSION.linux-amd64.tar.gz
-    sudo cp go/bin/* /usr/local/bin/
+    
+    sudo rm -rf /usr/local/go  # remove any previous install
+    sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz  # extract full toolchain
+    
+    # symlink the binary so it's on PATH
+    sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go
+    sudo ln -sf /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
     echo "[INFO] >>>> Clean Up"
-    rm -drf go$GO_VERSION.linux-amd64.tar.gz go
+    rm -f go$GO_VERSION.linux-amd64.tar.gz  # only remove the tarball
+
+    export GOROOT=/usr/local/go  # set for current session
 
     if ! command -v go &> /dev/null; then
         echo "[FAIL ❌] go installation failed!"
