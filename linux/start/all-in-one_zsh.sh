@@ -70,7 +70,7 @@ export PATH="$M2_HOME/bin:$PATH"
 
 function prerequite-install(){
     sudo apt update
-    sudo apt install -y dos2unix zsh curl unzip
+    sudo apt install -y dos2unix zsh curl unzip vim
 }
 
 function zsh-theme-install(){
@@ -308,7 +308,7 @@ function main(){
     echo "============ PREREQUITES INSTALLTIONS ============"
     echo
     prerequite-install
-    
+
     echo
     echo "============ IMPORT EXTERNAL LIBS ============"
     echo

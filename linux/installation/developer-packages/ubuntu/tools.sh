@@ -206,9 +206,20 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 ## Postgres
 sudo apt install -y postgresql-client # Already include pgdump, pg_restore, psql, etc.
 
+# ┌──────────────────────────────┐
+# │                              │
+# │       Developer Tools        │
+# │                              │
+# └──────────────────────────────┘
+
+# ---- AI/Machine Learning/Deep Learning ----
+
+## Anacoda
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/mongodb_cli.sh | bash
+
 ## MongoDB
 ### Tools & Shell
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/mongodb_cli.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/annacoda.sh | bash
 
 # ┌────────────────────────────┐
 # │                            │
