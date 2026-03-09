@@ -1,8 +1,6 @@
 #! /bin/bash
 
-# Note: Remember to set $SHELLRC_FILE, i.e '$HOME/.bashrc'. Depend on your favorite shell
-
-set -x
+# Note: Remember to "export $SHELLRC_FILE", i.e '$HOME/.bashrc'. Depend on your favorite shell
 
 # Install 'Krew'
 
