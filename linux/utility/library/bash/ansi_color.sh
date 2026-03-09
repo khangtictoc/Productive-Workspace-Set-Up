@@ -34,3 +34,23 @@ function init-ansicolor() {
     # Reset / No Color
     NC='\033[0m'
 }
+
+function log_info(){
+    echo $1
+}
+
+function log_success(){
+    echo -e "${GREEN}[SUCCESS] $1${NC}"
+}
+
+function log_warning(){
+    echo -e "${YELLOW}[WARN] $1${NC}"
+}
+
+function log_error(){
+    echo -e "${RED}[ERROR] $1${NC}"
+}
+
+function log_highlight(){
+    echo -e "${CYAN}$1${NC}"
+}

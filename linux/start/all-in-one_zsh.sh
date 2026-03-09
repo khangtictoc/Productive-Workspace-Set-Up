@@ -9,17 +9,19 @@ GITCONFIG_DIRNAME=git_config
 DOTFILES_DIRNAME=dotfiles
 MOTD_DIR="$HOME/.my-motd"
 DEFAULT_GIT_PROFILE=khangtictoc
+GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
+
 DOTFILES_URLS=(
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.extension_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.misc_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/.git_aliases"
-    "https://raw.githubusercontent.com/khangatmercatus/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/helm-aliases/.helm_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/system-aliases/.system_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terraform_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terragrunt_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/docker/.docker_aliases"
-    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/cloud/aws/.aws_aliases"
+    "$GIT_ALIAS_FOLDER_URL/command_extension/.extension_aliases"
+    "$GIT_ALIAS_FOLDER_URL/command_extension/.misc_aliases"
+    "$GIT_ALIAS_FOLDER_URL/git/.git_aliases"
+    "$GIT_ALIAS_FOLDER_URL/kubernetes/helm-aliases/.helm_aliases"
+    "$GIT_ALIAS_FOLDER_URL/kubernetes/kubectl-aliases/.kubectl_aliases"
+    "$GIT_ALIAS_FOLDER_URL/system-aliases/.system_aliases"
+    "$GIT_ALIAS_FOLDER_URL/iac/terraform/.terraform_aliases"
+    "$GIT_ALIAS_FOLDER_URL/iac/terraform/.terragrunt_aliases"
+    "$GIT_ALIAS_FOLDER_URL/kubernetes/docker/.docker_aliases"
+    "$GIT_ALIAS_FOLDER_URL/cloud/aws/.aws_aliases"
     "https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh"
 )
 
@@ -27,7 +29,7 @@ DOTFILES_SOURCE_SCRIPT="
 
 # --- SOURCE DOTFILES SCRIPT ----------------------------
 
-# Source dotfiles if the shell is interactive
+# Source dotfiles if the shell is 'interactive'
 if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
     for file in ~/$DOTFILES_DIRNAME/{*,.*}; do
@@ -66,50 +68,47 @@ export PATH="$M2_HOME/bin:$PATH"
 
 # --- Functions  --------------------------
 
+function prerequite-install(){
+
+}
+
 function zsh-theme-install(){
-    echo
-    echo "============ ZSH THEME INSTALLATION ============"
     curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/install.sh | bash
     curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/configure-zsh.sh | bash
 }
 
 function zsh-plugins-install(){
-    echo
-    echo "============ ZSH PLUGINS INSTALLATION ============"
     curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/plugins/fzf/install.sh | bash 
     curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/shell/zsh/plugins.sh | bash
 }
 
+## SOURCE DOTFILES
 function source-dotfiles() {
-    ## SOURCE DOTFILES
-    echo
-    echo "============ SOURCING DOTFILES ============"
-    echo
+    
+    echo "[INFO] Downloading Dotfiles ..."
     mkdir -p ~/$DOTFILES_DIRNAME
 
     for url in "${DOTFILES_URLS[@]}"; do
         filename=$(basename "$url")
-        echo "[INFO] Downloading 🔨 $filename..."
+        echo "- Downloading 🔨 $filename..."
         wget -q "$url" -O ~/$DOTFILES_DIRNAME/$filename
     done
     echo
 
-    echo
-    echo "[INFO] Convert EOL for OS compatibility"
-    echo
-
+    echo "[INFO] Convert Files For Linux compatibility"
     find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
-    echo
 
+    echo "[INFO] Add Script For Shell Startup"
     if ! grep -Fxq '# --- SOURCE DOTFILES SCRIPT ----------------------------' $SHELL_PROFILE; then
-        echo >> $SHELL_PROFILE
-
         cat <<EOF >> $SHELL_PROFILE
 $DOTFILES_SOURCE_SCRIPT
 EOF
+        log_success "✅ - Dotfiles have been sourced successfully!${NC}"
+    else
+        log_success "✅ - Dotfiles have already been sourced!${NC}"
     fi
 
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Dotfiles have been sourced successfully!${NC}"
+    
 }
 
 
@@ -117,7 +116,7 @@ function setup-git--profile(){
     echo "[INFO] Configuring Git Profile (Default Workspace) ... "
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$DEFAULT_GIT_PROFILE.sh" | bash
 
-    echo -e "[INFO] Default profile ${CYAN}$DEFAULT_GIT_PROFILE${NC} is selected!"
+    log_info "Default profile ${CYAN}$DEFAULT_GIT_PROFILE${NC} is selected!"
     sleep 1
 }
 
@@ -135,7 +134,7 @@ function setup-git--hooks(){
     #sudo chown $(whoami):$(whoami) ~/$GITCONFIG_DIRNAME/hooks/pre-push
     chmod +x ~/$GITCONFIG_DIRNAME/hooks/pre-push
 
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Git hook has been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
+    log_success "✅ - Git hook has been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
 }
 
 function setup-git--alias(){
@@ -143,14 +142,12 @@ function setup-git--alias(){
     echo "[Configure: Git Aliases] Manual script"
 
     mkdir -p ~/$GITCONFIG_DIRNAME/alias/
-    wget -q "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
+    wget -q "$GIT_ALIAS_FOLDER_URL/git/git_aliases.txt" -O ~/$GITCONFIG_DIRNAME/alias/git_aliases.txt
 
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Git aliases have been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
+    log_success "✅ - Git aliases have been configured at path ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
 }
 
 function setup-git(){
-    echo
-    echo "============ GIT ============"
     setup-git--profile
     setup-git--hooks
     setup-git--alias
@@ -163,30 +160,30 @@ function shell-config--profile(){
     # Allow exposing browser in terminal
     if ! grep -Fxq "export BROWSER=wslview" ${SHELL_PROFILE}; then
         echo "export BROWSER=wslview" >> ${SHELL_PROFILE}
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Added 'wslview' as browser's view"
+        log_success "✅ - Added 'wslview' as browser's view"
     else
-        echo -e "[INFO] Existed ℹ️ - Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
+        log_info "Existed ℹ️ - Already allowed 'wslview' as browser's view in ${SHELL_PROFILE}"
     fi
 
     # Ensure security for ~/.kube/config
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" ${SHELL_PROFILE}; then
             echo "chmod 600 \"$HOME/.kube/config\"" >> ${SHELL_PROFILE}
-            echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
+            log_success "✅ - Added permission 600 for ~/.kube/config in ${SHELL_PROFILE}"
         else
-            echo -e "[INFO] Existed ℹ️ - Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
+            log_info "Existed ℹ️ - Permission 600 for ~/.kube/config is already set in ${SHELL_PROFILE}"
         fi
     else
-        echo -e "${YELLOW}[WARNING]${NC} Skipped! ⚠️ - '~/.kube/config' does not exist. No changes made."
+        log_warn "Skipped! ⚠️ - '~/.kube/config' does not exist. No changes made."
     fi
 
 
     # Add "$HOME/.local/bin" as executable path to PATH
     if ! grep -Fxq 'export PATH="$HOME/.local/bin:$PATH"' ${SHELL_PROFILE}; then
         echo "export PATH="$HOME/.local/bin:$PATH"" >> ${SHELL_PROFILE}
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Add "$HOME/.local/bin" as executable path to PATH"
+        log_success "✅ - Add "$HOME/.local/bin" as executable path to PATH"
     else
-        echo -e "[INFO] Existed ℹ️ - Already added "$HOME/.local/bin" as executable path to PATH"
+        log_info "Existed ℹ️ - Already added "$HOME/.local/bin" as executable path to PATH"
     fi
 
     # To provide credentials to some cloud platforms
@@ -195,9 +192,9 @@ function shell-config--profile(){
         cat <<EOF >> $SHELL_PROFILE
 $SHELL_EXPORTS
 EOF
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Set 'DummyValue' for Cloud Credentials"
+        log_success "✅ - Set 'DummyValue' for Cloud Credentials"
     else
-        echo -e "[INFO] Existed ℹ️ - Already Set 'DummyValue' for Cloud Credentials"
+        log_info "Existed ℹ️ - Already Set 'DummyValue' for Cloud Credentials"
     fi
 }
 
@@ -210,7 +207,7 @@ function shell-config--motd(){
     echo "============ MOTD ============"
     if [ ! -d "$MOTD_DIR" ]; then
         mkdir -p "$MOTD_DIR"
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Created MOTD directory at $MOTD_DIR"
+        log_success "✅ - Created MOTD directory at $MOTD_DIR"
     fi
     
     case $option in
@@ -221,7 +218,7 @@ function shell-config--motd(){
             shell-config--motd--self-custom
             ;;
         *)
-            echo -e "${YELLOW}[WARNING] No MOTD option provided or unrecognized option. Skipping MOTD setup.${NC}"
+            log_warn "No MOTD option provided or unrecognized option. Skipping MOTD setup.${NC}"
             ;;
     esac
 }
@@ -233,29 +230,29 @@ function shell-config--motd--self-custom(){
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - MOTD script has been sourced in $SHELL_PROFILE"
+        log_success "✅ - MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "[INFO] Existed ℹ️ - MOTD script is already sourced in $SHELL_PROFILE"
+        log_info "Existed ℹ️ - MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
 function shell-config--motd--neofetch(){
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" -o "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Neofetch MOTD script downloaded!"
+    log_success "✅ - Neofetch MOTD script downloaded!"
 
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" -o "$MOTD_DIR/cat_in_the_box.txt"
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - ASCII art theme downloaded!"
+    log_success "✅ - ASCII art theme downloaded!"
 
     curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" -o "$HOME/.config/neofetch/config.conf"
-    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Config Installed"
+    log_success "✅ - Config Installed"
     
     SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/cat_in_the_box.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Neofetch MOTD script has been sourced in $SHELL_PROFILE"
+        log_success "✅ - Neofetch MOTD script has been sourced in $SHELL_PROFILE"
     else
-        echo -e "[INFO] Existed ℹ️ - Neofetch MOTD script is already sourced in $SHELL_PROFILE"
+        log_info "Existed ℹ️ - Neofetch MOTD script is already sourced in $SHELL_PROFILE"
     fi
 }
 
@@ -265,8 +262,6 @@ function shell-config(){
 }
 
 function setup-command-autocompletion() {
-    echo
-    echo "============ COMMAND AUTOCOMPLETION ============"
 
     # Define list (array)
     COMPLETIONS=(
@@ -291,28 +286,69 @@ function setup-command-autocompletion() {
             echo "[INFO] Existed ℹ️ - $NAME completion has already been configured! No changes"
         else
             echo "$LINE" >> "$SHELL_PROFILE"
-            echo -e "[INFO] ${GREEN}Successful${NC} ✅ - $NAME completion has been configured!"
+            log_success "✅ - $NAME completion has been configured!"
         fi
     done
 }
 
+function post-actions(){
+    log_highlight "Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
+    echo
+    log_highlight "What's next?${NC}"
+    log_highlight "  - Set up Cloud Credentials${NC}"
+    log_highlight "  - Install your tools${NC}"
+}
+
+
+# --- MAIN function --------------------------
 
 function main(){
+    echo
+    echo "============ IMPORT EXTERNAL LIBS ============"
+    echo
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
+
+    echo
+    echo "============ PREREQUITES INSTALLTIONS ============"
+    echo
+    prerequite-install
+
+    echo
+    echo "============ ZSH THEME INSTALLATION ============"
+    echo
     zsh-theme-install
+
+    echo
+    echo "============ ZSH PLUGINS INSTALLATION ============"
+    echo
     zsh-plugins-install
+
+    echo
+    echo "============ SOURCE DOTFILES ============"
+    echo
     source-dotfiles
+
+    echo
+    echo "============ GIT SETUP ============"
+    echo
     setup-git
+
+    echo
+    echo "============ CONFIGURE SHELL ============"
+    echo
     shell-config
+
+    echo
+    echo "============ COMMAND AUTOCOMPLETION ============"
+    echo
     setup-command-autocompletion
 
     echo
-    echo -e "${CYAN}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
+    echo "============ POST ACTIONS ============"
     echo
-    echo -e "${CYAN}What's next?${NC}"
-    echo -e "${CYAN}  - Set up Cloud Credentials${NC}"
-    echo -e "${CYAN}  - Install your tools${NC}"
+    post-actions
+    
 }
 
 main "$@" 
