@@ -23,21 +23,24 @@ DOTFILES_URLS=(
     "https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh"
 )
 
-DOTFILES_SOURCE_SCRIPT='
+DOTFILES_SOURCE_SCRIPT="
+
 # --- SOURCE DOTFILES SCRIPT ----------------------------
 
 # Source dotfiles if the shell is interactive
-if [[ -n $PS1 ]]; then
+if [[ -n \$PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
     for file in ~/$DOTFILES_DIRNAME/{*,.*}; do
-        if [[ -r $file ]]; then
-            source $file
+        if [[ -r \$file ]]; then
+            source \$file
         fi
     done
 fi
-'
+
+"
 
 SHELL_EXPORTS='
+
 # --- ENVIRONMENT CREDENTIALS ----------------------------
 
 export AWS_ACCESS_KEY_ID="DummyValue"
@@ -58,6 +61,7 @@ export VAULT_TOKEN=DummyValue
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 export M2_HOME=/opt/maven
 export PATH="$M2_HOME/bin:$PATH"
+
 '
 
 # --- Functions  --------------------------
@@ -98,10 +102,9 @@ function source-dotfiles() {
     echo
 
     if ! grep -Fxq '# --- SOURCE DOTFILES SCRIPT ----------------------------' $SHELL_PROFILE; then
-        echo "# --- SOURCE DOTFILES SCRIPT ----------------------------" >> $SHELL_PROFILE
         echo >> $SHELL_PROFILE
 
-        cat << EOF >> $SHELL_PROFILE
+        cat <<EOF >> $SHELL_PROFILE
 $DOTFILES_SOURCE_SCRIPT
 EOF
     fi
