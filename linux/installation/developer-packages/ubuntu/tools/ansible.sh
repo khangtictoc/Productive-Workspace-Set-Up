@@ -1,7 +1,8 @@
 #! /bin/bash
 
 ANSIBLE_VERSION="6.7.0"
-SHELL_PROFILE="$HOME/.bashrc"
+
+# Note: Remember to set $SHELLRC_FILE, i.e '$HOME/.bashrc'. Depend on your favorite shell
 
 if ! command -v ansible 2>&1 >/dev/null
 then
