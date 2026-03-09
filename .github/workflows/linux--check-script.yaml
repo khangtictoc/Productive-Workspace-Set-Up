@@ -37,7 +37,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
       - name: Execute Installation
-        if: ${{ github.event.inputs.terraform_action == 'plan' && github.event.inputs.deploy_kubernetes == 'false' }}
         run: |
           cd "2. Productive-Workspace-Set-Up/linux/installation/developer-packages/ubuntu/tools"
           chmod +x anacoda.sh
