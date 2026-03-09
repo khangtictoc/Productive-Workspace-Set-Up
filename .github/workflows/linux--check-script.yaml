@@ -28,19 +28,15 @@ jobs:
     steps:
       - name: Verify Input
         run: |
-          echo "Deploy Kubernetes: ${{ github.event.inputs.shell_type }}"
+          echo "Shell Type: ${{ github.event.inputs.shell_type }}"
 
   annacoda-install:
     runs-on: ubuntu-latest
     needs: verify-configuration
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
       - name: Execute Installation
         run: |
-          cd "2. Productive-Workspace-Set-Up/linux/installation/developer-packages/ubuntu/tools"
-          chmod +x anacoda.sh
-          ./anacoda.sh
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/annacoda.sh | bash
 
   summary-results:
     runs-on: ubuntu-latest
