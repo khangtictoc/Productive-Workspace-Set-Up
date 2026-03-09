@@ -5,8 +5,7 @@
 
 IS_WSL=$(grep -i WSL /proc/version > /dev/null 2>&1; echo $?)
 
-if ! command -v perf &> /dev/null
-then
+if ! perf -h &> /dev/null; then
     if [ "$IS_WSL" -eq 0 ]; then
         echo "Detected WSL environment. Installing perf may require additional steps."
 
@@ -37,7 +36,7 @@ then
         cd ../../..
         rm -drf WSL2-Linux-Kernel
 
-        if ! command -v perf &> /dev/null; then
+        if ! perf -h &> /dev/null; then
             echo "perf installation failed in WSL environment."
             exit 1
         fi
@@ -49,7 +48,7 @@ then
         sudo apt update
         sudo apt install -y linux-tools-common linux-tools-$(uname -r)
 
-        if ! command -v perf &> /dev/null; then
+        if ! perf -h &> /dev/null; then
             echo "[FAIL ❌] perf installation failed!"
             exit 1
         fi

@@ -108,7 +108,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # --- NETWORK ---
 
 ## bandwhich
-sudo cargo install bandwhich
+cargo install bandwhich
 
 ## speedtest - Ping latency
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
@@ -116,7 +116,7 @@ sudo apt-get install speedtest
 
 # --- KERNEL MANAGEMENT ---
 ## kmon # View kernel's modules
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kmon.sh | bash
+cargo install kmon
 
 # GPU
 ## nvtop - NVIDIA GPU process monitor
@@ -152,6 +152,9 @@ npm install -g aws-cost-cli
 
 ## AWS FinOps Dashboard
 pip install aws-finops-dashboard
+
+## TAWS  - [TUI] Manage multiple resources
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/taws.sh | bash
 
 # --- Azure ---
 ## az - CLI
@@ -208,7 +211,7 @@ sudo apt install -y mysql-client
 npm install -g redis-cli
 
 ## SQL Server (MSSQL) CLI
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | SHELLRC_FILE=$SHELLRC_FILE bash
 
 ## Postgres
 sudo apt install -y postgresql-client # Already include pgdump, pg_restore, psql, etc.
@@ -275,11 +278,17 @@ curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack
 ## Argo CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/argocd_cli.sh | bash
 
+## Velero CLI
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/velero_cli.sh | bash
+
 # ---- INFRA-AS-CODE (IAC) ----
+
 ## Terraform
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | bash
+
 ## Terraform Visual (visualize TF dependency graph)
 npm install -g @terraform-visual/cli
+
 ## Blast Radius (visualize TF dependency graph)
 pip install blastradius
 

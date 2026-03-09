@@ -2,7 +2,7 @@
 
 GO_VERSION=1.24.5
 
-if ! command -v go 2>&1 >/dev/null
+if ! go version &> /dev/null; then
 then
     echo "[INSTALLING ⬇️ ] Go"
     wget "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz"

@@ -4,14 +4,14 @@ ANSIBLE_VERSION="6.7.0"
 
 # Note: Remember to "export $SHELLRC_FILE", i.e '$HOME/.bashrc'. Depend on your favorite shell
 
-if ! command -v ansible 2>&1 >/dev/null
+if ! python3 -m ansible playbook -h &> /dev/null; then
 then
 
     pip install ansible==$ANSIBLE_VERSION
 
     # Add "$HOME/.local/bin" as executable path to PATH
-    if ! grep -Fxq "export PATH=$HOME/.local/bin:$PATH" ${SHELL_PROFILE}; then
-        echo "export PATH=$HOME/.local/bin:$PATH" >> ${SHELL_PROFILE}
+    if ! grep -Fxq "export PATH=$HOME/.local/bin:$PATH" ${SHELLRC_FILE}; then
+        echo "export PATH=$HOME/.local/bin:$PATH" >> ${SHELLRC_FILE}
         echo -e "[INFO] Update: Add "$HOME/.local/bin" as executable path to PATH"
     else
         echo -e "[INFO] Existed: Already added "$HOME/.local/bin" as executable path to PATH"
