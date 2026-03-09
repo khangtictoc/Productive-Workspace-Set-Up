@@ -1,6 +1,6 @@
 #! /bin/bash
 
-MAVEN_VERSION=3.9.12
+MAVEN_VERSION=3.9.13
 
 if ! command -v mvn 2>&1 >/dev/null
 then
