@@ -249,7 +249,7 @@ curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/ins
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl.sh | sudo bash
 
 ## Plugins for Kubectl
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | sudo bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | sudo SHELLRC_FILE=$SHELLRC_FILE bash
 
 ## Kube-linter
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kube_linter.sh | sudo bash

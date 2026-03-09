@@ -5,39 +5,58 @@
 # Install 'Krew'
 
 ## Get Info
-cd "$(mktemp -d)"
+echo "[INFO] Determine System Info"
 OS="$(uname | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')"
 KREW="krew-${OS}_${ARCH}"
 
 ## Download and Install
-wget "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
-tar zxvf "${KREW}.tar.gz" &&
+echo "[INFO] Downloading Krew ..."
+wget "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz"
+tar zxvf "${KREW}.tar.gz"
 ./"${KREW}" install krew
-echo "[INFO] >>>> Clean Up"
-rm -drf "$(pwd)"
+echo "[INFO] Clean Up ..."
+rm -drf "LICENSE" "${KREW}"
 
 ## Finalize Installation
+echo "[INFO] Add to Path"
 EXPORT_KREW_PATH='export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
 if grep -Fxq "$EXPORT_KREW_PATH" "$SHELLRC_FILE"; then
     echo "✅ Krew binary has been added to PATH! No changes"
 else
     echo "$EXPORT_KREW_PATH" >> "$SHELLRC_FILE"
-    echo "✅ Krew binary has been added to PATH\!"
+    echo "✅ Krew binary has been added to PATH!"
 fi
 
-##  kubectl krew - Install useful plugins
+
+##  [Plugin] kubectl krew - Install useful plugins
+echo "====== Install Useful plugins ====="
+echo "[INFO] Installing tree ..."
 kubectl krew install tree
+echo "[INFO] Installing View-Secret ..."
 kubectl krew install view-secret
 
-## Kubectl Node Shell
+## [Plugin] Kubectl Node Shell
+echo "[INFO] Installing Node Shell ..."
 wget https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 sudo chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
 
-if ! command -v kubectl &> /dev/null; then
-    echo "[FAIL ❌] kubectl krew/plugins installation failed!"
+if ! kubectl krew &> /dev/null; then
+    echo "[FAIL ❌] kubectl krew installation failed!"
     exit 1
 fi
 
-echo "[CHECKED ✅] kubectl krew/plugins command installed!"
+echo "[CHECKED ✅] kubectl krew command installed!"
+
+if ! kubectl plugin list &> /dev/null; then
+    echo "[FAIL ❌] kubectl krew installation failed!"
+    exit 1
+fi
+
+echo "[CHECKED ✅] kubectl plugins command installed!"
+
+echo "[INFO] Confirm your plugins"
+kubectl plugin list
+
+
