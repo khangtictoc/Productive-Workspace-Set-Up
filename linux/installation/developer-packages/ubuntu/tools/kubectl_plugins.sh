@@ -42,14 +42,14 @@ wget https://github.com/kvaps/kubectl-node-shell/raw/master/kubectl-node_shell
 sudo chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
 
-if ! bash -c "kubectl krew" &> /dev/null; then
+if ! kubectl krew &> /dev/null; then
     echo "[FAIL ❌] kubectl krew installation failed!"
     exit 1
 fi
 
 echo "[CHECKED ✅] kubectl krew command installed!"
 
-if ! bash -c "kubectl plugin list" &> /dev/null; then
+if ! kubectl plugin list &> /dev/null; then
     echo "[FAIL ❌] kubectl krew installation failed!"
     exit 1
 fi
