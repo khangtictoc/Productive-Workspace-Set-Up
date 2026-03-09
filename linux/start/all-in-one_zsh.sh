@@ -69,7 +69,8 @@ export PATH="$M2_HOME/bin:$PATH"
 # --- Functions  --------------------------
 
 function prerequite-install(){
-
+    sudo apt update
+    sudo apt install -y dos2unix zsh curl unzip
 }
 
 function zsh-theme-install(){
