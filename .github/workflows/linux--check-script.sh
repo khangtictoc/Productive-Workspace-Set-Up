@@ -47,23 +47,10 @@ jobs:
 
 
 
-  deploy-k8s-components:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.deploy_kubernetes == 'true' }}
-    needs: deploy-cluster-infra
-    steps:
-      - name: Kubernetes Components - Terragrunt Plan
-        if: ${{ github.event.inputs.terraform_action == 'plan' }}
-        run: |
-          cd "Terragrunt_Project_Structure_Design/environment/${{ github.event.inputs.environment }}/kubernetes/${{ github.event.inputs.cloud_provider }}/$REGION"
-          terragrunt run --all  --non-interactive plan
-
-
-
-  cleanup:
+  summary-results:
     runs-on: ubuntu-latest
     if: always()
-    needs: []
+    needs: [annacoda-install]
     steps:
       - name: Cleanup resources
         run: |
