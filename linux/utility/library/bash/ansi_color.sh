@@ -43,7 +43,7 @@ function log_success(){
     echo -e "${GREEN}[SUCCESS] $1${NC}"
 }
 
-function log_warning(){
+function log_warn(){
     echo -e "${YELLOW}[WARN] $1${NC}"
 }
 
