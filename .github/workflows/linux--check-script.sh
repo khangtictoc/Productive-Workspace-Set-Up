@@ -32,14 +32,18 @@ jobs:
         run: |
           echo "Deploy Kubernetes: ${{ github.event.inputs.shell_type }}"
 
-  deploy-cluster-infra:
+  annacoda-install:
     runs-on: ubuntu-latest
+    needs: verify-configuration
     steps:
-      - name: Terragrunt Plan
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Execute Installation
         if: ${{ github.event.inputs.terraform_action == 'plan' && github.event.inputs.deploy_kubernetes == 'false' }}
         run: |
-          cd "Terragrunt_Project_Structure_Design/environment/${{ github.event.inputs.environment }}/${{ github.event.inputs.cloud_provider }}/$REGION/${{ github.event.inputs.modules }}"
-          terragrunt run --all  --non-interactive plan
+          cd "2. Productive-Workspace-Set-Up/linux/installation/developer-packages/ubuntu/tools"
+          chmod +x anacoda.sh
+          ./anacoda.sh
 
 
 
@@ -59,11 +63,8 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     if: always()
-    needs: [deploy-cluster-infra, deploy-k8s-components]
+    needs: []
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
       - name: Cleanup resources
         run: |
-          chmod +x script/remove_tf_lock.sh
-          ./script/remove_tf_lock.sh $REGION "terragrunt-state-lock"
+          echo "Summary Result"
