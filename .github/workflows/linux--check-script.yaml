@@ -196,7 +196,7 @@ jobs:
     steps:
       - name: Execute Installation
         run: |
-          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | SHELLRC_FILE="$HOME/${{ github.event.inputs.shell_type }}rc" bash
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | SHELLRC_FILE="$HOME/.${{ github.event.inputs.shell_type }}rc" bash
 
   kubectl-install:
     runs-on: ubuntu-latest
@@ -293,7 +293,7 @@ jobs:
     steps:
       - name: Execute Installation
         run: |
-          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | SHELLRC_FILE="$HOME/${{ github.event.inputs.shell_type }}rc" bash
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | SHELLRC_FILE="$HOME/.${{ github.event.inputs.shell_type }}rc" bash
 
   sysz-install:
     runs-on: ubuntu-latest
