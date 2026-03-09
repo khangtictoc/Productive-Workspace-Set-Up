@@ -52,7 +52,7 @@ sudo apt install -y whois
 sudo apt install -y mtr
 curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | bash
 ## ngrok
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ngrok.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ngrok.sh | sudo bash
 
 # --- DISK ---
 sudo apt install -y sysstat
@@ -81,7 +81,7 @@ gem install lolcat # Require Ruby
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
 sudo apt install -y faker # Generate fake data (username, email, address, etc.)
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/asciinema.sh | sudo bash # Record executing commands as video
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bat.sh | bash # 'cat' with better color
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bat.sh | sudo bash # 'cat' with better color
 
 # YAML Values Extractor
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo bash
@@ -103,12 +103,12 @@ sudo apt install -y iftop
 sudo apt install -y iotop
 sudo apt install -y atop
 ## sysz (Systemd service manager)
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sysz.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sysz.sh | sudo bash
 
 # --- NETWORK ---
 
 ## bandwhich
-sudo snap install bandwhich
+sudo cargo install bandwhich
 
 ## speedtest - Ping latency
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
@@ -116,15 +116,15 @@ sudo apt-get install speedtest
 
 # --- KERNEL MANAGEMENT ---
 ## kmon # View kernel's modules
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kmon.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kmon.sh | sudo bash
 
 # GPU
 ## nvtop - NVIDIA GPU process monitor
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nvtop.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nvtop.sh | sudo bash
 
 # UFW
 ## tufw - TUI for UFW
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/tufw.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/tufw.sh | sudo bash
 
 # --- SYSTEM PROCESSES/LINUX SYSCALL ---
 sudo apt install -y pv # i.e View process for MySQL restore database
@@ -142,7 +142,7 @@ sudo apt install -y htop
 # --- AWS ---
 
 ## AWS CLI
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | sudo bash
 
 ## Stu - S3 Explorer TUI
 cargo install --locked stu
@@ -153,10 +153,12 @@ npm install -g aws-cost-cli
 ## AWS FinOps Dashboard
 pip install aws-finops-dashboard
 
-# --- Azure CLI ---
+# --- Azure ---
+## az - CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | sudo bash
 
 # --- GCP ---
+## gcloud - CLI
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/gcp_cli.sh | bash
 
 
@@ -180,7 +182,7 @@ sudo apt install openjdk-21-jdk
 
 
 ## Go/Golang
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/go.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/go.sh | sudo bash
 
 ## UV - Light-weight Python Package Manager
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -203,7 +205,7 @@ sudo apt install -y mysql-client
 npm install -g redis-cli
 
 ## SQL Server (MSSQL) CLI
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | sudo bash
 
 ## Postgres
 sudo apt install -y postgresql-client # Already include pgdump, pg_restore, psql, etc.
@@ -235,25 +237,28 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 # ---- CONTAINER ----
 ## Docker
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/docker.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/docker.sh | sudo bash
 
 ## Dive - Compare Docker image's difference
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/dive.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/dive.sh | sudo bash
 
 ## Trivy - Scan Docker image vulnerabilities (Other: Scan SBOM, Filesystem, Git Repo, ...)
 curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo bash -s -- -b /usr/local/bin
 
 ## Kubectl - Kubernetes CLI
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl.sh | sudo bash
+
+## Plugins for Kubectl
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | sudo bash
 
 ## Kube-linter
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kube_linter.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kube_linter.sh | sudo bash
 
 ## Kubesec
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubesec.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubesec.sh | sudo bash
 
 ## K9S
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/k9s.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/k9s.sh | sudo bash
 
 ## Lazydocker
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
@@ -269,32 +274,32 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 
 # ---- INFRA-AS-CODE (IAC) ----
 ## Terraform
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | sudo bash
 ## Terraform Visual (visualize TF dependency graph)
 npm install -g @terraform-visual/cli
 ## Blast Radius (visualize TF dependency graph)
 pip install blastradius
 
 ## Terragrunt
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terragrunt.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terragrunt.sh | sudo bash
 
 ## Packer
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/packer.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/packer.sh | sudo bash
 
 ## Vagrant & Plugins
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/vagrant.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/vagrant.sh | sudo bash
 
 # ---- GIT ----
 
-## git filter-repo 
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/git_filter_repo.sh | bash
+## git-filter-repo 
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/git_filter_repo.sh | sudo bash
 
 ## glab - GitLab CLI
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/glab.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/glab.sh | sudo bash
 
 # ---- SECRET MANAGER ----
 ## HCP Vault
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/hcp_vault.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/hcp_vault.sh | sudo bash
 
 # ---- TLS/SSL ----
 ## Certbot(Let's Encrypt)
@@ -317,7 +322,7 @@ pip install --user --upgrade ggshield
 curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo bash -s -- -b /usr/local/bin
 
 ## detect-secrets
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/detect_secrets.sh |sudo  bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/detect_secrets.sh |sudo bash
 
 # ---- VULNERABILITY SCANNER ----
 

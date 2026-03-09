@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# Note: Available script provided by Official Docker at: https://get.docker.com  does not support for old Ubuntu. My script is better
+
 if ! command -v docker 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Docker"

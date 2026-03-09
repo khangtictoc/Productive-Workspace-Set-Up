@@ -6,54 +6,54 @@ This directory contains installation scripts for various developer tools commonl
 
 ### Environments
 
-- [ ] Ubuntu
+- [x] Ubuntu
 - [ ] RedHat
 - [ ] Debian-based
 - [ ] MacOS
 
 ### Tools
 
-- [ ] annacoda
-- [ ] ansi_color
-- [ ] ansible
-- [ ] argocd_cli
-- [ ] asciinema
-- [ ] aws_cli
-- [ ] az_cli
-- [ ] bat
-- [ ] detect_secrets
-- [ ] dive
-- [ ] docker
-- [ ] gcp_cli
-- [ ] git_filter_repo
-- [ ] glab
-- [ ] go
-- [ ] hcp_vault
-- [ ] helm
-- [ ] jtbl
-- [ ] k9s
-- [ ] kmon
-- [ ] kube_linter
-- [ ] kubectl_plugins
-- [ ] kubectl
-- [ ] kubesec
-- [ ] ls_extended
-- [ ] maven
-- [ ] mongodb_cli
-- [ ] ngrok
-- [ ] nodejs
-- [ ] nvtop
-- [ ] packer
-- [ ] perf
-- [ ] ruby
-- [ ] sqlcmd
-- [ ] sysz
-- [ ] taws
-- [ ] terraform
-- [ ] terragrunt
-- [ ] tufw
-- [ ] vagrant
-- [ ] velero_cli
-- [ ] yq
+- [x] annacoda
+- [x] ansi_color
+- [x] ansible
+- [x] argocd_cli
+- [x] asciinema
+- [x] aws_cli
+- [x] az_cli
+- [x] bat
+- [x] detect_secrets
+- [x] dive
+- [x] docker
+- [x] gcp_cli
+- [x] git_filter_repo
+- [x] glab
+- [x] go
+- [x] hcp_vault
+- [x] helm
+- [x] jtbl
+- [x] k9s
+- [x] kmon (Old Ubuntu may not work)
+- [x] kube_linter
+- [x] kubectl_plugins
+- [x] kubectl
+- [x] kubesec
+- [x] ls_extended
+- [x] maven
+- [x] mongodb_cli
+- [x] ngrok
+- [x] nodejs
+- [x] nvtop
+- [x] packer
+- [x] perf
+- [x] ruby
+- [x] sqlcmd
+- [x] sysz
+- [x] taws
+- [x] terraform
+- [x] terragrunt
+- [x] tufw
+- [x] vagrant
+- [x] velero_cli
+- [x] yq
 
 For a full list of available tools: [Here](./tools.sh)
