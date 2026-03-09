@@ -2,7 +2,7 @@
 
 MAVEN_VERSION=3.9.13
 
-if ! mvn --version &> /dev/null; then
+if ! mvn --version &> /dev/null
 then
     wget https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz
     tar -xvzf apache-maven-$MAVEN_VERSION-bin.tar.gz

@@ -5,8 +5,10 @@
 
 IS_WSL=$(grep -i WSL /proc/version > /dev/null 2>&1; echo $?)
 
-if ! perf -h &> /dev/null; then
-    if [ "$IS_WSL" -eq 0 ]; then
+if ! perf -h &> /dev/null
+then
+    if [ "$IS_WSL" -eq 0 ]
+    then
         echo "Detected WSL environment. Installing perf may require additional steps."
 
         sudo apt install -y \

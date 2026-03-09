@@ -4,9 +4,8 @@ ANSIBLE_VERSION="6.7.0"
 
 # Note: Remember to "export $SHELLRC_FILE", i.e '$HOME/.bashrc'. Depend on your favorite shell
 
-if ! python3 -m ansible playbook -h &> /dev/null; then
+if ! python3 -m ansible playbook -h &> /dev/null
 then
-
     pip install ansible==$ANSIBLE_VERSION
 
     # Add "$HOME/.local/bin" as executable path to PATH

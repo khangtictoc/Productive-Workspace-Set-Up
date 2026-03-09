@@ -5,14 +5,15 @@ then
     echo "[INSTALLING ⬇️ ] Vagrant"
     wget \
         -O - https://apt.releases.hashicorp.com/gpg \
-        | gpg --yes --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+        | sudo gpg --yes --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
-        | tee /etc/apt/sources.list.d/hashicorp.list
+        | sudo tee /etc/apt/sources.list.d/hashicorp.list
     
     sudo apt update && sudo apt install -y vagrant
 
     read -p "Do you want to install Vagrant Plugins (VMware Provider on Window for examples)? (y/n): "
-    if [[ "$CONFIRM" == "y" || "$CONFIRM" == "Y" ]]; then
+    if [[ "$CONFIRM" == "y" || "$CONFIRM" == "Y" ]]
+    then
         vagrant plugin install vagrant-vmware-desktop # Optional
         echo "[CHECKED ✅] vagrant plugins command installed!"
     else
