@@ -80,6 +80,8 @@ sudo apt-get purge lolcat -y
 gem install lolcat # Require Ruby
 npm install -g @jsware/jsonpath-cli # JSONPath query tool
 sudo apt install -y faker # Generate fake data (username, email, address, etc.)
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/asciinema.sh | sudo bash # Record executing commands as video
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bat.sh | bash # 'cat' with better color
 
 # YAML Values Extractor
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | sudo bash
@@ -106,7 +108,7 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # --- NETWORK ---
 
 ## bandwhich
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bandwhich.sh | bash
+sudo snap install bandwhich
 
 ## speedtest - Ping latency
 curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
@@ -152,7 +154,7 @@ npm install -g aws-cost-cli
 pip install aws-finops-dashboard
 
 # --- Azure CLI ---
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | sudo bash
 
 # --- GCP ---
 curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/gcp_cli.sh | bash
@@ -226,6 +228,10 @@ curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-
 # │      DevOps Tools          │
 # │                            │
 # └────────────────────────────┘
+
+# ---- AUTOMATION ----
+## Ansible
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ansible.sh | bash
 
 # ---- CONTAINER ----
 ## Docker
@@ -311,7 +317,7 @@ pip install --user --upgrade ggshield
 curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sudo bash -s -- -b /usr/local/bin
 
 ## detect-secrets
-curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/detect_secrets.sh | bash
+curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/detect_secrets.sh |sudo  bash
 
 # ---- VULNERABILITY SCANNER ----
 

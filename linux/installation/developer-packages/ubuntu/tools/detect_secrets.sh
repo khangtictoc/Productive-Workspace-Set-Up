@@ -10,7 +10,7 @@ then
     unzip detect-secrets.zip
     cd detect-secrets-${DETECT_SECRETS_VERSION}
     pip install setuptools
-    python3 setup.py install
+    sudo python3 setup.py install
     
     echo "[INFO] >>>> Clean Up"
     cd .. && rm -rf detect-secrets-${DETECT_SECRETS_VERSION} detect-secrets.zip

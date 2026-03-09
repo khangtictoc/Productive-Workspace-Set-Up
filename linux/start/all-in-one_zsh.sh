@@ -70,7 +70,7 @@ export PATH="$M2_HOME/bin:$PATH"
 
 function prerequite-install(){
     sudo apt update
-    sudo apt install -y dos2unix zsh curl unzip vim
+    sudo apt install -y dos2unix zsh curl unzip vim python3-pip
 }
 
 function zsh-theme-install(){

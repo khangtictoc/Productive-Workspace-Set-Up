@@ -19,7 +19,7 @@ then
 
     export GOROOT=/usr/local/go  # set for current session
 
-    if ! /usr/local/go/bin/go version &> /dev/null; then
+    if ! go version &> /dev/null; then
         echo "[FAIL ❌] go installation failed!"
         exit 1
     fi
