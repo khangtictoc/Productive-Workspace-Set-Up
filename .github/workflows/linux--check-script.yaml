@@ -43,8 +43,6 @@ jobs:
           chmod +x anacoda.sh
           ./anacoda.sh
 
-
-
   summary-results:
     runs-on: ubuntu-latest
     if: always()
