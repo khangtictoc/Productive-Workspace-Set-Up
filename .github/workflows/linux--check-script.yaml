@@ -38,10 +38,373 @@ jobs:
         run: |
           curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/annacoda.sh | bash
 
+  ansi_color-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ansi_color.sh | bash
+
+  ansible-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ansible.sh | bash
+
+  argocd_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/argocd_cli.sh | bash
+
+  asciinema-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/asciinema.sh | bash
+
+  aws_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/aws_cli.sh | bash
+
+  az_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/az_cli.sh | bash
+
+  bat-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/bat.sh | bash
+
+  detect_secrets-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/detect_secrets.sh | bash
+
+  dive-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/dive.sh | bash
+
+  docker-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/docker.sh | bash
+
+  gcp_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/gcp_cli.sh | bash
+
+  git_filter_repo-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/git_filter_repo.sh | bash
+
+  glab-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/glab.sh | bash
+
+  go-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/go.sh | bash
+
+  hcp_vault-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/hcp_vault.sh | bash
+
+  helm-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/helm.sh | bash
+
+  jtbl-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/jtbl.sh | bash
+
+  k9s-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/k9s.sh | bash
+
+  kube_linter-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kube_linter.sh | bash
+
+  kubectl_plugins-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl_plugins.sh | SHELLRC_FILE="$HOME/${{ github.event.inputs.shell_type }}rc" bash
+
+  kubectl-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubectl.sh | bash
+
+  kubesec-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/kubesec.sh | bash
+
+  ls_extended-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ls_extended.sh | bash
+
+  maven-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/maven.sh | bash
+
+  mongodb_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/mongodb_cli.sh | bash
+
+  ngrok-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ngrok.sh | bash
+
+  nodejs-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nodejs.sh | bash
+
+  nvtop-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/nvtop.sh | bash
+
+  packer-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/packer.sh | bash
+
+  perf-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/perf.sh | bash
+
+  ruby-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/ruby.sh | bash
+
+  sqlcmd-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sqlcmd.sh | SHELLRC_FILE="$HOME/${{ github.event.inputs.shell_type }}rc" bash
+
+  sysz-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/sysz.sh | bash
+
+  taws-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/taws.sh | bash
+
+  terraform-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terraform.sh | bash
+
+  terragrunt-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/terragrunt.sh | bash
+
+  tufw-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/tufw.sh | bash
+
+  vagrant-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/vagrant.sh | bash
+
+  velero_cli-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/velero_cli.sh | bash
+
+  yq-install:
+    runs-on: ubuntu-latest
+    needs: verify-configuration
+    steps:
+      - name: Execute Installation
+        run: |
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/yq.sh | bash
+
   summary-results:
     runs-on: ubuntu-latest
     if: always()
-    needs: [annacoda-install]
+    needs:
+      [
+        annacoda-install,
+        ansi_color-install,
+        ansible-install,
+        argocd_cli-install,
+        asciinema-install,
+        aws_cli-install,
+        az_cli-install,
+        bat-install,
+        detect_secrets-install,
+        dive-install,
+        docker-install,
+        gcp_cli-install,
+        git_filter_repo-install,
+        glab-install,
+        go-install,
+        hcp_vault-install,
+        helm-install,
+        jtbl-install,
+        k9s-install,
+        kube_linter-install,
+        kubectl_plugins-install,
+        kubectl-install,
+        kubesec-install,
+        ls_extended-install,
+        maven-install,
+        mongodb_cli-install,
+        ngrok-install,
+        nodejs-install,
+        nvtop-install,
+        packer-install,
+        perf-install,
+        ruby-install,
+        sqlcmd-install,
+        sysz-install,
+        taws-install,
+        terraform-install,
+        terragrunt-install,
+        tufw-install,
+        vagrant-install,
+        velero_cli-install,
+        yq-install,
+      ]
     steps:
       - name: Cleanup resources
         run: |
