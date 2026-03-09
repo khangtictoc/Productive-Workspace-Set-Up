@@ -8,8 +8,6 @@ on:
   # schedule:
   #   # Runs at 07:00 AM in every month.
   #   - cron: "0 17 */1 * *"
-  repository_dispatch:
-    types: [terraform_deploy_kubernetes_single_cloud]
 
   # Optional: You can also allow manual runs
   workflow_dispatch:
@@ -17,7 +15,7 @@ on:
       shell_type:
         description: "Choose Shell Type"
         required: false
-        default: "azure"
+        default: "bash"
         type: choice
         options:
           - bash
