@@ -305,15 +305,15 @@ function post-actions(){
 
 function main(){
     echo
+    echo "============ PREREQUITES INSTALLTIONS ============"
+    echo
+    prerequite-install
+    
+    echo
     echo "============ IMPORT EXTERNAL LIBS ============"
     echo
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
-
-    echo
-    echo "============ PREREQUITES INSTALLTIONS ============"
-    echo
-    prerequite-install
 
     echo
     echo "============ ZSH THEME INSTALLATION ============"
