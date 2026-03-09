@@ -16,7 +16,7 @@ wget "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.t
 tar zxvf "${KREW}.tar.gz"
 ./"${KREW}" install krew
 echo "[INFO] Clean Up ..."
-rm -drf "LICENSE" "${KREW}"
+rm -drf "LICENSE" "${KREW}" "${KREW}.tar.gz"
 
 ## Finalize Installation
 echo "[INFO] Add to Path"
@@ -28,6 +28,7 @@ else
     echo "✅ Krew binary has been added to PATH!"
 fi
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 ##  [Plugin] kubectl krew - Install useful plugins
 echo "====== Install Useful plugins ====="
