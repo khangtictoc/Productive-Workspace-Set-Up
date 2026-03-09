@@ -5,7 +5,7 @@ GLAB_VERSION="1.67.0"
 if ! command -v glab 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] GitLab CLI"
-    wget --progress=dot:giga https://gitlab.com/gitlab-org/cli/-/releases/v1.67.0/downloads/glab_${GLAB_VERSION}_linux_amd64.deb
+    wget https://gitlab.com/gitlab-org/cli/-/releases/v1.67.0/downloads/glab_${GLAB_VERSION}_linux_amd64.deb
     sudo dpkg -i glab_${GLAB_VERSION}_linux_amd64.deb
 
     echo "[INFO] >>>> Clean Up"

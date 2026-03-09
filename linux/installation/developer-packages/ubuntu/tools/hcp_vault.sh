@@ -3,7 +3,7 @@
 if ! command -v vault 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Vault"
-    wget --progress=dot:giga \
+    wget \
         -O - https://apt.releases.hashicorp.com/gpg \
         | sudo gpg --yes --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     

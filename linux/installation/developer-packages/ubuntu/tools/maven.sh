@@ -4,7 +4,7 @@ MAVEN_VERSION=3.9.12
 
 if ! command -v mvn 2>&1 >/dev/null
 then
-    wget --progress=dot:giga https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz
+    wget https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz
     tar -xvzf apache-maven-$MAVEN_VERSION-bin.tar.gz
     sudo cp apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin
     sudo mv apache-maven-$MAVEN_VERSION /opt/maven

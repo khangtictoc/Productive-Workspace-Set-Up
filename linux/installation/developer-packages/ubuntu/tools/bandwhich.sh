@@ -5,7 +5,7 @@ BANDWIDTH_CLI_VERION=0.23.1
 if ! command -v bandwhich 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] bandwhich"
-    wget --progress=dot:giga https://github.com/imsnif/bandwhich/releases/download/v$BANDWIDTH_CLI_VERION/bandwhich-v$BANDWIDTH_CLI_VERION-x86_64-unknown-linux-gnu.tar.gz
+    wget https://github.com/imsnif/bandwhich/releases/download/v$BANDWIDTH_CLI_VERION/bandwhich-v$BANDWIDTH_CLI_VERION-x86_64-unknown-linux-gnu.tar.gz
     tar -xzf bandwhich-v$BANDWIDTH_CLI_VERION-x86_64-unknown-linux-gnu.tar.gz
     sudo cp bandwhich /usr/local/bin/bandwhich
     echo "[INFO] >>>> Clean Up"

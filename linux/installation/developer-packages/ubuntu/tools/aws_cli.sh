@@ -16,7 +16,7 @@ if ! command -v aws 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] AWS CLI   "
     if [ "$ARCH" = "aarch64" ]; then
-        wget --progress=dot:giga  "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -O "awscliv2.zip"
+        wget  "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -O "awscliv2.zip"
         unzip awscliv2.zip
         sudo ./aws/install
         echo "[INFO] >>>> Clean Up"
@@ -25,7 +25,7 @@ then
         finalize
     fi
     if [ "$ARCH" = "x86_64" ]; then
-        wget --progress=dot:giga  "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -O "awscliv2.zip"
+        wget  "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -O "awscliv2.zip"
         unzip awscliv2.zip
         sudo ./aws/install
         echo "[INFO] >>>> Clean Up"

@@ -5,7 +5,7 @@ GO_VERSION=1.24.5
 if ! command -v go 2>&1 >/dev/null
 then
     echo "[INSTALLING ⬇️ ] Go"
-    wget --progress=dot:giga "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz"
+    wget "https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz"
     
     sudo rm -rf /usr/local/go  # remove any previous install
     sudo tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz  # extract full toolchain
