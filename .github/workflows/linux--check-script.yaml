@@ -1,4 +1,4 @@
-name: "[1.0] Terraform - Deploy Kubernetes Single Cloud"
+name: "[1.0] Verify Tools Installation"
 
 on:
   # push:
