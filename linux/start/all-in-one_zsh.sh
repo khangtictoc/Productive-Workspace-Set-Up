@@ -2,26 +2,65 @@
 
 set -e
 
-function init-config(){
-    SHELL_PROFILE="$HOME/.zshrc"
-    GITCONFIG_DIRNAME=git_config
+# --- Global variables --------------------------
+
+SHELL_PROFILE="$HOME/.zshrc"
+GITCONFIG_DIRNAME=git_config
+DOTFILES_DIRNAME=dotfiles
+MOTD_DIR="$HOME/.my-motd"
+DEFAULT_GIT_PROFILE=khangtictoc
+DOTFILES_URLS=(
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.extension_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.misc_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/.git_aliases"
+    "https://raw.githubusercontent.com/khangatmercatus/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/helm-aliases/.helm_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/system-aliases/.system_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terraform_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terragrunt_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/docker/.docker_aliases"
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/cloud/aws/.aws_aliases"
+    "https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh"
+)
+
+DOTFILES_SOURCE_SCRIPT='
+# --- SOURCE DOTFILES SCRIPT ----------------------------
+
+# Source dotfiles if the shell is interactive
+if [[ -n $PS1 ]]; then
     DOTFILES_DIRNAME=dotfiles
-    MOTD_DIR="$HOME/.my-motd"
-    DEFAULT_GIT_PROFILE=khangtictoc
-    DOTFILES_URLS=(
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.extension_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/command_extension/.misc_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/git/.git_aliases"
-        "https://raw.githubusercontent.com/khangatmercatus/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/helm-aliases/.helm_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/system-aliases/.system_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terraform_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/iac/terraform/.terragrunt_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/docker/.docker_aliases"
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/cloud/aws/.aws_aliases"
-        "https://raw.githubusercontent.com/rupa/z/refs/heads/master/z.sh"
-    )
-}
+    for file in ~/$DOTFILES_DIRNAME/{*,.*}; do
+        if [[ -r $file ]]; then
+            source $file
+        fi
+    done
+fi
+'
+
+SHELL_EXPORTS='
+# --- ENVIRONMENT CREDENTIALS ----------------------------
+
+export AWS_ACCESS_KEY_ID="DummyValue"
+export AWS_SECRET_ACCESS_KEY="DummyValue"
+
+export ARM_TENANT_ID="DummyValue"
+export ARM_SUBSCRIPTION_ID="DummyValue"
+export ARM_CLIENT_ID="DummyValue"
+export ARM_CLIENT_SECRET="DummyValue"
+
+export HCP_CLIENT_ID=DummyValue
+export HCP_CLIENT_SECRET=DummyValue
+
+export VAULT_ADDR="DummyValue"
+export VAULT_NAMESPACE="DummyValue"
+export VAULT_TOKEN=DummyValue
+
+export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export M2_HOME=/opt/maven
+export PATH="$M2_HOME/bin:$PATH"
+'
+
+# --- Functions  --------------------------
 
 function zsh-theme-install(){
     echo
@@ -58,23 +97,16 @@ function source-dotfiles() {
     find ~/$DOTFILES_DIRNAME -iname ".*" -type f | xargs -I {} bash -c "dos2unix {}"
     echo
 
-    if ! grep -Fxq '###### START CUSTOM SCRIPT ######' $SHELL_PROFILE; then
-        cat << EOF >> $SHELL_PROFILE
-###### START CUSTOM SCRIPT ######
-# Source dotfiles if the shell is interactive
-if [[ -n \$PS1 ]]; then
-    DOTFILES_DIRNAME=dotfiles
-    for file in ~/\$DOTFILES_DIRNAME/{*,.*}; do
-        if [[ -r \$file ]]; then
-            source \$file
-        fi
-    done
-fi
+    if ! grep -Fxq '# --- SOURCE DOTFILES SCRIPT ----------------------------' $SHELL_PROFILE; then
+        echo "# --- SOURCE DOTFILES SCRIPT ----------------------------" >> $SHELL_PROFILE
+        echo >> $SHELL_PROFILE
 
+        cat << EOF >> $SHELL_PROFILE
+$DOTFILES_SOURCE_SCRIPT
 EOF
     fi
 
-echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Dotfiles have been sourced successfully!${NC}"
+    echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Dotfiles have been sourced successfully!${NC}"
 }
 
 
@@ -152,6 +184,17 @@ function shell-config--profile(){
         echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Add "$HOME/.local/bin" as executable path to PATH"
     else
         echo -e "[INFO] Existed ℹ️ - Already added "$HOME/.local/bin" as executable path to PATH"
+    fi
+
+    # To provide credentials to some cloud platforms
+
+    if ! grep -Fxq '# --- ENVIRONMENT CREDENTIALS ----------------------------' ${SHELL_PROFILE}; then
+        cat <<EOF >> $SHELL_PROFILE
+$SHELL_EXPORTS
+EOF
+        echo -e "[INFO] ${GREEN}Successful${NC} ✅ - Set 'DummyValue' for Cloud Credentials"
+    else
+        echo -e "[INFO] Existed ℹ️ - Already Set 'DummyValue' for Cloud Credentials"
     fi
 }
 
@@ -254,7 +297,6 @@ function setup-command-autocompletion() {
 function main(){
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
     init-ansicolor
-    init-config
     zsh-theme-install
     zsh-plugins-install
     source-dotfiles
@@ -264,6 +306,10 @@ function main(){
 
     echo
     echo -e "${CYAN}Please restart your terminal or run 'source $SHELL_PROFILE' to apply the changes.${NC}"
+    echo
+    echo -e "${CYAN}What's next?${NC}"
+    echo -e "${CYAN}  - Set up Cloud Credentials${NC}"
+    echo -e "${CYAN}  - Install your tools${NC}"
 }
 
 main "$@" 
