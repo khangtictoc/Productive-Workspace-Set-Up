@@ -8,16 +8,16 @@ then
     echo "[INSTALLING ⬇️ ] MongoDB CLI Tools"
     ## MongoDB Database Tools
     wget "https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-$MONGO_CLI_VERSION.deb"       
-    dpkg -i mongodb-database-tools-ubuntu2204-x86_64-$MONGO_CLI_VERSION.deb
+    sudo dpkg -i mongodb-database-tools-ubuntu2204-x86_64-$MONGO_CLI_VERSION.deb
     
     echo "[INFO] >>>> Clean Up"
     rm -f mongodb-database-tools-ubuntu2204-x86_64-$MONGO_CLI_VERSION.deb
 
     ## MongoDB Shell (mongosh)
     wget -qO- https://www.mongodb.org/static/pgp/server-$MONGOSH_CLI_VERSION.asc \
-        |  tee /etc/apt/trusted.gpg.d/server-$MONGOSH_CLI_VERSION.asc
+        | sudo tee /etc/apt/trusted.gpg.d/server-$MONGOSH_CLI_VERSION.asc
     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/$MONGOSH_CLI_VERSION multiverse" \
-        | tee /etc/apt/sources.list.d/mongodb-org-$MONGOSH_CLI_VERSION.list
+        | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGOSH_CLI_VERSION.list
     sudo apt-get update
     sudo apt-get install -y mongodb-mongosh
 

@@ -17,6 +17,12 @@ then
     echo "[INFO] >>>> Clean Up"
     rm -drf apache-maven-$MAVEN_VERSION-bin.tar.gz apache-maven-$MAVEN_VERSION
 
+    if ! mvn --version &> /dev/null; then
+        echo "[FAIL ❌] Maven installation failed!"
+        exit 1
+    fi
+
+
     echo "[CHECKED ✅] Maven installed! Try 'mvn -v'"
 else
     echo "[CHECKED ✅] Maven has been already installed! Try 'mvn -v'"
