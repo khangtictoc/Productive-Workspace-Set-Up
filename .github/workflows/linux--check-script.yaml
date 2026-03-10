@@ -37,7 +37,7 @@ jobs:
           # Only deactivate if conda is actually initialized
           [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ] && source "$HOME/anaconda3/etc/profile.d/conda.sh" && conda deactivate
           rm -rf "$HOME/anaconda3" "$HOME/miniconda3" /opt/conda
-          sed -i '/conda/d' ~/.bashrc ~/.zshrc
+          [ -f ~/.bashrc ] && sed -i '/conda/d' ~/.bashrc
       - name: Execute Installation
         run: |
           curl -sS --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120  https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/${{ github.event.inputs.branch }}/linux/installation/developer-packages/ubuntu/tools/annacoda.sh | bash
