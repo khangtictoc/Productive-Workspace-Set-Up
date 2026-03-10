@@ -14,10 +14,10 @@ on:
       branch:
         description: "Choose Shell Type"
         required: false
-        default: "${{ github.event.inputs.branch }}"
+        default: "main"
         type: choice
         options:
-          - ${{ github.event.inputs.branch }}
+          - main
           - feat/macos-compat
 
 jobs:
