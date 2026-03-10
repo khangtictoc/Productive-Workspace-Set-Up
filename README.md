@@ -2,9 +2,9 @@
 
 ## Main Features
 
-# Full Setup Script
+### Full Setup Script
 
-If you're using `zsh`, use the below file :
+If you're using `zsh`, Run/execute the below file:
 
 - Reference: [Get Started Script](./linux/start/all-in-one_zsh.sh)
 
