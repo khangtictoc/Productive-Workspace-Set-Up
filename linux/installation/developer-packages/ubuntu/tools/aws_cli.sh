@@ -20,7 +20,7 @@ if ! command -v aws &>/dev/null; then
     echo "[INSTALLING ⬇️] AWS CLI"
     URL=$(detect_aws_url)
 
-    curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "$URL" -o awscliv2.zip
+    curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120 -fsSL "$URL" -o awscliv2.zip
     unzip awscliv2.zip
     sudo ./aws/install
 

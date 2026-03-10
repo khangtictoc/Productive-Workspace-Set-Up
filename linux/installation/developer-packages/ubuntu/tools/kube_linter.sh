@@ -10,7 +10,7 @@ if ! command -v kube-linter &>/dev/null; then
             brew install kube-linter
             ;;
         Linux)
-            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/stackrox/kube-linter/releases/download/v${KUBE_LINTER_VERSION}/kube-linter-linux.tar.gz" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120 -fsSL "https://github.com/stackrox/kube-linter/releases/download/v${KUBE_LINTER_VERSION}/kube-linter-linux.tar.gz" \
                 -o kube-linter-linux.tar.gz
             tar -xzf kube-linter-linux.tar.gz
             sudo cp kube-linter /usr/local/bin/kube-linter

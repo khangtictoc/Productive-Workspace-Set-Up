@@ -16,7 +16,7 @@ if ! command -v glab &>/dev/null; then
                 *) echo "[ERROR] Unsupported architecture"; exit 1 ;;
             esac
 
-            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_${arch}.deb" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120 -fsSL "https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_linux_${arch}.deb" \
                 -o "glab_${GLAB_VERSION}_linux_${arch}.deb"
             sudo dpkg -i "glab_${GLAB_VERSION}_linux_${arch}.deb"
 
