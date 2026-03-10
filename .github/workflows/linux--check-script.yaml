@@ -37,7 +37,7 @@ jobs:
           # Only deactivate if conda is actually initialized
           [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ] && source "$HOME/anaconda3/etc/profile.d/conda.sh" && conda deactivate
           rm -rf "$HOME/anaconda3" "$HOME/miniconda3" /opt/conda
-          rm -rf $(which conda)
+          sudo rm -rf $(which conda)
           [ -f ~/.bashrc ] && sed -i '/conda/d' ~/.bashrc
       - name: Execute Installation
         run: |
