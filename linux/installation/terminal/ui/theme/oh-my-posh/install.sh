@@ -2,52 +2,57 @@
 
 set -e
 
-if command -v apt >/dev/null 2>&1; then
-    echo "[CHECKED ✅] apt found."
-    sudo apt install -y unzip curl
-else
-    echo "[WARNING ⚠️] This is not an Ubuntu-based system. No 'apt' found!"
-fi
+# --- Pinned version -------------------------------------------
+OH_MY_POSH_VERSION="24.19.0"
 
-if command -v oh-my-posh >/dev/null 2>&1; then
-    echo "[INFO] oh-my-posh is already installed."
-else
-    curl -s https://ohmyposh.dev/install.sh | bash -s
-    echo "[INFO] oh-my-posh installation completed!"
-fi
+# --- Detect OS/arch for the correct binary --------------------
+detect_platform() {
+    local os arch
 
-#### To list all available fonts
-# oh-my-posh font install
-# oh-my-posh font install <font-name>
+    case "$(uname -s)" in
+        Darwin) os="darwin" ;;
+        Linux)  os="linux"  ;;
+        *)      echo "[ERROR] Unsupported OS"; exit 1 ;;
+    esac
 
-# Check SystemOS
-isGNUsed=false
-isBSDsed=false
-if sed --version >/dev/null 2>&1; then
-    isGNUsed=true
-fi
-if ! sed --version >/dev/null 2>&1; then
-    isBSDsed=true
-fi
+    case "$(uname -m)" in
+        x86_64)          arch="amd64"  ;;
+        arm64 | aarch64) arch="arm64"  ;;
+        *)               echo "[ERROR] Unsupported architecture"; exit 1 ;;
+    esac
 
-#### If command is not executable
-if [[ "$isGNUsed" == true ]]; then
-    BINARY_PATH="/usr/local/bin/"
-    if ! command -v oh-my-posh &> /dev/null
-    then
-        echo "Command has not been executable, copy to $BINARY_PATH"
-        sudo cp ~/.local/bin/oh-my-posh $BINARY_PATH
+    echo "posh-${os}-${arch}"
+}
+
+# --- Install --------------------------------------------------
+BINARY_NAME=$(detect_platform)
+INSTALL_DIR="$HOME/.local/bin"
+DOWNLOAD_URL="https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v${OH_MY_POSH_VERSION}/${BINARY_NAME}"
+
+mkdir -p "$INSTALL_DIR"
+
+if command -v oh-my-posh &>/dev/null; then
+    CURRENT_VERSION=$(oh-my-posh version 2>/dev/null || echo "unknown")
+    if [[ "$CURRENT_VERSION" == "$OH_MY_POSH_VERSION" ]]; then
+        echo "[INFO] oh-my-posh v$OH_MY_POSH_VERSION is already installed. Skipping."
+        exit 0
     else
-        echo "Command has install successfully!"
+        echo "[INFO] Replacing oh-my-posh v$CURRENT_VERSION → v$OH_MY_POSH_VERSION"
     fi
 fi
 
-if [[ "$isBSDsed" == true ]]; then
-    if ! grep -Fxq "export PATH=\$PATH:$HOME/.local/bin" ~/.zshrc; then
-        echo "export PATH=\$PATH:$HOME/.local/bin" >> ~/.zshrc
-    else
-        echo "PATH already contains \$HOME/.local/bin"
+echo "[INFO] Downloading oh-my-posh v${OH_MY_POSH_VERSION} (${BINARY_NAME})..."
+curl -fsSL "$DOWNLOAD_URL" -o "$INSTALL_DIR/oh-my-posh"
+chmod +x "$INSTALL_DIR/oh-my-posh"
+
+# --- Ensure it's on PATH (macOS / systems without ~/.local/bin in PATH) ---
+if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
+    # Fallback: symlink to /usr/local/bin (requires sudo, Ubuntu/Linux only)
+    if [[ "$(uname -s)" == "Linux" ]]; then
+        sudo ln -sf "$INSTALL_DIR/oh-my-posh" /usr/local/bin/oh-my-posh
+        echo "[INFO] Symlinked to /usr/local/bin/oh-my-posh"
     fi
 fi
 
-
+echo "[INFO] oh-my-posh v${OH_MY_POSH_VERSION} installed successfully at $INSTALL_DIR/oh-my-posh"
+oh-my-posh version
