@@ -1,19 +1,17 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
 NODEJS_VERSION=22
 
-if ! command -v node 2>&1 >/dev/null
-then
-    echo "[INSTALLING ⬇️ ] Node.js"
+if ! command -v node &>/dev/null; then
+    echo "[INSTALLING ⬇️] Node.js v${NODEJS_VERSION} (via nvm)"
 
-    # Download and install nvm:
-    curl  -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-    # in lieu of restarting the shell
+    curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
     \. "$HOME/.nvm/nvm.sh"
-    # Download and install Node.js:
+
     nvm install ${NODEJS_VERSION}
 
-    if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
+    if ! command -v node &>/dev/null || ! command -v npm &>/dev/null; then
         echo "[FAIL ❌] node installation failed!"
         exit 1
     fi
