@@ -48,6 +48,7 @@ init_globals() {
     DOTFILES_DIRNAME=dotfiles
     MOTD_DIR="$HOME/.my_motd"
     DEFAULT_GIT_PROFILE=khangtictoc
+    TOOLING_REPO="DevOps-Tools-Installation-Scripts"
 
     # Base URL for alias files (linux aliases work on macOS zsh too)
     GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
@@ -176,15 +177,15 @@ convert_line_endings() {
 # --- Zsh Theme --------------------------------------------------
 
 zsh_theme_install() {
-    curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/install.sh" | bash
-    curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/configure-zsh.sh" | bash
+    curl -sS "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/install.sh" | bash
+    curl -sS "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/theme/oh-my-posh/configure-zsh.sh" | bash
 }
 
 # --- Zsh Plugins ------------------------------------------------
 
 zsh_plugins_install() {
-    curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/plugins/fzf/install.sh" | bash
-    curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/shell/zsh/plugins.sh" | bash
+    curl -sS "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/plugins/fzf/install.sh" | bash
+    curl -sS "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/shell/zsh/plugins.sh" | bash
 }
 
 # --- Dotfiles ---------------------------------------------------
@@ -340,7 +341,7 @@ shell_config_motd() {
 
 shell_config_motd_self_custom() {
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/self-customed/motd.sh" \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/self-customed/motd.sh" \
         "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
 
@@ -365,19 +366,19 @@ shell_config_motd_neofetch() {
     fi
 
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" \
         "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
     log_success "✅ - Neofetch MOTD script downloaded!"
 
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" \
         "$MOTD_DIR/cat_in_the_box.txt"
     log_success "✅ - ASCII art theme downloaded!"
 
     mkdir -p "$HOME/.config/neofetch"
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" \
         "$HOME/.config/neofetch/config.conf"
     log_success "✅ - Neofetch config installed!"
 
