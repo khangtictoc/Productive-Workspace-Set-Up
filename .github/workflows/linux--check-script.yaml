@@ -30,13 +30,13 @@ jobs:
         run: |
           echo "Shell Type: ${{ github.event.inputs.shell_type }}"
 
-  annacoda-install:
+  anaconda-install:
     runs-on: ubuntu-latest
     needs: verify-configuration
     steps:
       - name: Execute Installation
         run: |
-          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/annacoda.sh | bash
+          curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/anaconda.sh | bash
 
   ansi_color-install:
     runs-on: ubuntu-latest
@@ -366,7 +366,7 @@ jobs:
     if: always()
     needs:
       [
-        annacoda-install,
+        anaconda-install,
         ansi_color-install,
         ansible-install,
         argocd_cli-install,
