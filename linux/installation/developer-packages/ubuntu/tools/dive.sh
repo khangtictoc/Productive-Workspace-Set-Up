@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIVE_VERSION=$(curl -fsSL "https://api.github.com/repos/wagoodman/dive/releases/latest" \
+DIVE_VERSION=$(curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://api.github.com/repos/wagoodman/dive/releases/latest" \
     | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
 
 if ! command -v dive &>/dev/null; then
@@ -17,7 +17,7 @@ if ! command -v dive &>/dev/null; then
                 *) echo "[ERROR] Unsupported architecture"; exit 1 ;;
             esac
 
-            curl -fsSL "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_${arch}.deb" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_${arch}.deb" \
                 -o "dive_${DIVE_VERSION}_linux_${arch}.deb"
             sudo dpkg -i "dive_${DIVE_VERSION}_linux_${arch}.deb"
 

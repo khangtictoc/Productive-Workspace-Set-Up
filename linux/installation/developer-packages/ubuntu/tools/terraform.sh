@@ -18,7 +18,7 @@ if ! command -v terraform &>/dev/null; then
             esac
 
             ZIP="terraform_${TF_VERSION}_linux_${arch}.zip"
-            curl -fsSL "https://releases.hashicorp.com/terraform/${TF_VERSION}/${ZIP}" -o "$ZIP"
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://releases.hashicorp.com/terraform/${TF_VERSION}/${ZIP}" -o "$ZIP"
             unzip "$ZIP"
             sudo mv terraform /usr/local/bin/terraform
 

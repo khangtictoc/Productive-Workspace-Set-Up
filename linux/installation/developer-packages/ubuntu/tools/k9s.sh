@@ -19,7 +19,7 @@ if ! command -v k9s &>/dev/null; then
                 *) echo "[ERROR] Unsupported architecture"; exit 1 ;;
             esac
 
-            curl -fsSL "https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_${arch}.deb" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_linux_${arch}.deb" \
                 -o "k9s_linux_${arch}.deb"
             sudo apt install -y "./k9s_linux_${arch}.deb"
 
@@ -60,7 +60,7 @@ fi
 echo "[INFO] Configuring k9s theme: ${THEME}"
 OUT="${XDG_CONFIG_HOME:-$HOME/.config}/k9s/skins"
 mkdir -p "$OUT"
-curl -fsSL https://github.com/catppuccin/k9s/archive/main.tar.gz \
+curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL https://github.com/catppuccin/k9s/archive/main.tar.gz \
     | tar xz -C "$OUT" --strip-components=2 k9s-main/dist
 yq -i ".k9s.ui.skin = \"$THEME\"" "$CONFIG_FILE"
 

@@ -17,7 +17,7 @@ if ! command -v kubesec &>/dev/null; then
             esac
 
             TARBALL="kubesec_linux_${arch}.tar.gz"
-            curl -fsSL "https://github.com/controlplaneio/kubesec/releases/download/v${KUBESEC_VERSION}/${TARBALL}" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/controlplaneio/kubesec/releases/download/v${KUBESEC_VERSION}/${TARBALL}" \
                 -o "$TARBALL"
             tar -xzf "$TARBALL"
             sudo cp kubesec /usr/local/bin/kubesec

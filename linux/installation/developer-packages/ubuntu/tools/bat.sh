@@ -16,7 +16,7 @@ if ! command -v bat &>/dev/null; then
                 *) echo "[ERROR] Unsupported architecture"; exit 1 ;;
             esac
 
-            curl -fsSL "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${arch}.deb" \
+            curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${arch}.deb" \
                 -o "bat_${BAT_VERSION}_${arch}.deb"
             sudo dpkg -i "bat_${BAT_VERSION}_${arch}.deb"
 

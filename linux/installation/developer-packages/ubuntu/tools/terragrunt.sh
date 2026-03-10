@@ -25,7 +25,7 @@ if ! command -v terragrunt &>/dev/null; then
             ;;
     esac
 
-    curl -fsSL "https://github.com/gruntwork-io/terragrunt/releases/download/v${TFG_VERSION}/terragrunt_${arch}" \
+    curl --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120-fsSL "https://github.com/gruntwork-io/terragrunt/releases/download/v${TFG_VERSION}/terragrunt_${arch}" \
         -o terragrunt
     sudo chmod +x terragrunt
     sudo mv terragrunt /usr/local/bin/terragrunt
