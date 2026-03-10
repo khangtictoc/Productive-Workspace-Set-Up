@@ -11,8 +11,23 @@ If you're using `zsh`, Run/execute the below file:
 Includes:
 
 1. My custom/public alias: `git`, `kubectl`, `helm`, `terraform`, ...
-2. ZSH Plugins + Themes
+- Example `kubectl`: https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
+- All alias at: `/linux/alias/.<TOOL-NAME>_alias`
+
+2. ZSH Plugins + Themes + MOTD
+
+<img width="1759" height="531" alt="image" src="https://github.com/user-attachments/assets/ad87dd5e-0c77-4263-a299-4034f0da2c80" />
+
+Example of my MOTD (Messagge of The Day) image at: https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt
+
+Update the "Get Started" script to refer to your image if you don't like
+
 3. Shell configuration
+
+Convenient for later uses + labs
+
+<img width="996" height="934" alt="image" src="https://github.com/user-attachments/assets/1db55a69-970c-455b-9f48-d2fc4a7ddd4d" />
+
 4. Git Hook
 5. Command Auto-completion: `helm`, `kubectl`, ...
 
