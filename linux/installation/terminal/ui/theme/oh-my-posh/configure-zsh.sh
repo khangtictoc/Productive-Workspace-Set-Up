@@ -12,7 +12,7 @@ SHELL_EXPORTS="
 
 # --- SOURCE DOTFILES SCRIPT ----------------------------
 
-eval "\$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/$OH_MY_POSH_THEME.omp.json)"
+eval \"\$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/$OH_MY_POSH_THEME.omp.json)\"
 "
 
 # --- MAIN ----------
