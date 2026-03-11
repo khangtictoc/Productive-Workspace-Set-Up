@@ -15,7 +15,7 @@ Includes:
 - Example `kubectl`: https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
 - All alias at: `/linux/alias/.<TOOL-NAME>_alias`
 
-2. ZSH Plugins + Themes + MOTD
+2. ZSH Plugins + Themes + MOTD (Require any [Nerd Fonts](https://www.nerdfonts.com/) )
 
 <img width="1759" height="531" alt="image" src="https://github.com/user-attachments/assets/ad87dd5e-0c77-4263-a299-4034f0da2c80" />
 
@@ -29,8 +29,19 @@ Convenient for later uses + labs
 
 <img width="996" height="934" alt="image" src="https://github.com/user-attachments/assets/1db55a69-970c-455b-9f48-d2fc4a7ddd4d" />
 
-4. Git Hook
-5. Command Auto-completion: `helm`, `kubectl`, ...
+4. Git Hook (Pre-push)
+
+*<You can custom this script: `GITHOOK_PREPUSH_SCRIPT`>*
+
+Scanning for repo's secrets.
+Require: 
+- ggshield
+- trufflehog
+
+
+
+
+1. Command Auto-completion: `helm`, `kubectl`, ...
 
 ### Parameters
 
