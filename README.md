@@ -36,6 +36,8 @@ Require:
 
 - ggshield
 - trufflehog
+- jq
+- jbtl
 
 <img width="909" height="1216" alt="image" src="https://github.com/user-attachments/assets/290460cf-e299-4807-8f21-3b8106392af8" />
 
