@@ -116,6 +116,10 @@
   "vscode-kubernetes.log-viewer.destination": "Webview",
   "vscode-kubernetes.log-viewer.wrap": true,
 
+  "vscode_custom_css.imports": [
+    "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/windows/utilities/configuration/Custom%20Loader%20CSS%20Javascript/custom-vs.css"
+  ],
+
   // ===========================
   // WINDOWS ONLY
   // ===========================
@@ -138,10 +142,7 @@
       }
     },
 
-    "window.newWindowProfile": "Default",
-    "vscode_custom_css.imports": [
-      "file:///C:/Custom Loader CSS Javascript/custom-vs.css"
-    ]
+    "window.newWindowProfile": "Default"
   },
 
   // ===========================
@@ -149,7 +150,5 @@
   // ===========================
   "[mac]": {
     "terminal.integrated.defaultProfile.osx": "zsh"
-    // Add your Mac custom CSS path here when ready:
-    // "vscode_custom_css.imports": ["file:///Users/YOUR_USERNAME/custom-vs.css"]
   }
 }
