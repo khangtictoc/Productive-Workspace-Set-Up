@@ -1,65 +1,43 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
-# ========== CONFIG ==========
-
-# Font ZIP URLs (EDIT THIS LIST)
 FONT_URLS=(
     "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip"
 )
 
-# Change to "system" for /usr/local/share/fonts (requires sudo)
-INSTALL_SCOPE="user"
+install_fonts() {
+    case "$(uname -s)" in
+        Darwin) FONT_DIR="$HOME/Library/Fonts" ;;
+        Linux)  FONT_DIR="$HOME/.local/share/fonts" ;;
+        *) echo "[ERROR] Unsupported OS"; exit 1 ;;
+    esac
 
-# Supported font extensions
-FONT_EXTENSIONS=("ttf" "otf")
+    mkdir -p "$FONT_DIR"
 
-# ============================
+    for url in "${FONT_URLS[@]}"; do
+        FILENAME=$(basename "$url")
+        FONTNAME="${FILENAME%.zip}"
 
-# Temporary working directory
-WORKDIR="$(mktemp -d)"
+        echo "[INSTALLING ⬇️] Font: $FONTNAME"
+        curl -fsSL --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 120 \
+            "$url" -o "/tmp/$FILENAME"
 
-cleanup() {
-    rm -rf "$WORKDIR"
-}
-trap cleanup EXIT
+        unzip -o "/tmp/$FILENAME" -d "/tmp/$FONTNAME"
 
-# Determine font directory
-if [[ "$INSTALL_SCOPE" == "system" ]]; then
-    FONT_DIR="/usr/local/share/fonts"
-    SUDO="sudo"
-else
-    FONT_DIR="$HOME/.local/share/fonts"
-    SUDO=""
-fi
+        # Copy only font files, skip license/readme
+        find "/tmp/$FONTNAME" -type f \( -iname "*.ttf" -o -iname "*.otf" \) \
+            -exec cp {} "$FONT_DIR/" \;
 
-echo "📁 Installing fonts to: $FONT_DIR"
-mkdir -p "$FONT_DIR"
+        echo "[INFO] Clean up"
+        rm -rf "/tmp/$FILENAME" "/tmp/$FONTNAME"
 
-for URL in "${FONT_URLS[@]}"; do
-    echo "⬇️  Downloading: $URL"
-
-    ZIP_NAME="$(basename "$URL")"
-    ZIP_PATH="$WORKDIR/$ZIP_NAME"
-
-    curl -L --fail -o "$ZIP_PATH" "$URL"
-
-    echo "📦 Extracting: $ZIP_NAME"
-    unzip -qq "$ZIP_PATH" -d "$WORKDIR/extracted"
-
-    for EXT in "${FONT_EXTENSIONS[@]}"; do
-        FOUND_FONTS=$(find "$WORKDIR/extracted" -type f -iname "*.${EXT}" || true)
-        if [[ -n "$FOUND_FONTS" ]]; then
-            echo "🔤 Installing .$EXT fonts"
-            echo "$FOUND_FONTS" | xargs -I{} $SUDO cp "{}" "$FONT_DIR/"
-        fi
+        echo "[CHECKED ✅] $FONTNAME installed to $FONT_DIR"
     done
 
-    rm -rf "$WORKDIR/extracted"
-done
+    # Refresh font cache (Linux only — macOS picks up fonts automatically)
+    if [[ "$(uname -s)" == "Linux" ]] && command -v fc-cache &>/dev/null; then
+        fc-cache -fv "$FONT_DIR"
+        echo "[CHECKED ✅] Font cache refreshed"
+    fi
+}
 
-echo "🔄 Refreshing font cache"
-$SUDO fc-cache -f -v
-
-echo "✅ Font installation completed"
+install_fonts
