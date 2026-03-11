@@ -19,7 +19,7 @@ Includes:
 
 <img width="1759" height="531" alt="image" src="https://github.com/user-attachments/assets/ad87dd5e-0c77-4263-a299-4034f0da2c80" />
 
-Example of my MOTD (Messagge of The Day) image at: https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt
+Example of my MOTD (Message of The Day) image at: https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt
 
 Update the "Get Started" script to refer to your image if you don't like
 
@@ -31,7 +31,7 @@ Convenient for later uses + labs
 
 4. Git Hook (Pre-push)
 
-*<You can custom this script: `GITHOOK_PREPUSH_SCRIPT`>*
+_<You can custom this script: `GITHOOK_PREPUSH_SCRIPT`>_
 
 Scanning for repo's secrets. **"Generic Password" -> Skipped**
 Require: 
