@@ -17,11 +17,9 @@ Includes:
 
 2. ZSH Plugins + Themes + MOTD (Require any [Nerd Fonts](https://www.nerdfonts.com/) )
 
+_<You can custom the ASCII Image: `MOTD_IMAGE_URL`>_
+
 <img width="1759" height="531" alt="image" src="https://github.com/user-attachments/assets/ad87dd5e-0c77-4263-a299-4034f0da2c80" />
-
-Example of my MOTD (Message of The Day) image at: https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt
-
-Update the "Get Started" script to refer to your image if you don't like
 
 3. Shell configuration
 
@@ -34,15 +32,16 @@ Convenient for later uses + labs
 _<You can custom this script: `GITHOOK_PREPUSH_SCRIPT`>_
 
 Scanning for repo's secrets. **"Generic Password" -> Skipped**
-Require: 
+Require:
+
 - ggshield
 - trufflehog
 
 <img width="909" height="1216" alt="image" src="https://github.com/user-attachments/assets/290460cf-e299-4807-8f21-3b8106392af8" />
 
+5. Command Auto-completion: `helm`, `kubectl`, ...
 
-
-1. Command Auto-completion: `helm`, `kubectl`, ...
+> NOTE: Customize the whole script to any of your likings
 
 ### Parameters
 
@@ -50,7 +49,7 @@ Modify variables script suits your need
 
 | Variable               | Description                                                                                                   | Example                                                                                                                                                            |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| MOTD_IMAGE_URL         | ASCII image when opening new shell terminal                                                                   | https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt |
+| MOTD_IMAGE_URL         | ASCII image when opening new shell terminal (Message of the day)                                              | https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt |
 | DF_GITPROFILE_NAME     | (Optional) Name of your profile, prints out in execution's output                                             | myproductiveprofile                                                                                                                                                |
 | DF_GITPROFILE_URL      | URL of your profile's config                                                                                  | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh                   |
 | GITHOOK_PREPUSH_SCRIPT | URL of your Github pre-push Hook's script NOTE: If set, `core.hookPath` will be configured as global settings | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push                            |
