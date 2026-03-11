@@ -47,8 +47,13 @@ init_globals() {
     GITCONFIG_DIRNAME=git_config
     DOTFILES_DIRNAME=dotfiles
     MOTD_DIR="$HOME/.my_motd"
-    DEFAULT_GIT_PROFILE=khangtictoc
     TOOLING_REPO="DevOps-Tools-Installation-Scripts"
+    
+    # Customizable
+    DF_GITPROFILE_NAME=khangtictoc
+    DF_GITPROFILE_URL="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh"
+    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt"
+    GITHOOK_PREPUSH_SCRIPT="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push"
 
     # Base URL for alias files (linux aliases work on macOS zsh too)
     GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
@@ -221,9 +226,9 @@ EOF
 
 setup_git_profile() {
     echo "[INFO] Configuring Git Profile (Default Workspace)..."
-    curl -sL "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/$DEFAULT_GIT_PROFILE.sh" | bash
+    curl -sL "$DF_GITPROFILE_URL" | bash
 
-    log_info "Default profile ${CYAN}$DEFAULT_GIT_PROFILE${NC} is selected!"
+    log_info "Default profile ${CYAN}$DF_GITPROFILE_NAME${NC} is selected!"
     sleep 1
 }
 
@@ -238,7 +243,7 @@ setup_git_hooks() {
     git config --global include.path "~/$GITCONFIG_DIRNAME/alias/git_aliases.txt"
 
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push" \
+        "$GITHOOK_PREPUSH_SCRIPT" \
         ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
     chmod +x ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
 
@@ -372,8 +377,8 @@ shell_config_motd_neofetch() {
     log_success "✅ - Neofetch MOTD script downloaded!"
 
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt" \
-        "$MOTD_DIR/cat_in_the_box.txt"
+        "$MOTD_IMAGE_URL" \
+        "$MOTD_DIR/ascii_image.txt"
     log_success "✅ - ASCII art theme downloaded!"
 
     mkdir -p "$HOME/.config/neofetch"
@@ -382,7 +387,7 @@ shell_config_motd_neofetch() {
         "$HOME/.config/neofetch/config.conf"
     log_success "✅ - Neofetch config installed!"
 
-    local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/cat_in_the_box.txt"
+    local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
         log_success "✅ - Neofetch MOTD script sourced in $SHELL_PROFILE"

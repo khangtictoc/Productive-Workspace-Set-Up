@@ -2,15 +2,16 @@
 
 ## Main Features
 
-### Full Setup Script
+### All-In-One Setup Script
 
 If you're using `zsh`, Run/execute the below file:
 
-- Reference: [Get Started Script](./linux/start/all-in-one_zsh.sh)
+- Main reference: [Get Started Script](./linux/start/all-in-one_zsh.sh)
 
 Includes:
 
 1. My custom/public alias: `git`, `kubectl`, `helm`, `terraform`, ...
+
 - Example `kubectl`: https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias/kubernetes/kubectl-aliases/.kubectl_aliases
 - All alias at: `/linux/alias/.<TOOL-NAME>_alias`
 
@@ -30,6 +31,17 @@ Convenient for later uses + labs
 
 4. Git Hook
 5. Command Auto-completion: `helm`, `kubectl`, ...
+
+### Parameters
+
+Modify variables script suits your need
+
+| Variable               | Description                                                                                                   | Example                                                                                                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| MOTD_IMAGE_URL         | ASCII image when opening new shell terminal                                                                   | https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt |
+| DF_GITPROFILE_NAME     | (Optional) Name of your profile, prints out in execution's output                                             | myproductiveprofile                                                                                                                                                |
+| DF_GITPROFILE_URL      | URL of your profile's config                                                                                  | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh                   |
+| GITHOOK_PREPUSH_SCRIPT | URL of your Github pre-push Hook's script NOTE: If set, `core.hookPath` will be configured as global settings | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push                            |
 
 ## Others
 
