@@ -1,0 +1,155 @@
+{
+  // ===========================
+  // SHARED SETTINGS (all OS)
+  // ===========================
+
+  // --- DEVELOPER ---
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "git.autofetch": "all",
+
+  // --- WORKSPACE EDITOR ---
+  "files.autoSave": "afterDelay",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDelete": false,
+  "editor.letterSpacing": 0.5,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.renderWhitespace": "boundary",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.largeFileOptimizations": false,
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorCustomizations": {
+    "terminal.foreground": "#abb2bf"
+  },
+
+  // ---- AI AGENT ----
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.advanced": { "authProvider": "github" },
+  "github.copilot.chat.codeGeneration.instructions": [],
+  "docker.extension.enableComposeLanguageServer": false,
+  "chat.viewSessions.orientation": "stacked",
+  "remote.autoForwardPortsSource": "hybrid",
+
+  // --- FORMAT (shared, same on all OS) ---
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  "[tf]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
+  },
+  "[hcl]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true
+  },
+  "[terraform-vars]": { "editor.defaultFormatter": "hashicorp.terraform" },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // ---- Terminal ----
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.letterSpacing": 0.5,
+  "terminal.integrated.suggest.enabled": true,
+  "terminal.integrated.fontLigatures.enabled": true,
+  "workbench.iconTheme": "catppuccin-macchiato",
+
+  // ---- Kubernetes ----
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "enabled",
+    "disable-linters": ["resource-limits", "resource-requests"]
+  },
+  "vscode-kubernetes.log-viewer.follow": true,
+  "vscode-kubernetes.log-viewer.timestamp": true,
+  "vscode-kubernetes.log-viewer.since": -1,
+  "vscode-kubernetes.log-viewer.tail": -1,
+  "vscode-kubernetes.log-viewer.destination": "Webview",
+  "vscode-kubernetes.log-viewer.wrap": true,
+
+  // ===========================
+  // WINDOWS ONLY
+  // ===========================
+  "[windows]": {
+    "terminal.integrated.defaultProfile.windows": "Ubuntu-22.04 (WSL)",
+    "terminal.integrated.profiles.windows": {
+      "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
+      "Command Prompt": {
+        "path": [
+          "${env:windir}\\Sysnative\\cmd.exe",
+          "${env:windir}\\System32\\cmd.exe"
+        ],
+        "args": [],
+        "icon": "terminal-cmd"
+      },
+      "Git Bash": { "source": "Git Bash" },
+      "Ubuntu-22.04 (WSL)": {
+        "path": "C:\\Windows\\System32\\wsl.exe",
+        "args": ["-d", "Ubuntu-22.04"]
+      }
+    },
+
+    "window.newWindowProfile": "Default",
+    "vscode_custom_css.imports": [
+      "file:///C:/Custom Loader CSS Javascript/custom-vs.css"
+    ]
+  },
+
+  // ===========================
+  // MAC ONLY
+  // ===========================
+  "[mac]": {
+    "terminal.integrated.defaultProfile.osx": "zsh"
+    // Add your Mac custom CSS path here when ready:
+    // "vscode_custom_css.imports": ["file:///Users/YOUR_USERNAME/custom-vs.css"]
+  }
+}
