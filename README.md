@@ -33,11 +33,12 @@ Convenient for later uses + labs
 
 *<You can custom this script: `GITHOOK_PREPUSH_SCRIPT`>*
 
-Scanning for repo's secrets.
+Scanning for repo's secrets. **"Generic Password" -> Skipped**
 Require: 
 - ggshield
 - trufflehog
 
+<img width="909" height="1216" alt="image" src="https://github.com/user-attachments/assets/290460cf-e299-4807-8f21-3b8106392af8" />
 
 
 
