@@ -96,3 +96,10 @@ kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace,DEPLO
 kubectl get deployment -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
 kubectl get statefulset -A -o custom-columns='NAMESPACE:.metadata.namespace, NAME:.metadata.name, SERVICE_ACCOUNT:.spec.template.spec.serviceAccountName, LABEL:.spec.template.metadata.labels.aadpodidbinding'
 
+# KUBECONFIG
+kubectl config set-credentials 60099@internal.users --client-key=60099.key --client-certificate=60099.crt
+kubectl config set-context 60099@internal.users --cluster=kubernetes --user=60099@internal.users
+
+# Certificate
+
+kubectl certificate approve 60099@internal.users
