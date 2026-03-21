@@ -1,4 +1,4 @@
-# Operate on selected directories
+# Run selected directories
 terragrunt run-all plan --non-interactive \
     --queue-include-external \
     --working-dir . \
@@ -7,7 +7,7 @@ terragrunt run-all plan --non-interactive \
     --terragrunt-exclude-dir <excluded-dir> \
 
 
-# Operate on all directories
+# Run all directories
 terragrunt run-all plan --non-interactive \
     --queue-include-external \
     --working-dir . 
