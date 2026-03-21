@@ -22,4 +22,5 @@ dig @1.1.1.1 <domain>
 
 ## Check TLS supported on server
 curl --tls-max 1.2 --tlsv1.2 <host>
-
+curl -o /dev/null -s -w "%{http_code}" http://example.com
+curl -o /dev/null -s -w "%{remote_ip}" http://example.com
