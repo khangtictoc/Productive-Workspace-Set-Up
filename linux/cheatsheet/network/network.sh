@@ -16,3 +16,10 @@ sudo resolvectl flush-caches
 # dig
 dig @8.8.8.8 <domain>
 dig @1.1.1.1 <domain>
+
+
+# SSL
+
+## Check TLS supported on server
+curl --tls-max 1.2 --tlsv1.2 <host>
+

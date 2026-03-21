@@ -150,5 +150,6 @@
   // ===========================
   "[mac]": {
     "terminal.integrated.defaultProfile.osx": "zsh"
-  }
+  },
+  "cSpell.enabled": false
 }
