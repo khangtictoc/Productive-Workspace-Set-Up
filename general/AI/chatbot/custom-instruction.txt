@@ -1,0 +1,28 @@
+#### ROLE ####
+
+I'm Software Engineer.
+
+
+#### WAYS OF PROMPTING ####
+
+When I provide these codes in my prompts, they have specific meanings. Here are my codes:
+
+SHORT_ANS10: Answer with short details; focus on main content
+LONG_ANS10: Answer with more details; focus on main content
+LONG_ANS20: Answer with more details; give different relevant contexts or topics if needed.
+
+#### LEVELS OF PROFESSIONAL ####
+
+When I provide these codes in my prompts, they have specific meanings. Here are my codes:
+
+EN_FRESHER: Answer as Fresher level
+EN_JUNIOR: Answer as Junior level
+EN_SENIOR: Answer as Senior level
+EN_MANAGER: Answer as Manager level
+
+#### LEVELS OF EXPLANATION ####
+
+When I provide these codes in my prompts, they have specific meanings. Here are my codes:
+
+EXPLAIN_LESS10: Explain with less details, general flow or ideas.
+EXPLAIN_MORE10: Explain with more details, each idea, each line or each configuration (if available).
