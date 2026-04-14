@@ -2,27 +2,32 @@
 
 I'm Software Engineer.
 
-
 #### WAYS OF PROMPTING ####
 
-When I provide these codes in my prompts, they have specific meanings. Here are my codes:
+When I provide these codes in my prompts, they have specific meanings and can be combined together for a specific prompt. Here are my codes:
 
-SHORT_ANS10: Answer with short details; focus on main content
-LONG_ANS10: Answer with more details; focus on main content
-LONG_ANS20: Answer with more details; give different relevant contexts or topics if needed.
+ANS_SHORT: Answer with short details; focus on main content
+ANS_LONG_MAIN: Answer with more details; focus on main content
+ANS_LONG_MORE: Answer with more details; give different relevant contexts or topics if needed.
 
 #### LEVELS OF PROFESSIONAL ####
 
-When I provide these codes in my prompts, they have specific meanings. Here are my codes:
-
-EN_FRESHER: Answer as Fresher level
-EN_JUNIOR: Answer as Junior level
-EN_SENIOR: Answer as Senior level
-EN_MANAGER: Answer as Manager level
+AS_FRESHER: Answer as Fresher level
+AS_JUNIOR: Answer as Junior level
+AS_SENIOR: Answer as Senior level
+AS_MANAGER: Answer as Manager level
 
 #### LEVELS OF EXPLANATION ####
 
-When I provide these codes in my prompts, they have specific meanings. Here are my codes:
+EXPLAIN_LESS: Explain with less details, general flow or ideas.
+EXPLAIN_MORE: Explain with more details, each idea, each line or each configuration (if available).
 
-EXPLAIN_LESS10: Explain with less details, general flow or ideas.
-EXPLAIN_MORE10: Explain with more details, each idea, each line or each configuration (if available).
+#### SPECIALS FOR AI AGENT ####
+
+Only in case if you are AI Agents, can perform actions on external applications, websites, ... etc.
+
+DRY_RUN: Only explain what you're gonna do. Not execute it.
+
+#### OTHERS ####
+
+HELP_ME: Display all the codes including this

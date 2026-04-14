@@ -1,0 +1,327 @@
+configuration-as-code: {}
+credentials:
+  folder: {}
+  providerImpl: {}
+  system:
+    domainCredentials:
+      - domain: {}
+  user: {}
+jenkins:
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+    - kubernetes:
+        containerCap: 10
+        containerCapStr: "10"
+        jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
+        jenkinsUrl: "khangtictoc.jenkins.io"
+        name: "kubernetes"
+        namespace: "jenkins"
+        podLabels:
+          - key: "jenkins/jenkins-jenkins-agent"
+            value: "true"
+        serverUrl: "https://kubernetes.default"
+        templates:
+          - containers:
+              - args: "^${computer.jnlpmac} ^${computer.name}"
+                envVars:
+                  - envVar:
+                      key: "JENKINS_URL"
+                      value: "khangtictoc.jenkins.io"
+                image: "jenkins/inbound-agent:3355.v388858a_47b_33-5"
+                name: "jnlp"
+                resourceLimitCpu: "512m"
+                resourceLimitMemory: "512Mi"
+                resourceRequestCpu: "512m"
+                resourceRequestMemory: "512Mi"
+                workingDir: "/home/jenkins/agent"
+            id: "e04379be04f395c9e02d839e147724fa7ee057420907f34ba5558c97b1691783"
+            label: "jenkins-jenkins-agent"
+            name: "default"
+            namespace: "jenkins"
+            nodeUsageMode: "NORMAL"
+            podRetention: "never"
+            serviceAccount: "default"
+            slaveConnectTimeout: 100
+            slaveConnectTimeoutStr: "100"
+            yamlMergeStrategy: "override"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+    - name: "General"
+    - name: "built-in"
+    - name: "jenkins-jenkins-agent"
+  log: {}
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodeMonitors:
+    - "architecture"
+    - "clock"
+    - diskSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "swapSpace"
+    - tmpSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "responseTime"
+  nodes:
+    - permanent:
+        launcher: "inbound"
+        name: "General"
+        remoteFS: "/home/jenkins/agent-general"
+        retentionStrategy: "always"
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "admin"
+          name: "Jenkins Admin"
+          properties:
+            - "apiToken"
+            - "consoleUrlProvider"
+            - "mailer"
+            - "myView"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
+  views:
+    - list:
+        columns:
+          - "status"
+          - "weather"
+          - "jobName"
+          - "lastSuccess"
+          - "lastFailure"
+          - "lastDuration"
+          - "buildButton"
+        jobNames:
+          - "NAB Internal/Backend Services/Build-Container-Go-Service"
+          - "NAB Internal/Backend Services/Build-Container-Java-Service"
+          - "NAB Internal/Backend Services/Build-Container-NodeJS-Service"
+        name: "Backend CI"
+        recurse: true
+    - list:
+        columns:
+          - "status"
+          - "weather"
+          - "jobName"
+          - "lastSuccess"
+          - "lastFailure"
+          - "lastDuration"
+          - "buildButton"
+        name: "Frontend CI"
+    - all:
+        name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+appearance:
+  consoleUrlProvider: {}
+  customFolderIconConfiguration: {}
+  prism:
+    theme: PRISM
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  apiTokenProperty: {}
+  auditLogConfiguration:
+    appenderType: "jsonLayout"
+    enterpriseNumber: 18060
+    logDestination: "/var/jenkins_home/logs/audit/audit.log"
+    syslogHost: "localhost"
+    syslogPort: 1854
+    syslogProto: "TCP"
+  cps:
+    hideSandbox: false
+  crumb: {}
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  prism: {}
+  queueItemAuthenticator: {}
+  sSHD:
+    port: -1
+  scriptApproval:
+    forceSandbox: false
+  updateSiteWarningsConfiguration: {}
+unclassified:
+  administrativeMonitorsConfiguration: {}
+  ansiColorBuildWrapper:
+    colorMaps:
+      - black: "#000000"
+        blackB: "#4C4C4C"
+        blue: "#1E90FF"
+        blueB: "#4682B4"
+        cyan: "#00CDCD"
+        cyanB: "#00FFFF"
+        green: "#00CD00"
+        greenB: "#00FF00"
+        magenta: "#CD00CD"
+        magentaB: "#FF00FF"
+        name: "xterm"
+        red: "#CD0000"
+        redB: "#FF0000"
+        white: "#E5E5E5"
+        whiteB: "#FFFFFF"
+        yellow: "#CDCD00"
+        yellowB: "#FFFF00"
+      - black: "#000000"
+        blackB: "#555555"
+        blue: "#0000AA"
+        blueB: "#5555FF"
+        cyan: "#00AAAA"
+        cyanB: "#55FFFF"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#00AA00"
+        greenB: "#55FF55"
+        magenta: "#AA00AA"
+        magentaB: "#FF55FF"
+        name: "vga"
+        red: "#AA0000"
+        redB: "#FF5555"
+        white: "#AAAAAA"
+        whiteB: "#FFFFFF"
+        yellow: "#AA5500"
+        yellowB: "#FFFF55"
+      - black: "black"
+        blackB: "black"
+        blue: "blue"
+        blueB: "blue"
+        cyan: "cyan"
+        cyanB: "cyan"
+        green: "green"
+        greenB: "green"
+        magenta: "magenta"
+        magentaB: "magenta"
+        name: "css"
+        red: "red"
+        redB: "red"
+        white: "white"
+        whiteB: "white"
+        yellow: "yellow"
+        yellowB: "yellow"
+      - black: "#2E3436"
+        blackB: "#2E3436"
+        blue: "#3465A4"
+        blueB: "#3465A4"
+        cyan: "#06989A"
+        cyanB: "#06989A"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#4E9A06"
+        greenB: "#4E9A06"
+        magenta: "#75507B"
+        magentaB: "#75507B"
+        name: "gnome-terminal"
+        red: "#CC0000"
+        redB: "#CC0000"
+        white: "#D3D7CF"
+        whiteB: "#D3D7CF"
+        yellow: "#C4A000"
+        yellowB: "#C4A000"
+  artifactManager: {}
+  audit-trail:
+    displayUserName: false
+    logBuildCause: true
+    logCredentialsUsage: true
+    logScriptUsage: false
+    pattern: ".*/(?:configSubmit|doDelete|postBuildResult|enable|disable|cancelQueue|stop|toggleLogKeep|doWipeOutWorkspace|createItem|createView|toggleOffline|cancelQuietDown|quietDown|restart|exit|safeExit)/?.*"
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  builtInNode: {}
+  casCGlobalConfig: {}
+  computerRetentionCheckInterval: {}
+  defaultDisplayUrlProvider: {}
+  defaultFolderConfiguration: {}
+  defaultView: {}
+  envVarsFilter: {}
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  globalDefaultFlowDurabilityLevel: {}
+  globalLibraries: {}
+  globalUntrustedLibraries: {}
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://jenkins.khangtictoc.io/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  metricsAccessKey: {}
+  myView: {}
+  nodeProperties: {}
+  plugin: {}
+  pollSCM:
+    pollingThreadCount: 10
+  projectNamingStrategy: {}
+  proxyConfigurationManager: {}
+  quietPeriod: {}
+  rebuildDescriptor: {}
+  resourceRoot: {}
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  scmRetryCount: {}
+  shell: {}
+  thinBackup:
+    backupAdditionalFiles: false
+    backupBuildArchive: false
+    backupBuildResults: true
+    backupBuildsToKeepOnly: false
+    backupConfigHistory: false
+    backupNextBuildNumber: false
+    backupPluginArchives: false
+    backupUserContents: false
+    cleanupDiff: false
+    failFast: true
+    forceQuietModeTimeout: 120
+    moveOldBackupsToZipFile: false
+    nrMaxStoredFull: -1
+    waitForIdle: true
+  usageStatistics: {}
+  viewsTabBar: {}
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
