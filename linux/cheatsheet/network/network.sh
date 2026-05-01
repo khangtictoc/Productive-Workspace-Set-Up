@@ -1,9 +1,13 @@
 ## NETWORK CARD INTERFACE
-ip a show  eth0 | grep -oP "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" | head -n1
+ip a show eth0 | grep -oP "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" | head -n1
 
-## PORT
+## NMAP
 nmap -n -sP 192.168.21.0/24
 nmap -p 1024-65534 192.168.20.225
+
+# Guess Service running on a HOST:PORT
+nmap -sV -p 7070 192.168.100.14
+
 
 # Show user, process name, port
 ss -splunt 

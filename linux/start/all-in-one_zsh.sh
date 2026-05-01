@@ -59,8 +59,9 @@ init_globals() {
     GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
 
     DOTFILES_URLS=(
-        "$GIT_ALIAS_FOLDER_URL/command_extension/.extension_aliases"
-        "$GIT_ALIAS_FOLDER_URL/command_extension/.misc_aliases"
+        "$GIT_ALIAS_FOLDER_URL/utilities/.api_aliases"
+        "$GIT_ALIAS_FOLDER_URL/utilities/.misc_aliases"
+        "$GIT_ALIAS_FOLDER_URL/utilities/.tool_aliases"
         "$GIT_ALIAS_FOLDER_URL/git/.git_aliases"
         "$GIT_ALIAS_FOLDER_URL/kubernetes/helm-aliases/.helm_aliases"
         "$GIT_ALIAS_FOLDER_URL/kubernetes/kubectl-aliases/.kubectl_aliases"

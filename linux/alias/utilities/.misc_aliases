@@ -1,0 +1,32 @@
+alias bat-clean='bat --paging=never --style=plain'
+
+# Create Jekyll post with format $date--$topic--$postname.md
+
+function mkpost() {
+    # Show help if requested
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        echo "Usage: mkpost [POST_NAME]"
+        echo "Creates a markdown post with front matter."
+        echo "If POST_NAME is omitted, defaults to 'no-title'."
+        return 0
+    fi
+
+    # Default value for POST_NAME
+    POST_NAME="${1:-no-title}"
+    TITLE="$(date +%Y-%m-%d)--$POST_NAME"
+    FILE="$TITLE.md"
+
+    touch "$FILE"
+
+    {
+        echo "---"
+        echo "title: [DummyValue]"
+        echo "author: [DummyValue]"
+        echo "date: $(date +%Y-%m-%d\ %H:%M:%S\ +0700)"
+        echo "categories: [DummyValue1, DummyValue2]"
+        echo "tags: [DummyValue1, DummyValue2]"
+        echo "---"
+    } >> "$FILE"
+
+    echo "Created post: $FILE"
+}

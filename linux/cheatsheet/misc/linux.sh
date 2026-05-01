@@ -45,3 +45,21 @@ rg ".*someword.*" ./somedir -g '*.ps1'
 
 ## ZIP
 zip <archive_name>.zip -r * -x <exclude_file_or_folder>
+
+## KERNEL LOGS
+
+dmesg
+
+## Format Filesystem
+mkfs
+
+## FILE SYSTEMS
+
+# View mounted filesystems
+mount | column -t
+lsblk
+cat /etc/fstab # Configuration for at Boot time
+
+# Check Device for specific mount path
+df -h /home/virus 
+findmnt -n -o SOURCE -T /home/virus
