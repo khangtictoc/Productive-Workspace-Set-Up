@@ -8,37 +8,6 @@ set -e
 # Shell:    Zsh
 # ================================================================
 
-# --- OS Detection (run first, everything depends on this) -------
-
-detect_os() {
-    case "$(uname -s)" in
-        Darwin)
-            OS="macos"
-            ;;
-        Linux)
-            if grep -qi "ubuntu" /etc/os-release 2>/dev/null; then
-                OS="ubuntu"
-            else
-                echo "[ERROR] Unsupported Linux distro. Only Ubuntu is supported."
-                exit 1
-            fi
-            ;;
-        *)
-            echo "[ERROR] Unsupported OS: $(uname -s)"
-            exit 1
-            ;;
-    esac
-
-    # Detect WSL (Ubuntu running inside Windows)
-    if [[ "$OS" == "ubuntu" ]] && grep -qi "microsoft" /proc/version 2>/dev/null; then
-        IS_WSL=true
-    else
-        IS_WSL=false
-    fi
-
-    echo "[INFO] Detected OS: $OS | WSL: $IS_WSL"
-}
-
 # --- Global Variables (OS-aware) --------------------------------
 # NOTE: These are set AFTER detect_os() is called in main()
 
@@ -100,6 +69,7 @@ fi
 
 # --- ENVIRONMENT CREDENTIALS ----------------------------
 
+export AWS_PAGER=""
 export AWS_ACCESS_KEY_ID=\"DummyValue\"
 export AWS_SECRET_ACCESS_KEY=\"DummyValue\"
 
@@ -122,6 +92,37 @@ export PATH=\"\$M2_HOME/bin:\$PATH\"
 "
 }
 
+# --- OS Detection (run first, everything depends on this) -------
+
+detect_os() {
+    case "$(uname -s)" in
+        Darwin)
+            OS="macos"
+            ;;
+        Linux)
+            if grep -qi "ubuntu" /etc/os-release 2>/dev/null; then
+                OS="ubuntu"
+            else
+                log_error "🚨 [ERROR] Unsupported Linux distro. Only Ubuntu is supported."
+                exit 1
+            fi
+            ;;
+        *)
+            log_error "🚨 [ERROR] Unsupported OS: $(uname -s)"
+            exit 1
+            ;;
+    esac
+
+    # Detect WSL (Ubuntu running inside Windows)
+    if [[ "$OS" == "ubuntu" ]] && grep -qi "microsoft" /proc/version 2>/dev/null; then
+        IS_WSL=true
+    else
+        IS_WSL=false
+    fi
+
+    log_info "ℹ️ [INFO] Detected OS: $OS | WSL: $IS_WSL"
+}
+
 # --- Utility: Download a file (curl everywhere, wget as fallback) -
 
 download_file() {
@@ -132,7 +133,7 @@ download_file() {
     elif command -v wget &>/dev/null; then
         wget -q "$url" -O "$dest"
     else
-        echo "[ERROR] Neither curl nor wget found. Cannot download files."
+        log_error "🚨 [ERROR] Neither curl nor wget found. Cannot download files."
         exit 1
     fi
 }
@@ -140,12 +141,12 @@ download_file() {
 # --- Prerequisites ----------------------------------------------
 
 prerequisite_install() {
-    echo "[INFO] Installing prerequisites for $OS..."
+    log_info "ℹ️ [INFO] Installing prerequisites for $OS..."
 
     if [[ "$OS" == "macos" ]]; then
         # Ensure Homebrew is installed first
         if ! command -v brew &>/dev/null; then
-            echo "[INFO] Installing Homebrew..."
+            log_info "ℹ️ [INFO] Installing Homebrew..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
             # Add brew to PATH for Apple Silicon; Intel Macs already have it
@@ -154,7 +155,7 @@ prerequisite_install() {
                 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$SHELL_PROFILE"
             fi
         else
-            echo "[INFO] Homebrew already installed. Skipping."
+            log_info "ℹ️ [INFO] Homebrew already installed. Skipping."
         fi
 
         brew update
@@ -197,7 +198,7 @@ zsh_plugins_install() {
 # --- Dotfiles ---------------------------------------------------
 
 source_dotfiles() {
-    echo "[INFO] Downloading Dotfiles..."
+    log_info "ℹ️ [INFO] Downloading Dotfiles..."
     mkdir -p ~/"$DOTFILES_DIRNAME"
 
     for url in "${DOTFILES_URLS[@]}"; do
@@ -207,26 +208,26 @@ source_dotfiles() {
     done
     echo
 
-    echo "[INFO] Converting files for compatibility..."
+    log_info "ℹ️ [INFO] Converting files for compatibility..."
     find ~/"$DOTFILES_DIRNAME" -iname ".*" -type f | while read -r f; do
         convert_line_endings "$f"
     done
 
-    echo "[INFO] Adding source script to shell startup..."
+    log_info "ℹ️ [INFO] Adding source script to shell startup..."
     if ! grep -Fxq '# --- SOURCE DOTFILES SCRIPT ----------------------------' "$SHELL_PROFILE"; then
         cat <<EOF >> "$SHELL_PROFILE"
 $DOTFILES_SOURCE_SCRIPT
 EOF
-        log_success "✅ - Dotfiles have been sourced successfully!"
+        log_success "✅ [DONE] - Dotfiles have been sourced successfully!"
     else
-        log_success "✅ - Dotfiles have already been sourced!"
+        log_success "✅ [DONE] - Dotfiles have already been sourced!"
     fi
 }
 
 # --- Git --------------------------------------------------------
 
 setup_git_profile() {
-    echo "[INFO] Configuring Git Profile (Default Workspace)..."
+    log_info "ℹ️ [INFO] Configuring Git Profile (Default Workspace)..."
     curl -sL "$DF_GITPROFILE_URL" | bash
 
     log_info "Default profile ${CYAN}$DF_GITPROFILE_NAME${NC} is selected!"
@@ -234,8 +235,7 @@ setup_git_profile() {
 }
 
 setup_git_hooks() {
-    echo
-    echo "[INFO] Configuring client-side Git Hook - Prevent critical/leaked data..."
+    log_info "ℹ️ [INFO] Configuring client-side Git Hook - Prevent critical/leaked data..."
     mkdir -p ~/"$GITCONFIG_DIRNAME/hooks"
 
     git config --global core.hooksPath ~/"$GITCONFIG_DIRNAME/hooks"
@@ -248,18 +248,17 @@ setup_git_hooks() {
         ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
     chmod +x ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
 
-    log_success "✅ - Git hook configured at ${CYAN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
+    log_success "✅ [DONE] - Git hook configured at ${CYAN}~/$GITCONFIG_DIRNAME/hooks/pre-push${NC}!"
 }
 
 setup_git_alias() {
-    echo
-    echo "[INFO] Configuring Git Aliases..."
+    log_info "ℹ️ [INFO] Configuring Git Aliases..."
     mkdir -p ~/"$GITCONFIG_DIRNAME/alias/"
     download_file \
         "$GIT_ALIAS_FOLDER_URL/git/git_aliases.txt" \
         ~/"$GITCONFIG_DIRNAME/alias/git_aliases.txt"
 
-    log_success "✅ - Git aliases configured at ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
+    log_success "✅ [DONE] - Git aliases configured at ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
 }
 
 setup_git() {
@@ -278,9 +277,9 @@ shell_config_profile() {
     if [[ "$IS_WSL" == true ]]; then
         if ! grep -Fxq "export BROWSER=wslview" "$SHELL_PROFILE"; then
             echo "export BROWSER=wslview" >> "$SHELL_PROFILE"
-            log_success "✅ - Added 'wslview' as browser (WSL)"
+            log_success "✅ [DONE] - Added 'wslview' as browser (WSL)"
         else
-            log_info "Existed ℹ️ - 'wslview' already set in $SHELL_PROFILE"
+            log_info "ℹ️ [EXISTED] - 'wslview' already set in $SHELL_PROFILE"
         fi
     fi
 
@@ -288,9 +287,9 @@ shell_config_profile() {
     if [[ "$OS" == "macos" ]]; then
         if ! grep -Fxq "export BROWSER=open" "$SHELL_PROFILE"; then
             echo "export BROWSER=open" >> "$SHELL_PROFILE"
-            log_success "✅ - Added 'open' as browser (macOS)"
+            log_success "✅ [DONE] - Added 'open' as browser (macOS)"
         else
-            log_info "Existed ℹ️ - 'open' already set in $SHELL_PROFILE"
+            log_info "ℹ️ [EXISTED] - 'open' already set in $SHELL_PROFILE"
         fi
     fi
 
@@ -298,20 +297,20 @@ shell_config_profile() {
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" "$SHELL_PROFILE"; then
             echo "chmod 600 \"$HOME/.kube/config\"" >> "$SHELL_PROFILE"
-            log_success "✅ - Added permission 600 for ~/.kube/config"
+            log_success "✅ [DONE] - Added permission 600 for ~/.kube/config"
         else
-            log_info "Existed ℹ️ - Permission 600 for ~/.kube/config already set"
+            log_info "ℹ️ [EXISTED] - Permission 600 for ~/.kube/config already set"
         fi
     else
-        log_warn "Skipped! ⚠️ - '~/.kube/config' does not exist. No changes made."
+        log_warn "⚠️ [SKIPPED] - '~/.kube/config' does not exist. No changes made."
     fi
 
     # Add ~/.local/bin to PATH (universal convention, works on both OS)
     if ! grep -Fq 'export PATH="$HOME/.local/bin:$PATH"' "$SHELL_PROFILE"; then
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
-        log_success "✅ - Added \$HOME/.local/bin to PATH"
+        log_success "✅ [DONE] - Added \$HOME/.local/bin to PATH"
     else
-        log_info "Existed ℹ️ - \$HOME/.local/bin already in PATH"
+        log_info "ℹ️ [EXISTED] - \$HOME/.local/bin already in PATH"
     fi
 
     # Cloud credentials (dummy values placeholder)
@@ -319,9 +318,10 @@ shell_config_profile() {
         cat <<EOF >> "$SHELL_PROFILE"
 $SHELL_EXPORTS
 EOF
-        log_success "✅ - Set 'DummyValue' for Cloud Credentials"
+        log_success "✅ [DONE] - Set 'DummyValue' for Cloud Credentials"
+        log_success "✅ [DONE] - Set up configuration "
     else
-        log_info "Existed ℹ️ - Cloud credentials already set"
+        log_info "ℹ️ [EXISTED] - Cloud credentials already set"
     fi
 }
 
@@ -335,13 +335,13 @@ shell_config_motd() {
 
     if [ ! -d "$MOTD_DIR" ]; then
         mkdir -p "$MOTD_DIR"
-        log_success "✅ - Created MOTD directory at $MOTD_DIR"
+        log_success "✅ [DONE] - Created MOTD directory at $MOTD_DIR"
     fi
 
     case "$option" in
         "neofetch")    shell_config_motd_neofetch    ;;
         "self-custom") shell_config_motd_self_custom ;;
-        *)             log_warn "No MOTD option provided or unrecognized. Skipping MOTD setup." ;;
+        *)             log_warn "⚠️ [WARN] No MOTD option provided or unrecognized. Skipping MOTD setup." ;;
     esac
 }
 
@@ -354,16 +354,16 @@ shell_config_motd_self_custom() {
     local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        log_success "✅ - MOTD script sourced in $SHELL_PROFILE"
+        log_success "✅ [DONE] - MOTD script sourced in $SHELL_PROFILE"
     else
-        log_info "Existed ℹ️ - MOTD script already sourced"
+        log_info "ℹ️ [EXISTED] - MOTD script already sourced"
     fi
 }
 
 shell_config_motd_neofetch() {
     # Install neofetch if missing
     if ! command -v neofetch &>/dev/null; then
-        echo "[INFO] Installing neofetch..."
+        log_info "ℹ️ [INFO] Installing neofetch..."
         if [[ "$OS" == "macos" ]]; then
             brew install neofetch
         elif [[ "$OS" == "ubuntu" ]]; then
@@ -375,25 +375,25 @@ shell_config_motd_neofetch() {
         "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" \
         "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
-    log_success "✅ - Neofetch MOTD script downloaded!"
+    log_success "✅ [DONE] - Neofetch MOTD script downloaded!"
 
     download_file \
         "$MOTD_IMAGE_URL" \
         "$MOTD_DIR/ascii_image.txt"
-    log_success "✅ - ASCII art theme downloaded!"
+    log_success "✅ [DONE] - ASCII art theme downloaded!"
 
     mkdir -p "$HOME/.config/neofetch"
     download_file \
         "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" \
         "$HOME/.config/neofetch/config.conf"
-    log_success "✅ - Neofetch config installed!"
+    log_success "✅ [DONE] - Neofetch config installed!"
 
     local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
-        log_success "✅ - Neofetch MOTD script sourced in $SHELL_PROFILE"
+        log_success "✅ [DONE] - Neofetch MOTD script sourced in $SHELL_PROFILE"
     else
-        log_info "Existed ℹ️ - Neofetch MOTD script already sourced"
+        log_info "ℹ️ [EXISTED] - Neofetch MOTD script already sourced"
     fi
 }
 
@@ -421,10 +421,10 @@ setup_command_autocompletion() {
         local NAME="${NAMES[$i]}"
 
         if grep -Fxq "$LINE" "$SHELL_PROFILE"; then
-            log_info "Existed ℹ️ - $NAME completion already configured. No changes."
+            log_info "ℹ️ [EXISTED] - $NAME completion already configured. No changes."
         else
             echo "$LINE" >> "$SHELL_PROFILE"
-            log_success "✅ - $NAME completion configured!"
+            log_success "✅ [DONE] - $NAME completion configured!"
         fi
     done
 }
@@ -444,7 +444,12 @@ post_actions() {
 # ================================================================
 
 main() {
-    # Step 0: Detect OS — must be first
+    echo
+    echo "============ IMPORT EXTERNAL LIBS ============"
+    echo
+    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh")
+    init-ansicolor
+
     detect_os
     init_globals
 
@@ -452,12 +457,6 @@ main() {
     echo "============ PREREQUISITES INSTALLATION ============"
     echo
     prerequisite_install
-
-    echo
-    echo "============ IMPORT EXTERNAL LIBS ============"
-    echo
-    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh")
-    init-ansicolor
 
     echo
     echo "============ ZSH THEME INSTALLATION ============"

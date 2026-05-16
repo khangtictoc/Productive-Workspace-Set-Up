@@ -1,11 +1,15 @@
+## ----- SYSTEM ------
+
 # View functions's code
-declare -f function_name
+declare -f <function_name>
 
-# -print0 tells find to separate the output with a null character (\0), 
-# which is useful for handling filenames with spaces or special characters.
-sudo find / -type f -name "*.pdf" -print0 | xargs -0 -I {} cp {} .
+## Kernel logs
+dmesg
 
-## GPG KEY
+## Format Filesystem
+mkfs
+
+## ----- GPG KEY ------
 
 # Generate GPG key - Interactive
 gpg --gen-key
@@ -23,37 +27,35 @@ gpg --list-keys
 gpg --delete-secret-keys <KEY_FINGERPRINT_ID>
 
 
-## FILE
+## ----- FILE -----
 
 # find
 find <folder> -type f | grep "<pattern>"
 
 # sed
-sed -i 's/<old_string>/<new_string>/g' <file>
+sed -i 's/<old_string>/<new_string>/g' <file_name>
 
-## RIPGREP
+## rg (ripgrep)
 
 # Search regex + current directory
 rg ".*someword.*"
 
 # Search regex + directory
-rg ".*someword.*" ./somedir
+rg ".*someword.*" <folder_name>
 
 # Search regex + directory + file extensions
-rg ".*someword.*" ./somedir -g '*.ps1'
+rg ".*someword.*" <folder_name> -g '*.ps1'
 
+# -print0 tells find to separate the output with a null character (\0), 
+# which is useful for handling filenames with spaces or special characters.
 
-## ZIP
+sudo find / -type f -name "*.pdf" -print0 | xargs -0 -I {} cp {} .
+
+## zip
+
 zip <archive_name>.zip -r * -x <exclude_file_or_folder>
 
-## KERNEL LOGS
-
-dmesg
-
-## Format Filesystem
-mkfs
-
-## FILE SYSTEMS
+## ----- FILE SYSTEMS -----
 
 # View mounted filesystems
 mount | column -t
@@ -61,5 +63,22 @@ lsblk
 cat /etc/fstab # Configuration for at Boot time
 
 # Check Device for specific mount path
-df -h /home/virus 
-findmnt -n -o SOURCE -T /home/virus
+df -h [<mount_path>]
+findmnt -n -o SOURCE -T <mount_path>
+
+
+# Safe delete a file (No way to recover)
+shred -u <file_name>
+
+## ----- STRING -----
+
+##  grep
+
+# OR operator
+grep '<string1>\|<string2>' <file_name>
+
+# Find string in all files in all subdirectories.
+grep -rl "<string>" <path>
+
+# Basic Regex (Perl)
+grep -P '<regex>' <file_name>

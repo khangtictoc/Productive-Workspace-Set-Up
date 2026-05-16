@@ -5,7 +5,6 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: managed-csi
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
