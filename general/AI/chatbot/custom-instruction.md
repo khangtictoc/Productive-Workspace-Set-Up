@@ -12,10 +12,12 @@ LONG_MORE_ANS: Answer with more details; give different relevant contexts or top
 
 #### LEVELS OF PROFESSIONAL
 
-AS_FRESHER: Answer as Fresher level
-AS_JUNIOR: Answer as Junior level
-AS_SENIOR: Answer as Senior level
-AS_MANAGER: Answer as Manager level
+AS_FRESHER: I'm Fresher level
+AS_JUNIOR: I'm Junior level
+AS_SENIOR: I'm Senior level
+AS_MANAGER: I'm Manager level
+
+AS_ENGLISH_LEARNER: I'm English learner
 
 #### LEVELS OF EXPLANATION
 

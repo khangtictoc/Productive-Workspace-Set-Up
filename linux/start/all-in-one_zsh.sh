@@ -17,11 +17,12 @@ init_globals() {
     DOTFILES_DIRNAME=dotfiles
     MOTD_DIR="$HOME/.my_motd"
     TOOLING_REPO="DevOps-Tools-Installation-Scripts"
+    ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/neofetch
     
     # Customizable
-    DF_GITPROFILE_NAME=khangtictoc
-    DF_GITPROFILE_URL="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh"
-    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt"
+    DEFAULT_GITPROFILE_NAME=khangtictoc
+    DEFAULT_GITPROFILE_URL="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh"
+    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/$ASCII_ART_FILE"
     GITHOOK_PREPUSH_SCRIPT="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push"
 
     # Base URL for alias files (linux aliases work on macOS zsh too)
@@ -58,13 +59,6 @@ fi
 
 "
 
-    # JAVA_HOME: macOS and Ubuntu resolve differently
-    if [[ "$OS" == "macos" ]]; then
-        JAVA_HOME_EXPORT='export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null || echo "")'
-    else
-        JAVA_HOME_EXPORT='export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java) 2>/dev/null)) 2>/dev/null || echo "")'
-    fi
-
     SHELL_EXPORTS="
 
 # --- ENVIRONMENT CREDENTIALS ----------------------------
@@ -91,6 +85,13 @@ export PATH=\"\$M2_HOME/bin:\$PATH\"
 
 "
 }
+
+    # JAVA_HOME: macOS and Ubuntu resolve differently
+    if [[ "$OS" == "macos" ]]; then
+        JAVA_HOME_EXPORT='export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null || echo "")'
+    else
+        JAVA_HOME_EXPORT='export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java) 2>/dev/null)) 2>/dev/null || echo "")'
+    fi
 
 # --- OS Detection (run first, everything depends on this) -------
 
@@ -228,9 +229,9 @@ EOF
 
 setup_git_profile() {
     log_info "ℹ️ [INFO] Configuring Git Profile (Default Workspace)..."
-    curl -sL "$DF_GITPROFILE_URL" | bash
+    curl -sL "$DEFAULT_GITPROFILE_URL" | bash
 
-    log_info "Default profile ${CYAN}$DF_GITPROFILE_NAME${NC} is selected!"
+    log_info "Default profile ${CYAN}$DEFAULT_GITPROFILE_NAME${NC} is selected!"
     sleep 1
 }
 
@@ -471,6 +472,8 @@ main() {
     echo
     echo "============ SOURCE DOTFILES ============"
     echo
+
+    echo $DOTFILES_SOURCE_SCRIPT
     source_dotfiles
 
     echo
@@ -493,5 +496,7 @@ main() {
     echo
     post_actions
 }
+
+
 
 main "$@"
