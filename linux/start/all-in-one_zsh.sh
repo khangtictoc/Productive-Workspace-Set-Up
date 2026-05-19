@@ -59,6 +59,13 @@ fi
 
 "
 
+    # JAVA_HOME: macOS and Ubuntu resolve differently
+    if [[ "$OS" == "macos" ]]; then
+        JAVA_HOME_EXPORT='export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null || echo "")'
+    else
+        JAVA_HOME_EXPORT='export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java) 2>/dev/null)) 2>/dev/null || echo "")'
+    fi
+    
     SHELL_EXPORTS="
 
 # --- ENVIRONMENT CREDENTIALS ----------------------------
@@ -85,15 +92,44 @@ export PATH=\"\$M2_HOME/bin:\$PATH\"
 
 "
 }
+confirm_parameters() {
+    echo
+    echo "============ IMPORTANT SETUP PARAMETERS ============"
+    echo
+    printf "%-24s | %s\n" "Parameter" "Value"
+    printf '%s\n' "-------------------------+--------------------------------------------------"
+    printf "%-24s | %s\n" "SHELL_PROFILE" "$SHELL_PROFILE"
+    printf "%-24s | %s\n" "GITCONFIG_DIRNAME" "$GITCONFIG_DIRNAME"
+    printf "%-24s | %s\n" "DOTFILES_DIRNAME" "$DOTFILES_DIRNAME"
+    printf "%-24s | %s\n" "MOTD_DIR" "$MOTD_DIR"
+    printf "%-24s | %s\n" "TOOLING_REPO" "$TOOLING_REPO"
+    printf "%-24s | %s\n" "ASCII_ART_FILE" "$ASCII_ART_FILE"
+    printf "%-24s | %s\n" "DEFAULT_GITPROFILE_NAME" "$DEFAULT_GITPROFILE_NAME"
+    printf "%-24s | %s\n" "DEFAULT_GITPROFILE_URL" "$DEFAULT_GITPROFILE_URL"
+    printf "%-24s | %s\n" "MOTD_IMAGE_URL" "$MOTD_IMAGE_URL"
+    printf "%-24s | %s\n" "GITHOOK_PREPUSH_SCRIPT" "$GITHOOK_PREPUSH_SCRIPT"
+    printf "%-24s | %s\n" "GIT_ALIAS_FOLDER_URL" "$GIT_ALIAS_FOLDER_URL"
+    echo
+    echo "✅ Setup parameters listed above for review. Adjust the values in the script if needed before continuing."
 
-    # JAVA_HOME: macOS and Ubuntu resolve differently
-    if [[ "$OS" == "macos" ]]; then
-        JAVA_HOME_EXPORT='export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null || echo "")'
-    else
-        JAVA_HOME_EXPORT='export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java) 2>/dev/null)) 2>/dev/null || echo "")'
-    fi
+    while true; do
+        read -rp "Continue with these setup values? (y/N): " confirmation
+        case "$confirmation" in
+            [Yy])
+                break
+                ;;
+            ""|[Nn]*)
+                echo "Setup cancelled by user."
+                exit 1
+                ;;
+            *)
+                echo "Please enter y or N."
+                ;;
+        esac
+    done
+}
 
-# --- OS Detection (run first, everything depends on this) -------
+# --- OS Detection -------
 
 detect_os() {
     case "$(uname -s)" in
@@ -504,6 +540,9 @@ main() {
     echo "============ PREREQUISITES INSTALLATION ============"
     echo
     prerequisite_install
+
+
+    confirm_parameters
 
     echo
     echo "============ ZSH THEME INSTALLATION ============"
