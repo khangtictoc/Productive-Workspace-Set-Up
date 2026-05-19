@@ -502,7 +502,7 @@ setup_git() {
 
 shell_config_profile() {
     echo
-    echo "============ SHELL PROFILES ============"
+    echo "=== SHELL PROFILES ==="
 
     # Expose browser command (wslview for WSL, open for macOS)
     shell_config_profile__expose_browser
