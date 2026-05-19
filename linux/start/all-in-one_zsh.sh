@@ -262,22 +262,17 @@ setup_git_alias() {
     log_success "✅ [DONE] - Git aliases configured at ${CYAN}~/$GITCONFIG_DIRNAME/alias/git_aliases.txt${NC}!"
 }
 
-setup_git() {
-    setup_git_profile
-    setup_git_hooks
-    setup_git_alias
-}
-
 # --- Shell Profile Config ---------------------------------------
 
-shell_config_profile() {
-    echo
-    echo "============ SHELL PROFILES ============"
-
+shell_config_profile__expose_browser() {
     # WSL-only: expose browser via wslview
     if [[ "$IS_WSL" == true ]]; then
         if ! grep -Fxq "export BROWSER=wslview" "$SHELL_PROFILE"; then
+
+            echo "####### Expose Browser Window in WSL #######" >> "$SHELL_PROFILE"
             echo "export BROWSER=wslview" >> "$SHELL_PROFILE"
+            echo >> "$SHELL_PROFILE"
+
             log_success "✅ [DONE] - Added 'wslview' as browser (WSL)"
         else
             log_info "ℹ️ [EXISTED] - 'wslview' already set in $SHELL_PROFILE"
@@ -287,17 +282,26 @@ shell_config_profile() {
     # macOS: open command is the native browser launcher
     if [[ "$OS" == "macos" ]]; then
         if ! grep -Fxq "export BROWSER=open" "$SHELL_PROFILE"; then
+
+            echo "####### Expose Browser Window in macOS #######" >> "$SHELL_PROFILE"
             echo "export BROWSER=open" >> "$SHELL_PROFILE"
+            echo >> "$SHELL_PROFILE"
+
             log_success "✅ [DONE] - Added 'open' as browser (macOS)"
         else
             log_info "ℹ️ [EXISTED] - 'open' already set in $SHELL_PROFILE"
         fi
     fi
+}
 
-    # Secure ~/.kube/config
+shell_config_profile__secure_kubeconfig() {
     if [ -f "$HOME/.kube/config" ]; then
         if ! grep -Fxq "chmod 600 \"$HOME/.kube/config\"" "$SHELL_PROFILE"; then
+
+            echo "####### Secure Kubernetes Config #######" >> "$SHELL_PROFILE"
             echo "chmod 600 \"$HOME/.kube/config\"" >> "$SHELL_PROFILE"
+            echo >> "$SHELL_PROFILE"
+
             log_success "✅ [DONE] - Added permission 600 for ~/.kube/config"
         else
             log_info "ℹ️ [EXISTED] - Permission 600 for ~/.kube/config already set"
@@ -305,16 +309,18 @@ shell_config_profile() {
     else
         log_warn "⚠️ [SKIPPED] - '~/.kube/config' does not exist. No changes made."
     fi
+}
 
-    # Add ~/.local/bin to PATH (universal convention, works on both OS)
+shell_config_profile__add_local_bin_executable() {
     if ! grep -Fq 'export PATH="$HOME/.local/bin:$PATH"' "$SHELL_PROFILE"; then
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
         log_success "✅ [DONE] - Added \$HOME/.local/bin to PATH"
     else
         log_info "ℹ️ [EXISTED] - \$HOME/.local/bin already in PATH"
     fi
+}
 
-    # Cloud credentials (dummy values placeholder)
+shell_config_profile__add_cloud_credentials() {
     if ! grep -Fxq '# --- ENVIRONMENT CREDENTIALS ----------------------------' "$SHELL_PROFILE"; then
         cat <<EOF >> "$SHELL_PROFILE"
 $SHELL_EXPORTS
@@ -362,6 +368,7 @@ shell_config_motd_self_custom() {
 }
 
 shell_config_motd_neofetch() {
+
     # Install neofetch if missing
     if ! command -v neofetch &>/dev/null; then
         log_info "ℹ️ [INFO] Installing neofetch..."
@@ -390,44 +397,52 @@ shell_config_motd_neofetch() {
     log_success "✅ [DONE] - Neofetch config installed!"
 
     local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
+    
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
+
+        echo "####### Neofetch MOTD #######" >> "$SHELL_PROFILE"
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
+        echo >> "$SHELL_PROFILE"
+
         log_success "✅ [DONE] - Neofetch MOTD script sourced in $SHELL_PROFILE"
     else
         log_info "ℹ️ [EXISTED] - Neofetch MOTD script already sourced"
     fi
 }
 
-shell_config() {
-    shell_config_profile
-    shell_config_motd "neofetch"
-}
-
 # --- Command Autocompletion -------------------------------------
 
 setup_command_autocompletion() {
-    local COMPLETIONS=(
-        "source <(kubectl completion zsh)"
-        "source <(helm completion zsh)"
-        "source <(oh-my-posh completion zsh)"
-    )
-    local NAMES=(
-        "Kubectl"
-        "Helm"
-        "Oh-My-Posh"
-    )
+    if ! grep -Fxq '# --- COMMAND AUTOCOMPLETION ----------------------------' "$SHELL_PROFILE"; then
 
-    for i in "${!COMPLETIONS[@]}"; do
-        local LINE="${COMPLETIONS[$i]}"
-        local NAME="${NAMES[$i]}"
+        echo "# --- COMMAND AUTOCOMPLETION ----------------------------" >> "$SHELL_PROFILE"
+        echo >> "$SHELL_PROFILE"
 
-        if grep -Fxq "$LINE" "$SHELL_PROFILE"; then
-            log_info "ℹ️ [EXISTED] - $NAME completion already configured. No changes."
-        else
-            echo "$LINE" >> "$SHELL_PROFILE"
-            log_success "✅ [DONE] - $NAME completion configured!"
-        fi
-    done
+        local COMPLETIONS=(
+            "source <(kubectl completion zsh)"
+            "source <(helm completion zsh)"
+            "source <(oh-my-posh completion zsh)"
+        )
+
+        local NAMES=(
+            "Kubectl"
+            "Helm"
+            "Oh-My-Posh"
+        )
+
+        for i in "${!COMPLETIONS[@]}"; do
+            local LINE="${COMPLETIONS[$i]}"
+            local NAME="${NAMES[$i]}"
+
+            if grep -Fxq "$LINE" "$SHELL_PROFILE"; then
+                log_info "ℹ️ [EXISTED] - $NAME completion already configured. No changes."
+            else
+                echo "$LINE" >> "$SHELL_PROFILE"
+                log_success "✅ [DONE] - $NAME completion configured!"
+            fi
+        done
+    fi
+    
 }
 
 # --- Post Actions -----------------------------------------------
@@ -438,6 +453,37 @@ post_actions() {
     log_highlight "What's next?"
     log_highlight "  - Set up Cloud Credentials"
     log_highlight "  - Install your tools"
+    echo
+}
+
+# --- Main Features -----------------------
+
+setup_git() {
+    setup_git_profile
+    setup_git_hooks
+    setup_git_alias
+}
+
+shell_config_profile() {
+    echo
+    echo "============ SHELL PROFILES ============"
+
+    # Expose browser command (wslview for WSL, open for macOS)
+    shell_config_profile__expose_browser
+
+    # Secure ~/.kube/config
+    shell_config_profile__secure_kubeconfig
+
+    # Add binaries be available at ~/.local/bin to PATH (universal convention, works on both OS)
+    shell_config_profile__add_local_bin_executable
+
+    # Cloud credentials (dummy values placeholder)
+    shell_config_profile__add_cloud_credentials
+}
+
+shell_config() {
+    shell_config_profile
+    shell_config_motd "neofetch"
 }
 
 # ================================================================
@@ -472,8 +518,6 @@ main() {
     echo
     echo "============ SOURCE DOTFILES ============"
     echo
-
-    echo $DOTFILES_SOURCE_SCRIPT
     source_dotfiles
 
     echo
