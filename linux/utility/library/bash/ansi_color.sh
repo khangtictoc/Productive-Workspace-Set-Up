@@ -36,7 +36,7 @@ function init-ansicolor() {
 }
 
 function log_info(){
-    echo $1
+    echo -e $1
 }
 
 function log_success(){

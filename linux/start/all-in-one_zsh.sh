@@ -65,7 +65,7 @@ fi
     else
         JAVA_HOME_EXPORT='export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java) 2>/dev/null)) 2>/dev/null || echo "")'
     fi
-    
+
     SHELL_EXPORTS="
 
 # --- ENVIRONMENT CREDENTIALS ----------------------------
@@ -267,7 +267,7 @@ setup_git_profile() {
     log_info "ℹ️ [INFO] Configuring Git Profile (Default Workspace)..."
     curl -sL "$DEFAULT_GITPROFILE_URL" | bash
 
-    log_info "Default profile ${CYAN}$DEFAULT_GITPROFILE_NAME${NC} is selected!"
+    log_info "Default profile ${CYAN}${DEFAULT_GITPROFILE_NAME}${NC} is selected!"
     sleep 1
 }
 
