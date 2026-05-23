@@ -6,9 +6,6 @@
   // --- DEVELOPER ---
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": "all",
-
-  // --- WORKSPACE EDITOR ---
-  "files.autoSave": "afterDelay",
   "diffEditor.ignoreTrimWhitespace": true,
   "security.workspace.trust.untrustedFiles": "open",
   "explorer.confirmDelete": false,
@@ -19,10 +16,14 @@
   "editor.renderWhitespace": "boundary",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.largeFileOptimizations": false,
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.colorCustomizations": {
     "terminal.foreground": "#abb2bf"
   },
+
+  "files.autoSave": "afterDelay",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
 
   // ---- AI AGENT ----
   "github.copilot.nextEditSuggestions.enabled": true,
@@ -104,6 +105,26 @@
   "terminal.integrated.fontLigatures.enabled": true,
   "workbench.iconTheme": "catppuccin-macchiato",
 
+  "terminal.integrated.defaultProfile.windows": "Ubuntu-24.04 (WSL)",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": { "source": "Git Bash" },
+    "Ubuntu-24.04 (WSL)": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": ["-d", "Ubuntu-24.04"]
+    }
+  },
+
+  "window.newWindowProfile": "Default",
+
   // ---- Kubernetes ----
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "enabled",
@@ -123,33 +144,12 @@
   // ===========================
   // WINDOWS ONLY
   // ===========================
-  "[windows]": {
-    "terminal.integrated.defaultProfile.windows": "Ubuntu-22.04 (WSL)",
-    "terminal.integrated.profiles.windows": {
-      "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
-      "Command Prompt": {
-        "path": [
-          "${env:windir}\\Sysnative\\cmd.exe",
-          "${env:windir}\\System32\\cmd.exe"
-        ],
-        "args": [],
-        "icon": "terminal-cmd"
-      },
-      "Git Bash": { "source": "Git Bash" },
-      "Ubuntu-22.04 (WSL)": {
-        "path": "C:\\Windows\\System32\\wsl.exe",
-        "args": ["-d", "Ubuntu-22.04"]
-      }
-    },
-
-    "window.newWindowProfile": "Default"
-  },
+  "[windows]": {},
 
   // ===========================
   // MAC ONLY
   // ===========================
   "[mac]": {
     "terminal.integrated.defaultProfile.osx": "zsh"
-  },
-  "cSpell.enabled": false
+  }
 }
