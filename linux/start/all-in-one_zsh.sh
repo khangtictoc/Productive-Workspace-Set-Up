@@ -12,6 +12,7 @@ set -e
 # NOTE: These are set AFTER detect_os() is called in main()
 
 init_globals() {
+    # Recommended
     SHELL_PROFILE="$HOME/.zshrc"
     GITCONFIG_DIRNAME=git_config
     DOTFILES_DIRNAME=dotfiles
@@ -175,6 +176,16 @@ download_file() {
     fi
 }
 
+# --- Utility: Install favorite tools ----------------------------
+
+install_tools() {
+    local tools=("$@")
+    
+    for tool in "${tools[@]}"; do
+        curl -sS https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/developer-packages/ubuntu/tools/${tool}.sh | SHELL_PROFILE=$SHELL_PROFILE bash
+    done
+}
+
 # --- Prerequisites ----------------------------------------------
 
 prerequisite_install() {
@@ -197,11 +208,11 @@ prerequisite_install() {
 
         brew update
         # coreutils provides greadlink (needed for readlink -f on macOS)
-        brew install zsh curl unzip vim python3 coreutils
+        brew install zsh curl unzip vim python3 coreutils yq
 
     elif [[ "$OS" == "ubuntu" ]]; then
         sudo apt update
-        sudo apt install -y dos2unix zsh curl unzip vim python3-pip
+        sudo apt install -y dos2unix zsh curl unzip vim python3-pip yq
     fi
 }
 
@@ -522,6 +533,25 @@ shell_config() {
     shell_config_motd "neofetch"
 }
 
+install_my_tools() {
+    local tools=(
+        kubectl
+        kubectl_plugins
+        helm
+        aws_cli
+        terraform
+        terragrunt
+        k9s
+        fd
+        ls_extended
+        nodejs
+        rustnet
+        velero_cli
+        asciinema
+    )
+    install_tools "${tools[@]}"
+}
+
 # ================================================================
 # MAIN
 # ================================================================
@@ -573,6 +603,11 @@ main() {
     echo "============ COMMAND AUTOCOMPLETION ============"
     echo
     setup_command_autocompletion
+
+    echo
+    echo "============ INSTALL FAVORITE TOOLS ============"
+    echo
+    install_my_tools
 
     echo
     echo "============ POST ACTIONS ============"
