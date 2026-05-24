@@ -1,4 +1,4 @@
-function oh-my-zsh--install {
+function oh-my-posh--install {
 
     # =========================
     # SET YOUR THEME HERE
@@ -88,5 +88,5 @@ function aliases--install {
 }
 
 
-oh-my-zsh--install
+oh-my-posh--install
 aliases--install
