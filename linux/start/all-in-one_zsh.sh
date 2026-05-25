@@ -18,12 +18,12 @@ init_globals() {
     DOTFILES_DIRNAME=dotfiles
     MOTD_DIR="$HOME/.my_motd"
     TOOLING_REPO="DevOps-Tools-Installation-Scripts"
-    ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/neofetch
+    ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/fastfetch
     
     # Customizable
     DEFAULT_GITPROFILE_NAME=khangtictoc
     DEFAULT_GITPROFILE_URL="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh"
-    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/$ASCII_ART_FILE"
+    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/$ASCII_ART_FILE"
     GITHOOK_PREPUSH_SCRIPT="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push"
 
     # Base URL for alias files (linux aliases work on macOS zsh too)
@@ -393,7 +393,7 @@ shell_config_motd() {
     fi
 
     case "$option" in
-        "neofetch")    shell_config_motd_neofetch    ;;
+        "fastfetch")   shell_config_motd_fastfetch   ;;
         "self-custom") shell_config_motd_self_custom ;;
         *)             log_warn "⚠️ [WARN] No MOTD option provided or unrecognized. Skipping MOTD setup." ;;
     esac
@@ -405,7 +405,7 @@ shell_config_motd_self_custom() {
         "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
 
-    local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh | lolcat"
+    local SOURCE_MOTD_TXT="zsh $MOTD_DIR/motd.sh | lolcat"
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
         log_success "✅ [DONE] - MOTD script sourced in $SHELL_PROFILE"
@@ -414,46 +414,48 @@ shell_config_motd_self_custom() {
     fi
 }
 
-shell_config_motd_neofetch() {
+shell_config_motd_fastfetch() {
 
-    # Install neofetch if missing
-    if ! command -v neofetch &>/dev/null; then
-        log_info "ℹ️ [INFO] Installing neofetch..."
+    # Install fastfetch if missing
+    if ! command -v fastfetch &>/dev/null; then
+        log_info "ℹ️ [INFO] Installing fastfetch..."
         if [[ "$OS" == "macos" ]]; then
-            brew install neofetch
+            brew install fastfetch
         elif [[ "$OS" == "ubuntu" ]]; then
-            sudo apt install -y neofetch
+            sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+            sudo apt update
+            sudo apt install -y fastfetch
         fi
     fi
 
     download_file \
-        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/motd.sh" \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/motd.sh" \
         "$MOTD_DIR/motd.sh"
     chmod +x "$MOTD_DIR/motd.sh"
-    log_success "✅ [DONE] - Neofetch MOTD script downloaded!"
+    log_success "✅ [DONE] - Fastfetch MOTD script downloaded!"
 
     download_file \
         "$MOTD_IMAGE_URL" \
         "$MOTD_DIR/ascii_image.txt"
     log_success "✅ [DONE] - ASCII art theme downloaded!"
 
-    mkdir -p "$HOME/.config/neofetch"
-    download_file \
-        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/config.conf" \
-        "$HOME/.config/neofetch/config.conf"
-    log_success "✅ [DONE] - Neofetch config installed!"
+    mkdir -p "$HOME/.config/fastfetch"
+    # download_file \
+    #     "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/config.jsonc" \
+    #     "$HOME/.config/fastfetch/config.jsonc"
+    log_success "✅ [DONE] - Fastfetch config installed!"
 
     local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
     
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
 
-        echo "####### Neofetch MOTD #######" >> "$SHELL_PROFILE"
+        echo "####### Fastfetch MOTD #######" >> "$SHELL_PROFILE"
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
         echo >> "$SHELL_PROFILE"
 
-        log_success "✅ [DONE] - Neofetch MOTD script sourced in $SHELL_PROFILE"
+        log_success "✅ [DONE] - Fastfetch MOTD script sourced in $SHELL_PROFILE"
     else
-        log_info "ℹ️ [EXISTED] - Neofetch MOTD script already sourced"
+        log_info "ℹ️ [EXISTED] - Fastfetch MOTD script already sourced"
     fi
 }
 
@@ -530,7 +532,7 @@ shell_config_profile() {
 
 shell_config() {
     shell_config_profile
-    shell_config_motd "neofetch"
+    shell_config_motd "fastfetch"
 }
 
 install_my_tools() {
