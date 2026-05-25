@@ -440,10 +440,10 @@ shell_config_motd_fastfetch() {
     log_success "✅ [DONE] - ASCII art theme downloaded!"
 
     mkdir -p "$HOME/.config/fastfetch"
-    # download_file \
-    #     "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/config.jsonc" \
-    #     "$HOME/.config/fastfetch/config.jsonc"
-    log_success "✅ [DONE] - Fastfetch config installed!"
+    download_file \
+        "https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/config.jsonc" \
+        "$HOME/.config/fastfetch/config.jsonc"
+    log_success "✅ [DONE] - Fastfetch is configured!"
 
     local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
     
