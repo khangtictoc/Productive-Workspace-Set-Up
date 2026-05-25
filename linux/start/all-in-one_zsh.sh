@@ -445,7 +445,7 @@ shell_config_motd_fastfetch() {
         "$HOME/.config/fastfetch/config.jsonc"
     log_success "✅ [DONE] - Fastfetch is configured!"
 
-    local SOURCE_MOTD_TXT="bash $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
+    local SOURCE_MOTD_TXT="zsh $MOTD_DIR/motd.sh $MOTD_DIR/ascii_image.txt"
     
     if ! grep -Fxq "$SOURCE_MOTD_TXT" "$SHELL_PROFILE"; then
 
