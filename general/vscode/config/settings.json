@@ -1,9 +1,12 @@
 {
-  // ===========================
-  // SHARED SETTINGS (all OS)
-  // ===========================
+  // ┌────────────────────────────┐
+  // │                            │
+  // │  SHARED SETTING (ALL OS)   │
+  // │                            │
+  // └────────────────────────────┘
 
   // --- DEVELOPER ---
+
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": "all",
   "diffEditor.ignoreTrimWhitespace": true,
@@ -20,20 +23,26 @@
   "workbench.colorCustomizations": {
     "terminal.foreground": "#abb2bf"
   },
-
   "files.autoSave": "afterDelay",
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  
 
   // ---- AI AGENT ----
+
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  
   "github.copilot.nextEditSuggestions.enabled": true,
-  "github.copilot.advanced": { "authProvider": "github" },
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  },
   "github.copilot.chat.codeGeneration.instructions": [],
   "docker.extension.enableComposeLanguageServer": false,
   "chat.viewSessions.orientation": "stacked",
   "remote.autoForwardPortsSource": "hybrid",
+  "chat.mcp.gallery.enabled": true,
 
   // --- FORMAT (shared, same on all OS) ---
+
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
@@ -46,7 +55,9 @@
     "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.formatOnSave": true
   },
-  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
@@ -61,6 +72,10 @@
     "editor.formatOnSave": true
   },
   "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.formatOnSave": true
   },
@@ -84,7 +99,9 @@
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSave": true
   },
-  "[terraform-vars]": { "editor.defaultFormatter": "hashicorp.terraform" },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -97,6 +114,16 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
+  "yaml.schemas": {
+    "file:///c%3A/Users/tranh/.vscode/extensions/continue.continue-1.2.22-win32-x64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
+    ]
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://raw.githubusercontent.com/catppuccin/vscode/": true,
+    "https://github.com/fastfetch-cli/fastfetch": true
+  },
+
   // ---- Terminal ----
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "terminal.integrated.fontSize": 14,
@@ -104,10 +131,12 @@
   "terminal.integrated.suggest.enabled": true,
   "terminal.integrated.fontLigatures.enabled": true,
   "workbench.iconTheme": "catppuccin-macchiato",
-
   "terminal.integrated.defaultProfile.windows": "Ubuntu-24.04 (WSL)",
   "terminal.integrated.profiles.windows": {
-    "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
     "Command Prompt": {
       "path": [
         "${env:windir}\\Sysnative\\cmd.exe",
@@ -116,19 +145,25 @@
       "args": [],
       "icon": "terminal-cmd"
     },
-    "Git Bash": { "source": "Git Bash" },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
     "Ubuntu-24.04 (WSL)": {
       "path": "C:\\Windows\\System32\\wsl.exe",
-      "args": ["-d", "Ubuntu-24.04"]
+      "args": [
+        "-d",
+        "Ubuntu-24.04"
+      ]
     }
   },
-
   "window.newWindowProfile": "Default",
-
   // ---- Kubernetes ----
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "enabled",
-    "disable-linters": ["resource-limits", "resource-requests"]
+    "disable-linters": [
+      "resource-limits",
+      "resource-requests"
+    ]
   },
   "vscode-kubernetes.log-viewer.follow": true,
   "vscode-kubernetes.log-viewer.timestamp": true,
@@ -136,19 +171,28 @@
   "vscode-kubernetes.log-viewer.tail": -1,
   "vscode-kubernetes.log-viewer.destination": "Webview",
   "vscode-kubernetes.log-viewer.wrap": true,
-
   "vscode_custom_css.imports": [
     "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/windows/utilities/configuration/Custom%20Loader%20CSS%20Javascript/custom-vs.css"
   ],
 
+  // ┌────────────────────────────┐
+  // │                            │
+  // │     EXTENSION SETTINGS     │
+  // │                            │
+  // └────────────────────────────┘
+
+
   // ===========================
   // WINDOWS ONLY
   // ===========================
+  
   "[windows]": {},
+
 
   // ===========================
   // MAC ONLY
   // ===========================
+
   "[mac]": {
     "terminal.integrated.defaultProfile.osx": "zsh"
   }
