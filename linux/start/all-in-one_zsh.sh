@@ -29,6 +29,23 @@ init_globals() {
     # Base URL for alias files (linux aliases work on macOS zsh too)
     GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
 
+    # Tools to install
+    TOOLS=(
+        kubectl
+        kubectl_plugins
+        helm
+        aws_cli
+        terraform
+        terragrunt
+        k9s
+        fd
+        ls_extended
+        nodejs
+        rustnet
+        velero_cli
+        asciinema
+    )
+
     DOTFILES_URLS=(
         "$GIT_ALIAS_FOLDER_URL/utilities/.api_aliases"
         "$GIT_ALIAS_FOLDER_URL/utilities/.misc_aliases"
@@ -110,6 +127,7 @@ confirm_parameters() {
     printf "%-24s | %s\n" "MOTD_IMAGE_URL" "$MOTD_IMAGE_URL"
     printf "%-24s | %s\n" "GITHOOK_PREPUSH_SCRIPT" "$GITHOOK_PREPUSH_SCRIPT"
     printf "%-24s | %s\n" "GIT_ALIAS_FOLDER_URL" "$GIT_ALIAS_FOLDER_URL"
+    printf "%-24s | %s\n" "TOOLS" "${TOOLS[*]}"
     echo
     echo "✅ Setup parameters listed above for review. Adjust the values in the script if needed before continuing."
 
@@ -536,22 +554,7 @@ shell_config() {
 }
 
 install_my_tools() {
-    local tools=(
-        kubectl
-        kubectl_plugins
-        helm
-        aws_cli
-        terraform
-        terragrunt
-        k9s
-        fd
-        ls_extended
-        nodejs
-        rustnet
-        velero_cli
-        asciinema
-    )
-    install_tools "${tools[@]}"
+    install_tools "${TOOLS[@]}"
 }
 
 # ================================================================

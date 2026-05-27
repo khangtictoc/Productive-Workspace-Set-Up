@@ -21,7 +21,6 @@ _<You can custom the ASCII Image: `MOTD_IMAGE_URL`>_
 
 <img width="1587" height="539" alt="image" src="https://github.com/user-attachments/assets/0d2a4005-3e16-49a5-89e2-fbe6aa614207" />
 
-
 3. Shell configuration
 
 Convenient for later uses + labs
@@ -50,12 +49,20 @@ Require:
 
 Modify variables script suits your need
 
-| Variable               | Description                                                                                                   | Example                                                                                                                                                            |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| MOTD_IMAGE_URL         | ASCII image when opening new shell terminal (Message of the day)                                              | https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/neofetch/cat_in_the_box.txt |
-| DF_GITPROFILE_NAME     | (Optional) Name of your profile, prints out in execution's output                                             | myproductiveprofile                                                                                                                                                |
-| DF_GITPROFILE_URL      | URL of your profile's config                                                                                  | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh                   |
-| GITHOOK_PREPUSH_SCRIPT | URL of your Github pre-push Hook's script NOTE: If set, `core.hookPath` will be configured as global settings | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push                            |
+| Variable                | Description                                                                                                   | Example                                                                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SHELL_PROFILE           | Path to your shell profile file                                                                               | /home/virus/.zshrc                                                                                                                                                  |
+| GITCONFIG_DIRNAME       | Directory name for git configuration                                                                          | git_config                                                                                                                                                          |
+| DOTFILES_DIRNAME        | Directory name for dotfiles                                                                                   | dotfiles                                                                                                                                                            |
+| MOTD_DIR                | Directory path for MOTD files                                                                                 | /home/virus/.my_motd                                                                                                                                                |
+| TOOLING_REPO            | Name of the tooling repository                                                                                | DevOps-Tools-Installation-Scripts                                                                                                                                   |
+| ASCII_ART_FILE          | Filename of the ASCII art for MOTD                                                                            | cat_in_the_box.txt                                                                                                                                                  |
+| DEFAULT_GITPROFILE_NAME | (Optional) Name of your profile, prints out in execution's output                                             | khangtictoc                                                                                                                                                         |
+| DEFAULT_GITPROFILE_URL  | URL of your profile's config                                                                                  | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh                    |
+| MOTD_IMAGE_URL          | ASCII image when opening new shell terminal (Message of the day)                                              | https://raw.githubusercontent.com/khangtictoc/DevOps-Tools-Installation-Scripts/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/cat_in_the_box.txt |
+| GITHOOK_PREPUSH_SCRIPT  | URL of your Github pre-push Hook's script NOTE: If set, `core.hookPath` will be configured as global settings | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push                             |
+| GIT_ALIAS_FOLDER_URL    | URL of the folder containing git alias files                                                                  | https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias                                                               |
+| TOOLS                   | List of tools to install via the tooling repository                                                           | `kubectl kubectl_plugins helm aws_cli terraform terragrunt k9s fd ls_extended nodejs rustnet velero_cli asciinema` |
 
 ## Others
 
