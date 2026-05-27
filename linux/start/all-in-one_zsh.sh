@@ -523,7 +523,7 @@ post_actions() {
     echo
 }
 
-# --- Main Features -----------------------
+# --- MAIN FEATURES -----------------------
 
 setup_git() {
     setup_git_profile
