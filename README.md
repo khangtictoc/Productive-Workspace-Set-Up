@@ -19,7 +19,8 @@ Includes:
 
 _<You can custom the ASCII Image: `MOTD_IMAGE_URL`>_
 
-<img width="1759" height="531" alt="image" src="https://github.com/user-attachments/assets/ad87dd5e-0c77-4263-a299-4034f0da2c80" />
+<img width="1587" height="539" alt="image" src="https://github.com/user-attachments/assets/0d2a4005-3e16-49a5-89e2-fbe6aa614207" />
+
 
 3. Shell configuration
 
