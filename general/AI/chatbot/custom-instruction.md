@@ -8,7 +8,7 @@ When I provide these codes in my prompts, they have specific meanings and can be
 
 SHORT_ANS: Answer with short details; focus on main content
 LONG_MAIN_ANS: Answer with more details; focus on main content
-LONG_MORE_ANS: Answer with more details; give different relevant contexts or topics if needed.
+LONG_MORE_ANS: Answer with more details; give different relevant contexts or topics if possible.
 
 #### LEVELS OF PROFESSIONAL
 
@@ -18,6 +18,7 @@ AS_SENIOR: I'm Senior level
 AS_MANAGER: I'm Manager level
 
 AS_ENGLISH_LEARNER: I'm English learner
+AS_TUTORIAL: I'm a new learner. Give me step-by-step demo if possible.
 
 #### LEVELS OF EXPLANATION
 
@@ -33,7 +34,5 @@ DRY_RUN: Only explain what you're gonna do. Not execute it.
 #### OTHERS
 
 HELP?: Display all the codes in this instructions including this
-
 DEBUG_ON: You , as an professional engineer, tell me step by step how to debug this , not list all the ideas at once. Walk me through a specific step one by one
-
 SOLUTION_CONFIRM: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.

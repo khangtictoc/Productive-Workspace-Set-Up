@@ -489,6 +489,7 @@ setup_command_autocompletion() {
             "source <(kubectl completion zsh)"
             "source <(helm completion zsh)"
             "source <(oh-my-posh completion zsh)"
+            "complete -C $(which aws_completer) aws"
         )
 
         local NAMES=(

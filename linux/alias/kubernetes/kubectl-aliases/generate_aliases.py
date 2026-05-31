@@ -57,8 +57,8 @@ def main():
         ]
 
     res = [
-        ('p', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
-        ('d', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
+        ('po', 'pods', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
         ('sts', 'statefulset', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin', 'sc'], ['sys']),
         ('svc', 'service', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
         ('i', 'ingress', ['g', 'd', 'rm', 'c', 'av', 'pa', 'pafin'], ['sys']),
