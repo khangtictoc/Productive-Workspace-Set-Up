@@ -123,6 +123,9 @@
     "https://raw.githubusercontent.com/catppuccin/vscode/": true,
     "https://github.com/fastfetch-cli/fastfetch": true
   },
+  "python.analysis.ignore": [
+        "*"
+  ],
 
   // ---- Terminal ----
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
