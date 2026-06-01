@@ -441,7 +441,9 @@ alias gdnp='git --no-pager diff'
 alias grfdl='git reflog --date=local'
 alias grfdr='git reflog --date=relative'
 alias gpn='git push --no-verify'
+alias gpnf='git push --no-verify --force'
 alias gfap='git fetch --all --prune'
+alias grhh='git reset --hard'
 
 # AIO Commit
 function gacp {
