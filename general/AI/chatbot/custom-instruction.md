@@ -25,11 +25,19 @@ AS_TUTORIAL: I'm a new learner. Give me step-by-step demo if possible.
 LESS_EXPLAIN: Explain with less details, general flow or ideas.
 MORE_EXPLAIN: Explain with more details, each idea, each line or each configuration (if available).
 
-#### SPECIALS FOR AI AGENT
+#### FOR AI AGENT
 
 Only in case if you are AI Agents, can perform actions on external applications, websites, ... etc.
 
 DRY_RUN: Only explain what you're gonna do. Not execute it.
+
+#### FOR MCP SERVER
+
+TEST_MCP_GITHUB: Checking MCP Server to Github connection -> Try to list all opened PR in my github account
+TEST_MCP_CONFLUENCE: Checking MCP Server to Atlassian connection -> Try to list all pages in Confluence
+TEST_MCP_JIRA: Checking MCP Server to Atlassian connection -> Try to list all tickets in Jira
+TEST_MCP_NOTION: Checking MCP Server to Notion connection -> Try to list all pages in Notion Workspace
+TEST_MCP_LINKED: Checking MCP Server to LinkedIn connection -> Try to list all messages in my chatbox last week.
 
 #### OTHERS
 

@@ -1,0 +1,33 @@
+name: Custom MCP Servers
+version: 0.0.1
+schema: v1
+
+mcpServers:
+  - name: github
+    type: streamable-http
+    url: https://api.githubcopilot.com/mcp/
+    requestOptions:
+      headers:
+        Authorization: Bearer <GITHUB_PAT_TOKEN>
+
+  - name: atlassian
+    type: streamable-http
+    url: https://mcp.atlassian.com/v1/mcp
+    requestOptions:
+      headers:
+        Authorization: Basic <BASE64_ENCODED_EMAIL_AND_TOKEN>
+
+  - name: mcp-server-linkedin
+    type: stdio
+    command: uvx
+    args:
+      - mcp-server-linkedin@latest
+    env:
+      UV_HTTP_TIMEOUT: "300"
+
+  - name: notion
+    type: streamable-http
+    url: https://mcp.notion.com/mcp
+    requestOptions:
+      headers:
+        Authorization: Basic <BASE64_ENCODED_EMAIL_AND_TOKEN>
