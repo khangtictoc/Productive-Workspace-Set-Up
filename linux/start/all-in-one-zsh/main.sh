@@ -48,6 +48,8 @@ install_my_tools() {
 
 main() {
     
+    # --- Import External Scripts -----------------------
+
     # ANSI color
     echo "1. Importing ANSI color library"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh")
@@ -64,6 +66,8 @@ main() {
     # Initialize configuration functions
     echo "4. Importing configuration functions"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/install.sh")
+
+    # --- Start the setup process -----------------------
 
     detect_os
     init_globals
@@ -97,7 +101,5 @@ main() {
     print_section "POST ACTIONS"
     post_actions
 }
-
-
 
 main "$@"
