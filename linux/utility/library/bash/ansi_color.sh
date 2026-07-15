@@ -40,15 +40,23 @@ function log_info(){
 }
 
 function log_success(){
-    echo -e "${GREEN}[SUCCESS] $1${NC}"
+    echo -e "${GREEN}✅ [SUCCESS] $1${NC}"
 }
 
 function log_warn(){
-    echo -e "${YELLOW}[WARN] $1${NC}"
+    echo -e "${YELLOW}⚠️ [WARN] $1${NC}"
 }
 
 function log_error(){
-    echo -e "${RED}[ERROR] $1${NC}"
+    echo -e "${RED}⛔ [ERROR] $1${NC}"
+}
+
+function log_alert(){
+    echo -e "${RED}🚨 [ALERT] $1${NC}"
+}
+
+function log_instruction(){
+    echo -e "${BLUE}➡️ [INSTRUCTION] $1${NC}"
 }
 
 function log_highlight(){
