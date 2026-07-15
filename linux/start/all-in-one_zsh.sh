@@ -31,19 +31,19 @@ init_globals() {
 
     # Tools to install
     TOOLS=(
+        asciinema
+        aws_cli
+        fd
+        helm
+        k9s
         kubectl
         kubectl_plugins
-        helm
-        aws_cli
-        terraform
-        terragrunt
-        k9s
-        fd
         ls_extended
         nodejs
         rustnet
+        terraform
+        terragrunt
         velero_cli
-        asciinema
     )
 
     DOTFILES_URLS=(
