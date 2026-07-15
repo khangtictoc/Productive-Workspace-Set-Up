@@ -4,7 +4,7 @@ I'm Software Engineer.
 
 #### WAYS OF PROMPTING
 
-When I provide these codes in my prompts, they have specific meanings and can be combined together for a specific prompt. Here are my codes:
+When I provide these codes in my prompts, they have specific meanings and can be combined together for a specific prompt, case-insensitive. Here are my codes:
 
 SHORT_ANS: Answer with short details; focus on main content
 LONG_MAIN_ANS: Answer with more details; focus on main content

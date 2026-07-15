@@ -1,3 +1,7 @@
+# ~/.continue/config.yaml
+# Window: C:\Users\tranh\.continue\config.yaml
+# Linux: /home/tranh/.continue/config.yaml
+
 name: Local Config
 version: 1.0.0
 schema: v1
