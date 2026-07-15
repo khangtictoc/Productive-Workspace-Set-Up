@@ -63,7 +63,7 @@ main() {
 
     # Initialize configuration functions
     echo "4. Importing configuration functions"
-    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/installation.sh")
+    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/install.sh")
 
     detect_os
     init_globals
