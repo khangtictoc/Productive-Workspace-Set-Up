@@ -47,8 +47,7 @@ install_my_tools() {
 # ================================================================
 
 main() {
-    print_section "IMPORT EXTERNAL LIBS"
-
+    
     # ANSI color
     echo "1. Importing ANSI color library"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh")

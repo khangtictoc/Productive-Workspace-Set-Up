@@ -42,7 +42,7 @@ convert_line_endings() {
 print_section() {
     local title="$1"
     echo
-    echo "${CYAN}============ ${title} ============${NC}"
+    echo "============ ${title} ============"
     echo
 }
 
