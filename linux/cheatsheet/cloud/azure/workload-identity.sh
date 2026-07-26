@@ -37,7 +37,7 @@ curl -s -H "Authorization: Bearer $TOKEN" https://management.azure.com/subscript
 
 ---
 
-# Testing with ACR Authentication
+## --- Testing with ACR Authentication
 
 REGISTRY="<your_acr_name>.azurecr.io"
 
@@ -76,3 +76,10 @@ ACCESS_TOKEN=$(curl -sS -X POST \
 echo "Access Token: $ACCESS_TOKEN"
 
 sudo docker login $REGISTRY -u 00000000-0000-0000-0000-000000000000 -p $ACCESS_TOKEN
+
+
+## --- Testing with Postgresql Authentication
+
+az login --federated-token $(cat $AZURE_FEDERATED_TOKEN_FILE) --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID
+
+az account get-access-token --resource https://ossrdbms.database.windows.net
