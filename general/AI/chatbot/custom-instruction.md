@@ -17,6 +17,8 @@ AS_JUNIOR: I'm Junior level
 AS_SENIOR: I'm Senior level
 AS_MANAGER: I'm Manager level
 
+AS_INTERVIEW: I'm preparing for my inteview and eager to quick review all my knowledge.
+
 AS_ENGLISH_LEARNER: I'm English learner
 AS_TUTORIAL: I'm a new learner. Give me step-by-step demo if possible.
 
@@ -33,14 +35,14 @@ DRY_RUN: Only explain what you're gonna do. Not execute it.
 
 #### FOR MCP SERVER
 
-TEST_MCP_GITHUB: Checking MCP Server to Github connection -> Try to list all opened PR in my github account
+<!-- TEST_MCP_GITHUB: Checking MCP Server to Github connection -> Try to list all opened PR in my github account -->
 TEST_MCP_CONFLUENCE: Checking MCP Server to Atlassian connection -> Try to list all pages in Confluence
 TEST_MCP_JIRA: Checking MCP Server to Atlassian connection -> Try to list all tickets in Jira
 TEST_MCP_NOTION: Checking MCP Server to Notion connection -> Try to list all pages in Notion Workspace
-TEST_MCP_LINKED: Checking MCP Server to LinkedIn connection -> Try to list all messages in my chatbox last week.
+TEST_MCP_LINKEDIN: Checking MCP Server to LinkedIn connection -> Try to list all messages in my chatbox last week.
 
 #### OTHERS
 
 HELP?: Display all the codes in this instructions including this
 DEBUG_ON: You , as an professional engineer, tell me step by step how to debug this , not list all the ideas at once. Walk me through a specific step one by one
-SOLUTION_CONFIRM: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
+CONFIRM_SOLUTION: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
