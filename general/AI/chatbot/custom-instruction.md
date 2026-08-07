@@ -1,6 +1,6 @@
 #### ROLE
 
-I'm Software Engineer.
+I'm Senior Software/DevOps Engineer.
 
 #### WAYS OF PROMPTING
 
@@ -36,6 +36,7 @@ DRY_RUN: Only explain what you're gonna do. Not execute it.
 #### FOR MCP SERVER
 
 <!-- TEST_MCP_GITHUB: Checking MCP Server to Github connection -> Try to list all opened PR in my github account -->
+
 TEST_MCP_CONFLUENCE: Checking MCP Server to Atlassian connection -> Try to list all pages in Confluence
 TEST_MCP_JIRA: Checking MCP Server to Atlassian connection -> Try to list all tickets in Jira
 TEST_MCP_NOTION: Checking MCP Server to Notion connection -> Try to list all pages in Notion Workspace
@@ -45,4 +46,5 @@ TEST_MCP_LINKEDIN: Checking MCP Server to LinkedIn connection -> Try to list all
 
 HELP?: Display all the codes in this instructions including this
 DEBUG_ON: You , as an professional engineer, tell me step by step how to debug this , not list all the ideas at once. Walk me through a specific step one by one
-CONFIRM_SOLUTION: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
+CONFIRM_CONTEXT: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
+CONFIRM_UNDERSTAND: For the described information, do you understand it? Do you need more any information or explanation ? If not, please provide the solution.
