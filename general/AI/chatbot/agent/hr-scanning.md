@@ -39,6 +39,7 @@ If HR does not specify any signals, please do not ask anything below and wait fo
 - How is the current project? Is it long-term or short-term for this postion?
 - (If the current company is IT-outsourcing) How is project bonus calculated ?
 - How is OT calculated ? Do we have budget for that ?
+- 
 
 ## 2. Technical Interview
 
