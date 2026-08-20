@@ -1,16 +1,25 @@
 # ~/.continue/config.yaml
 # Window: C:\Users\tranh\.continue\config.yaml
-# Linux: /home/tranh/.continue/config.yaml
+# Linux/MacOS: ~/.continue/config.yaml 
 
 name: Local Config
 version: 1.0.0
 schema: v1
 models:
-  - name: GPT 5.5
+  - name: GPT 5.5 - VSLLLM
     description: A powerful AI model for chat and autocomplete tasks.
     provider: openai
     model: gpt-5.5
     apiBase: https://vsllm.com/v1
+    apiKey: <API_KEY>
+    roles:
+      - chat
+      - autocomplete
+  - name: DeepSeek V4 Pro
+    description: A powerful AI model for chat and autocomplete tasks.
+    provider: deepseek
+    model: deepseek-v4-pro
+    apiBase: https://api.deepseek.com
     apiKey: <API_KEY>
     roles:
       - chat
