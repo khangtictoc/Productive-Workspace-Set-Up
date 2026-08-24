@@ -50,7 +50,7 @@ function log_downloading(){
     echo -e "DOWNLOADING ⬇️: $1"
 }
 
-function log_checking(){
+function log_check(){
     echo -e "CHECK ✅: $1"
 }
 

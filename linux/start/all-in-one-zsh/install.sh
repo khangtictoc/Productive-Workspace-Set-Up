@@ -122,7 +122,7 @@ shell_config_profile__expose_browser() {
 
             log_success "Added 'wslview' as browser (WSL)"
         else
-            log_info "[Existed] - 'wslview' already set in $SHELL_PROFILE"
+            log_check "(EXISTED) 'wslview' already set in $SHELL_PROFILE"
         fi
     fi
 
@@ -136,7 +136,7 @@ shell_config_profile__expose_browser() {
 
             log_success "Added 'open' as browser (macOS)"
         else
-            log_info "[Existed] - 'open' already set in $SHELL_PROFILE"
+            log_check "(EXISTED) 'open' already set in $SHELL_PROFILE"
         fi
     fi
 }
@@ -151,7 +151,7 @@ shell_config_profile__secure_kubeconfig() {
 
             log_success "Added permission 600 for ~/.kube/config"
         else
-            log_info "[Existed] - Permission 600 for ~/.kube/config already set"
+            log_check "(EXISTED) Permission 600 for ~/.kube/config already set"
         fi
     else
         log_warn "[Skipped] - '~/.kube/config' does not exist. No changes made."
@@ -163,7 +163,7 @@ shell_config_profile__add_local_bin_executable() {
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
         log_success "Added \$HOME/.local/bin to PATH"
     else
-        log_info "[Existed] - \$HOME/.local/bin already in PATH"
+        log_check "(EXISTED) \$HOME/.local/bin already in PATH"
     fi
 }
 
@@ -175,7 +175,7 @@ EOF
         log_success "Set 'DummyValue' for Cloud Credentials"
         log_success "Set up configuration "
     else
-        log_info "[Existed] - Cloud credentials already set"
+        log_check "(EXISTED) Cloud credentials already set"
     fi
 }
 
@@ -210,7 +210,7 @@ shell_config_motd_self_custom() {
         echo "$SOURCE_MOTD_TXT" >> "$SHELL_PROFILE"
         log_success "MOTD script sourced in $SHELL_PROFILE"
     else
-        log_info "[Existed] - MOTD script already sourced"
+        log_check "(EXISTED) MOTD script already sourced"
     fi
 }
 
@@ -255,7 +255,7 @@ shell_config_motd_fastfetch() {
 
         log_success "Fastfetch MOTD script sourced in $SHELL_PROFILE"
     else
-        log_info "[Existed] - Fastfetch MOTD script already sourced"
+        log_check "(EXISTED) Fastfetch MOTD script already sourced"
     fi
 }
 
@@ -285,7 +285,7 @@ setup_command_autocompletion() {
             local NAME="${NAMES[$i]}"
 
             if grep -Fxq "$LINE" "$SHELL_PROFILE"; then
-                log_info "[Existed] - $NAME completion already configured. No changes."
+                log_check "(EXISTED) $NAME completion already configured. No changes."
             else
                 echo "$LINE" >> "$SHELL_PROFILE"
                 log_success "$NAME completion configured!"
