@@ -53,7 +53,6 @@ main() {
     # ANSI color
     echo "1. Importing ANSI color library"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/init-ansi-color.sh")
-    init-ansi-color
 
     # Initialize global variables (OS-aware)
     echo "2. Importing global variables"
