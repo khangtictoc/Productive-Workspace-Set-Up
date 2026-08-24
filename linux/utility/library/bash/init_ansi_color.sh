@@ -1,6 +1,8 @@
 #! /bin/bash
 
-function init-ansicolor() {
+## DEFINE
+
+function init-ansi-color() {
     # Foreground (text) colors
     BLACK='\033[0;30m'
     RED='\033[0;31m'
@@ -62,3 +64,14 @@ function log_instruction(){
 function log_highlight(){
     echo -e "${CYAN}$1${NC}"
 }
+
+## CALL
+
+init-ansi-color
+log_info
+log_success
+log_warn
+log_error
+log_alert
+log_instruction
+log_highlight

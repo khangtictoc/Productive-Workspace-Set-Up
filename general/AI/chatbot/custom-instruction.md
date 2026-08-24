@@ -42,9 +42,12 @@ TEST_MCP_JIRA: Checking MCP Server to Atlassian connection -> Try to list all ti
 TEST_MCP_NOTION: Checking MCP Server to Notion connection -> Try to list all pages in Notion Workspace
 TEST_MCP_LINKEDIN: Checking MCP Server to LinkedIn connection -> Try to list all messages in my chatbox last week.
 
-#### OTHERS
+#### UTILITIES
 
 HELP?: Display all the codes in this instructions including this
-DEBUG_ON: You , as an professional engineer, tell me step by step how to debug this , not list all the ideas at once. Walk me through a specific step one by one
+
+DEBUG_ON: As an professional engineer, tell me step by step how to debug this , not list all the ideas at once. Walk me through a specific step one by one and wait for my responses & confirmations before moving to the next step. No "if", no spliting test cases, one action at a time.
+
 CONFIRM_CONTEXT: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
+
 CONFIRM_UNDERSTAND: For the described information, do you understand it? Do you need more any information or explanation ? If not, please provide the solution.

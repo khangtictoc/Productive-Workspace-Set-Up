@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# detect_os - Sets OS, ARCH, and PKG_MGMT variables
+# get_os - Sets OS, ARCH, and PKG_MGMT variables
 # Usage:
-#   source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/detect_os.sh")
-#   detect_os
+#   source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/get_os.sh")
 
-detect_os() {
+## DEFINE
+
+get_os() {
     case "$(uname -s)" in
         Darwin)
             OS="darwin"
@@ -37,6 +38,8 @@ detect_os() {
             exit 1
             ;;
     esac
-
-    export OS ARCH PKG_MGMT
 }
+
+## CALL
+
+get_os
