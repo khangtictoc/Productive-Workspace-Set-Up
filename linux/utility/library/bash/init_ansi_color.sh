@@ -37,28 +37,45 @@ function init-ansi-color() {
     NC='\033[0m'
 }
 
+
 function log_info(){
-    echo -e $1
+    echo -e "INFO ℹ️: $1"
+}
+
+function log_installing(){
+    echo -e "INSTALLING ℹ️: $1"
+}
+
+function log_downloading(){
+    echo -e "DOWNLOADING ⬇️: $1"
+}
+
+function log_checking(){
+    echo -e "CHECK ✅: $1"
+}
+
+function log_debug(){
+    echo -e "${PURPLE}DEBUG 🐞: $1${NC}"
 }
 
 function log_success(){
-    echo -e "${GREEN}✅ [SUCCESS] $1${NC}"
+    echo -e "${GREEN} SUCCESS ✅: $1${NC}"
 }
 
 function log_warn(){
-    echo -e "${YELLOW}⚠️ [WARN] $1${NC}"
+    echo -e "${YELLOW}WARN ⚠️: $1${NC}"
 }
 
 function log_error(){
-    echo -e "${RED}⛔ [ERROR] $1${NC}"
+    echo -e "${RED}ERROR ❌: $1${NC}"
 }
 
 function log_alert(){
-    echo -e "${RED}🚨 [ALERT] $1${NC}"
+    echo -e "${RED}ALERT 🚨 - $1${NC}"
 }
 
 function log_instruction(){
-    echo -e "${BLUE}➡️ [INSTRUCTION] $1${NC}"
+    echo -e "${BLUE}FYI ➡️: $1${NC}"
 }
 
 function log_highlight(){
@@ -68,10 +85,3 @@ function log_highlight(){
 ## CALL
 
 init-ansi-color
-log_info
-log_success
-log_warn
-log_error
-log_alert
-log_instruction
-log_highlight
