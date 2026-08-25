@@ -25,6 +25,7 @@ init_globals() {
     
     # Run-time variables (SHOULD NOT TOUCH)
     
+    SHELL_PROFILE="$HOME/.zshrc"
     TOOLING_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$TOOLING_REPO/refs/heads/$BRANCH"
     CONFIG_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$CONFIG_REPO/refs/heads/$BRANCH"
     
