@@ -164,12 +164,12 @@ detect_os() {
             if grep -qi "ubuntu" /etc/os-release 2>/dev/null; then
                 OS="ubuntu"
             else
-                log_error "🚨 [ERROR] Unsupported Linux distro. Only Ubuntu is supported."
+                log_error "Unsupported Linux distro. Only Ubuntu is supported."
                 exit 1
             fi
             ;;
         *)
-            log_error "🚨 [ERROR] Unsupported OS: $(uname -s)"
+            log_error "Unsupported OS: $(uname -s)"
             exit 1
             ;;
     esac

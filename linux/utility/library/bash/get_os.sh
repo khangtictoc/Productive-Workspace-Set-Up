@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# get_os - Sets OS, ARCH, and PKG_MGMT variables
+# get_os - Sets OS, ARCH, PKG_MGMT, and IS_WSL variables
 # Usage:
 #   source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/get_os.sh")
 
@@ -23,7 +23,14 @@ get_os() {
             else
                 PKG_MGMT="unknown"
             fi
+
+            if [[ -n "${WSL_DISTRO_NAME:-}" ]] || grep -qi "microsoft\|wsl" /proc/version 2>/dev/null; then
+                IS_WSL=true
+            else
+                IS_WSL=false
+            fi
             ;;
+        
         *)
             echo "[ERROR] Unsupported OS: $(uname -s)"
             exit 1
