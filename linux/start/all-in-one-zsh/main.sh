@@ -54,7 +54,7 @@ main() {
     echo "1. Importing ANSI color library"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/init_ansi_color.sh")
 
-    echo "2. Importing ANSI color library"
+    echo "2. Importing Detecting OS library"
     source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/get_os.sh")
 
     # Initialize global variables (OS-aware)
