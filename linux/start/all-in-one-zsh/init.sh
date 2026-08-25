@@ -152,34 +152,3 @@ confirm_parameters() {
         esac
     done
 }
-
-# --- OS Detection -------
-
-detect_os() {
-    case "$(uname -s)" in
-        Darwin)
-            OS="macos"
-            ;;
-        Linux)
-            if grep -qi "ubuntu" /etc/os-release 2>/dev/null; then
-                OS="ubuntu"
-            else
-                log_error "Unsupported Linux distro. Only Ubuntu is supported."
-                exit 1
-            fi
-            ;;
-        *)
-            log_error "Unsupported OS: $(uname -s)"
-            exit 1
-            ;;
-    esac
-
-    # Detect WSL (Ubuntu running inside Windows)
-    if [[ "$OS" == "ubuntu" ]] && grep -qi "microsoft" /proc/version 2>/dev/null; then
-        IS_WSL=true
-    else
-        IS_WSL=false
-    fi
-
-    log_info "Detected OS: $OS | WSL: $IS_WSL"
-}
