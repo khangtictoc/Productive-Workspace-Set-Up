@@ -76,6 +76,7 @@ EOF
 
 setup_git_profile() {
     log_info "Configuring Git Profile (Default Workspace)..."
+    echo $DEFAULT_GITPROFILE_URL
     curl -sL "$DEFAULT_GITPROFILE_URL" | bash
 
     log_info "Default profile ${CYAN}${DEFAULT_GITPROFILE_NAME}${NC} is selected!"
