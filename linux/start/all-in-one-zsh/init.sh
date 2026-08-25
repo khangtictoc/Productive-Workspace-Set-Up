@@ -36,7 +36,7 @@ init_globals() {
     TOOLS=(
         asciinema
         aws_cli
-        az
+        az_cli
         fd
         helm
         k9s
