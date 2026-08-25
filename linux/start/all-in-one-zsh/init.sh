@@ -4,22 +4,33 @@
 # NOTE: These are set AFTER detect_os() is called in main()
 
 init_globals() {
-    # Recommended
-    SHELL_PROFILE="$HOME/.zshrc"
+
+    # FYI: SHOULD keep the default, CHANGES won't affect anything
+
     GITCONFIG_DIRNAME=git_config
     DOTFILES_DIRNAME=dotfiles
     MOTD_DIR="$HOME/.my_motd"
-    TOOLING_REPO="DevOps-Tools-Installation-Scripts"
-    ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/fastfetch
-    
-    # Customizable
-    DEFAULT_GITPROFILE_NAME=khangtictoc
-    DEFAULT_GITPROFILE_URL="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/profile/khangtictoc.sh"
-    MOTD_IMAGE_URL="https://raw.githubusercontent.com/khangtictoc/$TOOLING_REPO/refs/heads/main/linux/installation/terminal/ui/startup/fastfetch/$ASCII_ART_FILE"
-    GITHOOK_PREPUSH_SCRIPT="https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/configuration/git/hook/pre-push"
 
-    # Base URL for alias files (linux aliases work on macOS zsh too)
-    GIT_ALIAS_FOLDER_URL=https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/alias
+    # Customizable
+
+    AUTHOR="khangtictoc"
+    BRANCH="main"
+    TOOLING_REPO="DevOps-Tools-Installation-Scripts"
+    CONFIG_REPO="Productive-Workspace-Set-Up"
+    TOOLING_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$TOOLING_REPO/refs/heads/$BRANCH"
+    CONFIG_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$CONFIG_REPO/refs/heads/$BRANCH"
+    ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/fastfetch
+    DEFAULT_GITPROFILE_NAME=khangtictoc
+    GITPROFILE_PATH="linux/utility/configuration/git/profile/khangtictoc.sh"
+    MOTD_IMAGE_PATH="linux/installation/terminal/ui/startup/fastfetch/$ASCII_ART_FILE"
+    GITHOOK_PREPUSH_SCRIPT_PATH="linux/utility/configuration/git/hooks/pre-push.sh"
+    
+    # Run-time variables (SHOULD NOT TOUCH)
+    
+    DEFAULT_GITPROFILE_URL="$TOOLING_REPO_URL/$GITPROFILE_PATH"
+    MOTD_IMAGE_URL="$TOOLING_REPO_URL/$MOTD_IMAGE_PATH"
+    GITHOOK_PREPUSH_SCRIPT="$CONFIG_REPO_URL/$GITHOOK_PREPUSH_SCRIPT_PATH"
+    GIT_ALIAS_FOLDER_URL="$CONFIG_REPO_URL/linux/alias"
 
     # Tools to install
     TOOLS=(
