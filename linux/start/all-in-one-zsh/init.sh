@@ -17,8 +17,6 @@ init_globals() {
     BRANCH="main"
     TOOLING_REPO="DevOps-Tools-Installation-Scripts"
     CONFIG_REPO="Productive-Workspace-Set-Up"
-    TOOLING_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$TOOLING_REPO/refs/heads/$BRANCH"
-    CONFIG_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$CONFIG_REPO/refs/heads/$BRANCH"
     ASCII_ART_FILE="cat_in_the_box.txt" # Reference: https://github.com/khangtictoc/DevOps-Tools-Installation-Scripts/tree/main/linux/installation/terminal/ui/startup/fastfetch
     DEFAULT_GITPROFILE_NAME=khangtictoc
     GITPROFILE_PATH="linux/utility/configuration/git/profile/khangtictoc.sh"
@@ -27,9 +25,12 @@ init_globals() {
     
     # Run-time variables (SHOULD NOT TOUCH)
     
-    DEFAULT_GITPROFILE_URL="$TOOLING_REPO_URL/$GITPROFILE_PATH"
+    TOOLING_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$TOOLING_REPO/refs/heads/$BRANCH"
+    CONFIG_REPO_URL="https://raw.githubusercontent.com/$AUTHOR/$CONFIG_REPO/refs/heads/$BRANCH"
+    
     MOTD_IMAGE_URL="$TOOLING_REPO_URL/$MOTD_IMAGE_PATH"
-    GITHOOK_PREPUSH_SCRIPT="$CONFIG_REPO_URL/$GITHOOK_PREPUSH_SCRIPT_PATH"
+    DEFAULT_GITPROFILE_URL="$TOOLING_REPO_URL/$GITPROFILE_PATH"
+    GITHOOK_PREPUSH_SCRIPT_URL="$CONFIG_REPO_URL/$GITHOOK_PREPUSH_SCRIPT_PATH"
     GIT_ALIAS_FOLDER_URL="$CONFIG_REPO_URL/linux/alias"
 
     # Tools to install
@@ -129,7 +130,7 @@ confirm_parameters() {
     printf "%-24s | %s\n" "DEFAULT_GITPROFILE_NAME" "$DEFAULT_GITPROFILE_NAME"
     printf "%-24s | %s\n" "DEFAULT_GITPROFILE_URL" "$DEFAULT_GITPROFILE_URL"
     printf "%-24s | %s\n" "MOTD_IMAGE_URL" "$MOTD_IMAGE_URL"
-    printf "%-24s | %s\n" "GITHOOK_PREPUSH_SCRIPT" "$GITHOOK_PREPUSH_SCRIPT"
+    printf "%-24s | %s\n" "GITHOOK_PREPUSH_SCRIPT" "$GITHOOK_PREPUSH_SCRIPT_URL"
     printf "%-24s | %s\n" "GIT_ALIAS_FOLDER_URL" "$GIT_ALIAS_FOLDER_URL"
     printf "%-24s | %s\n" "TOOLS" "${TOOLS[*]}"
     echo
