@@ -2,6 +2,8 @@
 
 set -e
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
 # ================================================================
 # Unified Workstation Setup Script
 # Supports: macOS | Ubuntu
@@ -59,15 +61,15 @@ main() {
 
     # Initialize global variables (OS-aware)
     echo "3. Importing global variables"
-    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/init.sh")
+    source "$SCRIPT_DIR/init.sh"
 
     # Initialize utility functions
     echo "4. Importing utility functions"
-    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/utils.sh")
+    source "$SCRIPT_DIR/utils.sh"
 
     # Initialize configuration functions
     echo "5. Importing configuration functions"
-    source <(curl -sS "https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/start/all-in-one-zsh/install.sh")
+    source "$SCRIPT_DIR/install.sh"
 
     # --- Start the setup process -----------------------
 

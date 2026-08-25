@@ -76,7 +76,6 @@ EOF
 
 setup_git_profile() {
     log_info "Configuring Git Profile (Default Workspace)..."
-    echo $DEFAULT_GITPROFILE_URL
     curl -sL "$DEFAULT_GITPROFILE_URL" | bash
 
     log_info "Default profile ${CYAN}${DEFAULT_GITPROFILE_NAME}${NC} is selected!"
@@ -92,8 +91,9 @@ setup_git_hooks() {
     git config --global core.editor "vim"
     git config --global include.path "~/$GITCONFIG_DIRNAME/alias/git_aliases.txt"
 
+    echo $GITHOOK_PREPUSH_SCRIPT_URL
     download_file \
-        "$GITHOOK_PREPUSH_SCRIPT" \
+        "$GITHOOK_PREPUSH_SCRIPT_URL" \
         ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
     chmod +x ~/"$GITCONFIG_DIRNAME/hooks/pre-push"
 
