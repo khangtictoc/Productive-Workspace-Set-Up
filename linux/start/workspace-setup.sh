@@ -20,7 +20,11 @@ cd "20. Terraform modules"
 git clone https://gitlab.com/terraform-modules7893436/aws/eks.git "aws/eks"
 git clone https://gitlab.com/terraform-modules7893436/azure/naming.git "azure/naming"
 git clone https://gitlab.com/terraform-modules7893436/hcp/vault-dedicated-cluster.git "hcp/vault-dedicated-cluster"
+git clone https://gitlab.com/terraform-modules7893436/hcp/vault-components.git "hcp/vault-components"
 git clone https://gitlab.com/terraform-modules7893436/kubernetes-deploy/helm.git "kubernetes-deploy/helm"
 cd ..
 
-
+mkdir -p "21. Helm Charts"
+cd "21. Helm Charts"
+git clone https://gitlab.com/helm-charts2255608/java-app.git
+cd ..

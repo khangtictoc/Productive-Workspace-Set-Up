@@ -38,48 +38,48 @@ function init-ansi-color() {
 }
 
 
-function log_info(){
-    echo -e "INFO ℹ️: $1"
+function log_highlight(){
+    echo -e "${CYAN}$1${NC}"
 }
 
 function log_installing(){
-    echo -e "INSTALLING ℹ️: $1"
+    echo -e "Installing ℹ️: $1"
 }
 
 function log_downloading(){
-    echo -e "DOWNLOADING ⬇️: $1"
+    echo -e "Downloading ⬇️: $1"
 }
 
 function log_check(){
-    echo -e "CHECK ✅: $1"
-}
-
-function log_debug(){
-    echo -e "${PURPLE}DEBUG 🐞: $1${NC}"
-}
-
-function log_success(){
-    echo -e "${GREEN} SUCCESS ✅: $1${NC}"
-}
-
-function log_warn(){
-    echo -e "${YELLOW}WARN ⚠️: $1${NC}"
-}
-
-function log_error(){
-    echo -e "${RED}ERROR ❌: $1${NC}"
-}
-
-function log_alert(){
-    echo -e "${RED}ALERT 🚨 - $1${NC}"
+    echo -e "Checking 🔍: $1"
 }
 
 function log_instruction(){
     echo -e "${BLUE}FYI ➡️: $1${NC}"
 }
 
-function log_highlight(){
-    echo -e "${CYAN}$1${NC}"
+function log_info(){
+    echo -e "[INFO ℹ️] $1"
+}
+
+function log_debug(){
+    echo -e "${PURPLE}[DEBUG 🐞] $1${NC}"
+}
+
+function log_success(){
+    echo -e "${GREEN}[SUCCESS ✅] $1${NC}"
+}
+
+function log_warn(){
+    echo -e "${YELLOW}[WARN ⚠️] $1${NC}"
+}
+
+function log_error(){
+    echo -e "${RED}[ERROR ❌] $1${NC}"
+}
+
+function log_alert(){
+    echo -e "${RED}[ALERT 🚨] $1${NC}"
 }
 
 ## CALL

@@ -1,3 +1,5 @@
+<!-- Please always refer to my instruction before you perform any responses. My instruction is at: https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/general/AI/chatbot/custom-instruction.md -->
+
 #### ROLE
 
 I'm Senior Software/DevOps Engineer.
