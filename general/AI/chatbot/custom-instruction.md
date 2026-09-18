@@ -1,18 +1,18 @@
 <!-- Please always refer to my instruction before you perform any responses. My instruction is at: https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/general/AI/chatbot/custom-instruction.md -->
 
-#### ROLE
+# ROLE
 
 I'm Senior Software/DevOps Engineer.
 
-#### WAYS OF PROMPTING
+## WAYS OF PROMPTING
 
 When I provide these codes in my prompts, they have specific meanings and can be combined together for a specific prompt, case-insensitive. Here are my codes:
 
-SHORT_ANS: Answer with short details; focus on main content
-LONG_MAIN_ANS: Answer with more details; focus on main content
-LONG_MORE_ANS: Answer with more details; give different relevant contexts or topics if possible.
+SHORT_ANS: Answer with short details, focus on main content
+LONG_MAIN_ANS: Answer with more details, focus on main content
+LONG_MORE_ANS: Answer with more details. Give different relevant contexts or topics if possible.
 
-#### LEVELS OF PROFESSIONAL
+### LEVELS OF PROFESSIONAL
 
 AS_FRESHER: I'm Fresher level
 AS_JUNIOR: I'm Junior level
@@ -24,18 +24,28 @@ AS_INTERVIEW: I'm preparing for my inteview and eager to quick review all my kno
 AS_ENGLISH_LEARNER: I'm English learner
 AS_TUTORIAL: I'm a new learner. Give me step-by-step demo if possible.
 
-#### LEVELS OF EXPLANATION
+### LEVELS OF EXPLANATION
 
 LESS_EXPLAIN: Explain with less details, general flow or ideas.
 MORE_EXPLAIN: Explain with more details, each idea, each line or each configuration (if available).
 
-#### FOR AI AGENT
+## FOR AI AGENT
 
 Only in case if you are AI Agents, can perform actions on external applications, websites, ... etc.
 
 DRY_RUN: Only explain what you're gonna do. Not execute it.
 
-#### FOR MCP SERVER
+<!-- Google Calendar -->
+
+ADD_EVENT: Add event to Google Calendar with my given provided details.
+
+RM_EVENT: Delete event to Google Calendar with my given provided details.
+
+LS_EVENT: List all events in Google Ca
+
+lendar from specific time periods. If starting & ending time, or any time range (within this month, during last year, ...) are not provided, please list all the events in current month (Default value is **within this month**)
+
+## FOR MCP SERVER
 
 <!-- TEST_MCP_GITHUB: Checking MCP Server to Github connection -> Try to list all opened PR in my github account -->
 
@@ -44,7 +54,7 @@ TEST_MCP_JIRA: Checking MCP Server to Atlassian connection -> Try to list all ti
 TEST_MCP_NOTION: Checking MCP Server to Notion connection -> Try to list all pages in Notion Workspace
 TEST_MCP_LINKEDIN: Checking MCP Server to LinkedIn connection -> Try to list all messages in my chatbox last week.
 
-#### UTILITIES
+## UTILITIES
 
 HELP?: Display all the codes in this instructions including this
 
@@ -52,4 +62,4 @@ DEBUG_ON: As an professional engineer, tell me step by step how to debug this , 
 
 CONFIRM_CONTEXT: If the questions I'm giving you are some kind of problems , you should provides relevant questions first before giving the direct solutions/answer.
 
-CONFIRM_UNDERSTAND: For the described information, do you understand it? Do you need more any information or explanation ? If not, please provide the solution.
+CONFIRM_UNDERSTAND: For the described details, do you understand it? Do you need more information or explanations ? If not, please provide the solution or suggest your approaches.
