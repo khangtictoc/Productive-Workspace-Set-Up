@@ -18,8 +18,8 @@ git clone https://github.com/khangtictoc/POC-All-In-One-Azure.git "$LABS_DIR/6. 
 
 # Gitlab Repos
 TF_MOD_DIR="III. Gitlab/1. Terraform Modules"
+git clone https://gitlab.com/terraform-modules7893436/general/naming.git "$TF_MOD_DIR/general/naming"
 git clone https://gitlab.com/terraform-modules7893436/aws/eks.git "$TF_MOD_DIR/aws/eks"
-git clone https://gitlab.com/terraform-modules7893436/azure/naming.git "$TF_MOD_DIR/azure/naming"
 git clone https://gitlab.com/terraform-modules7893436/hcp/vault-dedicated-cluster.git "$TF_MOD_DIR/hcp/vault-dedicated-cluster"
 git clone https://gitlab.com/terraform-modules7893436/hcp/vault-components.git "$TF_MOD_DIR/hcp/vault-components"
 git clone https://gitlab.com/terraform-modules7893436/kubernetes-deploy/helm.git "$TF_MOD_DIR/kubernetes-deploy/helm"
