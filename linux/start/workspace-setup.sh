@@ -26,3 +26,6 @@ git clone https://gitlab.com/terraform-modules7893436/kubernetes-deploy/helm.git
 
 HELM_CHARTS_DIR="III. Gitlab/2. Helm Charts"
 git clone https://gitlab.com/helm-charts2255608/java-app.git "$HELM_CHARTS_DIR/java-app"
+
+TMP_DIR="IV. XXX_Temp"
+mkdir -p "$TMP_DIR"
