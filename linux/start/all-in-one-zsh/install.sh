@@ -223,7 +223,7 @@ shell_config_motd_fastfetch() {
         log_info "Installing fastfetch..."
         if [[ "$OS" == "macos" ]]; then
             brew install fastfetch
-        elif [[ "$OS" == "ubuntu" ]]; then
+        elif [[ "$OS" == "linux" && $PKG_MGMT == "apt"  ]]; then
             sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
             sudo apt update
             sudo apt install -y fastfetch
