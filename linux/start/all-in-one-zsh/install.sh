@@ -25,6 +25,7 @@ prerequisite_install() {
     elif [[ "$OS" == "linux" && $PKG_MGMT == "apt" ]]; then
         sudo apt update
         sudo apt install -y dos2unix zsh curl unzip vim python3-pip yq
+        sudo apt install -y libpcap0.8 libpcap-dev
     fi
 }
 
