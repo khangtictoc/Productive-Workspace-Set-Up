@@ -5,13 +5,14 @@
   // │                            │
   // └────────────────────────────┘
 
-  // --- DEVELOPER ---
+  // --- WORKING SPACE ---
 
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "git.autofetch": "all",
   "diffEditor.ignoreTrimWhitespace": true,
   "security.workspace.trust.untrustedFiles": "open",
   "explorer.confirmDelete": false,
+
   "editor.letterSpacing": 0.5,
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
@@ -19,10 +20,14 @@
   "editor.renderWhitespace": "boundary",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.largeFileOptimizations": false,
+  
+  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.editor.useModal": "off",
   "workbench.colorTheme": "Atom One Dark",
   "workbench.colorCustomizations": {
     "terminal.foreground": "#abb2bf"
   },
+
   "files.autoSave": "afterDelay",
   
 
@@ -133,7 +138,6 @@
   "terminal.integrated.letterSpacing": 0.5,
   "terminal.integrated.suggest.enabled": true,
   "terminal.integrated.fontLigatures.enabled": true,
-  "workbench.iconTheme": "catppuccin-macchiato",
   "terminal.integrated.defaultProfile.windows": "Ubuntu-24.04 (WSL)",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.profiles.windows": {

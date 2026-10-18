@@ -1,0 +1,19 @@
+[
+    {
+        "name": "HRS AI Gateway",
+        "vendor": "customendpoint",
+        "apiKey": "${input:chat.lm.secret.-63707705}",
+        "apiType": "chat-completions",
+        "models": [
+            {
+                "id": "hrs-light-coder",
+                "name": "HRS Light Coder",
+                "url": "https://aigateway.pec.hrs.cc/v1/chat/completions",
+                "toolCalling": true,
+                "vision": true,
+                "maxInputTokens": 128000,
+                "maxOutputTokens": 16000
+            }
+        ]
+    }
+]
